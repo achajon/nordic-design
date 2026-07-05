@@ -1,0 +1,39 @@
+[
+  {
+    "created_at": "2026-07-05T16:40:23.337412Z",
+    "display_name": "GPT Image 2",
+    "id": "8b813445-b1f7-4790-99ab-9f0885dfa5b7",
+    "job_type": "gpt_image_2",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260705_164023_8b813445-b1f7-4790-99ab-9f0885dfa5b7_min.webp",
+    "params": {
+      "aspect_ratio": "3:4",
+      "height": 2336,
+      "medias": [
+        {
+          "data": {
+            "id": "ec192151-2700-479b-a7fe-a4fd825c8242",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/ec192151-2700-479b-a7fe-a4fd825c8242.png"
+          },
+          "role": "image"
+        },
+        {
+          "data": {
+            "id": "122e6972-90b5-4946-b29d-5895b1c7924c",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/122e6972-90b5-4946-b29d-5895b1c7924c.png"
+          },
+          "role": "image"
+        }
+      ],
+      "model": "videotape-alpha",
+      "prompt": "Vertical portrait brand social tile for a barbershop, near 4:5 aspect, cover/title card for a carousel. Background: high-contrast black and white editorial photography, duotone grading with a warm golden-yellow rim/key light used only as an implied light source, never a flat color wash. Scene: a wide atmospheric shot of a classic barbershop interior -- an empty leather barber chair centered, tools (razor, comb, clippers) laid out on a nearby counter, warm bulb light glowing in the background, deep shadows, moody confident atmosphere, no straight color photography, no people needed in this shot. Add a dark ink (#101010) gradient scrim across the lower half for text legibility. Top-left: a small solid Nordic-yellow (#FFD200) pill-shaped tag containing bold condensed uppercase sans-serif text 'CUIDADO PERSONAL' in dark ink letters, tight letter tracking. Center-lower area: a large headline reading '5 HABITOS DEL HOMBRE MODERNO', set in the hand-cut marker lettering style shown in the second reference image (a font character map) -- reproduce that exact letterform style, all uppercase, tight line height, wrapping across two or three lines as needed -- where the word MODERNO is solid Nordic yellow (#FFD200) and the rest of the words are solid bone-white (#F7F4EC), no other colors on the headline. Directly below the headline, one short line of clean condensed grotesk sans-serif body text in bone-white at reduced opacity, reading: 'Del corte a la calma: las rutinas que marcan la diferencia. Desliza para verlas.' Bottom-right corner: place the exact logo lockup shown in the first reference image (a white Viking helmet mark beside the words NORDIC / Barber Shop, already on a black background) completely unchanged and at small watermark scale -- do not invent, redraw, alter proportions, recolor, or add glow/shadow to this logo; blend its black background seamlessly into the tile's own ink-black canvas so no visible box or seam appears around it. Keep the overall canvas ink-black (#101010) dominant, yellow only as a small accent never exceeding about 10-15% of the frame.",
+      "quality": "high",
+      "reference_elements": [],
+      "resolution": "2k",
+      "width": 1744
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260705_164023_8b813445-b1f7-4790-99ab-9f0885dfa5b7.png",
+    "status": "completed"
+  }
+]

@@ -1,0 +1,59 @@
+{
+  "carousel": "5 habitos de cuidado personal del hombre moderno",
+  "slides": [
+    {
+      "id": "00-portada",
+      "type": "cover",
+      "file": "00-portada.png",
+      "pill": "CUIDADO PERSONAL",
+      "headline": "5 HABITOS DEL HOMBRE MODERNO",
+      "headline_highlight": "MODERNO",
+      "caption": "Del corte a la calma: las rutinas que marcan la diferencia. Desliza para verlas."
+    },
+    {
+      "id": "01-corte",
+      "type": "habit",
+      "file": "01-corte.png",
+      "pill": "HABITO 01/05",
+      "headline": "CORTE CON RITMO",
+      "headline_highlight": "RITMO",
+      "caption": "Un corte a tiempo evita que el fade se pierda antes de la proxima cita. Constancia, no urgencia."
+    },
+    {
+      "id": "02-barba",
+      "type": "habit",
+      "file": "02-barba.png",
+      "pill": "HABITO 02/05",
+      "headline": "BARBA TRABAJADA",
+      "headline_highlight": "TRABAJADA",
+      "caption": "Tallado y destroncado marcan la diferencia entre una barba crecida y una barba cuidada."
+    },
+    {
+      "id": "03-piel",
+      "type": "habit",
+      "file": "03-piel.png",
+      "pill": "HABITO 03/05",
+      "headline": "LA PIEL TAMBIEN SE AFILA",
+      "headline_highlight": "AFILA",
+      "caption": "La piel del rostro se cansa con el sol y la rasurada diaria. Exfoliarla es tan necesario como cortarte el pelo."
+    },
+    {
+      "id": "04-manos",
+      "type": "habit",
+      "file": "04-manos.png",
+      "pill": "HABITO 04/05",
+      "headline": "MANOS FIRMES",
+      "headline_highlight": "FIRMES",
+      "caption": "Un saludo dice mas de lo que crees. Manos cuidadas son parte de la imagen, no un lujo."
+    },
+    {
+      "id": "05-descansa",
+      "type": "habit",
+      "file": "05-descansa.png",
+      "pill": "HABITO 05/05",
+      "headline": "DESCANSA A TIEMPO",
+      "headline_highlight": "DESCANSA",
+      "caption": "El estres se acumula en los hombros antes de notarse en la cara. Un descanso a tiempo se nota."
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+[
+  {
+    "created_at": "2026-07-05T15:53:20.417035Z",
+    "display_name": "GPT Image 2",
+    "id": "3ee9d437-e5a7-49d3-9d62-3ed410481dc6",
+    "job_type": "gpt_image_2",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260705_155320_3ee9d437-e5a7-49d3-9d62-3ed410481dc6_min.webp",
+    "params": {
+      "aspect_ratio": "3:4",
+      "height": 2336,
+      "medias": [
+        {
+          "data": {
+            "id": "abe312be-3b90-461b-a74d-df8ac415f28f",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/abe312be-3b90-461b-a74d-df8ac415f28f.png"
+          },
+          "role": "image"
+        },
+        {
+          "data": {
+            "id": "ec161949-ea4a-4858-bd8f-72017b44f843",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/ec161949-ea4a-4858-bd8f-72017b44f843.png"
+          },
+          "role": "image"
+        }
+      ],
+      "model": "videotape-alpha",
+      "prompt": "Vertical portrait brand social tile for a barbershop, near 4:5 aspect. Background: high-contrast black and white editorial photography, duotone grading with a warm golden-yellow rim/key light used only as an implied light source, never a flat color wash. Scene: a barber's hands mid-fade with clippers on a client's head, tight confident chair-side crop, moody barbershop interior atmosphere, no straight color photography. Add a dark ink (#101010) gradient scrim across the lower half for text legibility. Top-left: a small solid Nordic-yellow (#FFD200) pill-shaped tag containing bold condensed uppercase sans-serif text 'HABITO 01/05' in dark ink letters, tight letter tracking. Center-lower area: a large headline reading 'CORTE CON RITMO', set in the hand-cut marker lettering style shown in the second reference image (a font character map) -- reproduce that exact letterform style, all uppercase, tight line height -- where the word RITMO is solid Nordic yellow (#FFD200) and the rest of the words are solid bone-white (#F7F4EC), no other colors on the headline. Directly below the headline, one short line of clean condensed grotesk sans-serif body text in bone-white at reduced opacity, reading: 'Un corte a tiempo evita que el fade se pierda antes de la proxima cita. Constancia, no urgencia.' Bottom-right corner: place the exact logo lockup shown in the first reference image (a white Viking helmet mark beside the words NORDIC / Barber Shop, already on a black background) completely unchanged and at small watermark scale -- do not invent, redraw, alter proportions, recolor, or add glow/shadow to this logo; blend its black background seamlessly into the tile's own ink-black canvas so no visible box or seam appears around it. Keep the overall canvas ink-black (#101010) dominant, yellow only as a small accent never exceeding about 10-15% of the frame.",
+      "quality": "high",
+      "reference_elements": [],
+      "resolution": "2k",
+      "width": 1744
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260705_155320_3ee9d437-e5a7-49d3-9d62-3ed410481dc6.png",
+    "status": "completed"
+  }
+]

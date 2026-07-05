@@ -1,0 +1,79 @@
+[
+  {
+    "created_at": "2026-07-05T16:51:44.220256Z",
+    "display_name": "GPT Image 2",
+    "id": "a00c2bd1-642d-4d42-a25c-c549af30d085",
+    "job_type": "gpt_image_2",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260705_165144_a00c2bd1-642d-4d42-a25c-c549af30d085_min.webp",
+    "params": {
+      "aspect_ratio": "3:4",
+      "height": 2336,
+      "medias": [
+        {
+          "data": {
+            "id": "5d24f053-90dd-4916-8ae6-6a85e1ecf53b",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/5d24f053-90dd-4916-8ae6-6a85e1ecf53b_resize.jpg"
+          },
+          "role": "image"
+        },
+        {
+          "data": {
+            "id": "4710cdaf-1c17-4520-b89e-effd4a5594c7",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/4710cdaf-1c17-4520-b89e-effd4a5594c7_resize.jpg"
+          },
+          "role": "image"
+        },
+        {
+          "data": {
+            "id": "480e6dc5-10a2-448e-a2c0-52af00fafb84",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/480e6dc5-10a2-448e-a2c0-52af00fafb84_resize.jpg"
+          },
+          "role": "image"
+        },
+        {
+          "data": {
+            "id": "ff62e997-09bf-4acb-a23f-9588d92915b9",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/ff62e997-09bf-4acb-a23f-9588d92915b9_resize.jpg"
+          },
+          "role": "image"
+        },
+        {
+          "data": {
+            "id": "70f89cd5-ec1a-4647-8e3d-7aac904696c8",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/70f89cd5-ec1a-4647-8e3d-7aac904696c8_resize.jpg"
+          },
+          "role": "image"
+        },
+        {
+          "data": {
+            "id": "cb574287-e7d5-4fa0-9f08-c26407f7dae3",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/cb574287-e7d5-4fa0-9f08-c26407f7dae3.png"
+          },
+          "role": "image"
+        },
+        {
+          "data": {
+            "id": "38b7090b-05b6-42e9-957a-41e255ada9ee",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/38b7090b-05b6-42e9-957a-41e255ada9ee.png"
+          },
+          "role": "image"
+        }
+      ],
+      "model": "videotape-alpha",
+      "prompt": "Vertical portrait brand social tile for a barbershop, near 4:5 aspect, cover/title card for a carousel. Background: a 2x3 photographic mosaic/collage grid built from the five attached reference photos (reference images 1 through 5), each cell showing a tight crop of one of those exact scenes -- a fade haircut with clippers, a beard being shaped with a razor and comb, a facial cleansing foam application, a manicure moment, and a man resting in a massage chair with an eye mask -- keep each cell's own high-contrast black and white duotone grading with warm golden-yellow rim light exactly as it already looks in those reference photos, thin ink-black (#101010) gutter lines separating the grid cells, no straight color photography. Add a dark ink (#101010) gradient scrim across the lower half of the whole tile for text legibility. Top-left: a small solid Nordic-yellow (#FFD200) pill-shaped tag containing bold condensed uppercase sans-serif text 'CUIDADO PERSONAL' in dark ink letters, tight letter tracking. Center-lower area, on top of the scrim: a large headline reading '5 HABITOS DEL HOMBRE MODERNO', set in the hand-cut marker lettering style shown in the seventh reference image (a font character map) -- reproduce that exact letterform style, all uppercase, tight line height, wrapping across two or three lines as needed -- where the word MODERNO is solid Nordic yellow (#FFD200) and the rest of the words are solid bone-white (#F7F4EC), no other colors on the headline. Directly below the headline, one short line of clean condensed grotesk sans-serif body text in bone-white at reduced opacity, reading: 'Del corte a la calma: las rutinas que marcan la diferencia. Desliza para verlas.' Bottom-right corner: place the exact logo lockup shown in the sixth reference image (a white Viking helmet mark beside the words NORDIC / Barber Shop, already on a black background) completely unchanged and at small watermark scale -- do not invent, redraw, alter proportions, recolor, or add glow/shadow to this logo; blend its black background seamlessly into the tile's own ink-black canvas so no visible box or seam appears around it. Keep the overall canvas ink-black (#101010) dominant, yellow only as a small accent never exceeding about 10-15% of the frame.",
+      "quality": "high",
+      "reference_elements": [],
+      "resolution": "2k",
+      "width": 1744
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260705_165144_a00c2bd1-642d-4d42-a25c-c549af30d085.png",
+    "status": "completed"
+  }
+]
