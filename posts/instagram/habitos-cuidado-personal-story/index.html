@@ -366,6 +366,11 @@
         <div data-hf-id="hf-dca1" id="outro-fade"></div>
       </div>
 
+      <!-- audio -->
+      <audio data-hf-id="hf-39yh" id="bgm" src="assets/bgm/track.mp3" data-start="0" data-duration="17" data-track-index="20" data-volume="0.55"></audio>
+      <audio data-hf-id="hf-8n5o" id="sfx-blade-1" src="assets/sfx/blade-whoosh.mp3" data-start="2.2" data-duration="0.96" data-track-index="21" data-volume="0.35"></audio>
+      <audio data-hf-id="hf-ylsf" id="sfx-blade-2" src="assets/sfx/blade-whoosh.mp3" data-start="13.5" data-duration="0.96" data-track-index="22" data-volume="0.35"></audio>
+
       <!-- persistent UI -->
       <div data-hf-id="hf-f6d6" id="grain"></div>
       <div data-hf-id="hf-ulwv" id="progressbar">
@@ -475,6 +480,7 @@
 
       // ---- final fade to black (exception: last scene may exit) ----
       tl.to("#outro-fade", { opacity: 1, duration: 0.5, ease: "power2.in" }, 16.5);
+      tl.to("#bgm", { volume: 0, duration: 0.5, ease: "power2.in" }, 16.5);
 
       window.__timelines["main"] = tl;
     </script>

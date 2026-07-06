@@ -1,0 +1,38 @@
+[
+  {
+    "created_at": "2026-07-06T20:47:36.903046Z",
+    "display_name": "Nano Banana 2",
+    "id": "f73c6cae-dd5d-462b-b110-48225aec4235",
+    "job_type": "nano_banana_flash",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260706_204736_f73c6cae-dd5d-462b-b110-48225aec4235_min.webp",
+    "params": {
+      "aspect_ratio": "4:5",
+      "batch_size": 1,
+      "height": 2304,
+      "medias": [
+        {
+          "data": {
+            "id": "469a46fd-4d00-4da3-babe-f83786447d98",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/469a46fd-4d00-4da3-babe-f83786447d98.png"
+          },
+          "role": "image"
+        },
+        {
+          "data": {
+            "id": "46970245-8c40-4966-bcf6-30e2cc92938d",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/46970245-8c40-4966-bcf6-30e2cc92938d.png"
+          },
+          "role": "image"
+        }
+      ],
+      "prompt": "Vertical portrait brand social tile for a barbershop, exact 4:5 aspect ratio, 1080x1350 Instagram feed post. Background: high-contrast black and white editorial photography, duotone grading with a warm golden-yellow rim/key light used only as an implied light source, never a flat color wash, no straight color photography. Scene: wide shot inside a barbershop's grooming spa corner -- a confident male client seated in a barber chair, one hand resting in a small stainless steel bowl of soapy water for a manicure, his bare foot already resting on a folded white towel nearby ready for a pedicure, nail tools (file, buffer, cuticle pusher) neatly arranged on the towel, moody duotone barbershop interior atmosphere in the soft-focus background, unhurried and professional mood. Add a dark ink (#101010) gradient scrim across the lower half for text legibility. Top-left: a small solid Nordic-yellow (#FFD200) pill-shaped tag containing bold condensed uppercase sans-serif text \"CUIDADO DE MANOS Y PIES\" in dark ink letters, tight letter tracking. Center-lower area: a large headline reading \"PIES Y MANOS A PUNTO\", set in the hand-cut marker lettering style shown in the second reference image (a font character map) -- reproduce that exact letterform style, all uppercase, tight line height -- where the word PUNTO is solid Nordic yellow (#FFD200) and the rest of the words are solid bone-white (#F7F4EC), no other colors on the headline. Directly below the headline, one short line of clean condensed grotesk sans-serif body text in bone-white at reduced opacity, reading: \"Manicura y pedicura para hombres, sin excusas. Desliza y conoce el proceso.\" Bottom-right corner: place the exact logo lockup shown in the first reference image (a white Viking helmet mark beside the words NORDIC / Barber Shop, already on a black background) completely unchanged and at small watermark scale -- do not invent, redraw, alter proportions, recolor, or add glow/shadow to this logo; blend its black background seamlessly into the tile's own ink-black canvas so no visible box or seam appears around it. Keep the overall canvas ink-black (#101010) dominant, yellow only as a small accent never exceeding about 10-15% of the frame.",
+      "reference_elements": [],
+      "resolution": "2k",
+      "width": 1856
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260706_204736_f73c6cae-dd5d-462b-b110-48225aec4235.png",
+    "status": "completed"
+  }
+]

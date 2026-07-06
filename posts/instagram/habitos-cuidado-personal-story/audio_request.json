@@ -1,0 +1,10 @@
+{
+  "lines": [
+    { "id": "blade-1", "sfx": ["blade whoosh"] },
+    { "id": "blade-2", "sfx": ["blade whoosh"] }
+  ],
+  "bgm": {
+    "mode": "retrieve",
+    "query": "confident modern masculine barbershop grooming premium groove"
+  }
+}

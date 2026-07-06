@@ -1,0 +1,61 @@
+{
+  "carousel": "Manicura y pedicura para hombres",
+  "source_reference": "Estructura del proceso inspirada en https://homme.mx/servicios/manicure-y-pedicure-hombres/ (competencia, solo como referencia de pasos del servicio), copy y precios propios de Nordic Barber Shop.",
+  "slides": [
+    {
+      "id": "00-portada",
+      "type": "cover",
+      "file": "00-portada.png",
+      "pill": "CUIDADO DE MANOS Y PIES",
+      "headline": "PIES Y MANOS A PUNTO",
+      "headline_highlight": "PUNTO",
+      "caption": "Manicura y pedicura para hombres, sin excusas. Desliza y conoce el proceso."
+    },
+    {
+      "id": "01-corte-limado",
+      "type": "step",
+      "file": "01-corte-limado.png",
+      "pill": "PASO 01/04",
+      "headline": "CORTE Y LIMADO EXACTOS",
+      "headline_highlight": "EXACTOS",
+      "caption": "Nada de tijeras de bano. Corte de precision y limado parejo, sin rebabas."
+    },
+    {
+      "id": "02-cuticula",
+      "type": "step",
+      "file": "02-cuticula.png",
+      "pill": "PASO 02/04",
+      "headline": "CUTICULA FUERA, PIEL LISTA",
+      "headline_highlight": "FUERA",
+      "caption": "Removemos cuticula y piel muerta antes de que se conviertan en padrastros."
+    },
+    {
+      "id": "03-hidratacion",
+      "type": "step",
+      "file": "03-hidratacion.png",
+      "pill": "PASO 03/04",
+      "headline": "HIDRATACION PROFUNDA",
+      "headline_highlight": "PROFUNDA",
+      "caption": "Sella la limpieza con hidratacion, o parafina si quieres ir por mas."
+    },
+    {
+      "id": "04-pies-sin-callos",
+      "type": "step",
+      "file": "04-pies-sin-callos.png",
+      "pill": "PASO 04/04",
+      "headline": "PIES SIN CALLOS NI PENA",
+      "headline_highlight": "CALLOS",
+      "caption": "Pulido de callosidades y alivio real. Sandalias sin pena, todo el ano."
+    },
+    {
+      "id": "05-cita",
+      "type": "cta",
+      "file": "05-cita.png",
+      "pill": "AGENDA TU CITA",
+      "headline": "MANOS Y PIES, A PUNTO",
+      "headline_highlight": "PUNTO",
+      "price_bar": "MANICURA SPA Q125 - PEDICURA SPA Q175 - CON MASAJE INCLUIDO",
+      "caption": "Reserva tu cita en Nordic Barber Shop."
+    }
+  ]
+}

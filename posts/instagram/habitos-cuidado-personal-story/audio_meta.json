@@ -1,0 +1,41 @@
+{
+  "tts_provider": null,
+  "voice_id": null,
+  "bgm": {
+    "path": "assets/bgm/track.mp3",
+    "volume": 0.9,
+    "query": "upbeat stylish urban hip hop instrumental barbershop",
+    "mode": "retrieve",
+    "duration_s": 120
+  },
+  "bgm_pending": false,
+  "bgm_provider": "heygen",
+  "bgm_pid": null,
+  "bgm_log": null,
+  "bgm_mode": "retrieve",
+  "bgm_target_duration_s": null,
+  "bgm_seed_duration_s": null,
+  "bgm_loop_count": null,
+  "voices": [],
+  "sfx": [
+    {
+      "id": "blade-1",
+      "name": "blade whoosh",
+      "file": "assets/sfx/blade-whoosh.mp3",
+      "source": "heygen",
+      "offset_s": 0,
+      "duration_s": 0.96,
+      "volume": 0.35
+    },
+    {
+      "id": "blade-2",
+      "name": "blade whoosh",
+      "file": "assets/sfx/blade-whoosh.mp3",
+      "source": "heygen",
+      "offset_s": 0,
+      "duration_s": 0.96,
+      "volume": 0.35
+    }
+  ],
+  "total_duration_s": 0
+}
