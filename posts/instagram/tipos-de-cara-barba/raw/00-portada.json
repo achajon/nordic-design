@@ -1,0 +1,39 @@
+[
+  {
+    "created_at": "2026-07-06T16:16:02.570305Z",
+    "display_name": "GPT Image 2",
+    "id": "628f1b95-98e1-4da5-9d7f-e6ba0e0fefb7",
+    "job_type": "gpt_image_2",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260706_161602_628f1b95-98e1-4da5-9d7f-e6ba0e0fefb7_min.webp",
+    "params": {
+      "aspect_ratio": "3:4",
+      "height": 2336,
+      "medias": [
+        {
+          "data": {
+            "id": "b7ba6c8c-852b-40a1-9bcc-61c8038eeaea",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/b7ba6c8c-852b-40a1-9bcc-61c8038eeaea.png"
+          },
+          "role": "image"
+        },
+        {
+          "data": {
+            "id": "9a083d46-6d85-407e-8eaf-13f9ce32c133",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/9a083d46-6d85-407e-8eaf-13f9ce32c133.png"
+          },
+          "role": "image"
+        }
+      ],
+      "model": "videotape-alpha",
+      "prompt": "Vertical portrait brand social tile for a barbershop, near 4:5 aspect. Background: high-contrast black and white editorial photography, duotone grading with a warm golden-yellow rim/key light used only as an implied light source, never a flat color wash. Scene: a barber studying a client's face and jawline in a mirror before starting, contemplative, tight confident chair-side crop, moody barbershop interior atmosphere, no straight color photography. Add a dark ink (#101010) gradient scrim across the lower half for text legibility. Top-left: a small solid Nordic-yellow (#FFD200) pill-shaped tag containing bold condensed uppercase sans-serif text 'GUIA DE BARBA' in dark ink letters, tight letter tracking. Center-lower area: a large headline reading 'LA BARBA IDEAL SEGUN TU CARA', set in the hand-cut marker lettering style shown in the second reference image (a font character map) -- reproduce that exact letterform style, all uppercase, tight line height -- where the word IDEAL is solid Nordic yellow (#FFD200) and the rest of the words are solid bone-white (#F7F4EC), no other colors on the headline. Directly below the headline, one short line of clean condensed grotesk sans-serif body text in bone-white at reduced opacity, reading: '4 formas de rostro, 4 barbas que si funcionan. Desliza y encuentra la tuya.' Bottom-right corner: place the exact logo lockup shown in the first reference image (a white Viking helmet mark beside the words NORDIC / Barber Shop, already on a black background) completely unchanged and at small watermark scale -- do not invent, redraw, alter proportions, recolor, or add glow/shadow to this logo; blend its black background seamlessly into the tile's own ink-black canvas so no visible box or seam appears around it. Keep the overall canvas ink-black (#101010) dominant, yellow only as a small accent never exceeding about 10-15% of the frame.",
+      "quality": "high",
+      "reference_elements": [],
+      "resolution": "2k",
+      "width": 1744
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260706_161602_628f1b95-98e1-4da5-9d7f-e6ba0e0fefb7.png",
+    "status": "completed"
+  }
+]

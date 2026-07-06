@@ -1,0 +1,59 @@
+{
+  "carousel": "La barba ideal segun la forma de tu cara",
+  "slides": [
+    {
+      "id": "00-portada",
+      "type": "cover",
+      "file": "00-portada.png",
+      "pill": "GUIA DE BARBA",
+      "headline": "LA BARBA IDEAL SEGUN TU CARA",
+      "headline_highlight": "IDEAL",
+      "caption": "4 formas de rostro, 4 barbas que si funcionan. Desliza y encuentra la tuya."
+    },
+    {
+      "id": "01-ovalada",
+      "type": "face-shape",
+      "file": "01-ovalada.png",
+      "pill": "ROSTRO 01/04",
+      "headline": "OVALADA: LIBERTAD TOTAL",
+      "headline_highlight": "LIBERTAD",
+      "caption": "Frente y mandibula equilibradas: casi cualquier barba te sienta bien. Empieza con una barba de tres dias."
+    },
+    {
+      "id": "02-redonda",
+      "type": "face-shape",
+      "file": "02-redonda.png",
+      "pill": "ROSTRO 02/04",
+      "headline": "REDONDA: BUSCA EL LARGO",
+      "headline_highlight": "LARGO",
+      "caption": "Mejillas marcadas piden una barba que alargue el rostro. El candado con bigote separado es tu mejor aliado."
+    },
+    {
+      "id": "03-rectangular",
+      "type": "face-shape",
+      "file": "03-rectangular.png",
+      "pill": "ROSTRO 03/04",
+      "headline": "RECTANGULAR: PATILLAS FINAS",
+      "headline_highlight": "FINAS",
+      "caption": "Rostro alargado y anguloso. Patillas delgadas y bigote pistolero conectado a la barbilla suavizan la proporcion."
+    },
+    {
+      "id": "04-cuadrada",
+      "type": "face-shape",
+      "file": "04-cuadrada.png",
+      "pill": "ROSTRO 04/04",
+      "headline": "CUADRADA: SUAVIZA EL ANGULO",
+      "headline_highlight": "ANGULO",
+      "caption": "Frente y mandibula del mismo ancho. Una barba circular redondea las facciones y resalta la barbilla."
+    },
+    {
+      "id": "05-cita",
+      "type": "cta",
+      "file": "05-cita.png",
+      "pill": "AGENDA TU CITA",
+      "headline": "TU BARBA, HECHA A TU MEDIDA",
+      "headline_highlight": "MEDIDA",
+      "caption": "Nuestros barberos identifican tu forma de rostro y afeitan la barba que te queda. Reserva tu cita en Nordic Barber Shop."
+    }
+  ]
+}

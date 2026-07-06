@@ -1,0 +1,39 @@
+[
+  {
+    "created_at": "2026-07-06T16:22:45.914515Z",
+    "display_name": "GPT Image 2",
+    "id": "f9b13fc0-ea3e-4750-a2fd-f53f29c8d788",
+    "job_type": "gpt_image_2",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260706_162245_f9b13fc0-ea3e-4750-a2fd-f53f29c8d788_min.webp",
+    "params": {
+      "aspect_ratio": "3:4",
+      "height": 2336,
+      "medias": [
+        {
+          "data": {
+            "id": "4699d99d-5d04-4512-8d83-a333cd960c69",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/4699d99d-5d04-4512-8d83-a333cd960c69.png"
+          },
+          "role": "image"
+        },
+        {
+          "data": {
+            "id": "74fca06d-80c7-4ad6-8101-3f985a566cb7",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/74fca06d-80c7-4ad6-8101-3f985a566cb7.png"
+          },
+          "role": "image"
+        }
+      ],
+      "model": "videotape-alpha",
+      "prompt": "Vertical portrait brand social tile for a barbershop, near 4:5 aspect. Background: high-contrast black and white editorial photography, duotone grading with a warm golden-yellow rim/key light used only as an implied light source, never a flat color wash. Scene: the finished result of a sharp beard trim, barber stepping back satisfied, tools resting on the counter, tight confident chair-side crop, moody barbershop interior atmosphere, no straight color photography. Add a dark ink (#101010) gradient scrim across the lower half for text legibility. Top-left: a small solid Nordic-yellow (#FFD200) pill-shaped tag containing bold condensed uppercase sans-serif text 'AGENDA TU CITA' in dark ink letters, tight letter tracking. Center-lower area: a large headline reading 'TU BARBA, HECHA A TU MEDIDA', set in the hand-cut marker lettering style shown in the second reference image (a font character map) -- reproduce that exact letterform style, all uppercase, tight line height -- where the word MEDIDA is solid Nordic yellow (#FFD200) and the rest of the words are solid bone-white (#F7F4EC), no other colors on the headline. Directly below the headline, one short line of clean condensed grotesk sans-serif body text in bone-white at reduced opacity, reading: 'Nuestros barberos identifican tu forma de rostro y afeitan la barba que te queda. Reserva tu cita en Nordic Barber Shop.' Bottom-right corner: place the exact logo lockup shown in the first reference image (a white Viking helmet mark beside the words NORDIC / Barber Shop, already on a black background) completely unchanged and at small watermark scale -- do not invent, redraw, alter proportions, recolor, or add glow/shadow to this logo; blend its black background seamlessly into the tile's own ink-black canvas so no visible box or seam appears around it. Keep the overall canvas ink-black (#101010) dominant, yellow only as a small accent never exceeding about 10-15% of the frame.",
+      "quality": "high",
+      "reference_elements": [],
+      "resolution": "2k",
+      "width": 1744
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260706_162245_f9b13fc0-ea3e-4750-a2fd-f53f29c8d788.png",
+    "status": "completed"
+  }
+]

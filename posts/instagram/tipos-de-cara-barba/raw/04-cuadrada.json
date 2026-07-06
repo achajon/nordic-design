@@ -1,0 +1,39 @@
+[
+  {
+    "created_at": "2026-07-06T16:19:34.491602Z",
+    "display_name": "GPT Image 2",
+    "id": "62eae54f-bca0-4c15-afdb-f77f13bfdb9a",
+    "job_type": "gpt_image_2",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260706_161934_62eae54f-bca0-4c15-afdb-f77f13bfdb9a_min.webp",
+    "params": {
+      "aspect_ratio": "3:4",
+      "height": 2336,
+      "medias": [
+        {
+          "data": {
+            "id": "d73d69ef-bc3d-4e4e-a57f-cd4bbef55176",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/d73d69ef-bc3d-4e4e-a57f-cd4bbef55176.png"
+          },
+          "role": "image"
+        },
+        {
+          "data": {
+            "id": "f0af223c-1c14-4f52-a8e1-f76f1b1e8ab8",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/f0af223c-1c14-4f52-a8e1-f76f1b1e8ab8.png"
+          },
+          "role": "image"
+        }
+      ],
+      "model": "videotape-alpha",
+      "prompt": "Vertical portrait brand social tile for a barbershop, near 4:5 aspect. Background: high-contrast black and white editorial photography, duotone grading with a warm golden-yellow rim/key light used only as an implied light source, never a flat color wash. Scene: a barber rounding a square jawline with a circular / lock-style beard trim using clippers, tight confident chair-side crop, moody barbershop interior atmosphere, no straight color photography. Add a dark ink (#101010) gradient scrim across the lower half for text legibility. Top-left: a small solid Nordic-yellow (#FFD200) pill-shaped tag containing bold condensed uppercase sans-serif text 'ROSTRO 04/04' in dark ink letters, tight letter tracking. Center-lower area: a large headline reading 'CUADRADA: SUAVIZA EL ANGULO', set in the hand-cut marker lettering style shown in the second reference image (a font character map) -- reproduce that exact letterform style, all uppercase, tight line height -- where the word ANGULO is solid Nordic yellow (#FFD200) and the rest of the words are solid bone-white (#F7F4EC), no other colors on the headline. Directly below the headline, one short line of clean condensed grotesk sans-serif body text in bone-white at reduced opacity, reading: 'Frente y mandibula del mismo ancho. Una barba circular redondea las facciones y resalta la barbilla.' Bottom-right corner: place the exact logo lockup shown in the first reference image (a white Viking helmet mark beside the words NORDIC / Barber Shop, already on a black background) completely unchanged and at small watermark scale -- do not invent, redraw, alter proportions, recolor, or add glow/shadow to this logo; blend its black background seamlessly into the tile's own ink-black canvas so no visible box or seam appears around it. Keep the overall canvas ink-black (#101010) dominant, yellow only as a small accent never exceeding about 10-15% of the frame.",
+      "quality": "high",
+      "reference_elements": [],
+      "resolution": "2k",
+      "width": 1744
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260706_161934_62eae54f-bca0-4c15-afdb-f77f13bfdb9a.png",
+    "status": "completed"
+  }
+]

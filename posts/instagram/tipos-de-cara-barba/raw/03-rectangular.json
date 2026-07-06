@@ -1,0 +1,39 @@
+[
+  {
+    "created_at": "2026-07-06T16:19:33.567084Z",
+    "display_name": "GPT Image 2",
+    "id": "fc108510-bb6f-499d-be70-8baadb89255b",
+    "job_type": "gpt_image_2",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260706_161933_fc108510-bb6f-499d-be70-8baadb89255b_min.webp",
+    "params": {
+      "aspect_ratio": "3:4",
+      "height": 2336,
+      "medias": [
+        {
+          "data": {
+            "id": "56a60919-9cfa-484b-ad89-596d78c45328",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/56a60919-9cfa-484b-ad89-596d78c45328.png"
+          },
+          "role": "image"
+        },
+        {
+          "data": {
+            "id": "b8a36477-45e2-48f2-9f82-711cba77b210",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/b8a36477-45e2-48f2-9f82-711cba77b210.png"
+          },
+          "role": "image"
+        }
+      ],
+      "model": "videotape-alpha",
+      "prompt": "Vertical portrait brand social tile for a barbershop, near 4:5 aspect. Background: high-contrast black and white editorial photography, duotone grading with a warm golden-yellow rim/key light used only as an implied light source, never a flat color wash. Scene: a barber trimming thin sideburns and shaping a horseshoe / gunslinger mustache connected to chin hair, tight confident chair-side crop, moody barbershop interior atmosphere, no straight color photography. Add a dark ink (#101010) gradient scrim across the lower half for text legibility. Top-left: a small solid Nordic-yellow (#FFD200) pill-shaped tag containing bold condensed uppercase sans-serif text 'ROSTRO 03/04' in dark ink letters, tight letter tracking. Center-lower area: a large headline reading 'RECTANGULAR: PATILLAS FINAS', set in the hand-cut marker lettering style shown in the second reference image (a font character map) -- reproduce that exact letterform style, all uppercase, tight line height -- where the word FINAS is solid Nordic yellow (#FFD200) and the rest of the words are solid bone-white (#F7F4EC), no other colors on the headline. Directly below the headline, one short line of clean condensed grotesk sans-serif body text in bone-white at reduced opacity, reading: 'Rostro alargado y anguloso. Patillas delgadas y bigote pistolero conectado a la barbilla suavizan la proporcion.' Bottom-right corner: place the exact logo lockup shown in the first reference image (a white Viking helmet mark beside the words NORDIC / Barber Shop, already on a black background) completely unchanged and at small watermark scale -- do not invent, redraw, alter proportions, recolor, or add glow/shadow to this logo; blend its black background seamlessly into the tile's own ink-black canvas so no visible box or seam appears around it. Keep the overall canvas ink-black (#101010) dominant, yellow only as a small accent never exceeding about 10-15% of the frame.",
+      "quality": "high",
+      "reference_elements": [],
+      "resolution": "2k",
+      "width": 1744
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260706_161933_fc108510-bb6f-499d-be70-8baadb89255b.png",
+    "status": "completed"
+  }
+]
