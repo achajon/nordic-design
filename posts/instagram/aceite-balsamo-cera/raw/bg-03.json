@@ -1,0 +1,21 @@
+[
+  {
+    "created_at": "2026-07-06T22:16:32.894785Z",
+    "display_name": "Nano Banana 2",
+    "id": "a3bea0f2-4bf8-4cf5-a4cc-16798e46c91d",
+    "job_type": "nano_banana_flash",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260706_221632_a3bea0f2-4bf8-4cf5-a4cc-16798e46c91d_min.webp",
+    "params": {
+      "aspect_ratio": "4:5",
+      "batch_size": 1,
+      "height": 2304,
+      "medias": [],
+      "prompt": "Vertical portrait photograph for a barbershop brand tile, exact 4:5 aspect ratio, 1080x1350. High-contrast black and white editorial photography, duotone grading with a warm golden-yellow rim/key light used only as an implied light source, never a flat color wash, no straight color photography. Scene: extreme close-up of a man's fingers working a firm dab of beard wax from an open unlabeled round metal tin, then styling the twisted tip of a mustache with the wax, firm confident hold visible, soft blurred barbershop interior in the background, tight product-and-hand detail crop, no full face needed. Absolutely no text, no letters, no numbers, no logo, no watermark, no graphic overlays, no UI elements anywhere in the image -- pure photography only, a clean background plate.",
+      "reference_elements": [],
+      "resolution": "2k",
+      "width": 1856
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260706_221632_a3bea0f2-4bf8-4cf5-a4cc-16798e46c91d.png",
+    "status": "completed"
+  }
+]

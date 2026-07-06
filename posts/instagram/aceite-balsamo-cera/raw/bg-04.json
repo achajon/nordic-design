@@ -1,0 +1,21 @@
+[
+  {
+    "created_at": "2026-07-06T22:16:59.897226Z",
+    "display_name": "Nano Banana 2",
+    "id": "921e798f-40fd-4c6c-86f1-d1c0c6d63ebf",
+    "job_type": "nano_banana_flash",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260706_221659_921e798f-40fd-4c6c-86f1-d1c0c6d63ebf_min.webp",
+    "params": {
+      "aspect_ratio": "4:5",
+      "batch_size": 1,
+      "height": 2304,
+      "medias": [],
+      "prompt": "Vertical portrait photograph for a barbershop brand tile, exact 4:5 aspect ratio, 1080x1350. High-contrast black and white editorial photography, duotone grading with a warm golden-yellow rim/key light used only as an implied light source, never a flat color wash, no straight color photography. Scene: an overhead-angled still life on a wooden barber counter of three unlabeled beard-grooming containers side by side -- a small glass dropper oil bottle, a round balm tin, and a round wax tin -- neatly arranged on a folded dark cloth, barber tools (comb, scissors) softly out of focus at the edges, moody barbershop atmosphere, editorial product-trio composition. Absolutely no text, no letters, no numbers, no logo, no watermark, no graphic overlays, no UI elements anywhere in the image -- pure photography only, a clean background plate.",
+      "reference_elements": [],
+      "resolution": "2k",
+      "width": 1856
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260706_221659_921e798f-40fd-4c6c-86f1-d1c0c6d63ebf.png",
+    "status": "completed"
+  }
+]

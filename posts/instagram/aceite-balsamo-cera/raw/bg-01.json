@@ -1,0 +1,21 @@
+[
+  {
+    "created_at": "2026-07-06T22:15:31.91154Z",
+    "display_name": "Nano Banana 2",
+    "id": "e07957e4-e94c-4f76-8ec9-8e09d9d4eb19",
+    "job_type": "nano_banana_flash",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260706_221531_e07957e4-e94c-4f76-8ec9-8e09d9d4eb19_min.webp",
+    "params": {
+      "aspect_ratio": "4:5",
+      "batch_size": 1,
+      "height": 2304,
+      "medias": [],
+      "prompt": "Vertical portrait photograph for a barbershop brand tile, exact 4:5 aspect ratio, 1080x1350. High-contrast black and white editorial photography, duotone grading with a warm golden-yellow rim/key light used only as an implied light source, never a flat color wash, no straight color photography. Scene: extreme close-up of a small unlabeled glass dropper bottle of beard oil tilted over an open palm, a single drop of oil caught mid-fall catching the warm key light, soft blurred barbershop interior in the background, tight confident product-detail crop, no faces needed. Absolutely no text, no letters, no numbers, no logo, no watermark, no graphic overlays, no UI elements anywhere in the image -- pure photography only, a clean background plate.",
+      "reference_elements": [],
+      "resolution": "2k",
+      "width": 1856
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260706_221531_e07957e4-e94c-4f76-8ec9-8e09d9d4eb19.png",
+    "status": "completed"
+  }
+]

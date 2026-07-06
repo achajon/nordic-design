@@ -1,0 +1,61 @@
+{
+  "carousel": "Aceite, balsamo o cera",
+  "source_reference": "Estructura y datos de producto adaptados de https://www.capitanbarbas.com/articles-blog/aceite_balsamo_o_cera.html (blog externo, solo como referencia de contenido), copy propio de Nordic Barber Shop.",
+  "build_method": "Hibrido HTML overlay (Opcion B de carousel-tile-generation.md): fondo generado con nano_banana_flash sin texto/logo, texto y logo compuestos en HTML/CSS con fuentes reales, renderizado a PNG con Chrome headless.",
+  "slides": [
+    {
+      "id": "00-portada",
+      "type": "cover",
+      "file": "00-portada.png",
+      "pill": "GUIA DE BARBA",
+      "headline": "EL PRODUCTO QUE LE FALTA A TU BARBA",
+      "headline_highlight": "FALTA",
+      "caption": "Aceite, balsamo o cera: cada barba pide algo distinto. Desliza y descubre cual es la tuya."
+    },
+    {
+      "id": "01-aceite",
+      "type": "product",
+      "file": "01-aceite.png",
+      "pill": "01/03 · ACEITE",
+      "headline": "ACEITE: HIDRATACION DIARIA",
+      "headline_highlight": "HIDRATACION",
+      "caption": "Para cualquier largo, desde sombra de barba hasta barba larga. Ablanda el pelo, calma la piel y nutre el foliculo. Unas gotas cada manana."
+    },
+    {
+      "id": "02-balsamo",
+      "type": "product",
+      "file": "02-balsamo.png",
+      "pill": "02/03 · BALSAMO",
+      "headline": "BALSAMO: ESTILO CON CUERPO",
+      "headline_highlight": "ESTILO",
+      "caption": "Desde 1 cm de largo. Hidrata, da fijacion ligera y hace ver la barba mas densa. Raspa con la una, frota entre las palmas y peina."
+    },
+    {
+      "id": "03-cera",
+      "type": "product",
+      "file": "03-cera.png",
+      "pill": "03/03 · CERA",
+      "headline": "CERA: SUJECION TOTAL",
+      "headline_highlight": "TOTAL",
+      "caption": "Para barbas gruesas o rebeldes de mas de 1 cm. Fijacion firme todo el dia, se retira facil en la ducha."
+    },
+    {
+      "id": "04-cual-elegir",
+      "type": "recap",
+      "file": "04-cual-elegir.png",
+      "pill": "¿CUAL ES LA TUYA?",
+      "headline": "TRES BARBAS, TRES SOLUCIONES",
+      "headline_highlight": "SOLUCIONES",
+      "caption": "Sombra o corta: aceite. Con estilo desde 1 cm: balsamo. Gruesa o rebelde: cera."
+    },
+    {
+      "id": "05-cita",
+      "type": "cta",
+      "file": "05-cita.png",
+      "pill": "AGENDA TU CITA",
+      "headline": "TALLADO Y CONSEJO EXPERTO",
+      "headline_highlight": "EXPERTO",
+      "caption": "Nuestros barberos te dicen que producto le toca a tu barba. Agenda tu tallado en Nordic Barber Shop."
+    }
+  ]
+}
