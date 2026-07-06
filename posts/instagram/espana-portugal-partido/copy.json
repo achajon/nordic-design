@@ -1,0 +1,23 @@
+{
+  "post": "Anuncio partido Espana vs Portugal - hoy 1pm",
+  "versions": [
+    {
+      "id": "v1-barberia",
+      "file": "espana-portugal-1pm.png",
+      "pill": "HOY EN NORDIC",
+      "headline": "ESPAÑA - PORTUGAL A LA 1PM",
+      "headline_highlight": "1PM",
+      "caption": "Pantalla grande, buen ambiente y bebida cortesía. Ven a verlo con nosotros.",
+      "notes": "Escena con personas y barberia generica (no coincide con la barberia real)"
+    },
+    {
+      "id": "v2-banderas",
+      "file": "espana-portugal-1pm-v2-banderas.png",
+      "pill": "HOY EN NORDIC",
+      "headline": "ESPAÑA - PORTUGAL A LA 1PM",
+      "headline_highlight": "1PM",
+      "caption": "Agenda tu servicio y sigue el partido con nosotros.",
+      "notes": "Minimalista: solo banderas de España y Portugal, sin personas ni interior de barberia, sin mencionar pantalla grande"
+    }
+  ]
+}

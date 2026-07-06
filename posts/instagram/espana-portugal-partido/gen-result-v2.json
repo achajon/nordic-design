@@ -1,0 +1,37 @@
+{
+  "created_at": "2026-07-06T17:01:24.593759Z",
+  "display_name": "GPT Image 2",
+  "id": "25e56c48-a123-4df7-9bd9-bc4952fcd662",
+  "job_type": "gpt_image_2",
+  "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260706_170124_25e56c48-a123-4df7-9bd9-bc4952fcd662_min.webp",
+  "params": {
+    "aspect_ratio": "3:4",
+    "height": 2336,
+    "medias": [
+      {
+        "data": {
+          "id": "740a275a-42f8-4dcf-a00e-84826c0aa778",
+          "type": "media_input",
+          "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/740a275a-42f8-4dcf-a00e-84826c0aa778.png"
+        },
+        "role": "image"
+      },
+      {
+        "data": {
+          "id": "d8cabc13-eead-448d-a9b0-e88fb05a8e79",
+          "type": "media_input",
+          "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/d8cabc13-eead-448d-a9b0-e88fb05a8e79.png"
+        },
+        "role": "image"
+      }
+    ],
+    "model": "videotape-alpha",
+    "prompt": "Dramatic, realistic editorial still-life photograph, full color (NOT grayscale/duotone), ink-black (#101010) background, vertical canvas. Extremely minimalist composition, no people, no barbershop interior, no furniture, no screens or TVs of any kind: on the far left edge of the frame, a large Spain national flag (horizontal bands: red, yellow, red) hangs in heavy realistic draped fabric with deep folds, lit dramatically from the side by a single warm gold key light that catches the fabric texture and casts long shadows. On the far right edge, mirrored, a Portugal national flag (vertical green and red bands, simple color blocking, no readable coat-of-arms detail) hangs in the same dramatic realistic fabric-fold style with the same gold rim light. Both flags fade into pure black toward the center of the frame, leaving the entire center two-thirds of the canvas as clean empty ink-black negative space reserved for text. Moody, cinematic, high-end studio lighting, sharp fabric texture, shallow depth of field at the edges.\\n\\nGraphic overlay on top, following the brand social-post-frame template exactly:\\n- Top-left: a solid Nordic Yellow (#FFD200) pill/eyebrow tag with small bold uppercase Fira Sans Condensed text reading \"HOY EN NORDIC\"\\n- Center of the empty negative space: one bold display headline set in the exact hand-cut marker letterform style shown in the attached \"Lost in South\" character-map reference image, all uppercase, tight line-height, reading \"ESPAÑA - PORTUGAL A LA 1PM\" in bone-white (#F7F4EC), with the word \"1PM\" recolored in Nordic Yellow (#FFD200) as the single highlight word — no other yellow text.\\n- Small caption line below the headline in Fira Sans Condensed regular, bone-white at reduced opacity, reading \"Agenda tu servicio y sigue el partido con nosotros.\"\\n- Bottom corner: small watermark of the exact logo shown in the attached logo reference image (white Viking-helmet mark + NORDIC / Barber Shop wordmark on transparent/ink background) — reproduce it faithfully, do not redesign it.\\n\\nKeep the yellow accent to roughly 10-15% of the frame (pill + one highlight word only). Do not add any other colors to the graphic overlay itself — the two flags are the only additional color in the image.",
+    "quality": "high",
+    "reference_elements": [],
+    "resolution": "2k",
+    "width": 1744
+  },
+  "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260706_170124_25e56c48-a123-4df7-9bd9-bc4952fcd662.png",
+  "status": "completed"
+}
