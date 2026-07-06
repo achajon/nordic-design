@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Nordic Barber Shop — Servicios Individuales</title>
+<style>
+  @font-face{
+    font-family:"Lost in South";
+    src:url("../../../fonts/lost_in_south/Lost in South.otf") format("opentype");
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    font-weight:400;
+    src:url("../../../fonts/Fira Sans Condensed/FiraSansCondensed-Regular.ttf") format("truetype");
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    font-weight:600;
+    src:url("../../../fonts/Fira Sans Condensed/FiraSansCondensed-SemiBold.ttf") format("truetype");
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    font-weight:700;
+    src:url("../../../fonts/Fira Sans Condensed/FiraSansCondensed-Bold.ttf") format("truetype");
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    font-weight:800;
+    src:url("../../../fonts/Fira Sans Condensed/FiraSansCondensed-ExtraBold.ttf") format("truetype");
+  }
+
+  :root{
+    --ink:#101010;
+    --charcoal:#1A1A1A;
+    --gold:#FFD200;
+    --gold-deep:#C9A400;
+    --bone:#F7F4EC;
+    --steel:rgba(247,244,236,0.62);
+    --steel-dim:rgba(247,244,236,0.28);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{width:1080px;height:1350px;background:var(--ink);overflow:hidden;}
+  body{
+    font-family:"Fira Sans Condensed";
+    color:var(--bone);
+    display:flex;
+    flex-direction:column;
+    padding:64px 80px 56px;
+  }
+
+  .header{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+  }
+  .logo{height:170px;margin-bottom:24px;}
+  .pill{
+    display:inline-block;
+    background:var(--gold);
+    color:var(--ink);
+    font-family:"Fira Sans Condensed";
+    font-weight:700;
+    font-size:15px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    padding:8px 22px;
+    border-radius:999px;
+    margin-bottom:26px;
+  }
+  .headline{
+    font-family:"Lost in South";
+    text-transform:uppercase;
+    font-size:66px;
+    line-height:0.95;
+    letter-spacing:.01em;
+  }
+  .headline .hl{color:var(--gold);}
+  .rule{
+    width:100%;
+    height:1px;
+    background:var(--steel-dim);
+    margin-top:32px;
+  }
+
+  .list{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    margin-top:8px;
+  }
+  .row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    padding:20px 0;
+    border-bottom:1px dashed var(--steel-dim);
+  }
+  .row:last-child{border-bottom:none;}
+  .row .name{
+    font-family:"Fira Sans Condensed";
+    font-weight:600;
+    font-size:32px;
+    line-height:1.15;
+    max-width:700px;
+  }
+  .row .price{
+    font-family:"Fira Sans Condensed";
+    font-weight:800;
+    color:var(--gold);
+    font-size:34px;
+    white-space:nowrap;
+    flex-shrink:0;
+    font-feature-settings:"tnum" 1;
+  }
+
+  .footer{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-top:24px;
+  }
+  .footer .handle{
+    font-family:"Fira Sans Condensed";
+    font-weight:600;
+    font-size:22px;
+    color:var(--steel);
+    letter-spacing:.02em;
+  }
+</style>
+</head>
+<body>
+
+  <div class="header">
+    <img class="logo" src="../../../logo-variations/Nordic-BarberShop-logo-white.svg" alt="Nordic Barber Shop">
+    <div class="pill">Lista de precios</div>
+    <div class="headline">SERVICIOS <span class="hl">INDIVIDUALES</span></div>
+    <div class="rule"></div>
+  </div>
+
+  <div class="list" id="list"></div>
+
+  <div class="footer">
+    <div class="handle">@nordicbarbershopgt</div>
+  </div>
+
+<script>
+const services = [
+  ["Corte de cabello", "Q90"],
+  ["Corte de barba", "Q90"],
+  ["Tallado de barba express", "Q50"],
+  ["Tallado de barba simple", "Q30"],
+  ["Mascarilla de carbón activado", "Q75"],
+  ["Tinte de barba", "Q65"],
+  ["Depilación de nariz u orejas con cera", "Q35"],
+  ["Tinte de cabello", "Q120"],
+  ["Facial completo", "Q115"],
+  ["Exfoliación capilar", "Q125"]
+];
+const list = document.getElementById('list');
+services.forEach(([name, price]) => {
+  const row = document.createElement('div');
+  row.className = 'row';
+  row.innerHTML = `<div class="name">${name}</div><div class="price">${price}</div>`;
+  list.appendChild(row);
+});
+</script>
+
+</body>
+</html>

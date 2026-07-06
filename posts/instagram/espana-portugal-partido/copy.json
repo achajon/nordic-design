@@ -18,6 +18,24 @@
       "headline_highlight": "1PM",
       "caption": "Agenda tu servicio y sigue el partido con nosotros.",
       "notes": "Minimalista: solo banderas de España y Portugal, sin personas ni interior de barberia, sin mencionar pantalla grande"
+    },
+    {
+      "id": "v2b-banderas-nanobanana",
+      "file": "espana-portugal-1pm-v2b-banderas-nanobanana.png",
+      "pill": "HOY EN NORDIC",
+      "headline": "ESPAÑA - PORTUGAL A LA 1PM",
+      "headline_highlight": "1PM",
+      "caption": "Agenda tu servicio y sigue el partido con nosotros.",
+      "notes": "Mismo concepto y prompt exacto de v2-banderas, pero generado con Nano Banana Pro (Gemini API, scripts/gemini_image_gen.py) en lugar de Higgsfield/gpt_image_2, para comparar calidad entre modelos. Las banderas salieron con mas detalle realista (incluye escudos nacionales visibles, que son simbolos publicos, no marcas registradas de federacion/FIFA)."
+    },
+    {
+      "id": "v3-poster",
+      "file": "espana-portugal-1pm-v3-poster.png",
+      "pill": null,
+      "headline": "ESPAÑA - PORTUGAL A LA 1PM",
+      "headline_highlight": "1PM",
+      "caption": "Agenda tu servicio y sigue el partido con nosotros.",
+      "notes": "Estilo poster deportivo inspirado en las artes de FIFA World Cup, pero generado sin logos oficiales de FIFA/federaciones ni rostros de jugadores reales (Cristiano/Yamal): VS central, badge propio 'OCTAVOS DE FINAL', trofeo generico, 2 jugadores silueteados/anonimos con jerseys sin marcas. Generado via scripts/gemini_image_gen.py (Gemini API, Nano Banana Pro) como fallback cuando Higgsfield se quedo sin creditos."
     }
   ]
 }

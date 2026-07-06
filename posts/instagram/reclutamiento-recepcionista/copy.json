@@ -1,0 +1,14 @@
+{
+  "post": "Reclutamiento recepcionista/encargada de caja (mujer)",
+  "versions": [
+    {
+      "id": "v1",
+      "file": "reclutamiento-recepcionista-v1.png",
+      "pill": "ESTAMOS CONTRATANDO",
+      "headline": "BUSCAMOS RECEPCIONISTA",
+      "headline_highlight": "RECEPCIONISTA",
+      "caption": "Encargada de caja y atención al cliente. Envíanos tu CV por DM.",
+      "notes": "Foto generada con Gemini API (scripts/gemini_image_gen.py, Nano Banana Pro) como fallback: Higgsfield solo tenía 0.5 créditos disponibles y gpt_image_2 requiere 7. Composición final (pill/headline/caption/logo) hecha con PIL en local. Mujer en actitud profesional en mostrador/recepción, duotono alto contraste + luz clave dorada, sin foto a color, siguiendo imagery de design-system.md §6. Logo watermark usa logo-variations/Nordic-BarberShop-logo-white.png (no el .svg): el .svg tiene el viewBox mal recortado y corta la 'C' de NORDIC y la 'p' de Shop, habría que arreglarlo en el archivo fuente."
+    }
+  ]
+}

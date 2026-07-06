@@ -1,0 +1,18 @@
+{
+  "post": "Lista de precios - Paquete de masajes",
+  "file": "paquete-masajes-precios.png",
+  "source_html": "paquete-masajes.html",
+  "pill": "Lista de precios",
+  "headline": "PAQUETE DE MASAJES",
+  "headline_highlight": "MASAJES",
+  "caption": "Elige tu tiempo o ahorra con un paquete. Agenda tu masaje.",
+  "services": [
+    ["15 minutos", "Q30"],
+    ["20 minutos", "Q40"],
+    ["30 minutos", "Q60"],
+    ["1 hora", "Q100"],
+    ["5 masajes de 30 minutos", "Q275"],
+    ["10 masajes de 30 minutos", "Q500"]
+  ],
+  "notes": "Misma logica que posts/instagram/servicios-individuales-precios/: HTML/CSS renderizado con Chrome headless (no imagen generada por IA), precios en Fira Sans Condensed ExtraBold dorado (Lost in South no tiene los digitos 0/2/8), logo-variations/Nordic-BarberShop-logo-white.svg ya corregido usado directamente, logo solo arriba y mas grande, sin logo en el pie."
+}

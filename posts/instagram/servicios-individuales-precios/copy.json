@@ -1,0 +1,22 @@
+{
+  "post": "Lista de precios - Servicios individuales",
+  "file": "servicios-individuales-precios.png",
+  "source_html": "servicios-individuales.html",
+  "pill": "Lista de precios",
+  "headline": "SERVICIOS INDIVIDUALES",
+  "headline_highlight": "INDIVIDUALES",
+  "caption": "Servicios individuales, precios claros. Agenda tu cita.",
+  "services": [
+    ["Corte de cabello", "Q90"],
+    ["Corte de barba", "Q90"],
+    ["Tallado de barba express", "Q50"],
+    ["Tallado de barba simple", "Q30"],
+    ["Mascarilla de carbón activado", "Q75"],
+    ["Tinte de barba", "Q65"],
+    ["Depilación de nariz u orejas con cera", "Q35"],
+    ["Tinte de cabello", "Q120"],
+    ["Facial completo", "Q115"],
+    ["Exfoliación capilar", "Q125"]
+  ],
+  "notes": "Generado como HTML/CSS renderizado con Chrome headless (no imagen generada por IA), siguiendo el componente 'Service list' y el 'Social post frame' de design-system.md. Corregido typo del original ('Tinte de de barba' -> 'Tinte de barba'). Se detectaron dos bugs de assets durante la produccion: (1) la fuente Lost in South (fonts/lost_in_south/Lost in South.otf) no tiene glifos para los digitos 0, 2 y 8 -- por eso los precios se pusieron en Fira Sans Condensed ExtraBold en dorado en vez de Lost in South; (2) el logo-variations/Nordic-BarberShop-logo-white.svg tiene un viewBox mal recortado que corta la 'C' de NORDIC y la 'p' de Shop -- se uso Nordic-BarberShop-logo-black.png con filter:invert(1) como reemplazo."
+}
