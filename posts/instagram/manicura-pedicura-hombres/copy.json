@@ -45,7 +45,7 @@
       "pill": "PASO 04/04",
       "headline": "PIES SIN CALLOS NI PENA",
       "headline_highlight": "CALLOS",
-      "caption": "Pulido de callosidades y alivio real. Sandalias sin pena, todo el ano."
+      "caption": "Pulido de callosidades y alivio real. Sandalias sin pena, todo el año."
     },
     {
       "id": "05-cita",
@@ -55,7 +55,8 @@
       "headline": "MANOS Y PIES, A PUNTO",
       "headline_highlight": "PUNTO",
       "price_bar": "MANICURA SPA Q125 - PEDICURA SPA Q175 - CON MASAJE INCLUIDO",
-      "caption": "Reserva tu cita en Nordic Barber Shop."
+      "caption": "Reserva tu cita en Nordic Barber Shop.",
+      "build_note": "A diferencia de los slides 00-04 (tipografia generada por Nano Banana 2), este slide se construyo hibrido: Nano Banana 2 genero solo la foto de fondo sin texto/logo (05-cita-html-test/assets/bg.png), y el pill, headline (Lost in South real), caption, price bar (Fira Sans Condensed real) y el logo SVG real se compusieron aparte en 05-cita-html-test/index.html, renderizado a PNG con Chrome headless a 2160x2700 (2x). Se adopto como el 05-cita.png final tras comparar ambos metodos porque evita el drift tipografico que tuvo el slide 04 generado 100% por IA."
     }
   ]
 }

@@ -1,0 +1,38 @@
+[
+  {
+    "created_at": "2026-07-06T20:57:33.866259Z",
+    "display_name": "Nano Banana 2",
+    "id": "4fe79a17-023c-46bf-95b7-d02c736f38d4",
+    "job_type": "nano_banana_flash",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260706_205733_4fe79a17-023c-46bf-95b7-d02c736f38d4_min.webp",
+    "params": {
+      "aspect_ratio": "4:5",
+      "batch_size": 1,
+      "height": 2304,
+      "medias": [
+        {
+          "data": {
+            "id": "fc9cbe61-b0c9-4c40-ac34-4d6685572542",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/fc9cbe61-b0c9-4c40-ac34-4d6685572542.png"
+          },
+          "role": "image"
+        },
+        {
+          "data": {
+            "id": "8107015c-29c0-4562-9e35-65af0a4a2566",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/8107015c-29c0-4562-9e35-65af0a4a2566.png"
+          },
+          "role": "image"
+        }
+      ],
+      "prompt": "Vertical portrait brand social tile for a barbershop, exact 4:5 aspect ratio, 1080x1350 Instagram feed post. Background: high-contrast black and white editorial photography, duotone grading with a warm golden-yellow rim/key light used only as an implied light source, never a flat color wash, no straight color photography. Scene: close-up of a nail technician's gloved hand using a foot file on the heel of a man's bare foot resting over the edge of a stainless steel bowl of soapy water, water droplets visible catching the warm key light, folded white towel beneath, moody barbershop interior softly blurred behind, tight confident detail crop, no faces needed. Add a dark ink (#101010) gradient scrim across the lower half for text legibility. Top-left: a small solid Nordic-yellow (#FFD200) pill-shaped tag containing bold condensed uppercase sans-serif text \"PASO 04/04\" in dark ink letters, tight letter tracking. Center-lower area: a large headline reading \"PIES SIN CALLOS NI PENA\", set in the hand-cut marker lettering style shown in the second reference image (a font character map) -- reproduce that exact letterform style for every single letter in the headline, all uppercase, tight line height. Critical: every word must use the identical hand-cut marker brush strokes and rough-edge texture -- do NOT switch to a cleaner geometric or different-weight font for any single word. The word CALLOS is solid Nordic yellow (#FFD200) drawn in that same hand-cut marker style as the rest, and the rest of the words (PIES SIN, NI PENA) are solid bone-white (#F7F4EC) in that same marker style, no other colors and no font-style mismatch on the headline. Directly below the headline, one short line of clean condensed grotesk sans-serif body text in bone-white at reduced opacity, reading: \"Pulido de callosidades y alivio real. Sandalias sin pena, todo el año.\" Bottom-right corner: place the exact logo lockup shown in the first reference image (a white Viking helmet mark beside the words NORDIC / Barber Shop, already on a black background) completely unchanged and at small watermark scale -- do not invent, redraw, alter proportions, recolor, or add glow/shadow to this logo; blend its black background seamlessly into the tile's own ink-black canvas so no visible box or seam appears around it. Keep the overall canvas ink-black (#101010) dominant, yellow only as a small accent never exceeding about 10-15% of the frame.",
+      "reference_elements": [],
+      "resolution": "2k",
+      "width": 1856
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260706_205733_4fe79a17-023c-46bf-95b7-d02c736f38d4.png",
+    "status": "completed"
+  }
+]

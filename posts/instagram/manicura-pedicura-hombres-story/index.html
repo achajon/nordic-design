@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080, height=1920">
+    <title>Nordic Barber Shop — Story: Manicura y pedicura</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #101010;
+      }
+
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        background: #101010;
+        overflow: hidden;
+      }
+
+      .clip {
+        position: absolute;
+        inset: 0;
+      }
+
+      /* Soft gold glow washing the reserved top/bottom bars (Instagram's own
+         UI chrome lives there — see design-system.md §8 — so this stays
+         very low-opacity, never logo/copy). */
+      .vignette {
+        position: absolute;
+        left: 0;
+        width: 1080px;
+        height: 400px;
+        pointer-events: none;
+      }
+      .vignette-top {
+        top: 0;
+        background: radial-gradient(
+          ellipse 900px 400px at 50% 0%,
+          rgba(255, 210, 0, 0.07),
+          rgba(255, 210, 0, 0)
+        );
+      }
+      .vignette-bottom {
+        bottom: 0;
+        background: radial-gradient(
+          ellipse 900px 400px at 50% 100%,
+          rgba(255, 210, 0, 0.07),
+          rgba(255, 210, 0, 0)
+        );
+      }
+
+      #frame {
+        position: absolute;
+        left: 0;
+        top: 285px;
+        width: 1080px;
+        height: 1350px;
+      }
+
+      .hairline {
+        position: absolute;
+        left: 64px;
+        right: 64px;
+        height: 2px;
+        background: #ffd200;
+      }
+      .hairline-top {
+        top: -14px;
+      }
+      .hairline-bottom {
+        bottom: -14px;
+      }
+
+      #viewport {
+        position: relative;
+        width: 1080px;
+        height: 1350px;
+        overflow: hidden;
+      }
+
+      #strip {
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: flex;
+        width: 6480px;
+        height: 1350px;
+        will-change: transform;
+      }
+
+      .tile {
+        position: relative;
+        flex: 0 0 1080px;
+        width: 1080px;
+        height: 1350px;
+        overflow: hidden;
+      }
+      .tile img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform-origin: 50% 50%;
+      }
+
+      #fade-overlay {
+        position: absolute;
+        inset: 0;
+        background: #101010;
+        opacity: 0;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="hf-j8cu" id="root" data-composition-id="main" data-start="0" data-duration="15.2" data-width="1080" data-height="1920">
+      <div data-hf-id="hf-23wz" id="stage" class="clip" data-start="0" data-duration="15.2" data-track-index="1">
+        <div data-hf-id="hf-pj0e" class="vignette vignette-top"></div>
+        <div data-hf-id="hf-iod8" class="vignette vignette-bottom"></div>
+
+        <div data-hf-id="hf-xfzw" id="frame">
+          <div data-hf-id="hf-yk1m" class="hairline hairline-top"></div>
+          <div data-hf-id="hf-ld32" id="viewport" data-layout-allow-overflow="">
+            <div data-hf-id="hf-7js5" id="strip">
+              <div data-hf-id="hf-f6ek" class="tile"><img data-hf-id="hf-qoh7" id="tile-0" src="assets/00-portada.png" alt="Portada"></div>
+              <div data-hf-id="hf-8r7o" class="tile"><img data-hf-id="hf-el7f" id="tile-1" src="assets/01-corte-limado.png" alt="Corte y limado"></div>
+              <div data-hf-id="hf-7kal" class="tile"><img data-hf-id="hf-o4pk" id="tile-2" src="assets/02-cuticula.png" alt="Cuticula fuera"></div>
+              <div data-hf-id="hf-7ylm" class="tile"><img data-hf-id="hf-xiis" id="tile-3" src="assets/03-hidratacion.png" alt="Hidratacion profunda"></div>
+              <div data-hf-id="hf-9y4r" class="tile"><img data-hf-id="hf-l453" id="tile-4" src="assets/04-pies-sin-callos.png" alt="Pies sin callos"></div>
+              <div data-hf-id="hf-acfs" class="tile"><img data-hf-id="hf-dqxi" id="tile-5" src="assets/05-cita.png" alt="Agenda tu cita"></div>
+            </div>
+          </div>
+          <div data-hf-id="hf-xl60" class="hairline hairline-bottom"></div>
+        </div>
+
+        <div data-hf-id="hf-3ddw" id="fade-overlay"></div>
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      const PAN = 0.45;
+      const holdEnd = [2.3, 4.55, 6.8, 9.05, 11.3, 14.75];
+      const panStart = [null, 2.3, 4.55, 6.8, 9.05, 11.3];
+      const stripX = [0, -1080, -2160, -3240, -4320, -5400];
+
+      // First-scene entrance (rule: every scene needs one; scenes 1-5 get
+      // theirs from the incoming pan itself).
+      tl.fromTo(
+        "#frame",
+        { opacity: 0, scale: 0.97 },
+        { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" },
+        0,
+      );
+
+      // Horizontal pan across the filmstrip — one push per carousel swipe.
+      for (let i = 1; i <= 5; i++) {
+        tl.to("#strip", { x: stripX[i], duration: PAN, ease: "power3.inOut" }, panStart[i]);
+      }
+
+      // Per-tile Ken Burns: each tile breathes in from the moment it starts
+      // entering (its incoming pan) through the end of its own hold.
+      const tileStart = [0, 2.3, 4.55, 6.8, 9.05, 11.3];
+      for (let i = 0; i <= 5; i++) {
+        const start = tileStart[i];
+        const end = holdEnd[i];
+        tl.fromTo(
+          `#tile-${i}`,
+          { scale: 1.0 },
+          { scale: 1.045, duration: end - start, ease: "sine.inOut" },
+          start,
+        );
+      }
+
+      // Ambient hairline breathing (finite repeat — never -1).
+      tl.to(
+        ".hairline",
+        { opacity: 0.55, duration: 2.0, repeat: 6, yoyo: true, ease: "sine.inOut" },
+        0,
+      );
+
+      // Final scene exception: fade to black at the very end.
+      tl.to("#fade-overlay", { opacity: 1, duration: 0.45, ease: "power1.in" }, 14.75);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
