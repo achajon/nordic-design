@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nordic Barber Shop — Content Review</title>
+<style>
+  @font-face{
+    font-family:"Lost in South";
+    src:url("fonts/lost_in_south/Lost in South.otf") format("opentype");
+    font-weight:400; font-style:normal; font-display:swap;
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    src:url("fonts/Fira Sans Condensed/FiraSansCondensed-Regular.ttf") format("truetype");
+    font-weight:400; font-style:normal; font-display:swap;
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    src:url("fonts/Fira Sans Condensed/FiraSansCondensed-SemiBold.ttf") format("truetype");
+    font-weight:600; font-style:normal; font-display:swap;
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    src:url("fonts/Fira Sans Condensed/FiraSansCondensed-Bold.ttf") format("truetype");
+    font-weight:700; font-style:normal; font-display:swap;
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    src:url("fonts/Fira Sans Condensed/FiraSansCondensed-ExtraBold.ttf") format("truetype");
+    font-weight:800; font-style:normal; font-display:swap;
+  }
+
+  :root{
+    --ink:#101010;
+    --charcoal:#1A1A1A;
+    --gold:#FFD200;
+    --gold-deep:#C9A400;
+    --bone:#F7F4EC;
+    --bone-dim: rgba(247,244,236,.6);
+    --sp-1:8px; --sp-2:16px; --sp-3:24px; --sp-4:40px; --sp-5:64px; --sp-6:96px;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--ink);color:var(--bone);}
+  body{
+    font-family:"Fira Sans Condensed",Helvetica,Arial,sans-serif;
+    min-height:100vh;
+  }
+
+  .site-header{
+    display:flex;
+    align-items:center;
+    gap:var(--sp-3);
+    padding:var(--sp-4) var(--sp-3);
+    border-bottom:1px solid rgba(247,244,236,.1);
+  }
+  .site-header .logo{
+    width:48px;
+    height:48px;
+    object-fit:contain;
+    flex-shrink:0;
+  }
+  .site-header h1{
+    font-family:"Lost in South",sans-serif;
+    text-transform:uppercase;
+    font-size:clamp(22px,4vw,32px);
+    line-height:1.05;
+    margin:0;
+    letter-spacing:.01em;
+  }
+  .site-header .eyebrow{
+    margin:var(--sp-1) 0 0;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--bone-dim);
+  }
+
+  main{
+    padding:var(--sp-5) var(--sp-3) var(--sp-6);
+    max-width:1200px;
+    margin:0 auto;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:var(--sp-1);
+  }
+  @media (max-width:720px){
+    .grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:420px){
+    .grid{grid-template-columns:1fr;}
+  }
+
+  .tile{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    background:var(--charcoal);
+    border:none;
+    padding:0;
+    margin:0;
+    color:inherit;
+    text-align:left;
+    text-decoration:none;
+    cursor:pointer;
+    font-family:inherit;
+    overflow:hidden;
+  }
+  .tile:focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:2px;
+  }
+  .tile img{
+    width:100%;
+    aspect-ratio:4/5;
+    object-fit:cover;
+    display:block;
+  }
+  .tile .badge{
+    position:absolute;
+    top:var(--sp-1);
+    right:var(--sp-1);
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    background:rgba(16,16,16,.55);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    backdrop-filter:blur(2px);
+  }
+  .tile .badge svg{width:12px;height:12px;fill:var(--gold);}
+  .tile-caption{
+    padding:var(--sp-1) var(--sp-1) var(--sp-2);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.02em;
+    color:var(--bone-dim);
+    line-height:1.3;
+  }
+
+  .modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:100;
+    align-items:center;
+    justify-content:center;
+    padding:var(--sp-3);
+  }
+  .modal.open{display:flex;}
+  .modal-backdrop{
+    position:absolute;
+    inset:0;
+    background:rgba(16,16,16,.85);
+  }
+  .modal-panel{
+    position:relative;
+    z-index:1;
+    background:var(--charcoal);
+    border-radius:10px;
+    max-width:960px;
+    width:100%;
+    max-height:90vh;
+    overflow:auto;
+    display:flex;
+    flex-direction:column;
+  }
+  @media (min-width:760px){
+    .modal-panel{flex-direction:row;}
+  }
+  .modal-close{
+    position:absolute;
+    top:var(--sp-2);
+    right:var(--sp-2);
+    z-index:2;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    border:none;
+    background:rgba(16,16,16,.6);
+    color:var(--bone);
+    font-size:20px;
+    line-height:1;
+    cursor:pointer;
+  }
+  .modal-close:focus-visible{outline:2px solid var(--gold);}
+
+  #modalBody{
+    display:flex;
+    flex-direction:column;
+    width:100%;
+  }
+  @media (min-width:760px){
+    #modalBody{flex-direction:row;}
+  }
+  .modal-media{
+    flex:1 1 55%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#000;
+    min-width:0;
+  }
+  .modal-media img,
+  .modal-media video{
+    width:100%;
+    max-height:85vh;
+    object-fit:contain;
+    display:block;
+  }
+  .modal-media-video{padding:var(--sp-2);}
+
+  .modal-copy{
+    flex:1 1 45%;
+    padding:var(--sp-4) var(--sp-3);
+    display:flex;
+    flex-direction:column;
+    gap:var(--sp-2);
+    min-width:0;
+  }
+  .modal-title{
+    padding:var(--sp-2) var(--sp-3) var(--sp-3);
+    font-weight:600;
+    color:var(--bone-dim);
+  }
+  .modal-label{
+    margin:0;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--gold);
+  }
+  .pill{
+    display:inline-block;
+    align-self:flex-start;
+    background:var(--gold);
+    color:var(--ink);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    padding:4px 12px;
+    border-radius:12px;
+  }
+  .modal-headline{
+    font-family:"Lost in South",sans-serif;
+    text-transform:uppercase;
+    font-size:clamp(22px,3vw,30px);
+    line-height:1.02;
+    color:var(--bone);
+  }
+  .modal-headline .hl{color:var(--gold);}
+  .modal-caption{
+    margin:0;
+    font-size:15px;
+    line-height:1.6;
+    color:var(--bone-dim);
+  }
+  .modal-loading{color:var(--bone-dim);padding:var(--sp-4) var(--sp-3);}
+
+  .services-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:var(--sp-1);
+  }
+  .services-table tr{
+    border-top:1px dashed rgba(247,244,236,.2);
+  }
+  .services-table tr:first-child{border-top:none;}
+  .services-table td{
+    padding:8px 0;
+    font-size:14px;
+  }
+  .services-table td.price{
+    text-align:right;
+    font-family:"Fira Sans Condensed",sans-serif;
+    font-weight:800;
+    color:var(--gold);
+  }
+
+  .site-footer{
+    text-align:center;
+    padding:0 var(--sp-3) var(--sp-5);
+    font-size:11px;
+    color:var(--bone-dim);
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <img class="logo" src="logo-variations/Nordic-BarberShop-logo-white.svg" alt="Nordic Barber Shop">
+  <div>
+    <h1>Nordic Barber Shop</h1>
+    <p class="eyebrow">Content Review — Instagram</p>
+  </div>
+</header>
+
+<main>
+  <div class="grid" id="grid"></div>
+</main>
+
+<p class="site-footer">Herramienta interna de revisión — no es el feed público.</p>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal-backdrop"></div>
+  <div class="modal-panel">
+    <button class="modal-close" id="modalClose" aria-label="Cerrar">&times;</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+const CAROUSEL_SVG = '<svg viewBox="0 0 24 24"><rect x="3" y="7" width="14" height="14" rx="2"/><path d="M7 5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1V7a2 2 0 0 0-2-2H7z" opacity=".55"/></svg>';
+const PLAY_SVG = '<svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg>';
+
+const POSTS = [
+  {
+    id:'aceite-balsamo-cera',
+    type:'carousel',
+    title:'Aceite, bálsamo o cera',
+    cover:'posts/instagram/aceite-balsamo-cera/00-portada.png',
+    alt:'Carrusel: Aceite, bálsamo o cera',
+    previewHref:'posts/instagram/aceite-balsamo-cera/instagram-preview.html'
+  },
+  {
+    id:'habitos-cuidado-personal',
+    type:'carousel',
+    title:'5 hábitos del hombre moderno',
+    cover:'posts/instagram/habitos-cuidado-personal/00-portada.png',
+    alt:'Carrusel: hábitos de cuidado personal',
+    previewHref:'posts/instagram/habitos-cuidado-personal/instagram-preview.html'
+  },
+  {
+    id:'manicura-pedicura-hombres',
+    type:'carousel',
+    title:'Manicura y pedicura para hombres',
+    cover:'posts/instagram/manicura-pedicura-hombres/00-portada.png',
+    alt:'Carrusel: manicura y pedicura para hombres',
+    previewHref:'posts/instagram/manicura-pedicura-hombres/instagram-preview.html'
+  },
+  {
+    id:'tipos-de-cara-barba',
+    type:'carousel',
+    title:'La barba ideal según tu cara',
+    cover:'posts/instagram/tipos-de-cara-barba/00-portada.png',
+    alt:'Carrusel: tipos de cara y barba',
+    previewHref:'posts/instagram/tipos-de-cara-barba/instagram-preview.html'
+  },
+  {
+    id:'habitos-cuidado-personal-story',
+    type:'video',
+    title:'Story: hábitos de cuidado personal',
+    cover:'posts/instagram/habitos-cuidado-personal-story/assets/images/00-portada.png',
+    alt:'Story: hábitos de cuidado personal',
+    videoSrc:'posts/instagram/habitos-cuidado-personal-story/renders/habitos-story.mp4'
+  },
+  {
+    id:'manicura-pedicura-hombres-story',
+    type:'video',
+    title:'Story: manicura y pedicura para hombres',
+    cover:'posts/instagram/manicura-pedicura-hombres-story/assets/00-portada.png',
+    alt:'Story: manicura y pedicura para hombres',
+    videoSrc:'posts/instagram/manicura-pedicura-hombres-story/renders/manicura-pedicura-hombres-story.mp4'
+  },
+  {
+    id:'espana-portugal-v1',
+    type:'single',
+    title:'España - Portugal',
+    label:'Versión: v1 · Barbería',
+    cover:'posts/instagram/espana-portugal-partido/espana-portugal-1pm.png',
+    alt:'España - Portugal, versión barbería',
+    copyJson:'posts/instagram/espana-portugal-partido/copy.json',
+    file:'espana-portugal-1pm.png'
+  },
+  {
+    id:'espana-portugal-v2',
+    type:'single',
+    title:'España - Portugal',
+    label:'Versión: v2 · Banderas',
+    cover:'posts/instagram/espana-portugal-partido/espana-portugal-1pm-v2-banderas.png',
+    alt:'España - Portugal, versión banderas',
+    copyJson:'posts/instagram/espana-portugal-partido/copy.json',
+    file:'espana-portugal-1pm-v2-banderas.png'
+  },
+  {
+    id:'espana-portugal-v2b',
+    type:'single',
+    title:'España - Portugal',
+    label:'Versión: v2b · Banderas (Nano Banana)',
+    cover:'posts/instagram/espana-portugal-partido/espana-portugal-1pm-v2b-banderas-nanobanana.png',
+    alt:'España - Portugal, versión banderas Nano Banana',
+    copyJson:'posts/instagram/espana-portugal-partido/copy.json',
+    file:'espana-portugal-1pm-v2b-banderas-nanobanana.png'
+  },
+  {
+    id:'espana-portugal-v3',
+    type:'single',
+    title:'España - Portugal',
+    label:'Versión: v3 · Poster deportivo',
+    cover:'posts/instagram/espana-portugal-partido/espana-portugal-1pm-v3-poster.png',
+    alt:'España - Portugal, versión poster deportivo',
+    copyJson:'posts/instagram/espana-portugal-partido/copy.json',
+    file:'espana-portugal-1pm-v3-poster.png'
+  },
+  {
+    id:'servicios-individuales-v1',
+    type:'single',
+    title:'Servicios individuales',
+    label:'Versión: v1 · Fondo sólido',
+    cover:'posts/instagram/servicios-individuales-precios/servicios-individuales-precios.png',
+    alt:'Servicios individuales, versión fondo sólido',
+    copyJson:'posts/instagram/servicios-individuales-precios/copy.json',
+    file:'servicios-individuales-precios.png'
+  },
+  {
+    id:'servicios-individuales-v2',
+    type:'single',
+    title:'Servicios individuales',
+    label:'Versión: v2 · Fondo con textura',
+    cover:'posts/instagram/servicios-individuales-precios/servicios-individuales-precios-v2-textura.png',
+    alt:'Servicios individuales, versión fondo con textura',
+    copyJson:'posts/instagram/servicios-individuales-precios/copy.json',
+    file:'servicios-individuales-precios-v2-textura.png'
+  },
+  {
+    id:'paquete-masajes-precios',
+    type:'single',
+    title:'Paquete de masajes',
+    cover:'posts/instagram/paquete-masajes-precios/paquete-masajes-precios.png',
+    alt:'Lista de precios: paquete de masajes',
+    copyJson:'posts/instagram/paquete-masajes-precios/copy.json',
+    file:'paquete-masajes-precios.png'
+  },
+  {
+    id:'reclutamiento-recepcionista',
+    type:'single',
+    title:'Buscamos recepcionista',
+    cover:'posts/instagram/reclutamiento-recepcionista/reclutamiento-recepcionista-v1.png',
+    alt:'Reclutamiento: recepcionista',
+    copyJson:'posts/instagram/reclutamiento-recepcionista/copy.json',
+    file:'reclutamiento-recepcionista-v1.png'
+  }
+];
+
+const grid = document.getElementById('grid');
+const modal = document.getElementById('modal');
+const modalBody = document.getElementById('modalBody');
+const modalClose = document.getElementById('modalClose');
+const copyCache = new Map();
+
+function renderGrid(){
+  POSTS.forEach((post, i) => {
+    const isCarousel = post.type === 'carousel';
+    const tile = document.createElement(isCarousel ? 'a' : 'button');
+    tile.className = 'tile';
+    if(isCarousel){
+      tile.href = post.previewHref;
+      tile.target = '_blank';
+      tile.rel = 'noopener';
+    } else {
+      tile.type = 'button';
+      tile.addEventListener('click', () => openModal(i));
+    }
+
+    const img = document.createElement('img');
+    img.src = post.cover;
+    img.alt = post.alt;
+    img.loading = 'lazy';
+    tile.appendChild(img);
+
+    if(post.type === 'carousel' || post.type === 'video'){
+      const badge = document.createElement('span');
+      badge.className = 'badge';
+      badge.innerHTML = post.type === 'carousel' ? CAROUSEL_SVG : PLAY_SVG;
+      tile.appendChild(badge);
+    }
+
+    const caption = document.createElement('span');
+    caption.className = 'tile-caption';
+    caption.textContent = post.label ? `${post.title} — ${post.label.replace('Versión: ','')}` : post.title;
+    tile.appendChild(caption);
+
+    grid.appendChild(tile);
+  });
+}
+
+function openModal(index){
+  const post = POSTS[index];
+  modalBody.innerHTML = '';
+  if(post.type === 'video'){
+    renderVideoModal(post);
+  } else if(post.type === 'single'){
+    renderSingleModal(post);
+  }
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden','false');
+  modalClose.focus();
+}
+
+function closeModal(){
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden','true');
+  modalBody.innerHTML = '';
+}
+
+function renderVideoModal(post){
+  const media = document.createElement('div');
+  media.className = 'modal-media modal-media-video';
+  const video = document.createElement('video');
+  video.controls = true;
+  video.preload = 'none';
+  video.src = post.videoSrc;
+  media.appendChild(video);
+
+  const title = document.createElement('p');
+  title.className = 'modal-title';
+  title.textContent = post.title;
+
+  modalBody.appendChild(media);
+  modalBody.appendChild(title);
+}
+
+async function fetchCopy(path){
+  if(copyCache.has(path)) return copyCache.get(path);
+  const res = await fetch(path);
+  const json = await res.json();
+  copyCache.set(path, json);
+  return json;
+}
+
+function resolveCopy(json, file){
+  const entry = Array.isArray(json.versions) ? json.versions.find(v => v.file === file) : null;
+  const pick = (key) => (entry && entry[key] !== undefined) ? entry[key] : json[key];
+  return {
+    pill: pick('pill'),
+    headline: pick('headline'),
+    highlight: pick('headline_highlight'),
+    caption: pick('caption'),
+    services: json.services || null
+  };
+}
+
+function buildHeadlineNode(headline, highlight){
+  const span = document.createElement('span');
+  span.className = 'modal-headline';
+  if(!headline) return span;
+  if(!highlight || !headline.includes(highlight)){
+    span.textContent = headline;
+    return span;
+  }
+  const idx = headline.indexOf(highlight);
+  span.appendChild(document.createTextNode(headline.slice(0, idx)));
+  const hl = document.createElement('span');
+  hl.className = 'hl';
+  hl.textContent = highlight;
+  span.appendChild(hl);
+  span.appendChild(document.createTextNode(headline.slice(idx + highlight.length)));
+  return span;
+}
+
+async function renderSingleModal(post){
+  modalBody.innerHTML = '<p class="modal-loading">Cargando copy…</p>';
+
+  let json = null;
+  try{
+    json = await fetchCopy(post.copyJson);
+  } catch(err){
+    json = null;
+  }
+
+  modalBody.innerHTML = '';
+
+  const media = document.createElement('div');
+  media.className = 'modal-media';
+  const img = document.createElement('img');
+  img.src = post.cover;
+  img.alt = post.alt;
+  media.appendChild(img);
+
+  const copyWrap = document.createElement('div');
+  copyWrap.className = 'modal-copy';
+
+  if(post.label){
+    const labelEl = document.createElement('p');
+    labelEl.className = 'modal-label';
+    labelEl.textContent = post.label;
+    copyWrap.appendChild(labelEl);
+  }
+
+  if(json){
+    const copy = resolveCopy(json, post.file);
+
+    if(copy.pill){
+      const pill = document.createElement('span');
+      pill.className = 'pill';
+      pill.textContent = copy.pill;
+      copyWrap.appendChild(pill);
+    }
+    if(copy.headline){
+      copyWrap.appendChild(buildHeadlineNode(copy.headline, copy.highlight));
+    }
+    if(copy.caption){
+      const cap = document.createElement('p');
+      cap.className = 'modal-caption';
+      cap.textContent = copy.caption;
+      copyWrap.appendChild(cap);
+    }
+    if(copy.services && copy.services.length){
+      const table = document.createElement('table');
+      table.className = 'services-table';
+      copy.services.forEach(([name, price]) => {
+        const row = document.createElement('tr');
+        const nameCell = document.createElement('td');
+        nameCell.textContent = name;
+        const priceCell = document.createElement('td');
+        priceCell.className = 'price';
+        priceCell.textContent = price;
+        row.appendChild(nameCell);
+        row.appendChild(priceCell);
+        table.appendChild(row);
+      });
+      copyWrap.appendChild(table);
+    }
+  } else {
+    const err = document.createElement('p');
+    err.className = 'modal-caption';
+    err.textContent = 'No se pudo cargar el copy (¿estás sirviendo la página con un servidor local?).';
+    copyWrap.appendChild(err);
+  }
+
+  modalBody.appendChild(media);
+  modalBody.appendChild(copyWrap);
+}
+
+modalClose.addEventListener('click', closeModal);
+modal.querySelector('.modal-backdrop').addEventListener('click', closeModal);
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+});
+
+renderGrid();
+</script>
+
+</body>
+</html>
