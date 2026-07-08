@@ -61,9 +61,9 @@
   .headline{
     position:absolute;
     left:64px; right:64px;
-    bottom:230px;
+    bottom:345px;
     font-family:"Lost in South";
-    font-size:88px;
+    font-size:100px;
     line-height:0.98;
     text-transform:uppercase;
     color:#F7F4EC;
@@ -72,10 +72,10 @@
   .caption{
     position:absolute;
     left:64px; right:64px;
-    bottom:110px;
+    bottom:180px;
     font-family:"Fira Sans Condensed";
     font-weight:400;
-    font-size:31px;
+    font-size:35px;
     line-height:1.4;
     color:#F7F4EC;
     opacity:.85;
@@ -84,7 +84,7 @@
     position:absolute;
     right:64px;
     bottom:56px;
-    height:83px;
+    height:100px;
   }
 </style>
 </head>
@@ -100,9 +100,13 @@
 
 <script>
   const slides = [
+    { bg:"assets/bg-00-portada-v2.png", pill:"Tendencias 2026", headline:"Siete cortes que si funcionan", highlight:"funcionan", caption:"Del skin fade al mullet: los cortes de hombre que vas a ver este año. Desliza y elige el tuyo." },
+    { bg:"assets/bg-01-skin-fade.png", pill:"01/07 · Skin fade", headline:"Corto hasta la piel", highlight:"piel", caption:"Buzz cut arriba, degradado total atrás y en los lados hasta fundirse con la piel. El fade más limpio que existe." },
+    { bg:"assets/bg-02-taper-fade.png", pill:"02/07 · Taper fade", headline:"Precision en la nuca", highlight:"precision", caption:"El degradado se concentra en la nuca y alrededor de las orejas, dejando el resto del corte casi intacto. La versión más sutil del fade." },
+    { bg:"assets/bg-03-drop-fade.png", pill:"03/07 · Drop fade", headline:"El fade que cae en curva", highlight:"curva", caption:"Arranca arriba de la cabeza y desciende en curva hacia la nuca, marcando la forma del cráneo con el degradado." },
     { bg:"assets/bg-04-burst-fade.png", pill:"04/07 · Burst fade", headline:"Corte con movimiento", highlight:"movimiento", caption:"Un corte semicircular alrededor de la oreja crea un efecto dinámico, ideal para combinar con top texturizado o flequillo." },
     { bg:"assets/bg-05-french-crop.png", pill:"05/07 · French crop", headline:"Textura arriba, estilo francés", highlight:"textura", caption:"Top texturizado con flequillo peinado hacia adelante. Se adapta a cualquier tipo de pelo y nivel de fade en los lados." },
-    { bg:"assets/bg-06-buzz-cut.png", pill:"06/07 · Buzz cut", headline:"Corto, parejo, sin vuelta", highlight:"parejo", caption:"Entre 1 y 4 mm de largo en toda la cabeza. El corte de menor mantenimiento que existe, listo en minutos." },
+    { bg:"assets/bg-06-buzz-cut-v2.png", pill:"06/07 · Buzz cut", headline:"Corto, parejo, sin vuelta", highlight:"parejo", caption:"Entre 1 y 4 mm de largo en toda la cabeza. El corte de menor mantenimiento que existe, listo en minutos." },
     { bg:"assets/bg-07-mullet.png", pill:"07/07 · Mullet", headline:"Corto adelante, largo atrás", highlight:"largo", caption:"Contraste puro: lados y frente cortos, nuca larga. El corte retro que volvió con fuerza este año." },
     { bg:"assets/bg-08-cita.png", pill:"Agenda tu cita", headline:"Tu fade, tallado a mano", highlight:"tallado", caption:"Nuestros barberos afinan cada línea a mano. Agenda tu cita en Nordic Barber Shop y elige tu corte." }
   ];

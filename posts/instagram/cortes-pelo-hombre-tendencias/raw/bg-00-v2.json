@@ -1,0 +1,13 @@
+{
+  "provider": "kie.ai",
+  "model": "gpt-image-2-text-to-image",
+  "taskId": "d4c4acc2c45ec6902073a528e8384130",
+  "input": {
+    "aspect_ratio": "4:5",
+    "resolution": "1K",
+    "prompt": "Vertical 4:5 photography plate, 1080x1350px. Wide editorial shot inside a moody upscale barbershop, high-contrast grayscale duotone photography with a warm golden-yellow light spilling in from a window or doorway on one side of the frame. A young man stands facing a large vintage barbershop mirror, seen from behind/side angle so both his reflection and the back of his head are visible, fresh sharp haircut, barbershop tools, chairs and bottles visible in soft blur around him. Cinematic, editorial, shallow depth of field, dramatic shadow across the lower half of the frame. No straight color anywhere, pure grayscale photography with only the gold light as color accent. Absolutely no text, no letters, no numbers, no logo, no watermark, no graphic overlays, no UI elements anywhere in the image — pure photography only, a clean background plate."
+  },
+  "result_url": "https://tempfile.aiquickdraw.com/a2/d4c4acc2c45ec6902073a528e8384130_1783529129796.png",
+  "state": "success",
+  "notes": "Segunda opcion de portada a pedido del usuario (toma de espejo, mas ambiental) para comparar contra bg-00-portada.png (close-up con maquina). El usuario eligio esta v2 como definitiva; bg-00-portada.png se conserva sin uso como alterna historica."
+}

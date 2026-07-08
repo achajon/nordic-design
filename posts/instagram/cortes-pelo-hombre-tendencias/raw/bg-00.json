@@ -1,0 +1,14 @@
+{
+  "provider": "kie.ai",
+  "model": "gpt-image-2-text-to-image",
+  "taskId": "c76f766580be3720c6b7d69744045d49",
+  "input": {
+    "aspect_ratio": "4:5",
+    "resolution": "1K",
+    "prompt": "Vertical 4:5 photography plate, 1080x1350px. Inside a moody upscale barbershop, high-contrast grayscale duotone photography with a warm golden-yellow key/rim light striking one side of the frame. A confident young man sits in the barber chair mid-session, head tilted slightly, a barber's hand and clippers just visible at the edge of frame working a crisp fade line at his temple — sharp, editorial, cinematic close-mid shot, shallow depth of field, dramatic shadow falling across the lower half of the frame, blurred barbershop background. No straight color anywhere, pure grayscale photography with only the gold light as color accent. Absolutely no text, no letters, no numbers, no logo, no watermark, no graphic overlays, no UI elements anywhere in the image — pure photography only, a clean background plate."
+  },
+  "result_url": "https://tempfile.aiquickdraw.com/a2/c76f766580be3720c6b7d69744045d49_1783526818377.png",
+  "costTime": 734,
+  "state": "success",
+  "notes": "Generado con scripts/kie_image_gen.py en vez de Higgsfield. Slide 00-portada rehecho de Opcion A a Opcion B. Resultado 1024x1280px."
+}

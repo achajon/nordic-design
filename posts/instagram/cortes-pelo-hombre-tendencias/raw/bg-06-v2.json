@@ -1,0 +1,13 @@
+{
+  "provider": "kie.ai",
+  "model": "gpt-image-2-text-to-image",
+  "taskId": "53fb86e9192d36da577bc45a687d8280",
+  "input": {
+    "aspect_ratio": "4:5",
+    "resolution": "1K",
+    "prompt": "Vertical 4:5 photography plate, 1080x1350px. Front three-quarter shot of a young man's face and freshly buzzed head inside a barbershop, high-contrast grayscale duotone photography with a warm golden-yellow rim light tracing the top of his head and one side of his face. Even, short buzz-cut hair texture clearly visible catching the light, confident calm expression, barber's cape draped over shoulders. Cinematic, editorial, shallow depth of field, blurred barbershop background, dramatic shadow across the lower portion of the frame. No straight color anywhere, pure grayscale photography with only the gold light as color accent. Absolutely no text, no letters, no numbers, no logo, no watermark, no graphic overlays, no UI elements anywhere in the image — pure photography only, a clean background plate."
+  },
+  "result_url": "https://tempfile.aiquickdraw.com/images/chatgpt/file_00000000124071f5aa712523995be097.png",
+  "state": "success",
+  "notes": "Segunda opcion de 06-buzz-cut a pedido del usuario (retrato frontal 3/4) para comparar contra bg-06-buzz-cut.png (perfil con maquina cortando). El usuario eligio esta v2 como definitiva; bg-06-buzz-cut.png se conserva sin uso como alterna historica."
+}

@@ -1,0 +1,14 @@
+{
+  "provider": "kie.ai",
+  "model": "gpt-image-2-text-to-image",
+  "taskId": "66a2cc53f9c6adb8d74168e584e1fd0c",
+  "input": {
+    "aspect_ratio": "4:5",
+    "resolution": "1K",
+    "prompt": "Vertical 4:5 photography plate, 1080x1350px. Extreme close-up side/back profile of a young man's head inside a barbershop, high-contrast grayscale duotone photography with a warm golden-yellow rim light tracing the edge of his skull. The shot is tight on the transition zone above the ear, where short hair fades all the way down to bare skin — crisp, razor-sharp skin fade line clearly visible, texture of clipper-cut hair versus smooth skin in sharp focus. A barber's hand holding a straight razor or trimmer is visible at the edge of frame, mid-motion. Cinematic, editorial, shallow depth of field, dramatic shadow across the lower portion of the frame, blurred barbershop background. No straight color anywhere, pure grayscale photography with only the gold light as color accent. Absolutely no text, no letters, no numbers, no logo, no watermark, no graphic overlays, no UI elements anywhere in the image — pure photography only, a clean background plate."
+  },
+  "result_url": "https://tempfile.aiquickdraw.com/images/chatgpt/file_000000001b40722f9eb1a7252ee2d328.png",
+  "costTime": 133,
+  "state": "success",
+  "notes": "Generado con scripts/kie_image_gen.py en vez de Higgsfield. Slide 01-skin-fade rehecho de Opcion A a Opcion B. Primer intento (taskId d75abad84334b646a1a0f48d5dcdb2e5) fallo por timeout upstream (failCode 500, 0 creditos consumidos); este es el reintento exitoso. Resultado 1122x1402px."
+}

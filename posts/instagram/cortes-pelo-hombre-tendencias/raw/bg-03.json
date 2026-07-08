@@ -1,0 +1,15 @@
+{
+  "provider": "kie.ai",
+  "model": "gpt-image-2-text-to-image",
+  "taskId": "b3130590da54cc32eed9371dec4998b6",
+  "input": {
+    "aspect_ratio": "4:5",
+    "resolution": "1K",
+    "prompt": "Vertical 4:5 photography plate, 1080x1350px. Dramatic low-angle side profile shot of a young man's head inside a barbershop, high-contrast grayscale duotone photography with a thin warm golden-yellow rim light tracing only the outer contour of his head and the curved fade line — a narrow line of light, never a filled shape; the skin and ear stay pure grayscale. The haircut shows a drop fade: the fade line starts high above the ear and curves sharply downward in an arc toward the nape, clearly visible as a graphic curved line against the skin. Sharp focus on the curved fade line, cinematic side lighting, dramatic shadow across the lower portion of the frame, blurred barbershop background. No straight color anywhere, pure grayscale photography with only the thin gold rim-light line as color accent. Absolutely no text, no letters, no numbers, no logo, no watermark, no graphic overlays, no UI elements anywhere in the image — pure photography only, a clean background plate."
+  },
+  "result_url": "https://tempfile.aiquickdraw.com/images/chatgpt/file_000000007294720c93790b6c0005a42f.png",
+  "creditsConsumed": 6.0,
+  "costTime": 139,
+  "state": "success",
+  "notes": "Generado con scripts/kie_image_gen.py en vez de Higgsfield/nano_banana_flash, a pedido del usuario, para el slide 03-drop-fade (rehecho de Opcion A a Opcion B). aspect_ratio 4:5 forzo resolution 1K (kie.ai no soporta 2K/4K en esa relacion de aspecto); resultado 1122x1402px, escalado por CSS object-fit:cover al lienzo 2160x2700 en index.html."
+}
