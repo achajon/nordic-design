@@ -1,0 +1,38 @@
+[
+  {
+    "created_at": "2026-07-08T01:32:49.316003Z",
+    "display_name": "Nano Banana 2",
+    "id": "527a5bce-f140-4190-94c5-96f49409bf57",
+    "job_type": "nano_banana_flash",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260708_013249_527a5bce-f140-4190-94c5-96f49409bf57_min.webp",
+    "params": {
+      "aspect_ratio": "4:5",
+      "batch_size": 1,
+      "height": 2304,
+      "medias": [
+        {
+          "data": {
+            "id": "33953663-d41c-48a4-a05d-54378090a7fa",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/33953663-d41c-48a4-a05d-54378090a7fa.png"
+          },
+          "role": "image"
+        },
+        {
+          "data": {
+            "id": "e325463a-d48d-4b35-95f2-16d763159fa5",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/e325463a-d48d-4b35-95f2-16d763159fa5.png"
+          },
+          "role": "image"
+        }
+      ],
+      "prompt": "Vertical portrait brand social tile for a barbershop, exact 4:5 aspect ratio, 1080x1350px composition. Scene: inside a moody upscale barbershop, high-contrast grayscale duotone photography with a warm Nordic-yellow gold key/rim light striking one side of the frame. A confident young man sits in the barber chair mid-session, head tilted slightly, a barber's hand and clippers just visible at the edge of frame working a crisp fade line at his temple — sharp, editorial, cinematic close-mid shot, shallow depth of field, dramatic shadow falling across the lower half of the frame for text legibility. No straight color anywhere, pure grayscale photography with only the gold light as color accent.\n\nOverlay a dark gradient scrim across the bottom half of the image for text legibility.\n\nTop-left: a small solid Nordic-yellow (#FFD200) pill/badge containing the text \"TENDENCIAS 2026\" in a clean bold condensed sans-serif, uppercase, small tracking, dark ink text on the yellow pill.\n\nCenter-lower area: a large headline reading \"SIETE CORTES QUE SI FUNCIONAN\", set in the hand-cut marker lettering style shown in the second reference image — reproduce that exact letterform style for every single word, all uppercase, tight line spacing — where the word FUNCIONAN is solid Nordic yellow (#FFD200) and the rest of the words are solid bone-white (#F7F4EC).\n\nBelow the headline: a small caption line in a clean condensed sans-serif, bone-white, reading \"Del skin fade al mullet: los cortes de hombre que vas a ver este año. Desliza y elige el tuyo.\"\n\nBottom-right corner: place the exact logo lockup shown in the first reference image completely unchanged, small scale, clear space around it, bone-white ink version.\n\nNo watermarks other than the specified logo. No extra text anywhere else in the frame.",
+      "reference_elements": [],
+      "resolution": "2k",
+      "width": 1856
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260708_013249_527a5bce-f140-4190-94c5-96f49409bf57.png",
+    "status": "completed"
+  }
+]

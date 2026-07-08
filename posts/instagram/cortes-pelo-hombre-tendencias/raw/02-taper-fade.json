@@ -1,0 +1,38 @@
+[
+  {
+    "created_at": "2026-07-08T01:35:23.811369Z",
+    "display_name": "Nano Banana 2",
+    "id": "3038a937-a921-4323-a73b-65c1c5b0f0dc",
+    "job_type": "nano_banana_flash",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260708_013523_3038a937-a921-4323-a73b-65c1c5b0f0dc_min.webp",
+    "params": {
+      "aspect_ratio": "4:5",
+      "batch_size": 1,
+      "height": 2304,
+      "medias": [
+        {
+          "data": {
+            "id": "d8123bf2-06b3-4e99-bd0b-e33baf5852c2",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/d8123bf2-06b3-4e99-bd0b-e33baf5852c2.png"
+          },
+          "role": "image"
+        },
+        {
+          "data": {
+            "id": "99fb732b-fd7b-4b68-a0b7-39519749d2ee",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/99fb732b-fd7b-4b68-a0b7-39519749d2ee.png"
+          },
+          "role": "image"
+        }
+      ],
+      "prompt": "Vertical portrait brand social tile for a barbershop, exact 4:5 aspect ratio, 1080x1350px composition. Scene: close-up three-quarter shot of a young man's head and neck inside a barbershop, high-contrast grayscale duotone photography with a warm Nordic-yellow gold rim light along his jaw and ear. A barber's fingers are combing hair back near the nape and around the ear, showing a subtle, tight taper fade concentrated right at the hairline and ear — the top and mid-length hair remain almost untouched, only the very bottom edge is faded. Sharp focus on the nape/ear detail, soft blur on the rest. Cinematic, editorial, dramatic shadow across the lower portion of the frame for text legibility. No straight color anywhere, pure grayscale photography with only the gold light as color accent.\n\nOverlay a dark gradient scrim across the bottom half of the image for text legibility.\n\nTop-left: a small solid Nordic-yellow (#FFD200) pill/badge containing the text \"02/07 · TAPER FADE\" in a clean bold condensed sans-serif, uppercase, small tracking, dark ink text on the yellow pill.\n\nCenter-lower area: a large headline reading \"PRECISION EN LA NUCA\", set in the hand-cut marker lettering style shown in the second reference image — reproduce that exact letterform style for every single word, all uppercase, tight line spacing — where the word PRECISION is solid Nordic yellow (#FFD200) and the rest of the words are solid bone-white (#F7F4EC).\n\nBelow the headline: a small caption line in a clean condensed sans-serif, bone-white, reading \"El degradado se concentra en la nuca y alrededor de las orejas, dejando el resto del corte casi intacto. La versión más sutil del fade.\"\n\nBottom-right corner: place the exact logo lockup shown in the first reference image completely unchanged, small scale, clear space around it, bone-white ink version.\n\nNo watermarks other than the specified logo. No extra text anywhere else in the frame.",
+      "reference_elements": [],
+      "resolution": "2k",
+      "width": 1856
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260708_013523_3038a937-a921-4323-a73b-65c1c5b0f0dc.png",
+    "status": "completed"
+  }
+]

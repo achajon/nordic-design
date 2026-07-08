@@ -1,0 +1,38 @@
+[
+  {
+    "created_at": "2026-07-08T01:34:27.403645Z",
+    "display_name": "Nano Banana 2",
+    "id": "53a48ebc-80af-4bcd-88d2-cadb447c113a",
+    "job_type": "nano_banana_flash",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260708_013427_53a48ebc-80af-4bcd-88d2-cadb447c113a_min.webp",
+    "params": {
+      "aspect_ratio": "4:5",
+      "batch_size": 1,
+      "height": 2304,
+      "medias": [
+        {
+          "data": {
+            "id": "d8cfdfb2-5454-4183-af75-75f976fc423f",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/d8cfdfb2-5454-4183-af75-75f976fc423f.png"
+          },
+          "role": "image"
+        },
+        {
+          "data": {
+            "id": "7b768ae5-9c7a-4051-bb11-569298eceff2",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/7b768ae5-9c7a-4051-bb11-569298eceff2.png"
+          },
+          "role": "image"
+        }
+      ],
+      "prompt": "Vertical portrait brand social tile for a barbershop, exact 4:5 aspect ratio, 1080x1350px composition. Scene: extreme close-up side/back profile of a young man's head inside a barbershop, high-contrast grayscale duotone photography with a warm Nordic-yellow gold rim light tracing the edge of his skull. The shot is tight on the transition zone above the ear, where short hair fades all the way down to bare skin — crisp, razor-sharp skin fade line clearly visible, texture of clipper-cut hair versus smooth skin in sharp focus. A barber's hand holding a straight razor or trimmer is visible at the edge of frame, mid-motion. Cinematic, editorial, shallow depth of field, dramatic shadow across the lower portion of the frame for text legibility. No straight color anywhere, pure grayscale photography with only the gold light as color accent.\n\nOverlay a dark gradient scrim across the bottom half of the image for text legibility.\n\nTop-left: a small solid Nordic-yellow (#FFD200) pill/badge containing the text \"01/07 · SKIN FADE\" in a clean bold condensed sans-serif, uppercase, small tracking, dark ink text on the yellow pill.\n\nCenter-lower area: a large headline reading \"CORTO HASTA LA PIEL\", set in the hand-cut marker lettering style shown in the second reference image — reproduce that exact letterform style for every single word, all uppercase, tight line spacing — where the word PIEL is solid Nordic yellow (#FFD200) and the rest of the words are solid bone-white (#F7F4EC).\n\nBelow the headline: a small caption line in a clean condensed sans-serif, bone-white, reading \"Buzz cut arriba, degradado total atrás y en los lados hasta fundirse con la piel. El fade más limpio que existe.\"\n\nBottom-right corner: place the exact logo lockup shown in the first reference image completely unchanged, small scale, clear space around it, bone-white ink version.\n\nNo watermarks other than the specified logo. No extra text anywhere else in the frame.",
+      "reference_elements": [],
+      "resolution": "2k",
+      "width": 1856
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3G3f2OeYgF6Si6zsoKpqzsPfPWT/hf_20260708_013427_53a48ebc-80af-4bcd-88d2-cadb447c113a.png",
+    "status": "completed"
+  }
+]
