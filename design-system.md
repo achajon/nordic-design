@@ -51,18 +51,18 @@ Three roles, each with one job. Do not blend roles (e.g., never set body copy in
 
 | Role | Typeface | Use | Notes |
 |---|---|---|---|
-| **Display** | Lost in South (`fonts/lost_in_south/Lost in South.otf`) | Headlines, section titles, prices | Always uppercase, tight leading (~0.92–1.05). The brand's own hand-cut face, used for structure now rather than a single accent phrase. |
-| **Signature** | Lost in South | One accent phrase per layout — a promise, a call-out | Same font file as Display, set at a looser line-height and without the forced uppercase. Never for body copy or long lines. One use per screen/page maximum. |
+| **Display** | Lost in South (`fonts/lost_in_south/Lost in South.otf`) | Headlines, section titles, prices | Always uppercase, tight leading (~0.92–1.05), letter-spacing: .07em. The font's own tracking is zero, which reads as cramped/illegible at display sizes — the .07em opens it back up without breaking the hand-cut letterforms. The brand's own hand-cut face, used for structure now rather than a single accent phrase. |
+| **Signature** | Lost in South | One accent phrase per layout — a promise, a call-out | Same font file as Display, set at a looser line-height and without the forced uppercase. Same letter-spacing: .07em applies. Never for body copy or long lines. One use per screen/page maximum. |
 | **Body / UI** | Fira Sans Condensed (`fonts/Fira Sans Condensed/`) | Paragraphs, navigation, buttons, forms, schedules | Regular (400) for reading; Semibold/Bold (600–700) for labels and UI. Set in bone (white) on ink. |
 
 ### Type scale
 
 | Style | Size / Line-height | Weight |
 |---|---|---|
-| Display XL | 64–108px / 0.92 | Lost in South |
-| Display L | 40–52px / 1.0 | Lost in South |
-| Display M | 26–32px / 1.05 | Lost in South |
-| Signature | 28–48px / 1.3 | Lost in South |
+| Display XL | 64–108px / 0.92, +0.07em tracking | Lost in South |
+| Display L | 40–52px / 1.0, +0.07em tracking | Lost in South |
+| Display M | 26–32px / 1.05, +0.07em tracking | Lost in South |
+| Signature | 28–48px / 1.3, +0.07em tracking | Lost in South |
 | Body | 15–17px / 1.6 | Fira Sans Condensed 400 |
 | Label / Eyebrow | 11–12px / 1.3, +0.14em tracking | Fira Sans Condensed 700, uppercase |
 

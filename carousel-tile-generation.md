@@ -111,7 +111,7 @@ Load the brand's real font files via `@font-face` (copy them next to the HTML, d
 }
 ```
 
-Map roles per `design-system.md` §4 — `Lost in South` for the headline/signature (uppercase, tight leading), `Fira Sans Condensed` for the pill, caption, and **any digits/prices** (never set numbers in Lost in South — see the font's known missing-glyph bug). Colors, spacing, and the highlight-word rule are all in `design-system.md` §3/§7; don't eyeball them.
+Map roles per `design-system.md` §4 — `Lost in South` for the headline/signature (uppercase, tight leading, **letter-spacing: .07em** — the font ships with zero tracking, which reads as cramped/illegible at display sizes), `Fira Sans Condensed` for the pill, caption, and **any digits/prices** (never set numbers in Lost in South — see the font's known missing-glyph bug). Colors, spacing, and the highlight-word rule are all in `design-system.md` §3/§7; don't eyeball them.
 
 ### 3. Render to PNG with headless Chrome
 
