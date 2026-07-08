@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080, height=1920">
+    <title>Nordic Barber Shop — Sistema de Citas (Story)</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Lost in South";
+        src: url("assets/fonts/Lost in South.otf") format("opentype");
+        font-weight: 400;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Fira Sans Condensed";
+        src: url("assets/fonts/Fira Sans Condensed/FiraSansCondensed-Regular.ttf") format("truetype");
+        font-weight: 400;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Fira Sans Condensed";
+        src: url("assets/fonts/Fira Sans Condensed/FiraSansCondensed-SemiBold.ttf") format("truetype");
+        font-weight: 600;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Fira Sans Condensed";
+        src: url("assets/fonts/Fira Sans Condensed/FiraSansCondensed-Bold.ttf") format("truetype");
+        font-weight: 700;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Fira Sans Condensed";
+        src: url("assets/fonts/Fira Sans Condensed/FiraSansCondensed-ExtraBold.ttf") format("truetype");
+        font-weight: 800;
+        font-display: block;
+      }
+
+      :root {
+        --ink: #101010;
+        --charcoal: #1a1a1a;
+        --gold: #ffd200;
+        --gold-deep: #c9a400;
+        --bone: #f7f4ec;
+        --steel-dim: rgba(247, 244, 236, 0.55);
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--ink); }
+      body { font-family: "Fira Sans Condensed", sans-serif; }
+
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: var(--ink);
+      }
+
+      /* ---------- shared type ---------- */
+      .eyebrow-pill {
+        background: var(--gold);
+        color: var(--ink);
+        font-family: "Fira Sans Condensed", sans-serif;
+        font-weight: 800;
+        font-size: 26px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        padding: 14px 34px;
+        border-radius: 32px;
+        display: inline-block;
+      }
+      .headline-2line {
+        font-family: "Lost in South", sans-serif;
+        text-transform: uppercase;
+        line-height: 0.95;
+        font-size: 100px;
+        letter-spacing: 0.07em;
+        color: var(--bone);
+        text-align: center;
+      }
+      .headline-2line .hl { color: var(--gold); }
+      .headline-2line .w { display: inline-block; will-change: transform, filter, opacity; }
+      .signature-line {
+        font-family: "Lost in South", sans-serif;
+        font-size: 60px;
+        color: var(--gold);
+        text-align: center;
+        text-transform: none;
+      }
+      .cta-pill {
+        background: var(--gold);
+        color: var(--ink);
+        font-family: "Fira Sans Condensed", sans-serif;
+        font-weight: 800;
+        font-size: 32px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 22px 56px;
+        border-radius: 44px;
+        display: inline-block;
+      }
+      .url-caption {
+        font-family: "Fira Sans Condensed", sans-serif;
+        font-weight: 400;
+        font-size: 26px;
+        color: var(--steel-dim);
+        letter-spacing: 0.02em;
+      }
+
+      /* ---------- persistent background texture ---------- */
+      #bg-glow {
+        position: absolute;
+        left: 50%;
+        top: 46%;
+        width: 1500px;
+        height: 1500px;
+        transform: translate(-50%, -50%);
+        background: radial-gradient(circle, rgba(255, 210, 0, 0.16) 0%, rgba(255, 210, 0, 0) 62%);
+        pointer-events: none;
+        z-index: 1;
+      }
+      .tick { position: absolute; width: 34px; height: 34px; z-index: 46; }
+      .tick::before, .tick::after { content: ""; position: absolute; background: var(--gold); }
+      .tick::before { width: 100%; height: 2px; top: 50%; transform: translateY(-50%); }
+      .tick::after { height: 100%; width: 2px; left: 50%; transform: translateX(-50%); }
+      #tick-tl { top: 72px; left: 56px; }
+      #tick-br { bottom: 72px; right: 56px; }
+      #grain {
+        position: absolute;
+        inset: 0;
+        z-index: 60;
+        pointer-events: none;
+        opacity: 0.05;
+        mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+        background-size: 360px 360px;
+      }
+      #frame-code {
+        position: absolute;
+        top: 72px;
+        right: 56px;
+        z-index: 46;
+        font-family: "Fira Sans Condensed", sans-serif;
+        font-weight: 600;
+        font-size: 20px;
+        letter-spacing: 0.08em;
+        color: var(--steel-dim);
+        text-transform: uppercase;
+      }
+      #frame-code-b {
+        position: absolute;
+        bottom: 72px;
+        left: 56px;
+        z-index: 46;
+        font-family: "Fira Sans Condensed", sans-serif;
+        font-weight: 600;
+        font-size: 20px;
+        letter-spacing: 0.08em;
+        color: var(--steel-dim);
+        text-transform: uppercase;
+      }
+
+      /* ---------- HOOK ---------- */
+      #scene-hook { position: absolute; inset: 0; z-index: 1; }
+      #hook-ghost {
+        position: absolute;
+        left: 50%;
+        top: 42%;
+        width: 900px;
+        opacity: 0.05;
+        z-index: 1;
+      }
+      #hook-ghost img { width: 100%; display: block; }
+      #hook-logo {
+        position: absolute;
+        left: 50%;
+        top: 620px;
+        width: 420px;
+        z-index: 3;
+      }
+      #hook-logo img { width: 100%; display: block; }
+      #hook-rule {
+        position: absolute;
+        left: 50%;
+        top: 830px;
+        width: 180px;
+        height: 3px;
+        background: var(--gold-deep);
+        z-index: 3;
+      }
+      #hook-headline {
+        position: absolute;
+        left: 50%;
+        top: 990px;
+        width: 940px;
+        transform: translateX(-50%);
+        z-index: 3;
+      }
+
+      /* ---------- SETUP ---------- */
+      #scene-setup { position: absolute; inset: 0; z-index: 2; }
+      #setup-ghost {
+        position: absolute;
+        left: 50%;
+        top: 900px;
+        transform: translate(-50%, -50%);
+        font-family: "Lost in South", sans-serif;
+        text-transform: uppercase;
+        font-size: 300px;
+        color: var(--bone);
+        opacity: 0.05;
+        white-space: nowrap;
+        z-index: 1;
+      }
+      #setup-eyebrow {
+        position: absolute;
+        left: 50%;
+        top: 640px;
+        z-index: 3;
+      }
+      #setup-headline {
+        position: absolute;
+        left: 50%;
+        top: 760px;
+        width: 940px;
+        transform: translateX(-50%);
+        z-index: 3;
+      }
+      #setup-hint {
+        position: absolute;
+        left: 50%;
+        top: 1660px;
+        z-index: 3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+      #setup-hint-label {
+        font-family: "Fira Sans Condensed", sans-serif;
+        font-weight: 700;
+        font-size: 24px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--steel-dim);
+      }
+      #setup-chevron { width: 28px; height: 28px; border-right: 3px solid var(--gold); border-bottom: 3px solid var(--gold); transform: rotate(45deg); }
+
+      /* ---------- PHONE RIG (persistent 5.9–29.2) ---------- */
+      #phone-rig { position: absolute; inset: 0; z-index: 5; }
+
+      .ghost-num {
+        position: absolute;
+        left: 50%;
+        top: 330px;
+        transform: translate(-50%, -50%);
+        font-family: "Fira Sans Condensed", sans-serif;
+        font-weight: 800;
+        font-size: 380px;
+        color: var(--bone);
+        opacity: 0.05;
+        line-height: 1;
+        z-index: 1;
+      }
+
+      #step-label-zone {
+        position: absolute;
+        left: 50%;
+        top: 372px;
+        width: 940px;
+        transform: translateX(-50%);
+        z-index: 10;
+      }
+      .step-label {
+        position: absolute;
+        left: 0; top: 0; width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 22px;
+      }
+      .step-num {
+        font-family: "Fira Sans Condensed", sans-serif;
+        font-weight: 800;
+        font-size: 64px;
+        color: var(--gold);
+        line-height: 1;
+      }
+      .step-text {
+        font-family: "Fira Sans Condensed", sans-serif;
+        font-weight: 800;
+        font-size: 42px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--bone);
+      }
+
+      #phone-frame {
+        position: absolute;
+        left: 50%;
+        top: 560px;
+        width: 700px;
+        height: 728px;
+        background: var(--charcoal);
+        border-radius: 48px;
+        border: 2px solid rgba(255, 210, 0, 0.22);
+        box-shadow: 0 50px 100px rgba(0, 0, 0, 0.55), 0 10px 30px rgba(0, 0, 0, 0.4);
+        overflow: hidden;
+        z-index: 6;
+      }
+      #phone-notch {
+        position: absolute; left: 50%; top: 20px; width: 130px; height: 22px;
+        transform: translateX(-50%); background: #000; border-radius: 14px; opacity: 0.55;
+      }
+      .phone-btn { position: absolute; background: #0d0d0d; border-radius: 2px; }
+      #btn-power { right: 0; top: 180px; width: 3px; height: 70px; }
+      #btn-vol1 { left: 0; top: 150px; width: 3px; height: 50px; }
+      #btn-vol2 { left: 0; top: 215px; width: 3px; height: 50px; }
+      #phone-screen {
+        position: absolute; left: 20px; top: 58px; width: 660px; height: 650px;
+        border-radius: 34px; overflow: hidden; background: #ffffff;
+      }
+      .phone-shot { position: absolute; left: 0; top: 0; width: 660px; height: auto; display: block; opacity: 0; }
+      .tap-dot {
+        position: absolute; width: 30px; height: 30px; border-radius: 50%;
+        background: var(--gold); opacity: 0; z-index: 3;
+      }
+      .tap-ring {
+        position: absolute; width: 30px; height: 30px; border-radius: 50%;
+        border: 3px solid var(--gold); opacity: 0; z-index: 2;
+      }
+      .field-box {
+        position: absolute; border: 3px solid var(--gold); border-radius: 12px; opacity: 0; z-index: 3;
+      }
+      .field-mask {
+        position: absolute; background: #ffffff; opacity: 0; z-index: 2;
+        display: flex; align-items: center;
+        font-family: "Fira Sans Condensed", sans-serif;
+        font-weight: 400; font-size: 24px; color: #24303d;
+        padding-left: 14px; border-radius: 8px;
+      }
+      #tap-flash { position: absolute; inset: 0; background: var(--bone); opacity: 0; z-index: 5; }
+
+      /* success card (inside phone screen) */
+      #success-card {
+        position: absolute; inset: 0; background: var(--ink);
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        gap: 26px; opacity: 0; z-index: 4;
+      }
+      #success-ring { position: relative; width: 160px; height: 160px; }
+      #success-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+      #success-ring circle { fill: none; stroke-width: 8; }
+      #success-ring .track { stroke: rgba(255, 210, 0, 0.18); }
+      #success-ring .fill { stroke: var(--gold); stroke-dasharray: 440; stroke-dashoffset: 440; stroke-linecap: round; }
+      #success-check {
+        position: absolute; left: 50%; top: 50%; width: 70px; height: 46px;
+        transform: translate(-50%, -55%);
+      }
+      #success-title {
+        font-family: "Lost in South", sans-serif;
+        text-transform: uppercase;
+        font-size: 52px;
+        color: var(--bone);
+        line-height: 1;
+      }
+      #success-sub {
+        font-family: "Fira Sans Condensed", sans-serif;
+        font-weight: 600;
+        font-size: 24px;
+        color: var(--steel-dim);
+        text-align: center;
+        padding: 0 60px;
+      }
+      #success-rule { width: 100px; height: 3px; background: var(--gold-deep); }
+
+      #progress-dots {
+        position: absolute; left: 50%; top: 1440px; transform: translateX(-50%);
+        display: flex; gap: 16px; z-index: 10;
+      }
+      .p-dot { width: 14px; height: 14px; border-radius: 50%; background: rgba(247, 244, 236, 0.22); }
+      .p-dot .fill { width: 100%; height: 100%; border-radius: 50%; background: var(--gold); transform: scale(0); }
+
+      /* ---------- OUTRO ---------- */
+      #scene-outro { position: absolute; inset: 0; z-index: 8; opacity: 0; }
+      #outro-glow {
+        position: absolute; left: 50%; top: 44%; width: 1400px; height: 1400px;
+        background: radial-gradient(circle, rgba(255, 210, 0, 0.3) 0%, rgba(255, 210, 0, 0) 62%);
+        z-index: 1; pointer-events: none;
+      }
+      #outro-ghost {
+        position: absolute; left: 50%; top: 500px; transform: translate(-50%, -50%);
+        font-family: "Lost in South", sans-serif; text-transform: uppercase; font-size: 320px;
+        color: var(--bone); opacity: 0.05; white-space: nowrap; z-index: 1;
+      }
+      #outro-content {
+        position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center;
+        justify-content: center; padding: 120px 96px; text-align: center; gap: 30px; z-index: 3;
+      }
+      #outro-logo { width: 300px; }
+      #outro-logo img { width: 100%; display: block; }
+      #outro-rule { width: 220px; height: 3px; background: var(--gold-deep); transform: scaleX(0); }
+      #outro-fade { position: absolute; inset: 0; background: var(--ink); opacity: 0; z-index: 90; pointer-events: none; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920" data-duration="36.5">
+
+      <div id="bg-glow"></div>
+
+      <!-- ============ HOOK 0–3.3 ============ -->
+      <div id="scene-hook" class="clip" data-start="0" data-duration="3.6" data-track-index="1">
+        <div id="hook-ghost"><img id="hook-ghost-img" class="clip" src="assets/images/Nordic-BarberShop-logo-white.svg" alt="" data-start="0" data-duration="3.6"></div>
+        <div id="hook-logo"><img id="hook-logo-img" class="clip" src="assets/images/Nordic-BarberShop-logo-white.svg" alt="Nordic Barber Shop" data-start="0.3" data-duration="3.3"></div>
+        <div id="hook-rule"></div>
+        <h1 id="hook-headline" class="headline-2line"><span class="w" id="hh-w1">OLVÍDATE</span> <span class="w" id="hh-w2">DE</span><br><span class="w hl" id="hh-w3">LA</span> <span class="w hl" id="hh-w4">LLAMADA.</span></h1>
+      </div>
+
+      <!-- ============ SETUP 2.9–6.6 ============ -->
+      <div id="scene-setup" class="clip" data-start="2.9" data-duration="4.0" data-track-index="2">
+        <div id="setup-ghost">Agenda</div>
+        <span id="setup-eyebrow" class="eyebrow-pill">Sistema de Citas</span>
+        <h2 id="setup-headline" class="headline-2line"><span class="w" id="sh-w1">AGENDA</span> <span class="w" id="sh-w2">EN</span><br><span class="w hl" id="sh-w3">UN</span> <span class="w hl" id="sh-w4">MINUTO</span></h2>
+        <div id="setup-hint">
+          <span id="setup-hint-label">Así se hace</span>
+          <div id="setup-chevron"></div>
+        </div>
+      </div>
+
+      <!-- ============ PHONE RIG 5.9–29.2 ============ -->
+      <div id="phone-rig" class="clip" data-start="5.9" data-duration="25.7" data-track-index="5">
+
+        <div class="ghost-num" id="ghost-01">01</div>
+        <div class="ghost-num" id="ghost-02" style="opacity:0">02</div>
+        <div class="ghost-num" id="ghost-03" style="opacity:0">03</div>
+        <div class="ghost-num" id="ghost-04" style="opacity:0">04</div>
+        <div class="ghost-num" id="ghost-05" style="opacity:0">05</div>
+
+        <div id="step-label-zone">
+          <div class="step-label" id="label-1" style="opacity:0"><span class="step-num">1</span><span class="step-text">Elige tu servicio</span></div>
+          <div class="step-label" id="label-2" style="opacity:0"><span class="step-num">2</span><span class="step-text">Elige tu barbero</span></div>
+          <div class="step-label" id="label-3" style="opacity:0"><span class="step-num">3</span><span class="step-text">Fecha y hora</span></div>
+          <div class="step-label" id="label-4" style="opacity:0"><span class="step-num">4</span><span class="step-text">Tus datos</span></div>
+          <div class="step-label" id="label-5" style="opacity:0"><span class="step-num">5</span><span class="step-text">Confirma tu cita</span></div>
+        </div>
+
+        <div id="phone-frame">
+          <div id="phone-notch"></div>
+          <div class="phone-btn" id="btn-power"></div>
+          <div class="phone-btn" id="btn-vol1"></div>
+          <div class="phone-btn" id="btn-vol2"></div>
+          <div id="phone-screen">
+            <img class="phone-shot" id="shot-1a" src="assets/images/steps/step1a-empty.png" alt="">
+            <img class="phone-shot" id="shot-1b" src="assets/images/steps/step1b-dropdown.png" alt="">
+            <img class="phone-shot" id="shot-1c" src="assets/images/steps/step1c-selected.png" alt="">
+            <img class="phone-shot" id="shot-2" src="assets/images/steps/step2-artist.png" alt="">
+            <img class="phone-shot" id="shot-3a" src="assets/images/steps/step3a-calendar.png" alt="">
+            <img class="phone-shot" id="shot-3b" src="assets/images/steps/step3b-time.png" alt="">
+            <img class="phone-shot" id="shot-4" src="assets/images/steps/step4-form.png" alt="">
+            <div class="field-mask" id="mask-nombre" style="left:68px; top:168px; width:248px; height:66px;">Juan</div>
+            <div class="field-mask" id="mask-apellido" style="left:345px; top:168px; width:248px; height:66px;">Pérez</div>
+            <div class="field-mask" id="mask-correo" style="left:68px; top:306px; width:248px; height:66px; font-size:20px;">juan.perez@email.com</div>
+            <div class="field-mask" id="mask-telefono" style="left:345px; top:306px; width:248px; height:66px;">5512 3456</div>
+            <img class="phone-shot" id="shot-5" src="assets/images/steps/step5-payment.png" alt="">
+            <img class="phone-shot" id="shot-5b" src="assets/images/steps/step5b-checkout.png" alt="">
+
+            <div class="tap-dot" id="dot-1a" style="left:345px; top:236px;"></div>
+            <div class="tap-ring" id="ring-1a" style="left:345px; top:236px;"></div>
+            <div class="tap-dot" id="dot-1b" style="left:333px; top:366px;"></div>
+            <div class="tap-ring" id="ring-1b" style="left:333px; top:366px;"></div>
+            <div class="tap-dot" id="dot-2" style="left:345px; top:373px;"></div>
+            <div class="tap-ring" id="ring-2" style="left:345px; top:373px;"></div>
+            <div class="tap-dot" id="dot-3a" style="left:260px; top:409px;"></div>
+            <div class="tap-ring" id="ring-3a" style="left:260px; top:409px;"></div>
+            <div class="tap-ring" id="ring-3b" style="left:211px; top:381px;"></div>
+            <div class="tap-ring" id="ring-5" style="left:462px; top:523px;"></div>
+            <div class="tap-dot" id="dot-5b" style="left:330px; top:336px;"></div>
+            <div class="tap-ring" id="ring-5b" style="left:330px; top:336px;"></div>
+
+            <div class="field-box" id="fb-nombre" style="left:66px; top:166px; width:252px; height:70px;"></div>
+            <div class="field-box" id="fb-apellido" style="left:343px; top:166px; width:252px; height:70px;"></div>
+            <div class="field-box" id="fb-correo" style="left:66px; top:304px; width:252px; height:70px;"></div>
+            <div class="field-box" id="fb-telefono" style="left:343px; top:304px; width:252px; height:70px;"></div>
+
+            <div id="tap-flash"></div>
+
+            <div id="success-card">
+              <div id="success-ring">
+                <svg viewBox="0 0 160 160">
+                  <circle class="track" cx="80" cy="80" r="70"></circle>
+                  <circle class="fill" cx="80" cy="80" r="70"></circle>
+                </svg>
+                <svg id="success-check" viewBox="0 0 70 46" fill="none">
+                  <path d="M4 24L26 42L66 4" stroke="#FFD200" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"></path>
+                </svg>
+              </div>
+              <h3 id="success-title">Cita Confirmada</h3>
+              <div id="success-rule"></div>
+              <p id="success-sub">Cabello y Barba Express · Renato López<br>15 jul, 2026 · 4:00 p.m.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="progress-dots">
+          <div class="p-dot"><div class="fill" id="pdot-1"></div></div>
+          <div class="p-dot"><div class="fill" id="pdot-2"></div></div>
+          <div class="p-dot"><div class="fill" id="pdot-3"></div></div>
+          <div class="p-dot"><div class="fill" id="pdot-4"></div></div>
+          <div class="p-dot"><div class="fill" id="pdot-5"></div></div>
+        </div>
+      </div>
+
+      <!-- ============ OUTRO 28.8–34.0 ============ -->
+      <div id="scene-outro" class="clip" data-start="31.3" data-duration="5.2" data-track-index="8">
+        <div id="outro-glow"></div>
+        <div id="outro-ghost">Nordic</div>
+        <div id="outro-content">
+          <div id="outro-logo"><img id="outro-logo-img" class="clip" src="assets/images/Nordic-BarberShop-logo-white.svg" alt="Nordic Barber Shop" data-start="28.8" data-duration="5.2"></div>
+          <p class="signature-line">Nos vemos en la silla.</p>
+          <div id="outro-rule"></div>
+          <span class="cta-pill">Reserva Ahora</span>
+          <p class="url-caption">nordic-barbershop.com/reservar-amelia</p>
+        </div>
+      </div>
+
+      <div id="outro-fade"></div>
+
+      <div class="tick" id="tick-tl"></div>
+      <div class="tick" id="tick-br"></div>
+      <div id="frame-code">Nordic · Reservas</div>
+      <div id="frame-code-b">Guatemala</div>
+      <div id="grain"></div>
+
+      <!-- audio -->
+      <audio id="bgm" src="assets/bgm/track.wav" data-start="0" data-duration="36" data-track-index="90" data-volume="0.5"></audio>
+      <audio id="sfx-whoosh-1" src="assets/sfx/whoosh.mp3" data-start="2.95" data-duration="0.57" data-track-index="92" data-volume="0.4"></audio>
+      <audio id="sfx-whoosh-2" src="assets/sfx/whoosh.mp3" data-start="5.85" data-duration="0.57" data-track-index="92" data-volume="0.4"></audio>
+      <audio id="sfx-whoosh-3" src="assets/sfx/whoosh.mp3" data-start="31.15" data-duration="0.57" data-track-index="92" data-volume="0.4"></audio>
+      <audio id="sfx-tap-1" src="assets/sfx/tap.mp3" data-start="7.1" data-duration="0.36" data-track-index="91" data-volume="0.45"></audio>
+      <audio id="sfx-tap-2" src="assets/sfx/tap.mp3" data-start="7.85" data-duration="0.36" data-track-index="91" data-volume="0.45"></audio>
+      <audio id="sfx-tap-3" src="assets/sfx/tap.mp3" data-start="8.65" data-duration="0.36" data-track-index="91" data-volume="0.45"></audio>
+      <audio id="sfx-tap-4" src="assets/sfx/tap.mp3" data-start="9.6" data-duration="0.36" data-track-index="91" data-volume="0.45"></audio>
+      <audio id="sfx-tap-5" src="assets/sfx/tap.mp3" data-start="12.3" data-duration="0.36" data-track-index="91" data-volume="0.45"></audio>
+      <audio id="sfx-tap-6" src="assets/sfx/tap.mp3" data-start="15.9" data-duration="0.36" data-track-index="91" data-volume="0.45"></audio>
+      <audio id="sfx-tap-7" src="assets/sfx/tap.mp3" data-start="17.2" data-duration="0.36" data-track-index="91" data-volume="0.45"></audio>
+      <audio id="sfx-tap-8" src="assets/sfx/tap.mp3" data-start="20.55" data-duration="0.36" data-track-index="91" data-volume="0.4"></audio>
+      <audio id="sfx-tap-9" src="assets/sfx/tap.mp3" data-start="21.17" data-duration="0.36" data-track-index="91" data-volume="0.4"></audio>
+      <audio id="sfx-tap-10" src="assets/sfx/tap.mp3" data-start="21.79" data-duration="0.36" data-track-index="91" data-volume="0.4"></audio>
+      <audio id="sfx-tap-11" src="assets/sfx/tap.mp3" data-start="22.41" data-duration="0.36" data-track-index="91" data-volume="0.4"></audio>
+      <audio id="sfx-tap-12" src="assets/sfx/tap.mp3" data-start="25.0" data-duration="0.36" data-track-index="91" data-volume="0.45"></audio>
+      <audio id="sfx-tap-13" src="assets/sfx/tap.mp3" data-start="27.0" data-duration="0.36" data-track-index="91" data-volume="0.5"></audio>
+      <audio id="sfx-chime" src="assets/sfx/chime.mp3" data-start="28.5" data-duration="2.0" data-track-index="93" data-volume="0.55"></audio>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      /* baseline: tap indicators are invisible until their own pulse fires — without this,
+         fromTo() holds each element at its "from" opacity from t=0 up to its start time. */
+      tl.set(".tap-dot, .tap-ring", { opacity: 0 }, 0);
+
+      /* ---------------- HOOK ---------------- */
+      tl.fromTo("#hook-ghost", { xPercent: -50, yPercent: -50, opacity: 0, scale: 0.85 }, { xPercent: -50, yPercent: -50, opacity: 0.05, scale: 1, duration: 1.2, ease: "power2.out" }, 0.1);
+      tl.fromTo("#hook-logo", { xPercent: -50, opacity: 0, y: -30, scale: 0.9 }, { xPercent: -50, opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "power3.out" }, 0.3);
+      tl.fromTo("#hook-rule", { xPercent: -50, scaleX: 0 }, { xPercent: -50, scaleX: 1, duration: 0.45, ease: "power2.inOut" }, 0.95);
+
+      /* kinetic word-slam headline — one onset grid, a distinct motion axis per word */
+      tl.fromTo("#hh-w1", { y: 46, opacity: 0, scale: 1.12 }, { y: 0, opacity: 1, scale: 1, duration: 0.42, ease: "power4.out" }, 1.15);
+      tl.fromTo("#hh-w2", { x: -34, opacity: 0 }, { x: 0, opacity: 1, duration: 0.36, ease: "power3.out" }, 1.26);
+      tl.fromTo("#hh-w3", { y: 30, rotate: -5, opacity: 0 }, { y: 0, rotate: 0, opacity: 1, duration: 0.4, ease: "circ.out" }, 1.38);
+      tl.fromTo("#hh-w4", { scale: 1.35, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "expo.out" }, 1.5);
+      tl.to("#scene-hook", { opacity: 0, duration: 0.4, ease: "power1.in" }, 3.0);
+
+      /* ---------------- SETUP ---------------- */
+      tl.fromTo("#setup-ghost", { opacity: 0 }, { opacity: 0.05, duration: 1.0, ease: "power1.out" }, 3.0);
+      tl.fromTo("#setup-eyebrow", { xPercent: -50, opacity: 1, y: 24, scale: 0.9 }, { xPercent: -50, opacity: 1, y: 0, scale: 1, duration: 0.25, ease: "power2.out" }, 2.95);
+
+      tl.fromTo("#sh-w1", { y: 42, opacity: 0, scale: 1.12 }, { y: 0, opacity: 1, scale: 1, duration: 0.4, ease: "power4.out" }, 3.35);
+      tl.fromTo("#sh-w2", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.34, ease: "power3.out" }, 3.46);
+      tl.fromTo("#sh-w3", { y: 26, rotate: 5, opacity: 0 }, { y: 0, rotate: 0, opacity: 1, duration: 0.38, ease: "circ.out" }, 3.58);
+      tl.fromTo("#sh-w4", { scale: 1.35, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.42, ease: "expo.out" }, 3.7);
+
+      tl.fromTo("#setup-hint", { xPercent: -50, opacity: 0, y: -10 }, { xPercent: -50, opacity: 1, y: 0, duration: 0.4, ease: "sine.out" }, 4.1);
+      tl.to("#setup-chevron", { y: 14, duration: 0.55, ease: "sine.inOut", yoyo: true, repeat: 3 }, 4.3);
+      tl.to("#scene-setup", { opacity: 0, duration: 0.3, ease: "power1.in" }, 5.75);
+
+      /* ---------------- PHONE ENTRANCE + IDLE BREATH ---------------- */
+      tl.fromTo("#phone-frame", { xPercent: -50, y: 260, opacity: 0, rotate: 2 }, { xPercent: -50, y: 0, opacity: 1, rotate: 0, duration: 0.7, ease: "power3.out" }, 5.9);
+      tl.fromTo("#progress-dots", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 6.3);
+      /* the bezel itself never sits fully still while it's on screen */
+      tl.to("#phone-frame", { xPercent: -50, scale: 1.009, duration: 3.15, ease: "sine.inOut", yoyo: true, repeat: 6 }, 6.65);
+
+      /* ---------------- helper: step label + ghost numeral swap ---------------- */
+      function stepChrome(n, start, dur) {
+        tl.fromTo(`#ghost-0${n}`, { opacity: 0 }, { opacity: 0.05, duration: 0.4, ease: "power1.out" }, start);
+        tl.fromTo(`#label-${n}`, { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.4, ease: "back.out(1.4)" }, start + 0.05);
+        tl.to(`#pdot-${n}`, { scale: 1, duration: 0.35, ease: "back.out(1.6)" }, start + 0.1);
+        if (n > 1) {
+          tl.to(`#ghost-0${n - 1}`, { opacity: 0, duration: 0.3 }, start);
+          tl.to(`#label-${n - 1}`, { opacity: 0, y: -14, duration: 0.3 }, start);
+        }
+      }
+
+      /* tap indicator: press-depression on the dot + one crisp expanding ring */
+      function tapPulse(dotSel, ringSel, at, strong) {
+        if (dotSel) {
+          tl.fromTo(dotSel, { xPercent: -50, yPercent: -50, opacity: 0, scale: 0.3 }, { xPercent: -50, yPercent: -50, opacity: 1, scale: 1.15, duration: 0.16, ease: "power3.out" }, at);
+          tl.to(dotSel, { scale: 0.82, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1 }, at + 0.16);
+          tl.to(dotSel, { opacity: 0, duration: 0.25, ease: "power1.in" }, at + 0.9);
+        }
+        if (ringSel) {
+          tl.fromTo(ringSel, { xPercent: -50, yPercent: -50, opacity: 0.85, scale: 0.5 }, { xPercent: -50, yPercent: -50, opacity: 0, scale: strong ? 2.7 : 2.1, duration: strong ? 0.6 : 0.45, ease: "power2.out" }, at + 0.12);
+        }
+      }
+
+      /* screenshot push-slide swap: old pushes left & out, new pushes in from the right */
+      const PUSH_IN = 0.5, PUSH_OUT = 0.45;
+      function pushShot(newSel, oldSel, t) {
+        if (oldSel) tl.to(oldSel, { x: -660, opacity: 0, duration: PUSH_OUT, ease: "power3.in" }, t);
+        tl.set(newSel, { opacity: 1 }, t);
+        tl.fromTo(newSel, { x: 660 }, { x: 0, duration: PUSH_IN, ease: "power3.inOut" }, t);
+      }
+      /* ken burns: slow continuous zoom + vertical drift while a shot holds — never static */
+      function kenBurns(sel, t0, t1, toY) {
+        const dur = Math.max(0.2, t1 - t0);
+        tl.fromTo(sel, { scale: 1, y: 0 }, { scale: 1.055, y: toY, duration: dur, ease: "none" }, t0);
+      }
+      function tapFlash(at) {
+        tl.fromTo("#tap-flash", { opacity: 0 }, { opacity: 0.35, duration: 0.06, ease: "power1.in" }, at);
+        tl.to("#tap-flash", { opacity: 0, duration: 0.16, ease: "power1.out" }, at + 0.06);
+      }
+
+      /* ---- STEP 1 · 6.6–11.2 · elige tu servicio ---- */
+      stepChrome(1, 6.6, 4.6);
+      pushShot("#shot-1a", null, 6.6);
+      kenBurns("#shot-1a", 7.1, 7.85, -8);
+      tapPulse("#dot-1a", "#ring-1a", 7.1);
+      pushShot("#shot-1b", "#shot-1a", 7.85);
+      kenBurns("#shot-1b", 8.35, 9.6, 10);
+      tapPulse("#dot-1b", "#ring-1b", 8.65);
+      pushShot("#shot-1c", "#shot-1b", 9.6);
+      kenBurns("#shot-1c", 10.1, 11.2, -6);
+
+      /* ---- STEP 2 · 11.2–15.0 · elige tu barbero ---- */
+      stepChrome(2, 11.2, 3.8);
+      pushShot("#shot-2", "#shot-1c", 11.2);
+      kenBurns("#shot-2", 11.7, 15.0, 9);
+      tapPulse("#dot-2", "#ring-2", 12.3);
+
+      /* ---- STEP 3 · 15.0–20.2 · fecha y hora ---- */
+      stepChrome(3, 15.0, 5.2);
+      pushShot("#shot-3a", "#shot-2", 15.0);
+      kenBurns("#shot-3a", 15.5, 17.2, -10);
+      tapPulse("#dot-3a", "#ring-3a", 15.9, true);
+      pushShot("#shot-3b", "#shot-3a", 17.2);
+      kenBurns("#shot-3b", 17.7, 20.2, 8);
+      tapPulse(null, "#ring-3b", 18.1);
+
+      /* ---- STEP 4 · 20.2–24.2 · tus datos ---- */
+      stepChrome(4, 20.2, 4.0);
+      pushShot("#shot-4", "#shot-3b", 20.2);
+      kenBurns("#shot-4", 20.7, 24.2, -8);
+      const masks = ["#mask-nombre", "#mask-apellido", "#mask-correo", "#mask-telefono"];
+      tl.fromTo(masks, { opacity: 0 }, { opacity: 1, duration: 0.15 }, 20.65);
+      tl.to(masks, { opacity: 0, duration: 0.22 }, 24.0);
+      const fields = ["#fb-nombre", "#fb-apellido", "#fb-correo", "#fb-telefono"];
+      fields.forEach((f, i) => {
+        const t = 20.75 + i * 0.62;
+        tl.fromTo(f, { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.18, ease: "power2.out" }, t);
+        tl.to(f, { opacity: 0, duration: 0.18, ease: "power1.in" }, t + 0.5);
+      });
+
+      /* ---- STEP 5 · 24.2–31.6 · confirma tu cita ---- */
+      stepChrome(5, 24.2, 7.4);
+      pushShot("#shot-5", "#shot-4", 24.2);
+      kenBurns("#shot-5", 24.7, 26.2, 10);
+      tapPulse(null, "#ring-5", 25.0);
+      pushShot("#shot-5b", "#shot-5", 26.2);
+      kenBurns("#shot-5b", 26.7, 28.35, -8);
+      tapPulse("#dot-5b", "#ring-5b", 27.0, true);
+      tapFlash(28.35);
+      tl.to("#shot-5b", { x: -660, opacity: 0, duration: 0.4, ease: "power3.in" }, 28.35);
+      tl.fromTo("#success-card", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 28.45);
+      tl.fromTo("#success-ring .fill", { strokeDashoffset: 440 }, { strokeDashoffset: 40, duration: 0.7, ease: "power2.out" }, 28.6);
+      tl.fromTo("#success-check", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.35, ease: "power1.out" }, 29.15);
+      tl.fromTo("#success-title", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 29.2);
+      tl.fromTo("#success-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.35, ease: "power2.inOut" }, 29.4);
+      tl.fromTo("#success-sub", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.35, ease: "sine.out" }, 29.55);
+
+      /* ---------------- PHONE EXIT ---------------- */
+      tl.fromTo("#phone-frame", { xPercent: -50, y: 0, scale: 1 }, { xPercent: -50, y: -40, scale: 0.94, opacity: 0, duration: 0.5, ease: "power2.in" }, 31.15);
+      tl.to("#step-label-zone", { opacity: 0, duration: 0.35 }, 31.15);
+      tl.to(".ghost-num", { opacity: 0, duration: 0.35 }, 31.15);
+      tl.to("#progress-dots", { opacity: 0, duration: 0.35 }, 31.15);
+
+      /* ---------------- OUTRO ---------------- */
+      tl.to("#scene-outro", { opacity: 1, duration: 0.01 }, 31.3);
+      const O = 31.45;
+      tl.fromTo("#outro-glow", { xPercent: -50, yPercent: -50, opacity: 0, scale: 0.8 }, { xPercent: -50, yPercent: -50, opacity: 1, scale: 1, duration: 1.1, ease: "sine.out" }, O);
+      tl.fromTo("#outro-glow", { xPercent: -50, yPercent: -50, scale: 1 }, { xPercent: -50, yPercent: -50, scale: 1.08, duration: 2.6, ease: "sine.inOut", yoyo: true, repeat: 1 }, O + 1.1);
+      tl.fromTo("#outro-ghost", { opacity: 0 }, { opacity: 0.05, duration: 1.2, ease: "power1.out" }, O);
+      tl.fromTo("#outro-logo", { opacity: 0, y: 24, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(1.8)" }, O + 0.15);
+      tl.fromTo(".signature-line", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: "sine.out" }, O + 0.55);
+      tl.fromTo("#outro-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "power2.inOut" }, O + 0.9);
+      tl.fromTo(".cta-pill", { opacity: 0, y: 18, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(2.2)" }, O + 1.1);
+      tl.fromTo(".url-caption", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "sine.out" }, O + 1.4);
+
+      /* ---------------- FINAL FADE ---------------- */
+      tl.to("#outro-fade", { opacity: 1, duration: 0.5, ease: "power2.in" }, 36.0);
+      tl.to("#bgm", { volume: 0, duration: 0.5, ease: "power2.in" }, 36.0);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
