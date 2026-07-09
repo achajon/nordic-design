@@ -1,0 +1,10 @@
+{
+  "post": "Promesa mundialista - bandera de Argentina pintada en el pelo si gana el Mundial",
+  "build_method": "Opcion B (ver carousel-tile-generation.md): fondo generado sin texto via scripts/kie_image_gen.py (kie.ai gpt-image-2-text-to-image, aspect_ratio 3:4, resolution 2K) guardado en assets/bg.png, compuesto con texto/logo reales en index.html y renderizado con Chrome headless a 00-portada.png (2160x2700, 2x de 1080x1350). Excepcion de marca deliberada: la bandera de Argentina pintada en la cabeza se generо a full color (no duotono) sobre el resto de la imagen en ink-black, mismo patron que posts/instagram/espana-portugal-partido/. Sin escudos de AFA ni logos/trofeo de FIFA en la imagen, solo la bandera nacional (simbolo publico).",
+  "pill": "PROMESA MUNDIALISTA",
+  "headline": "CAMPEONES POR FUERA TAMBIEN",
+  "headline_highlight": "CAMPEONES",
+  "caption_on_image": "Si Argentina gana el Mundial, el día de la final pintamos la bandera gratis. Con pelo o sin pelo, todos entran.",
+  "instagram_caption": "Si Argentina sale campeón del Mundial, el día de la final le pintamos gratis la bandera argentina en el pelo a quien se anime. Pelón, corte bajo o pelo largo — no importa, hay lugar para el diseño.\n\nVení a ver el partido con nosotros. Si ganamos, salís de la barbería con la Albiceleste puesta.\n\n#VamosArgentina #NordicBarberShop",
+  "file": "00-portada.png"
+}
