@@ -6,28 +6,55 @@
   "instagram_caption": "Actualizamos nuestro WhatsApp para atenderte mejor. Desde hoy, agenda tu cita al 2260-9101 — guárdalo para no perder tu turno.\n\n#NordicBarberShop",
   "versions": [
     {
-      "id": "v1",
-      "concept": "Bodegón: teléfono de disco vintage junto a un smartphone con la pantalla iluminada en dorado, sobre el mostrador de la barbería.",
+      "id": "v1-feed",
+      "file": "00-portada-v1.png",
+      "caption": "Bodegón: teléfono de disco vintage junto a un smartphone con la pantalla iluminada en dorado, sobre el mostrador de la barbería.",
       "feed_file": "00-portada-v1.png",
       "story_file": "00-story-v1.png",
       "caption_on_image": "Agenda tu cita al 2260-9101",
       "build_method": "Opción B: fondo generado sin texto (assets/bg-v1.png y assets/bg-v1-story.png) con scripts/gemini_image_gen.py (Gemini/Nano Banana Pro), usando como referencia dos fotos reales de la barbería (refs/nordic-shop-entrada.png y refs/nordic-shop-interior.jpeg) para que la arquitectura del fondo (luces hexagonales, panel de madera ranurada, espejos redondos, pared de ladrillo) coincida con el local real. Prompt reforzado para escala de grises estricta + luz dorada aislada en el celular. Compuesto con texto/logo reales en index-v1.html / index-v1-story.html y renderizado con Chrome headless (feed 2160x2700, story 2160x3840)."
     },
     {
-      "id": "v2",
-      "concept": "Barbero de frente a cámara, mostrando/sosteniendo el celular hacia el espectador con la pantalla iluminada en dorado.",
+      "id": "v1-story",
+      "file": "00-story-v1.png",
+      "caption": "Versión Story del bodegón — teléfono de disco vintage y smartphone iluminado en dorado sobre el mostrador."
+    },
+    {
+      "id": "v2-feed",
+      "file": "00-portada-v2.png",
+      "caption": "Barbero de frente a cámara, mostrando/sosteniendo el celular hacia el espectador con la pantalla iluminada en dorado.",
       "feed_file": "00-portada-v2.png",
       "story_file": "00-story-v2.png",
       "caption_on_image": "Agenda tu cita al 2260-9101",
       "build_method": "Opción B: fondo generado sin texto (assets/bg-v2.png con kie.ai gpt-image-2-text-to-image 4:5 1K; assets/bg-v2-story.png con scripts/gemini_image_gen.py como fallback por créditos insuficientes de kie.ai), sin referencias de imagen. Compuesto con texto/logo reales en index-v2.html / index-v2-story.html y renderizado con Chrome headless (feed 2160x2700, story 2160x3840)."
     },
     {
-      "id": "v3",
-      "concept": "Cliente de pelo corto con un barbero terminando de rapar el nuevo número de teléfono directamente en la cabeza, como diseño de líneas (hair tattoo).",
+      "id": "v2-story",
+      "file": "00-story-v2.png",
+      "caption": "Versión Story del barbero mostrando el celular iluminado en dorado hacia el espectador."
+    },
+    {
+      "id": "v3-feed",
+      "file": "00-portada-v3.png",
+      "caption": "Cliente de pelo corto con un barbero terminando de rapar el nuevo número de teléfono directamente en la cabeza, como diseño de líneas (hair tattoo).",
       "feed_file": "00-portada-v3.png",
       "story_file": "00-story-v3.png",
       "caption_on_image": null,
       "build_method": "Opción B sin caption: a diferencia de v1/v2, aquí se le pidió a la IA que generara el número 2260-9101 directamente rapado en el pelo (no se agrega como texto HTML) -- riesgo aceptado de que los dígitos salieran deformados, revisado visualmente y aprobado. assets/bg-v3.png generado con kie.ai (4:5, 1K); assets/bg-v3-story.png con scripts/gemini_image_gen.py como fallback por créditos insuficientes de kie.ai. Sin referencias de imagen en ninguna de las dos. Compuesto con pill/headline/logo reales en index-v3.html / index-v3-story.html y renderizado con Chrome headless (feed 2160x2700, story 2160x3840)."
+    },
+    {
+      "id": "v3-story",
+      "file": "00-story-v3.png",
+      "caption": "Versión Story del hair tattoo — el número rapado directamente en el pelo, con glow dorado."
+    },
+    {
+      "id": "v4-feed",
+      "file": "00-portada-v4.png",
+      "caption": "Segunda toma del concepto hair-tattoo: vista trasera/lateral de la cabeza, en escala de grises estricta (sin el glow dorado de v3), número rapado directamente en el pelo.",
+      "feed_file": "00-portada-v4.png",
+      "story_file": null,
+      "caption_on_image": null,
+      "build_method": "Undocumented at authoring time — no build_method recorded when v4 was added. Solo versión de feed, sin story."
     }
   ]
 }
