@@ -7,12 +7,19 @@ Two valid ways to produce an on-brand Instagram carousel/post tile (PNG, 4:5) in
 
 ## Decision guide
 
+**Standing default as of 2026-07-10: use Option B for every new tile**, generating the background photo with `scripts/kie_image_gen.py` (kie.ai `gpt-image-2-text-to-image`). This replaces the old "start with Option A" guidance below — Option A is kept documented for reference (and for revisiting old carousels) but is no longer the default starting point.
+
+<details>
+<summary>Old default (superseded) — Option A first, fall back to B</summary>
+
 Start with **Option A** for every new slide. Move to **Option B** only if:
 
 - The slide carries real typographic weight — a price bar, multi-line stats, several data points — where digit/font-drift risk is highest.
 - A pure-AI slide comes back with visibly inconsistent lettering (e.g. one highlighted word in a different font weight/texture than the rest of the same headline) and a re-roll doesn't fix it.
 
 Don't default to Option B for a simple single-headline-plus-pill tile — it's strictly more work for no visible benefit there.
+
+</details>
 
 ---
 
@@ -71,6 +78,17 @@ Prompt the image model for **photography with nothing else** — no headline, no
 > "...duotone grading with a warm golden-yellow rim/key light... [scene description]... Absolutely no text, no letters, no numbers, no logo, no watermark, no graphic overlays, no UI elements anywhere in the image — pure photography only, a clean background plate."
 
 Do **not** pass the logo/character-map reference images for this step — there is nothing in the frame that should reference brand typography or the logo, so those refs only tempt the model to sneak them back in.
+
+Standard tool: `scripts/kie_image_gen.py` (kie.ai `gpt-image-2-text-to-image`, reads `KIE_API_KEY` from `scripts/.env`). Note kie.ai doesn't support 2K/4K with 4:5/5:4 aspect ratios — use `3:4` at `2K` (closest to the 4:5 feed canvas) and let the HTML layer crop/position it, same as `posts/instagram/dia-partido-camiseta/` and `posts/instagram/recordatorio-parqueo-tec/`:
+
+```bash
+python3 scripts/kie_image_gen.py \
+  --prompt "$(cat raw/prompt.txt)" \
+  --out assets/bg.png \
+  --aspect-ratio 3:4 --resolution 2K
+```
+
+(Higgsfield's `nano_banana_flash` remains a fallback if kie.ai is unavailable — same call shape as before:)
 
 ```bash
 higgsfield generate create nano_banana_flash \
@@ -132,11 +150,23 @@ FILE_URL="file://$(python3 -c "import urllib.parse; print(urllib.parse.quote('$(
 
 ---
 
+## Finishing checklist — do this for every new post
+
+Once the final PNG(s) are rendered, a post isn't done until all three of these happen:
+
+1. **Open the final image(s) in Preview** so the result gets a visual check before anything else: `open -a Preview path/to/00-portada.png`.
+2. **Wire the post into the landing showcase** — add an entry to the `POSTS` array in the repo-root `index.html` (search for the array, it's a plain JS list of objects). Match the existing shape for the post's `type` (`single`, `carousel`, or `video`) using a sibling entry as a template — `id`, `type`, `title`, `cover`, `alt`, plus `copyJson`+`file` for `single`/`carousel` or `videoSrc` for `video`. Confirm it renders by taking a headless-Chrome screenshot of `index.html` and checking the new card shows up, rather than assuming the JS object is correct.
+3. **Commit (and push, if asked)** the new post folder plus the `index.html` change together — they're one unit of work, not two.
+
+**Why:** formalized 2026-07-10 after a post was built and reviewed but not wired into the showcase or committed until asked separately — the user wants this to be the automatic default for every new post, not an extra step they have to request.
+
+---
+
 ## Scaling either approach to a full carousel
 
 For a 6-slide carousel on a new topic:
 
-1. Decide per-slide which option to use (Option A by default; Option B for anything digit/text-heavy) — don't commit the whole carousel to one option before seeing how Option A's slides come out.
+1. Decide per-slide which option to use (Option B by default per the standing default above; Option A only if deliberately chosen for a slide) — for a carousel that mixes options, still review each slide before moving to the next so an issue gets caught early rather than at final review.
 2. If using Option A: generate + review each slide one at a time (see Option A step 4) before moving to the next, so a font-drift issue gets caught and switched to Option B early rather than at final review.
 3. If using Option B for a whole carousel (not just one slide): don't hand-build N separate `index.html` files. Build **one** `index.html` with all N slides' data (background path, pill, headline, highlight word, caption) in a JS array, reading a `?slide=N` query-string param to pick which one to render — then invoke headless Chrome N times, once per `?slide=` value, to distinct output filenames. This is the pattern used in `posts/instagram/aceite-balsamo-cera/index.html`; keeps the layout in one place instead of duplicated N times.
 4. If using Option B for a single slide, generate its background photo first, then build that one HTML layout (see the `05-cita-html-test/` reference implementation above).

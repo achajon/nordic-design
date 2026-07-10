@@ -14,11 +14,14 @@ This is not a software project — there is no build, lint, or test tooling, and
 - `fonts/` — the two non-Google typefaces used by the brand: Fira Sans Condensed (with license `OFL.txt`) and the hand-marker face "Lost in South" (used for the signature/accent role), plus its character map image.
 - `inspirations/` — loose moodboard/reference imagery, not brand-approved assets.
 - `posts/instagram/` — produced content output for the Instagram channel.
+- `index.html` — internal landing/showcase page (content review, not the public feed) listing every produced post in a `POSTS` JS array; open in a browser to review everything at a glance.
+- `carousel-tile-generation.md` — the step-by-step recipe for producing any new tile/carousel PNG (background generation, HTML/CSS overlay, headless-Chrome render) and the mandatory finishing checklist for every new post. Read this before generating new social content.
 
 ## Working in this repo
 
 - Never redraw, recolor, or distort the logo — pull only from the files in `logo-variations/` or the lockups in the approved PDF (see `design-system.md` §2 for usage rules: clear space, minimum sizes, ink-black/bone-white only).
 - New content should derive its tokens (color, type, spacing) from `design-system.md` rather than eyeballing prior posts, and reuse the component patterns already defined in `design-system.html` (e.g. the "Social post frame" in `#components` is the base template for all social tiles: 4:5 canvas, gold pill eyebrow, one Anton headline with a single gold highlight word, small caption line).
-- Keep photography duotone (grayscale + gold key-light per `design-system.md` §6); no straight color photography in brand contexts. Gold is an accent (~10–15% of a layout at most), not a fill.
+- Keep photography duotone (grayscale + gold key-light per `design-system.md` §6); no straight color photography in brand contexts. Gold is an accent (~10–15% of a layout at most), not a fill. Keep imagery reading as **modern**, not vintage/antique props (no wax stamps, aged wood, etc.) unless a post is deliberately period-themed.
 - The marker/signature typeface is limited to one short phrase per piece, never body copy.
+- Every new tile/carousel is built per `carousel-tile-generation.md` — Option B (hybrid HTML overlay) with the background photo from `scripts/kie_image_gen.py` (kie.ai) is the standing default, not Option A. That file's **finishing checklist is mandatory, not optional**: open the final PNG(s) in Preview, add the post to the `POSTS` array in root `index.html`, then commit — do all three automatically for every new post without waiting to be asked.
 - If the file structure changes (new asset folders, new logo variants, etc.), update `README.md`'s file table to match.

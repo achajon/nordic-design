@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>recordatorio-parqueo-tec</title>
+<style>
+  @font-face{
+    font-family:"Lost in South";
+    src:url("assets/fonts/Lost in South.otf") format("opentype");
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    src:url("assets/fonts/FiraSansCondensed-Regular.ttf") format("truetype");
+    font-weight:400;
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    src:url("assets/fonts/FiraSansCondensed-Bold.ttf") format("truetype");
+    font-weight:700;
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    src:url("assets/fonts/FiraSansCondensed-ExtraBold.ttf") format("truetype");
+    font-weight:800;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{width:1080px;height:1350px;background:#101010;overflow:hidden;}
+  .canvas{
+    position:relative;
+    width:1080px;
+    height:1350px;
+    background:#101010;
+  }
+  .bg-wrap{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+  }
+  .bg{
+    position:absolute;
+    top:-90px;
+    left:0;
+    width:1080px;
+    height:auto;
+  }
+  .scrim{
+    position:absolute;
+    left:0; right:0; top:0;
+    height:46%;
+    background:linear-gradient(to bottom, rgba(16,16,16,.85) 0%, rgba(16,16,16,.55) 55%, rgba(16,16,16,0) 100%);
+  }
+  .pill{
+    position:absolute;
+    top:64px; left:64px;
+    background:#FFD200;
+    color:#101010;
+    font-family:"Fira Sans Condensed";
+    font-weight:800;
+    font-size:26px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    padding:14px 32px;
+    border-radius:40px;
+  }
+  .headline{
+    position:absolute;
+    left:64px; right:64px;
+    top:150px;
+    font-family:"Lost in South";
+    font-size:84px;
+    letter-spacing:.07em;
+    line-height:1.02;
+    text-transform:uppercase;
+    color:#F7F4EC;
+  }
+  .headline .hl{color:#FFD200;}
+  .caption{
+    position:absolute;
+    left:64px; right:64px;
+    top:430px;
+    font-family:"Fira Sans Condensed";
+    font-weight:400;
+    font-size:31px;
+    line-height:1.4;
+    color:#F7F4EC;
+    opacity:.85;
+  }
+  .rules{
+    position:absolute;
+    left:64px; right:64px;
+    top:545px;
+    display:flex;
+    gap:40px;
+    font-family:"Fira Sans Condensed";
+    font-weight:700;
+    font-size:24px;
+    color:#F7F4EC;
+    text-transform:uppercase;
+    letter-spacing:.02em;
+  }
+  .rules .item{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+  }
+  .rules .tag{
+    color:#FFD200;
+    font-weight:800;
+  }
+  .logo{
+    position:absolute;
+    right:64px;
+    bottom:56px;
+    height:60px;
+  }
+</style>
+</head>
+<body>
+  <div class="canvas">
+    <div class="bg-wrap"><img class="bg" src="assets/bg.png"></div>
+    <div class="scrim"></div>
+    <div class="pill">Recordatorio</div>
+    <div class="headline">Validá tu <span class="hl">ticket</span> de parqueo</div>
+    <div class="caption">Te sellamos el ticket en el TEC antes de que salgas. No lo olvidés en recepción.</div>
+    <div class="rules">
+      <div class="item"><span class="tag">Q10.00</span> total por 2 horas de parqueo</div>
+    </div>
+    <img class="logo" src="assets/Nordic-BarberShop-logo-white.svg">
+  </div>
+</body>
+</html>

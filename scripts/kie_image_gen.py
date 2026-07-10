@@ -125,7 +125,10 @@ def poll_task(api_key, task_id, interval=3, timeout=300):
 
 
 def download_image(url, out_path):
-    with urllib.request.urlopen(url, timeout=120) as resp:
+    # tempfile.aiquickdraw.com (kie.ai's result CDN) returns 403 for requests
+    # without a browser-like User-Agent.
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    with urllib.request.urlopen(req, timeout=120) as resp:
         with open(out_path, "wb") as f:
             f.write(resp.read())
 

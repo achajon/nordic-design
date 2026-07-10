@@ -1,0 +1,13 @@
+{
+  "post": "Recordatorio: validá tu ticket de parqueo en el TEC, Q10.00 total por 2 horas",
+  "build_method": "Opcion B (ver carousel-tile-generation.md): fondo generado sin texto via scripts/kie_image_gen.py (kie.ai gpt-image-2-text-to-image, aspect_ratio 3:4, resolution 2K) guardado en assets/bg.png, compuesto con texto/logo reales en index.html y renderizado con Chrome headless a 00-portada.png (2160x2700, 2x de 1080x1350). Escena moderna (no vintage): consola central de un carro moderno con un ticket de parqueo con codigo de barras y una llave/control remoto keyless, luz dorada baja de ventana. Primera version usaba un sello de cera sobre mostrador de madera (muy vintage para la marca) y decia por error 'de descuento' -- corregido a 'total' porque Q10.00 es el costo total del parqueo por 2 horas, no un descuento adicional. Precio (Q10.00) y duracion (2 horas) puestos en Fira Sans Condensed, nunca en Lost in South, por el bug de digitos faltantes (0/2/8) de esa fuente.",
+  "pill": "RECORDATORIO",
+  "headline": "VALIDÁ TU TICKET DE PARQUEO",
+  "headline_highlight": "TICKET",
+  "caption_on_image": "Te sellamos el ticket en el TEC antes de que salgas. No lo olvidés en recepción.",
+  "stats": [
+    { "tag": "Q10.00", "text": "total por 2 horas de parqueo" }
+  ],
+  "instagram_caption": "🅿️ ¿Viniste en carro?\n\nEn Nordic te sellamos tu ticket de parqueo del edificio TEC — con el sello, tu parqueo total es de Q10.00 por 2 horas.\n\nAntes de salir, pasá por recepción y pedí que te validen el ticket. No te vayas sin hacerlo.\n\n#NordicBarberShop #GuatemalaBarbershop #ZonaCuatro",
+  "file": "00-portada.png"
+}
