@@ -1,0 +1,16 @@
+{
+  "post": "Aviso: pagos con tarjeta de crédito/débito temporalmente no disponibles, depósito directo a Banco Industrial",
+  "build_method": "Opcion B (ver carousel-tile-generation.md): fondo generado sin texto via scripts/kie_image_gen.py (kie.ai gpt-image-2-text-to-image, aspect_ratio 3:4, resolution 2K) guardado en assets/bg.png -- terminal de pago (POS) moderna con luz de error roja y una tarjeta generica semi-insertada, sobre mostrador de marmol, resto del cuadro en el duotono/gold-light habitual de marca. Excepcion de marca deliberada: pill de alerta y palabra resaltada del headline en rojo (#E5342A) en vez de dorado, para señalar el problema -- pedido explicito del usuario ('usa un poco mas de color'). El bloque de deposito (banco, numero de cuenta, titular) se mantiene en la paleta dorada normal de marca. Numero de cuenta y datos bancarios en Fira Sans Condensed, nunca en Lost in South, por el bug de digitos faltantes (0/2/8) de esa fuente.",
+  "pill": "AVISO IMPORTANTE",
+  "headline": "TEMPORALMENTE SIN PAGOS CON TARJETA",
+  "headline_highlight": "SIN",
+  "caption_on_image": "Estamos presentando fallas para procesar pagos con tarjeta de crédito/débito. Disculpá el inconveniente, no depende de nosotros.",
+  "deposit_info": {
+    "bank": "Banco Industrial",
+    "account_type": "Cuenta Monetaria",
+    "account_number": "3250223785",
+    "account_holder": "Nordic Corporation"
+  },
+  "instagram_caption": "⚠️ Aviso importante\n\nEstamos presentando fallas para procesar pagos con tarjeta de crédito/débito. Disculpá el inconveniente, es algo fuera de nuestro control y ya estamos trabajando para resolverlo.\n\nMientras tanto, podés depositar directo a nuestra cuenta:\n\n🏦 Banco Industrial — Cuenta Monetaria\n🔢 3250223785\n👤 A nombre de: Nordic Corporation\n\nGracias por tu paciencia y comprensión.\n\n#NordicBarberShop #GuatemalaBarbershop",
+  "file": "00-portada.png"
+}

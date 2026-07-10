@@ -1,0 +1,9 @@
+Dramatic, realistic editorial photograph, vertical portrait orientation, ink-black (#101010) background. Base color grading is desaturated, near-monochrome grayscale — counter, plastic, metal all read as neutral gray/black tones, NOT sepia or brown. Most of the frame keeps the brand's usual narrow golden-yellow ambient/rim light. High-contrast, high-end editorial photography, sleek and modern (not vintage, not rustic).
+
+Scene: extreme close-up on a modern reception counter with a sleek, contemporary card payment terminal (POS machine, minimal design, no visible brand logo). The terminal's small screen/status light glows a clear, saturated RED — the one deliberate color exception in the frame, signaling a payment error. A plain generic credit card (no bank logo, no card network logo, no readable numbers) sits half-inserted into the terminal's card slot, or resting just beside it. Soft, out-of-focus modern barbershop reception blurred in the background.
+
+Lighting: the ambient environment keeps the brand's warm gold key light (rim light on the terminal's edges, subtle gold glow in the background bokeh), while the terminal's own screen/status indicator emits a distinct red glow — the red is a localized light source, not a color wash over the whole image. Deep shadows falling to pure black elsewhere. Shallow depth of field, cinematic.
+
+Composition: keep the terminal and card in the lower half of the frame, roughly centered or slightly left. Leave the upper half of the frame as clean, softly out-of-focus dark negative space for later text overlay.
+
+Absolutely no text, no letters, no readable numbers, no logos, no brand badges, no watermarks, no graphic overlays, no UI icons anywhere in the image — pure photography only, a clean background plate. The only non-photographic-looking element allowed is the terminal's own small red status light/glow.
