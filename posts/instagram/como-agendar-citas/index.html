@@ -1,11 +1,13 @@
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html lang="es" data-resolution="portrait">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=1080, height=1920">
-    <title>Nordic Barber Shop — Cómo Agendar Citas (Story)</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
     <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #101010; }
+
       @font-face {
         font-family: "Lost in South";
         src: url("assets/fonts/Lost in South.otf") format("opentype");
@@ -40,17 +42,14 @@
       :root {
         --ink: #101010;
         --charcoal: #1a1a1a;
-        --charcoal-hi: #232323;
         --gold: #ffd200;
         --gold-deep: #c9a400;
         --bone: #f7f4ec;
-        --steel: rgba(247, 244, 236, 0.62);
-        --steel-dim: rgba(247, 244, 236, 0.55);
+        --bone-dim: rgba(247, 244, 236, 0.62);
+        --hairline: rgba(247, 244, 236, 0.1);
       }
 
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--ink); }
-      body { font-family: "Fira Sans Condensed", sans-serif; }
+      body { font-family: "Fira Sans Condensed", sans-serif; background: var(--ink); }
 
       #root {
         position: relative;
@@ -60,719 +59,1035 @@
         background: var(--ink);
       }
 
-      /* ---------- shared type ---------- */
-      .eyebrow-pill {
-        background: var(--gold);
-        color: var(--ink);
-        font-family: "Fira Sans Condensed", sans-serif;
-        font-weight: 800;
-        font-size: 26px;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        padding: 14px 34px;
-        border-radius: 32px;
-        display: inline-block;
+      /* ---------- Ambient background (not a clip, always on) ---------- */
+      #ambient-bg {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        z-index: 0;
       }
-      .headline-2line {
-        font-family: "Lost in South", sans-serif;
-        text-transform: uppercase;
-        line-height: 0.95;
-        font-size: 96px;
-        letter-spacing: 0.07em;
-        color: var(--bone);
-        text-align: center;
+      #ambient-bg .bg-vignette {
+        position: absolute;
+        inset: -200px;
+        background: radial-gradient(ellipse at 50% 42%, #201a08 0%, var(--ink) 62%);
       }
-      .headline-2line .hl { color: var(--gold); }
-      .headline-2line .w { display: inline-block; will-change: transform, filter, opacity; }
-      .signature-line {
-        font-family: "Lost in South", sans-serif;
-        font-size: 58px;
-        color: var(--gold);
-        text-align: center;
-        text-transform: none;
-      }
-      .cta-pill {
-        background: var(--gold);
-        color: var(--ink);
-        font-family: "Fira Sans Condensed", sans-serif;
-        font-weight: 800;
-        font-size: 32px;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        padding: 22px 56px;
-        border-radius: 44px;
-        display: inline-block;
-      }
-      .url-caption {
-        font-family: "Fira Sans Condensed", sans-serif;
-        font-weight: 400;
-        font-size: 26px;
-        color: var(--steel-dim);
-        letter-spacing: 0.02em;
-      }
-
-      /* ---------- persistent background texture ---------- */
-      #bg-glow {
+      #ambient-bg .bg-glow {
         position: absolute;
         left: 50%;
         top: 46%;
-        width: 1500px;
-        height: 1500px;
+        width: 1400px;
+        height: 1400px;
+        transform: translate(-50%, -50%) scale(1);
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 210, 0, 0.16) 0%, rgba(255, 210, 0, 0) 68%);
+        opacity: 0.5;
+        will-change: transform, opacity;
+      }
+      #ambient-bg .watermark {
+        position: absolute;
+        left: 50%;
+        top: 1550px;
+        width: 260px;
+        height: 130px;
         transform: translate(-50%, -50%);
-        background: radial-gradient(circle, rgba(255, 210, 0, 0.15) 0%, rgba(255, 210, 0, 0) 62%);
-        pointer-events: none;
-        z-index: 1;
+        opacity: 0.07;
+        background: url("assets/images/Nordic-BarberShop-logo-white.svg") center / contain no-repeat;
       }
-      .tick { position: absolute; width: 34px; height: 34px; z-index: 46; }
-      .tick::before, .tick::after { content: ""; position: absolute; background: var(--gold); }
-      .tick::before { width: 100%; height: 2px; top: 50%; transform: translateY(-50%); }
-      .tick::after { height: 100%; width: 2px; left: 50%; transform: translateX(-50%); }
-      #tick-tl { top: 72px; left: 56px; }
-      #tick-br { bottom: 72px; right: 56px; }
-      #frame-code {
-        position: absolute; top: 72px; right: 56px; z-index: 46;
-        font-family: "Fira Sans Condensed", sans-serif; font-weight: 600; font-size: 20px;
-        letter-spacing: 0.08em; color: var(--steel-dim); text-transform: uppercase;
-      }
-      #frame-code-b {
-        position: absolute; bottom: 72px; left: 56px; z-index: 46;
-        font-family: "Fira Sans Condensed", sans-serif; font-weight: 600; font-size: 20px;
-        letter-spacing: 0.08em; color: var(--steel-dim); text-transform: uppercase;
+      #ambient-bg .ember {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--gold);
+        box-shadow: 0 0 14px 3px rgba(255, 210, 0, 0.55);
+        opacity: 0.4;
+        will-change: transform, opacity;
       }
 
-      /* ---------- HOOK ---------- */
-      #scene-hook { position: absolute; inset: 0; z-index: 1; }
-      #hook-ghost { position: absolute; left: 50%; top: 42%; width: 900px; opacity: 0.05; z-index: 1; }
-      #hook-ghost img { width: 100%; display: block; }
-      #hook-logo { position: absolute; left: 50%; top: 600px; width: 400px; z-index: 3; }
-      #hook-logo img { width: 100%; display: block; }
-      #hook-rule { position: absolute; left: 50%; top: 800px; width: 180px; height: 3px; background: var(--gold-deep); z-index: 3; }
-      #hook-headline { position: absolute; left: 50%; top: 950px; width: 980px; transform: translateX(-50%); z-index: 3; }
-
-      /* ---------- SETUP ---------- */
-      #scene-setup { position: absolute; inset: 0; z-index: 2; }
-      #setup-ghost {
-        position: absolute; left: 50%; top: 900px; transform: translate(-50%, -50%);
-        font-family: "Lost in South", sans-serif; text-transform: uppercase; font-size: 300px;
-        color: var(--bone); opacity: 0.05; white-space: nowrap; z-index: 1;
-      }
-      #setup-eyebrow { position: absolute; left: 50%; top: 630px; z-index: 3; }
-      #setup-headline { position: absolute; left: 50%; top: 750px; width: 980px; transform: translateX(-50%); z-index: 3; }
-      #setup-hint {
-        position: absolute; left: 50%; top: 1660px; z-index: 3;
-        display: flex; flex-direction: column; align-items: center; gap: 10px;
-      }
-      #setup-hint-label {
-        font-family: "Fira Sans Condensed", sans-serif; font-weight: 700; font-size: 24px;
-        letter-spacing: 0.14em; text-transform: uppercase; color: var(--steel-dim);
-      }
-      #setup-chevron { width: 28px; height: 28px; border-right: 3px solid var(--gold); border-bottom: 3px solid var(--gold); transform: rotate(45deg); }
-
-      /* ---------- PHONE RIG ---------- */
-      #phone-rig { position: absolute; inset: 0; z-index: 5; }
-
-      .ghost-num {
-        position: absolute; left: 415px; top: 300px; transform: translate(-50%, -50%);
-        font-family: "Fira Sans Condensed", sans-serif; font-weight: 800; font-size: 340px;
-        color: var(--bone); opacity: 0.05; line-height: 1; z-index: 1;
+      /* ---------- Camera world ---------- */
+      #camera-viewport { position: absolute; inset: 0; overflow: hidden; perspective: 2000px; }
+      #camera {
+        position: absolute;
+        inset: 0;
+        transform-origin: 50% 50%;
+        will-change: transform;
       }
 
-      #step-label-zone { position: absolute; left: 415px; top: 366px; width: 700px; transform: translateX(-50%); z-index: 10; }
-      .step-label { position: absolute; left: 0; top: 0; width: 100%; display: flex; align-items: center; justify-content: center; gap: 20px; }
-      .step-num { font-family: "Fira Sans Condensed", sans-serif; font-weight: 800; font-size: 58px; color: var(--gold); line-height: 1; }
-      .step-text { font-family: "Fira Sans Condensed", sans-serif; font-weight: 800; font-size: 38px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--bone); }
+      /* ---------- Open scene ---------- */
+      #scene-open {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 36px;
+      }
+      #scene-open .seed { position: absolute; width: 10px; height: 10px; border-radius: 50%; background: var(--gold); opacity: 0; box-shadow: 0 0 16px 4px rgba(255,210,0,.6); }
+      #scene-open .open-logo {
+        width: 460px;
+        height: 200px;
+        background: url("assets/images/Nordic-BarberShop-logo-white.svg") center / contain no-repeat;
+        opacity: 0;
+        transform: scale(0.7);
+      }
+      #scene-open .open-glow {
+        position: absolute;
+        left: 50%; top: 44%;
+        width: 700px; height: 700px;
+        transform: translate(-50%, -50%) scale(0.85);
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255,210,0,.4) 0%, rgba(255,210,0,0) 70%);
+        opacity: 0;
+        z-index: -1;
+      }
+      #scene-open .open-headline {
+        font-family: "Lost in South", serif;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        font-size: 64px;
+        line-height: 0.98;
+        color: var(--bone);
+        text-align: center;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      #scene-open .open-headline .hl { color: var(--gold); }
+      /* Lost in South's built-in kern table collapses "IT" (e.g. in CITA) into an illegible glyph pileup that reads as H — force extra gap after I. */
+      #scene-open .open-headline .it-kern-fix { margin-right: 0.22em; }
 
-      #phone-frame {
-        position: absolute; left: 90px; top: 560px; width: 650px; height: 760px;
-        background: var(--charcoal); border-radius: 46px; border: 2px solid rgba(255, 210, 0, 0.22);
-        box-shadow: 0 50px 100px rgba(0, 0, 0, 0.55), 0 10px 30px rgba(0, 0, 0, 0.4);
-        overflow: hidden; z-index: 6;
+      /* ---------- Morph shell (the single continuous container) ---------- */
+      .morph-shell {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 760px;
+        height: 220px;
+        border-radius: 110px;
+        background: var(--charcoal);
+        border: 1px solid var(--hairline);
+        box-shadow: 0 30px 90px rgba(0, 0, 0, 0.55);
+        transform: translate(-50%, -50%) scale(0.6);
+        opacity: 0;
+        overflow: hidden;
+        will-change: transform, width, height, border-radius, opacity;
       }
-      #phone-notch { position: absolute; left: 50%; top: 20px; width: 120px; height: 20px; transform: translateX(-50%); background: #000; border-radius: 12px; opacity: 0.55; }
-      .phone-btn { position: absolute; background: #0d0d0d; border-radius: 2px; }
-      #btn-power { right: 0; top: 180px; width: 3px; height: 70px; }
-      #btn-vol1 { left: 0; top: 150px; width: 3px; height: 50px; }
-      #btn-vol2 { left: 0; top: 215px; width: 3px; height: 50px; }
-      #phone-screen {
-        position: absolute; left: 18px; top: 52px; width: 614px; height: 690px;
-        border-radius: 32px; overflow: hidden; background: var(--ink);
+      .shell-content {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        display: flex;
+        flex-direction: column;
       }
 
-      /* ---- generic UI kit for step panels ---- */
-      .panel { position: absolute; inset: 0; padding: 34px 30px; opacity: 0; }
-      .screen-title { font-family: "Fira Sans Condensed", sans-serif; font-weight: 800; font-size: 32px; color: var(--bone); margin-bottom: 24px; }
-      .screen-sub { font-family: "Fira Sans Condensed", sans-serif; font-weight: 600; font-size: 20px; color: var(--steel); margin-top: -14px; margin-bottom: 20px; }
+      /* ---------- Title card content ---------- */
+      .tc-body { align-items: center; justify-content: center; gap: 16px; padding: 20px; text-align: center; }
+      .tc-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 22px;
+        border-radius: 999px;
+        background: var(--gold);
+      }
+      .tc-eyebrow .tc-num { font-family: "Fira Sans Condensed", sans-serif; font-weight: 800; font-size: 22px; color: var(--ink); letter-spacing: 0.06em; }
+      .tc-eyebrow .tc-label { font-family: "Fira Sans Condensed", sans-serif; font-weight: 700; font-size: 15px; color: var(--ink); letter-spacing: 0.16em; text-transform: uppercase; }
+      .tc-headline {
+        font-family: "Lost in South", serif;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        font-size: 46px;
+        line-height: 1.0;
+        color: var(--bone);
+      }
+      .tc-headline .hl { color: var(--gold); }
 
-      .chip-row { display: flex; gap: 12px; margin-bottom: 26px; flex-wrap: wrap; }
-      .chip {
-        font-family: "Fira Sans Condensed", sans-serif; font-weight: 700; font-size: 19px;
-        color: var(--steel); background: var(--charcoal-hi); border: 1px solid rgba(247,244,236,0.14);
-        padding: 11px 20px; border-radius: 24px; opacity: 0; transform: translateY(10px);
+      /* ---------- Phase card shell chrome ---------- */
+      .ph-header { padding: 46px 52px 0; display: flex; flex-direction: column; gap: 18px; }
+      .ph-title { font-family: "Fira Sans Condensed", sans-serif; font-weight: 700; font-size: 30px; color: var(--bone); }
+      .ph-dots { display: flex; gap: 10px; }
+      .ph-dots .dot { width: 44px; height: 6px; border-radius: 3px; background: var(--hairline); }
+      .ph-dots .dot.lit { background: var(--gold); }
+      .ph-body { flex: 1; padding: 30px 52px; display: flex; flex-direction: column; gap: 22px; overflow: hidden; position: relative; }
+      .ph-footer { padding: 0 52px 44px; display: flex; justify-content: flex-end; }
+      .btn-pill {
+        padding: 22px 46px;
+        border-radius: 999px;
+        background: var(--gold);
+        font-family: "Fira Sans Condensed", sans-serif;
+        font-weight: 800;
+        font-size: 22px;
+        letter-spacing: 0.06em;
+        color: var(--ink);
+        text-transform: uppercase;
+        transform-origin: 50% 50%;
       }
-      .chip.active { color: var(--ink); background: var(--gold); border-color: var(--gold); }
 
-      .service-list { display: flex; flex-direction: column; }
-      .service-row {
-        display: flex; align-items: center; justify-content: space-between; padding: 20px 4px;
-        border-bottom: 1px dashed rgba(247,244,236,0.16); opacity: 0; transform: translateX(-16px);
+      .field-label { font-family: "Fira Sans Condensed", sans-serif; font-weight: 600; font-size: 22px; color: var(--bone-dim); }
+      .field-box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 22px 26px;
+        border-radius: 16px;
+        border: 1px solid var(--hairline);
+        background: rgba(247, 244, 236, 0.03);
       }
-      .service-row .name { font-family: "Fira Sans Condensed", sans-serif; font-weight: 400; font-size: 24px; color: var(--bone); display: flex; align-items: center; gap: 12px; }
-      .service-row .price { font-family: "Fira Sans Condensed", sans-serif; font-weight: 800; font-size: 22px; color: var(--gold); white-space: nowrap; }
-      .service-row .check {
-        width: 26px; height: 26px; border-radius: 50%; background: var(--gold); flex: none;
-        display: flex; align-items: center; justify-content: center; opacity: 0; transform: scale(0.3);
-      }
-      .service-row .check svg { width: 14px; height: 14px; }
-      .service-row.selected { background: rgba(255, 210, 0, 0.07); border-radius: 10px; }
+      .field-box .field-value { font-family: "Fira Sans Condensed", sans-serif; font-weight: 700; font-size: 24px; color: var(--bone); }
+      .field-box .field-value.placeholder { color: var(--bone-dim); font-weight: 400; }
+      .field-box .field-value .num { font-family: "Fira Sans Condensed", sans-serif; font-weight: 800; color: var(--gold); }
+      .chev { font-family: "Fira Sans Condensed", sans-serif; color: var(--gold); font-size: 22px; }
 
-      .barber-grid { display: flex; gap: 22px; justify-content: center; margin-top: 40px; }
-      .barber-card { display: flex; flex-direction: column; align-items: center; gap: 12px; opacity: 0; transform: translateY(20px); width: 168px; }
-      .avatar {
-        width: 128px; height: 128px; border-radius: 50%; background: var(--charcoal-hi);
-        border: 3px solid rgba(255,210,0,0.3); display: flex; align-items: center; justify-content: center;
-        font-family: "Fira Sans Condensed", sans-serif; font-weight: 800; font-size: 32px; line-height: 1; color: var(--gold);
-        position: relative;
+      .dd-panel {
+        position: absolute;
+        left: 52px; right: 52px; top: 170px;
+        border-radius: 16px;
+        background: #141414;
+        border: 1px solid var(--hairline);
+        box-shadow: 0 24px 60px rgba(0,0,0,.5);
+        overflow: hidden;
+        opacity: 0;
+        z-index: 5;
       }
-      .avatar-ring {
-        position: absolute; inset: -10px; border-radius: 50%; border: 3px solid var(--gold); opacity: 0;
+      /* Service dropdown overlays right below the Servicio field, covering the
+         Artista field beneath it while open (real dropdown behavior) — the
+         Artista dropdown instead overlays below the Artista field itself. */
+      #ph1-dd-artist { top: 310px; }
+      .dd-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 24px;
+        border-bottom: 1px solid var(--hairline);
+        opacity: 0;
       }
-      .barber-card .bname { font-family: "Fira Sans Condensed", sans-serif; font-weight: 700; font-size: 21px; color: var(--bone); text-align: center; }
-      .barber-card .btag { font-family: "Fira Sans Condensed", sans-serif; font-weight: 400; font-size: 16px; color: var(--steel-dim); text-align: center; }
-      .barber-card.dim { opacity: 0.38 !important; }
+      .dd-row:last-child { border-bottom: none; }
+      .dd-row .dd-label { font-family: "Fira Sans Condensed", sans-serif; font-weight: 600; font-size: 21px; color: var(--bone-dim); }
+      .dd-row .dd-price { font-family: "Fira Sans Condensed", sans-serif; font-weight: 800; font-size: 21px; color: var(--gold); }
+      .dd-row.selected .dd-label { color: var(--gold); }
+      .dd-row.category-row .dd-label { font-weight: 800; color: var(--bone); font-size: 17px; letter-spacing: 0.08em; text-transform: uppercase; }
 
-      .cal-head { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 22px; }
-      .cal-head .cal-month { font-family: "Fira Sans Condensed", sans-serif; font-weight: 700; font-size: 24px; color: var(--bone); }
-      .cal-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin-bottom: 12px; }
-      .cal-weekdays span { font-family: "Fira Sans Condensed", sans-serif; font-weight: 700; font-size: 15px; color: var(--steel-dim); text-align: center; text-transform: uppercase; }
+      .stepper-row { display: flex; align-items: center; justify-content: space-between; padding: 22px 26px; border-radius: 16px; border: 1px solid var(--hairline); }
+      .stepper-row .stepper-info .stepper-name { font-family: "Fira Sans Condensed", sans-serif; font-weight: 700; font-size: 24px; color: var(--bone); }
+      .stepper-row .stepper-info .stepper-price { font-family: "Fira Sans Condensed", sans-serif; font-weight: 800; font-size: 20px; color: var(--gold); margin-top: 6px; }
+      .stepper-ctrl { display: flex; align-items: center; gap: 22px; }
+      .stepper-btn { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--hairline); display: flex; align-items: center; justify-content: center; font-size: 26px; color: var(--bone); transform-origin: 50% 50%; }
+      .stepper-val { font-family: "Fira Sans Condensed", sans-serif; font-weight: 800; font-size: 28px; color: var(--gold); min-width: 36px; text-align: center; }
+
+      .cal-wrap { display: flex; flex-direction: column; gap: 14px; }
+      .cal-month { font-family: "Fira Sans Condensed", sans-serif; font-weight: 700; font-size: 24px; color: var(--bone); }
       .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
       .cal-cell {
-        aspect-ratio: 1; border-radius: 10px; background: var(--charcoal-hi);
+        height: 62px; border-radius: 10px; border: 1px solid var(--hairline);
         display: flex; align-items: center; justify-content: center;
-        font-family: "Fira Sans Condensed", sans-serif; font-weight: 600; font-size: 19px; color: var(--steel);
-        opacity: 0; transform: scale(0.6);
+        font-family: "Fira Sans Condensed", sans-serif; font-weight: 700; font-size: 19px; color: var(--bone-dim);
+        opacity: 0;
       }
-      .cal-cell.pick { background: var(--gold); color: var(--ink); font-weight: 800; }
+      .cal-cell.muted { opacity: 0 !important; visibility: hidden; }
+      .cal-cell.picked { background: var(--gold); color: var(--ink); border-color: var(--gold); }
 
-      .time-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-      .time-pill {
-        border: 1px solid rgba(247,244,236,0.16); border-radius: 12px; padding: 15px 10px; text-align: center;
-        font-family: "Fira Sans Condensed", sans-serif; font-weight: 700; font-size: 17px; color: var(--steel);
-        opacity: 0; transform: translateY(10px); position: relative; overflow: hidden;
+      .slot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+      .slot-chip {
+        padding: 16px 14px; border-radius: 12px; border: 1px solid var(--hairline);
+        font-family: "Fira Sans Condensed", sans-serif; font-weight: 700; font-size: 17px; color: var(--bone-dim);
+        text-align: center; opacity: 0;
       }
-      .time-pill .sweep { position: absolute; inset: 0; background: var(--gold); transform: scaleX(0); transform-origin: left; z-index: 0; }
-      .time-pill span { position: relative; z-index: 1; }
-      .time-pill.pick span { color: var(--ink); }
+      .slot-chip.picked { background: var(--gold); color: var(--ink); border-color: var(--gold); }
 
-      .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 20px; margin-top: 8px; }
-      .field { display: flex; flex-direction: column; gap: 10px; opacity: 0; transform: translateY(14px); }
-      .field label { font-family: "Fira Sans Condensed", sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--steel-dim); }
-      .field .box {
-        background: var(--charcoal-hi); border: 1px solid rgba(247,244,236,0.14); border-radius: 10px;
-        padding: 14px 14px; font-family: "Fira Sans Condensed", sans-serif; font-weight: 400; font-size: 20px; color: var(--bone);
-        min-height: 24px; position: relative;
+      .modal-box {
+        position: absolute; left: 90px; right: 90px; top: 50%; transform: translateY(-50%) scale(0.85);
+        background: #161616; border: 1px solid var(--hairline); border-radius: 24px;
+        padding: 44px 40px; box-shadow: 0 30px 80px rgba(0,0,0,.6);
+        opacity: 0; z-index: 8;
       }
-      .field .box .caret { display: inline-block; width: 2px; height: 20px; background: var(--gold); vertical-align: middle; margin-left: 2px; opacity: 0; }
-      .field .typed { white-space: nowrap; overflow: hidden; display: inline-block; width: 0; vertical-align: middle; }
+      .modal-box .modal-q { font-family: "Fira Sans Condensed", sans-serif; font-weight: 700; font-size: 27px; color: var(--bone); margin-bottom: 32px; }
+      .modal-actions { display: flex; gap: 18px; justify-content: flex-end; }
+      .modal-btn { padding: 16px 34px; border-radius: 999px; font-family: "Fira Sans Condensed", sans-serif; font-weight: 800; font-size: 19px; letter-spacing: 0.05em; text-transform: uppercase; }
+      .modal-btn.no { color: var(--bone-dim); border: 1px solid var(--hairline); }
+      .modal-btn.yes { background: var(--gold); color: var(--ink); transform-origin: 50% 50%; }
+      .scrim { position: absolute; inset: 0; background: rgba(0,0,0,.55); opacity: 0; z-index: 7; }
 
-      .receipt-card { background: var(--charcoal-hi); border-radius: 16px; padding: 26px 24px; margin-top: 10px; }
-      .receipt-row { display: flex; justify-content: space-between; align-items: baseline; padding: 12px 0; border-bottom: 1px dashed rgba(247,244,236,0.14); opacity: 0; }
-      .receipt-row .rname { font-family: "Fira Sans Condensed", sans-serif; font-weight: 400; font-size: 20px; color: var(--steel); }
-      .receipt-row .rprice { font-family: "Fira Sans Condensed", sans-serif; font-weight: 700; font-size: 20px; color: var(--bone); }
-      .receipt-total { display: flex; justify-content: space-between; align-items: baseline; padding-top: 18px; }
-      .receipt-total .tlabel { font-family: "Fira Sans Condensed", sans-serif; font-weight: 800; font-size: 22px; color: var(--bone); text-transform: uppercase; letter-spacing: 0.04em; }
-      .receipt-total .tval { font-family: "Fira Sans Condensed", sans-serif; font-weight: 800; font-size: 32px; color: var(--gold); }
-      .btn-primary {
-        margin-top: 30px; background: var(--gold); color: var(--ink); text-align: center;
-        font-family: "Fira Sans Condensed", sans-serif; font-weight: 800; font-size: 22px; letter-spacing: 0.05em;
-        text-transform: uppercase; padding: 20px; border-radius: 14px; opacity: 0; transform: translateY(14px); position: relative; overflow: hidden;
-      }
-      .btn-primary .ripple { position: absolute; left: 50%; top: 50%; width: 20px; height: 20px; border-radius: 50%; background: rgba(16,16,16,0.25); transform: translate(-50%, -50%) scale(0); }
+      .settings-row { display: flex; align-items: center; justify-content: space-between; }
+      .settings-label { font-family: "Fira Sans Condensed", sans-serif; font-weight: 600; font-size: 21px; color: var(--bone-dim); }
+      .settings-value { font-family: "Fira Sans Condensed", sans-serif; font-weight: 800; font-size: 21px; color: var(--bone); }
+      .day-rail { display: flex; gap: 10px; }
+      .day-chip { width: 50px; height: 50px; border-radius: 50%; border: 1px solid var(--hairline); display: flex; align-items: center; justify-content: center; font-family: "Fira Sans Condensed", sans-serif; font-weight: 700; font-size: 15px; color: var(--bone-dim); transform-origin: 50% 50%; }
+      .day-chip.picked { background: var(--gold); color: var(--ink); border-color: var(--gold); }
 
-      .tap-dot { position: absolute; width: 28px; height: 28px; border-radius: 50%; background: var(--gold); opacity: 0; z-index: 30; }
-      .tap-ring { position: absolute; width: 28px; height: 28px; border-radius: 50%; border: 3px solid var(--gold); opacity: 0; z-index: 29; }
+      .appt-chip { display: flex; align-items: center; gap: 18px; padding: 22px 26px; border-radius: 16px; border: 1px solid var(--hairline); opacity: 0; }
+      .appt-chip .appt-num { width: 40px; height: 40px; border-radius: 50%; background: var(--gold); color: var(--ink); font-family: "Fira Sans Condensed", sans-serif; font-weight: 800; font-size: 19px; display: flex; align-items: center; justify-content: center; }
+      .appt-chip .appt-text { font-family: "Fira Sans Condensed", sans-serif; font-weight: 700; font-size: 22px; color: var(--bone); }
 
-      #iris-ring {
-        position: absolute; left: 307px; top: 345px; width: 20px; height: 20px; border-radius: 50%;
-        border: 4px solid var(--gold); transform: translate(-50%, -50%) scale(0); opacity: 0; z-index: 40; pointer-events: none;
-      }
-      #screen-flash { position: absolute; inset: 0; background: var(--gold); opacity: 0; z-index: 39; pointer-events: none; }
+      .form-field { display: flex; flex-direction: column; gap: 10px; }
+      .form-field .fv-line { display: flex; align-items: baseline; gap: 4px; min-height: 34px; }
+      .form-field .fv-text { font-family: "Fira Sans Condensed", sans-serif; font-weight: 700; font-size: 25px; color: var(--bone); white-space: pre; }
+      .form-field .fv-caret { display: inline-block; width: 3px; height: 26px; background: var(--gold); }
+      .form-field .field-underline { height: 1px; background: var(--hairline); }
 
-      /* success card */
-      #success-card { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; opacity: 0; }
-      #success-ring { position: relative; width: 148px; height: 148px; }
-      #success-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
-      #success-ring circle { fill: none; stroke-width: 8; }
-      #success-ring .track { stroke: rgba(255, 210, 0, 0.18); }
-      #success-ring .fill { stroke: var(--gold); stroke-dasharray: 410; stroke-dashoffset: 410; stroke-linecap: round; }
-      #success-check { position: absolute; left: 50%; top: 50%; width: 64px; height: 42px; transform: translate(-50%, -55%); }
-      #success-title { font-family: "Lost in South", sans-serif; text-transform: uppercase; font-size: 46px; color: var(--bone); line-height: 1; }
-      #success-sub { font-family: "Fira Sans Condensed", sans-serif; font-weight: 600; font-size: 20px; color: var(--steel-dim); text-align: center; padding: 0 40px; }
-      #success-rule { width: 90px; height: 3px; background: var(--gold-deep); }
-      .spark { position: absolute; left: 50%; top: 50%; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); opacity: 0; z-index: 5; }
+      .line-item { display: flex; align-items: center; justify-content: space-between; opacity: 0; }
+      .line-item .li-label { font-family: "Fira Sans Condensed", sans-serif; font-weight: 600; font-size: 22px; color: var(--bone-dim); }
+      .line-item .li-value { font-family: "Fira Sans Condensed", sans-serif; font-weight: 800; font-size: 22px; color: var(--bone); }
+      .total-row { display: flex; align-items: baseline; justify-content: space-between; padding-top: 22px; border-top: 1px solid var(--hairline); }
+      .total-row .total-label { font-family: "Fira Sans Condensed", sans-serif; font-weight: 700; font-size: 24px; color: var(--bone); }
+      .total-row .total-value { font-family: "Fira Sans Condensed", sans-serif; font-weight: 800; font-size: 46px; color: var(--gold); font-variant-numeric: tabular-nums; }
 
-      #progress-rail { position: absolute; left: 415px; top: 1350px; transform: translateX(-50%); display: flex; gap: 12px; z-index: 10; }
-      .p-notch { width: 34px; height: 6px; border-radius: 3px; background: rgba(247, 244, 236, 0.18); overflow: hidden; }
-      .p-notch .fill { width: 100%; height: 100%; background: var(--gold); transform: scaleX(0); transform-origin: left; }
+      /* ---------- Badge / checkmark ---------- */
+      .badge-body { align-items: center; justify-content: center; }
+      .badge-svg { width: 140px; height: 140px; }
+      .badge-svg circle { fill: none; stroke: var(--gold); stroke-width: 6; }
+      .badge-svg path { fill: none; stroke: var(--gold); stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+      .badge-text { font-family: "Fira Sans Condensed", sans-serif; font-weight: 700; font-size: 20px; color: var(--bone); margin-top: 14px; opacity: 0; }
 
-      /* ---------- TICKET PANEL ---------- */
-      #ticket-panel {
-        position: absolute; left: 770px; top: 560px; width: 220px; height: 760px;
-        background: var(--charcoal); border-radius: 18px; border: 1px solid rgba(255,210,0,0.16);
-        border-left: 2px dashed rgba(255, 210, 0, 0.35);
-        box-shadow: 0 30px 70px rgba(0,0,0,0.45);
-        padding: 26px 18px; z-index: 6; opacity: 0;
-      }
-      #ticket-header { font-family: "Fira Sans Condensed", sans-serif; font-weight: 800; font-size: 16px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
-      .ticket-row { padding: 14px 0; border-bottom: 1px dashed rgba(247,244,236,0.14); opacity: 0; transform: translateY(10px) scale(0.96); }
-      .ticket-row .tlabel { font-family: "Fira Sans Condensed", sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--steel-dim); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
-      .ticket-row .tlabel .tick-ok { color: var(--gold); }
-      .ticket-row .tval { font-family: "Fira Sans Condensed", sans-serif; font-weight: 700; font-size: 16px; color: var(--bone); line-height: 1.25; }
-      #ticket-seal {
-        position: absolute; left: 50%; bottom: 26px; width: 168px;
-        border: 3px solid var(--gold); border-radius: 10px; padding: 10px 6px; text-align: center; opacity: 0;
-      }
-      #ticket-seal span { font-family: "Fira Sans Condensed", sans-serif; font-weight: 800; font-size: 15px; letter-spacing: 0.08em; color: var(--gold); text-transform: uppercase; }
+      /* ---------- CTA content ---------- */
+      .cta-body { align-items: center; justify-content: center; }
+      .cta-text { font-family: "Fira Sans Condensed", sans-serif; font-weight: 800; font-size: 30px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink); }
 
-      /* ---------- OUTRO ---------- */
-      #scene-outro { position: absolute; inset: 0; z-index: 8; opacity: 0; }
-      #outro-glow {
-        position: absolute; left: 50%; top: 44%; width: 1400px; height: 1400px;
-        background: radial-gradient(circle, rgba(255, 210, 0, 0.3) 0%, rgba(255, 210, 0, 0) 62%);
-        z-index: 1; pointer-events: none;
+      /* ---------- Close-scene satellites (outside the shell) ---------- */
+      .close-logo {
+        position: absolute; left: 50%; top: 50%; transform: translate(-50%, -400px) scale(0.9);
+        width: 260px; height: 110px;
+        background: url("assets/images/Nordic-BarberShop-logo-white.svg") center / contain no-repeat;
+        opacity: 0;
       }
-      #outro-ghost {
-        position: absolute; left: 50%; top: 500px; transform: translate(-50%, -50%);
-        font-family: "Lost in South", sans-serif; text-transform: uppercase; font-size: 300px;
-        color: var(--bone); opacity: 0.05; white-space: nowrap; z-index: 1;
+      .close-signature {
+        position: absolute; left: 50%; top: 50%; transform: translate(-50%, 180px);
+        font-family: "Lost in South", serif;
+        font-size: 40px;
+        color: var(--bone);
+        opacity: 0;
+        width: 700px; text-align: center;
       }
-      #outro-content {
-        position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center;
-        justify-content: center; padding: 120px 96px; text-align: center; gap: 28px; z-index: 3;
+      .close-url {
+        position: absolute; left: 50%; top: 50%; transform: translate(-50%, 260px);
+        font-family: "Fira Sans Condensed", sans-serif;
+        font-weight: 600; font-size: 20px; letter-spacing: 0.04em;
+        color: var(--bone-dim);
+        opacity: 0;
+        width: 700px; text-align: center;
       }
-      #outro-logo { width: 290px; }
-      #outro-logo img { width: 100%; display: block; }
-      #outro-rule { width: 220px; height: 3px; background: var(--gold-deep); transform: scaleX(0); }
-      #outro-fade { position: absolute; inset: 0; background: var(--ink); opacity: 0; z-index: 90; pointer-events: none; }
+
+      /* ---------- Cursor + ripple ---------- */
+      #cursor { position: absolute; left: 0; top: 0; width: 40px; height: 40px; z-index: 50; opacity: 0; pointer-events: none; will-change: transform, opacity; }
+      #cursor svg { width: 40px; height: 40px; }
+      .ripple { position: absolute; left: 0; top: 0; width: 90px; height: 90px; margin-left: -45px; margin-top: -45px; border-radius: 50%; border: 2px solid var(--gold); opacity: 0; z-index: 49; pointer-events: none; }
+
+      /* ---------- Full-frame fade to close ---------- */
+      #fade-out { position: absolute; inset: 0; background: var(--ink); opacity: 0; z-index: 90; pointer-events: none; }
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920" data-duration="42.0">
-
-      <div id="bg-glow"></div>
-
-      <!-- ============ HOOK 0–3.4 ============ -->
-      <div id="scene-hook" class="clip" data-start="0" data-duration="3.6" data-track-index="1">
-        <div id="hook-ghost"><img id="hook-ghost-img" class="clip" src="assets/images/Nordic-BarberShop-logo-white.svg" alt="" data-start="0" data-duration="3.6"></div>
-        <div id="hook-logo"><img id="hook-logo-img" class="clip" src="assets/images/Nordic-BarberShop-logo-white.svg" alt="Nordic Barber Shop" data-start="0.3" data-duration="3.3"></div>
-        <div id="hook-rule"></div>
-        <h1 id="hook-headline" class="headline-2line"><span class="w" id="hh-w1">ASÍ</span> <span class="w" id="hh-w2">SE</span> <span class="w" id="hh-w3">AGENDA</span><br><span class="w hl" id="hh-w4">TU</span> <span class="w hl" id="hh-w5">CITA</span></h1>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-width="1080"
+      data-height="1920"
+      data-duration="52"
+    >
+      <!-- ============ AMBIENT BACKGROUND (not a clip) ============ -->
+      <div id="ambient-bg" data-layout-allow-overflow="true">
+        <div class="bg-vignette"></div>
+        <div class="bg-glow" id="bg-glow"></div>
+        <div class="watermark" id="watermark"></div>
+        <!-- embers placed deterministically via JS -->
       </div>
 
-      <!-- ============ SETUP 2.9–7.2 ============ -->
-      <div id="scene-setup" class="clip" data-start="2.9" data-duration="4.3" data-track-index="2">
-        <div id="setup-ghost">Agenda</div>
-        <span id="setup-eyebrow" class="eyebrow-pill">Guía paso a paso</span>
-        <h2 id="setup-headline" class="headline-2line"><span class="w" id="sh-w1">6</span> <span class="w" id="sh-w2">PASOS.</span><br><span class="w hl" id="sh-w3">EN</span> <span class="w hl" id="sh-w4">1</span> <span class="w hl" id="sh-w5">MINUTO.</span></h2>
-        <div id="setup-hint">
-          <span id="setup-hint-label">Desliza y mira</span>
-          <div id="setup-chevron"></div>
-        </div>
-      </div>
-
-      <!-- ============ PHONE RIG 6.2–37.0 ============ -->
-      <div id="phone-rig" class="clip" data-start="6.2" data-duration="30.8" data-track-index="5">
-
-        <div class="ghost-num" id="ghost-01">01</div>
-        <div class="ghost-num" id="ghost-02" style="opacity:0">02</div>
-        <div class="ghost-num" id="ghost-03" style="opacity:0">03</div>
-        <div class="ghost-num" id="ghost-04" style="opacity:0">04</div>
-        <div class="ghost-num" id="ghost-05" style="opacity:0">05</div>
-        <div class="ghost-num" id="ghost-06" style="opacity:0">06</div>
-
-        <div id="step-label-zone">
-          <div class="step-label" id="label-1" style="opacity:0"><span class="step-num">1</span><span class="step-text">Elige tu servicio</span></div>
-          <div class="step-label" id="label-2" style="opacity:0"><span class="step-num">2</span><span class="step-text">Elige tu barbero</span></div>
-          <div class="step-label" id="label-3" style="opacity:0"><span class="step-num">3</span><span class="step-text">Fecha y hora</span></div>
-          <div class="step-label" id="label-4" style="opacity:0"><span class="step-num">4</span><span class="step-text">Tus datos</span></div>
-          <div class="step-label" id="label-5" style="opacity:0"><span class="step-num">5</span><span class="step-text">Confirma y paga</span></div>
-          <div class="step-label" id="label-6" style="opacity:0"><span class="step-num">6</span><span class="step-text">Cita confirmada</span></div>
-        </div>
-
-        <div id="phone-frame">
-          <div id="phone-notch"></div>
-          <div class="phone-btn" id="btn-power"></div>
-          <div class="phone-btn" id="btn-vol1"></div>
-          <div class="phone-btn" id="btn-vol2"></div>
-          <div id="phone-screen">
-
-            <!-- PANEL 1 — servicio -->
-            <div class="panel" id="panel-1">
-              <div class="screen-title">Selección del servicio</div>
-              <div class="chip-row">
-                <span class="chip active" id="chip-1">Barbería</span>
-                <span class="chip" id="chip-2">Manicura y Pedicura</span>
-                <span class="chip" id="chip-3">Tintes</span>
-                <span class="chip" id="chip-4">Combos</span>
-              </div>
-              <div class="service-list">
-                <div class="service-row" id="srow-1"><span class="name">Corte de cabello</span><span class="price">GTQ90.00</span></div>
-                <div class="service-row" id="srow-2"><span class="name">Corte de barba</span><span class="price">GTQ90.00</span></div>
-                <div class="service-row selected" id="srow-3"><span class="name"><span class="check" id="scheck-3"><svg viewBox="0 0 20 20" fill="none"><path d="M3 10L8 15L17 5" stroke="#101010" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Cabello y Barba Express</span><span class="price">GTQ130.00</span></div>
-                <div class="service-row" id="srow-4"><span class="name">Cabello y Barba</span><span class="price">GTQ150.00</span></div>
-              </div>
-            </div>
-
-            <!-- PANEL 2 — barbero -->
-            <div class="panel" id="panel-2">
-              <div class="screen-title">Elige a tu barbero</div>
-              <div class="barber-grid">
-                <div class="barber-card" id="bcard-1"><div class="avatar">D<div class="avatar-ring"></div></div><div class="bname">David Ical</div><div class="btag">Barba</div></div>
-                <div class="barber-card" id="bcard-2"><div class="avatar">R<div class="avatar-ring" id="ring-renato"></div></div><div class="bname">Renato López</div><div class="btag">Fade &amp; Barba</div></div>
-                <div class="barber-card" id="bcard-3"><div class="avatar">M<div class="avatar-ring"></div></div><div class="bname">Marco Solís</div><div class="btag">Clásico</div></div>
-              </div>
-            </div>
-
-            <!-- PANEL 3a — calendario -->
-            <div class="panel" id="panel-3a">
-              <div class="screen-title">Fecha y hora</div>
-              <div class="cal-head"><span class="cal-month">Julio 2026</span></div>
-              <div class="cal-weekdays"><span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span></div>
-              <div class="cal-grid" id="cal-grid">
-                <div class="cal-cell">6</div><div class="cal-cell">7</div><div class="cal-cell pick" id="cal-pick">8</div><div class="cal-cell">9</div><div class="cal-cell">10</div><div class="cal-cell">11</div><div class="cal-cell">12</div>
-                <div class="cal-cell">13</div><div class="cal-cell">14</div><div class="cal-cell">15</div><div class="cal-cell">16</div><div class="cal-cell">17</div><div class="cal-cell">18</div><div class="cal-cell">19</div>
-              </div>
-            </div>
-
-            <!-- PANEL 3b — hora -->
-            <div class="panel" id="panel-3b">
-              <div class="screen-title">Fecha y hora</div>
-              <div class="screen-sub">8 jul, 2026</div>
-              <div class="time-list">
-                <div class="time-pill" id="tp-1"><span>3:30 p.m. – 4:30 p.m.</span></div>
-                <div class="time-pill" id="tp-2"><span>3:40 p.m. – 4:40 p.m.</span></div>
-                <div class="time-pill" id="tp-pick"><div class="sweep"></div><span>4:00 p.m. – 5:00 p.m.</span></div>
-                <div class="time-pill" id="tp-3"><span>4:10 p.m. – 5:10 p.m.</span></div>
-                <div class="time-pill" id="tp-4"><span>4:20 p.m. – 5:20 p.m.</span></div>
-                <div class="time-pill" id="tp-5"><span>4:30 p.m. – 5:30 p.m.</span></div>
-              </div>
-            </div>
-
-            <!-- PANEL 4 — datos -->
-            <div class="panel" id="panel-4">
-              <div class="screen-title">Tu información</div>
-              <div class="field-grid">
-                <div class="field" id="f-nombre"><label>Nombre</label><div class="box"><span class="typed" id="typed-nombre">Juan</span><span class="caret" id="caret-nombre"></span></div></div>
-                <div class="field" id="f-apellido"><label>Apellido</label><div class="box"><span class="typed" id="typed-apellido">Pérez</span><span class="caret" id="caret-apellido"></span></div></div>
-                <div class="field" id="f-correo"><label>Correo</label><div class="box"><span class="typed" id="typed-correo">juan.perez@email.com</span><span class="caret" id="caret-correo"></span></div></div>
-                <div class="field" id="f-telefono"><label>Teléfono</label><div class="box"><span class="typed" id="typed-telefono">5512 3456</span><span class="caret" id="caret-telefono"></span></div></div>
-              </div>
-            </div>
-
-            <!-- PANEL 5 — pago -->
-            <div class="panel" id="panel-5">
-              <div class="screen-title">Resumen y pago</div>
-              <div class="receipt-card">
-                <div class="receipt-row" id="rrow-1"><span class="rname">Cabello y Barba Express</span><span class="rprice">GTQ130.00</span></div>
-                <div class="receipt-row" id="rrow-2"><span class="rname">Mascarilla de Carbón Activado</span><span class="rprice">GTQ50.00</span></div>
-                <div class="receipt-total"><span class="tlabel">Total</span><span class="tval" id="rtotal">GTQ0.00</span></div>
-              </div>
-              <div class="btn-primary" id="pay-btn">Confirmar y pagar<div class="ripple"></div></div>
-            </div>
-
-            <!-- PANEL 6 — confirmada -->
-            <div class="panel" id="panel-6">
-              <div id="success-card">
-                <div id="success-ring">
-                  <svg viewBox="0 0 148 148"><circle class="track" cx="74" cy="74" r="65"></circle><circle class="fill" cx="74" cy="74" r="65"></circle></svg>
-                  <svg id="success-check" viewBox="0 0 70 46" fill="none"><path d="M4 24L26 42L66 4" stroke="#FFD200" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"></path></svg>
-                </div>
-                <h3 id="success-title">Cita Confirmada</h3>
-                <div id="success-rule"></div>
-                <p id="success-sub">Cabello y Barba Express · Renato López<br>8 jul, 2026 · 4:00 p.m.</p>
-              </div>
-              <div class="spark" id="spark-0"></div><div class="spark" id="spark-1"></div><div class="spark" id="spark-2"></div><div class="spark" id="spark-3"></div>
-              <div class="spark" id="spark-4"></div><div class="spark" id="spark-5"></div><div class="spark" id="spark-6"></div><div class="spark" id="spark-7"></div>
-              <div class="spark" id="spark-8"></div><div class="spark" id="spark-9"></div><div class="spark" id="spark-10"></div><div class="spark" id="spark-11"></div>
-            </div>
-
-            <!-- shared tap/iris fx layer -->
-            <div class="tap-dot" id="dot-1" style="left:307px; top:342px;"></div>
-            <div class="tap-ring" id="ring-1" style="left:307px; top:342px;"></div>
-            <div class="tap-dot" id="dot-2" style="left:307px; top:202px;"></div>
-            <div class="tap-ring" id="ring-2" style="left:307px; top:202px;"></div>
-            <div class="tap-ring" id="ring-3a" style="left:226px; top:207px;"></div>
-            <div class="tap-ring" id="ring-3b" style="left:166px; top:213px;"></div>
-            <div class="tap-dot" id="dot-4" style="left:560px; top:620px;"></div>
-            <div class="tap-ring" id="ring-4" style="left:560px; top:620px;"></div>
-            <div class="tap-ring" id="ring-5" style="left:307px; top:357px;"></div>
-            <div id="iris-ring"></div>
-            <div id="screen-flash"></div>
+      <!-- ============ CAMERA WORLD (not a clip) ============ -->
+      <div id="camera-viewport">
+        <div id="camera" data-layout-allow-overflow="true">
+          <!-- Open scene -->
+          <div id="scene-open">
+            <div class="open-glow" id="open-glow"></div>
+            <div class="open-logo" id="open-logo"></div>
+            <div class="open-headline" id="open-headline">ASÍ RESERVAS <span class="hl">TU C<span class="it-kern-fix">I</span>TA</span></div>
+            <!-- seed dots placed via JS -->
           </div>
-        </div>
 
-        <div id="progress-rail">
-          <div class="p-notch"><div class="fill" id="pn-1"></div></div>
-          <div class="p-notch"><div class="fill" id="pn-2"></div></div>
-          <div class="p-notch"><div class="fill" id="pn-3"></div></div>
-          <div class="p-notch"><div class="fill" id="pn-4"></div></div>
-          <div class="p-notch"><div class="fill" id="pn-5"></div></div>
-          <div class="p-notch"><div class="fill" id="pn-6"></div></div>
-        </div>
+          <!-- Close-scene satellites -->
+          <div class="close-logo" id="close-logo"></div>
+          <div class="close-signature" id="close-signature">Forged for the close cut.</div>
+          <div class="close-url" id="close-url">nordic-barbershop.com/reservar-amelia/</div>
 
-        <div id="ticket-panel">
-          <div id="ticket-header">Tu reserva</div>
-          <div class="ticket-row" id="trow-1"><div class="tlabel"><span class="tick-ok">✓</span> Servicio</div><div class="tval">Cabello y Barba Express</div></div>
-          <div class="ticket-row" id="trow-2"><div class="tlabel"><span class="tick-ok">✓</span> Barbero</div><div class="tval">Renato López</div></div>
-          <div class="ticket-row" id="trow-3"><div class="tlabel"><span class="tick-ok">✓</span> Fecha</div><div class="tval">8 jul · 4:00 p.m.</div></div>
-          <div class="ticket-row" id="trow-4"><div class="tlabel"><span class="tick-ok">✓</span> Cliente</div><div class="tval">Juan Pérez</div></div>
-          <div class="ticket-row" id="trow-5"><div class="tlabel"><span class="tick-ok">✓</span> Total</div><div class="tval">GTQ180.00</div></div>
-          <div id="ticket-seal"><span>Confirmada</span></div>
+          <!-- The single continuous morph shell -->
+          <div class="morph-shell" id="shell">
+
+            <!-- 01 -->
+            <div class="shell-content tc-body" id="c-tc1">
+              <div class="tc-eyebrow"><span class="tc-num">01</span><span class="tc-label">Paso</span></div>
+              <div class="tc-headline">ELIGE TU <span class="hl">SERVICIO</span></div>
+            </div>
+
+            <div class="shell-content" id="c-ph1">
+              <div class="ph-header">
+                <div class="ph-title">Selección del servicio</div>
+                <div class="ph-dots"><div class="dot lit"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+              </div>
+              <div class="ph-body">
+                <div class="field-label">Servicio</div>
+                <div class="field-box" id="ph1-service-box">
+                  <span class="field-value placeholder" id="ph1-service-value">Selecciona el servicio</span>
+                  <span class="chev">⌄</span>
+                </div>
+                <div class="field-label" style="margin-top:8px;">Artista</div>
+                <div class="field-box" id="ph1-artist-box">
+                  <span class="field-value placeholder" id="ph1-artist-value">Selecciona artista</span>
+                  <span class="chev">⌄</span>
+                </div>
+                <div class="dd-panel" id="ph1-dd-service">
+                  <div class="dd-row category-row"><div class="dd-label">Barbería</div></div>
+                  <div class="dd-row"><div class="dd-label">Corte de cabello</div><div class="dd-price">Q<span class="num">90</span>.00</div></div>
+                  <div class="dd-row"><div class="dd-label">Corte de barba</div><div class="dd-price">Q<span class="num">90</span>.00</div></div>
+                  <div class="dd-row" id="ph1-row-express"><div class="dd-label">Cabello y Barba Express</div><div class="dd-price">Q<span class="num">130</span>.00</div></div>
+                  <div class="dd-row"><div class="dd-label">Cabello y Barba</div><div class="dd-price">Q<span class="num">150</span>.00</div></div>
+                </div>
+                <div class="dd-panel" id="ph1-dd-artist">
+                  <div class="dd-row" id="ph1-row-renato"><div class="dd-label">Renato López</div></div>
+                  <div class="dd-row"><div class="dd-label">Marco Díaz</div></div>
+                </div>
+              </div>
+              <div class="ph-footer"><div class="btn-pill" id="ph1-btn">Continuar</div></div>
+            </div>
+
+            <!-- 02 -->
+            <div class="shell-content tc-body" id="c-tc2">
+              <div class="tc-eyebrow"><span class="tc-num">02</span><span class="tc-label">Paso</span></div>
+              <div class="tc-headline">SUMA UN <span class="hl">EXTRA</span></div>
+            </div>
+
+            <div class="shell-content" id="c-ph2">
+              <div class="ph-header">
+                <div class="ph-title">Extras</div>
+                <div class="ph-dots"><div class="dot lit"></div><div class="dot lit"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+              </div>
+              <div class="ph-body">
+                <div class="stepper-row">
+                  <div class="stepper-info">
+                    <div class="stepper-name">Mascarilla de Carbón Activado</div>
+                    <div class="stepper-price">Q<span class="num">50</span>.00</div>
+                  </div>
+                  <div class="stepper-ctrl">
+                    <div class="stepper-btn" id="ph2-minus">–</div>
+                    <div class="stepper-val" id="ph2-val">0</div>
+                    <div class="stepper-btn" id="ph2-plus">+</div>
+                  </div>
+                </div>
+              </div>
+              <div class="ph-footer"><div class="btn-pill" id="ph2-btn">Continuar</div></div>
+            </div>
+
+            <!-- 03 -->
+            <div class="shell-content tc-body" id="c-tc3">
+              <div class="tc-eyebrow"><span class="tc-num">03</span><span class="tc-label">Paso</span></div>
+              <div class="tc-headline">FECHA Y <span class="hl">HORA</span></div>
+            </div>
+
+            <div class="shell-content" id="c-ph3">
+              <div class="ph-header">
+                <div class="ph-title">Fecha y hora</div>
+                <div class="ph-dots"><div class="dot lit"></div><div class="dot lit"></div><div class="dot lit"></div><div class="dot"></div><div class="dot"></div></div>
+              </div>
+              <div class="ph-body">
+                <div class="cal-wrap" id="ph3-cal">
+                  <div class="cal-month">Julio <span class="num">2026</span></div>
+                  <div class="cal-grid" id="ph3-cal-grid"></div>
+                </div>
+                <div class="slot-grid" id="ph3-slots" style="opacity:0;"></div>
+              </div>
+              <div class="ph-footer"><div class="btn-pill" id="ph3-btn">Continuar</div></div>
+            </div>
+
+            <!-- 04 -->
+            <div class="shell-content tc-body" id="c-tc4">
+              <div class="tc-eyebrow"><span class="tc-num">04</span><span class="tc-label">Paso</span></div>
+              <div class="tc-headline">HAZLA <span class="hl">RECURRENTE</span></div>
+            </div>
+
+            <div class="shell-content" id="c-ph4">
+              <div class="ph-header">
+                <div class="ph-title">Cita recurrente</div>
+                <div class="ph-dots"><div class="dot lit"></div><div class="dot lit"></div><div class="dot lit"></div><div class="dot lit"></div><div class="dot"></div></div>
+              </div>
+              <div class="ph-body" id="ph4-body">
+                <div class="settings-row"><div class="settings-label">Repetir cada</div><div class="settings-value"><span class="num">1</span> semana</div></div>
+                <div class="settings-row"><div class="settings-label">Repetir en</div>
+                  <div class="day-rail">
+                    <div class="day-chip">L</div><div class="day-chip">M</div><div class="day-chip picked" id="ph4-day-mie">X</div><div class="day-chip">J</div><div class="day-chip">V</div>
+                  </div>
+                </div>
+                <div class="settings-row"><div class="settings-label">Termina</div><div class="settings-value">Después de <span class="num">1</span> suceso</div></div>
+                <div id="ph4-appts" style="display:flex; flex-direction:column; gap:16px; margin-top:10px;">
+                  <div class="appt-chip" id="ph4-appt1"><div class="appt-num">1</div><div class="appt-text">Julio <span class="num">8</span>, <span class="num">2026</span> · <span class="num">4</span>:<span class="num">00</span> p. m.</div></div>
+                  <div class="appt-chip" id="ph4-appt2"><div class="appt-num">2</div><div class="appt-text">Julio <span class="num">15</span>, <span class="num">2026</span> · <span class="num">4</span>:<span class="num">00</span> p. m.</div></div>
+                </div>
+              </div>
+              <div class="ph-footer"><div class="btn-pill" id="ph4-btn">Continuar</div></div>
+              <div class="scrim" id="ph4-scrim"></div>
+              <div class="modal-box" id="ph4-modal">
+                <div class="modal-q">¿Quieres repetir esta cita?</div>
+                <div class="modal-actions">
+                  <div class="modal-btn no">No</div>
+                  <div class="modal-btn yes" id="ph4-yes">Sí</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 05 -->
+            <div class="shell-content tc-body" id="c-tc5">
+              <div class="tc-eyebrow"><span class="tc-num">05</span><span class="tc-label">Paso</span></div>
+              <div class="tc-headline">TUS <span class="hl">DATOS</span></div>
+            </div>
+
+            <div class="shell-content" id="c-ph5">
+              <div class="ph-header">
+                <div class="ph-title">Tu información</div>
+                <div class="ph-dots"><div class="dot lit"></div><div class="dot lit"></div><div class="dot lit"></div><div class="dot lit"></div><div class="dot lit"></div></div>
+              </div>
+              <div class="ph-body">
+                <div class="form-field"><div class="field-label">Nombre</div><div class="fv-line"><span class="fv-text" id="ph5-nombre"></span><span class="fv-caret" id="ph5-caret1"></span></div><div class="field-underline"></div></div>
+                <div class="form-field"><div class="field-label">Apellido</div><div class="fv-line"><span class="fv-text" id="ph5-apellido"></span><span class="fv-caret" id="ph5-caret2" style="opacity:0;"></span></div><div class="field-underline"></div></div>
+                <div class="form-field"><div class="field-label">Correo electrónico</div><div class="fv-line"><span class="fv-text" id="ph5-correo"></span><span class="fv-caret" id="ph5-caret3" style="opacity:0;"></span></div><div class="field-underline"></div></div>
+                <div class="form-field"><div class="field-label">Teléfono</div><div class="fv-line"><span class="fv-text" id="ph5-telefono"></span><span class="fv-caret" id="ph5-caret4" style="opacity:0;"></span></div><div class="field-underline"></div></div>
+              </div>
+              <div class="ph-footer"><div class="btn-pill" id="ph5-btn">Continuar</div></div>
+            </div>
+
+            <!-- 06 -->
+            <div class="shell-content tc-body" id="c-tc6">
+              <div class="tc-eyebrow"><span class="tc-num">06</span><span class="tc-label">Paso</span></div>
+              <div class="tc-headline">CONFIRMA Y <span class="hl">RESERVA</span></div>
+            </div>
+
+            <div class="shell-content" id="c-ph6">
+              <div class="ph-header">
+                <div class="ph-title">Pagos</div>
+                <div class="ph-dots"><div class="dot lit"></div><div class="dot lit"></div><div class="dot lit"></div><div class="dot lit"></div><div class="dot lit"></div></div>
+              </div>
+              <div class="ph-body">
+                <div class="line-item" id="ph6-li1"><div class="li-label">Cabello y Barba Express × 2</div><div class="li-value">Q<span class="num">260</span>.00</div></div>
+                <div class="line-item" id="ph6-li2"><div class="li-label">Mascarilla de Carbón Activado × 2</div><div class="li-value">Q<span class="num">100</span>.00</div></div>
+                <div class="total-row">
+                  <div class="total-label">Importe Total</div>
+                  <div class="total-value" id="ph6-total">Q0.00</div>
+                </div>
+              </div>
+              <div class="ph-footer"><div class="btn-pill" id="ph6-btn">Finalizar compra</div></div>
+            </div>
+
+            <!-- Badge -->
+            <div class="shell-content badge-body" id="c-badge">
+              <svg class="badge-svg" viewBox="0 0 140 140">
+                <circle cx="70" cy="70" r="58" id="badge-circle" />
+                <path d="M 42 72 L 62 92 L 100 48" id="badge-check" />
+              </svg>
+              <div class="badge-text" id="badge-text">Cita confirmada.</div>
+            </div>
+
+            <!-- CTA -->
+            <div class="shell-content cta-body" id="c-cta">
+              <div class="cta-text">Reserva ahora</div>
+            </div>
+
+          </div>
+          <!-- /morph-shell -->
+
+          <!-- Cursor -->
+          <div id="cursor">
+            <svg viewBox="0 0 24 24"><path d="M5 3L19 12L12 13L9 20L5 3Z" fill="#FFD200" stroke="#101010" stroke-width="1.5" /></svg>
+          </div>
+          <div class="ripple" id="ripple1"></div>
+          <div class="ripple" id="ripple2"></div>
         </div>
+        <!-- /camera -->
       </div>
+      <!-- /camera-viewport -->
 
-      <!-- ============ OUTRO 36.4–41.5 ============ -->
-      <div id="scene-outro" class="clip" data-start="36.4" data-duration="5.4" data-track-index="8">
-        <div id="outro-glow"></div>
-        <div id="outro-ghost">Nordic</div>
-        <div id="outro-content">
-          <div id="outro-logo"><img id="outro-logo-img" class="clip" src="assets/images/Nordic-BarberShop-logo-white.svg" alt="Nordic Barber Shop" data-start="36.4" data-duration="5.4"></div>
-          <p class="signature-line">Nos vemos en la silla.</p>
-          <div id="outro-rule"></div>
-          <span class="cta-pill">Reserva Ahora</span>
-          <p class="url-caption">nordic-barbershop.com/reservar-amelia</p>
-        </div>
-      </div>
+      <div id="fade-out"></div>
 
-      <div id="outro-fade"></div>
+      <!-- ============ AUDIO (direct children of root; not visual clips) ============ -->
+      <!-- BGM: bgm_002.wav is a fixed 22s catalog loop, composition is 52s — three
+           sequential instances of the same file crossfade into a seamless loop via
+           the volume tweens below, then fade to silence at the very end. -->
+      <!-- volume starts at 0 on all three; the crossfade envelope in the timeline script drives them -->
+      <!-- each instance gets its own track — the 1.5s overlap at each seam is the
+           intentional crossfade, not a conflict, so they can't share a track index -->
+      <audio id="bgm-1" src="assets/bgm/track.wav" data-start="0" data-duration="22" data-track-index="90" data-volume="0"></audio>
+      <audio id="bgm-2" src="assets/bgm/track.wav" data-start="20.5" data-duration="22" data-track-index="95" data-volume="0"></audio>
+      <audio id="bgm-3" src="assets/bgm/track.wav" data-start="41" data-duration="11" data-track-index="96" data-volume="0"></audio>
 
-      <div class="tick" id="tick-tl"></div>
-      <div class="tick" id="tick-br"></div>
-      <div id="frame-code">Nordic · Guía</div>
-      <div id="frame-code-b">Guatemala</div>
+      <audio id="sfx-whoosh-1" src="assets/sfx/whoosh.mp3" data-start="0.75" data-duration="1.3" data-track-index="92" data-volume="0.3"></audio>
+      <audio id="sfx-whoosh-2" src="assets/sfx/whoosh.mp3" data-start="3.6" data-duration="1.3" data-track-index="92" data-volume="0.4"></audio>
+      <audio id="sfx-whoosh-3" src="assets/sfx/whoosh.mp3" data-start="18.4" data-duration="1.3" data-track-index="92" data-volume="0.4"></audio>
+      <audio id="sfx-whoosh-4" src="assets/sfx/whoosh.mp3" data-start="40.6" data-duration="1.3" data-track-index="92" data-volume="0.4"></audio>
+      <audio id="sfx-whoosh-5" src="assets/sfx/whoosh.mp3" data-start="46.2" data-duration="1.3" data-track-index="92" data-volume="0.4"></audio>
 
-      <audio id="bgm" src="assets/bgm/track.wav" data-start="0" data-duration="41.5" data-track-index="90" data-volume="0.5"></audio>
-      <audio id="sfx-whoosh-1" src="assets/sfx/whoosh.mp3" data-start="2.95" data-duration="0.6" data-track-index="92" data-volume="0.4"></audio>
-      <audio id="sfx-whoosh-2" src="assets/sfx/whoosh.mp3" data-start="6.25" data-duration="0.6" data-track-index="92" data-volume="0.4"></audio>
-      <audio id="sfx-whoosh-3" src="assets/sfx/whoosh.mp3" data-start="36.5" data-duration="0.6" data-track-index="92" data-volume="0.4"></audio>
-      <audio id="sfx-tap-1" src="assets/sfx/tap.mp3" data-start="7.4" data-duration="0.4" data-track-index="91" data-volume="0.45"></audio>
-      <audio id="sfx-tap-2" src="assets/sfx/tap.mp3" data-start="12.6" data-duration="0.4" data-track-index="91" data-volume="0.45"></audio>
-      <audio id="sfx-tap-3" src="assets/sfx/tap.mp3" data-start="17.05" data-duration="0.4" data-track-index="91" data-volume="0.4"></audio>
-      <audio id="sfx-tap-4" src="assets/sfx/tap.mp3" data-start="19.15" data-duration="0.4" data-track-index="91" data-volume="0.4"></audio>
-      <audio id="sfx-tap-5" src="assets/sfx/tap.mp3" data-start="26.55" data-duration="0.4" data-track-index="91" data-volume="0.45"></audio>
-      <audio id="sfx-tap-6" src="assets/sfx/tap.mp3" data-start="30.35" data-duration="0.4" data-track-index="91" data-volume="0.45"></audio>
-      <audio id="sfx-stamp-1" src="assets/sfx/stamp.mp3" data-start="10.9" data-duration="1.1" data-track-index="93" data-volume="0.5"></audio>
-      <audio id="sfx-stamp-2" src="assets/sfx/stamp.mp3" data-start="15.7" data-duration="1.1" data-track-index="93" data-volume="0.5"></audio>
-      <audio id="sfx-stamp-3" src="assets/sfx/stamp.mp3" data-start="21.3" data-duration="1.1" data-track-index="93" data-volume="0.5"></audio>
-      <audio id="sfx-stamp-4" src="assets/sfx/stamp.mp3" data-start="25.7" data-duration="1.1" data-track-index="93" data-volume="0.5"></audio>
-      <audio id="sfx-stamp-5" src="assets/sfx/stamp.mp3" data-start="30.55" data-duration="1.1" data-track-index="93" data-volume="0.5"></audio>
-      <audio id="sfx-stamp-6" src="assets/sfx/stamp.mp3" data-start="32.6" data-duration="1.1" data-track-index="93" data-volume="0.6"></audio>
-      <audio id="sfx-keystrokes" src="assets/sfx/keystrokes.mp3" data-start="21.9" data-duration="2.4" data-track-index="91" data-volume="0.3"></audio>
-      <audio id="sfx-chime-1" src="assets/sfx/chime.mp3" data-start="20.4" data-duration="1.0" data-track-index="94" data-volume="0.4"></audio>
-      <audio id="sfx-chime-2" src="assets/sfx/chime.mp3" data-start="29.85" data-duration="1.0" data-track-index="94" data-volume="0.4"></audio>
-      <audio id="sfx-chime-3" src="assets/sfx/chime.mp3" data-start="32.5" data-duration="2.0" data-track-index="94" data-volume="0.6"></audio>
+      <audio id="sfx-tap-1" src="assets/sfx/tap.mp3" data-start="7.75" data-duration="0.3" data-track-index="91" data-volume="0.45"></audio>
+      <audio id="sfx-tap-2" src="assets/sfx/tap.mp3" data-start="9.6" data-duration="0.3" data-track-index="91" data-volume="0.45"></audio>
+      <audio id="sfx-tap-3" src="assets/sfx/tap.mp3" data-start="20.75" data-duration="0.3" data-track-index="91" data-volume="0.45"></audio>
+      <audio id="sfx-tap-4" src="assets/sfx/tap.mp3" data-start="22.7" data-duration="0.3" data-track-index="91" data-volume="0.45"></audio>
+
+      <audio id="sfx-press-1" src="assets/sfx/press.mp3" data-start="15.15" data-duration="0.2" data-track-index="91" data-volume="0.5"></audio>
+      <audio id="sfx-press-2" src="assets/sfx/press.mp3" data-start="29.35" data-duration="0.2" data-track-index="91" data-volume="0.5"></audio>
+      <audio id="sfx-press-3" src="assets/sfx/press.mp3" data-start="44.25" data-duration="0.2" data-track-index="91" data-volume="0.5"></audio>
+      <audio id="sfx-press-4" src="assets/sfx/press.mp3" data-start="48.75" data-duration="0.2" data-track-index="91" data-volume="0.5"></audio>
+
+      <audio id="sfx-stamp-1" src="assets/sfx/stamp.mp3" data-start="30.6" data-duration="1.3" data-track-index="93" data-volume="0.4"></audio>
+      <audio id="sfx-stamp-2" src="assets/sfx/stamp.mp3" data-start="30.9" data-duration="1.3" data-track-index="94" data-volume="0.3"></audio>
+
+      <audio id="sfx-chime" src="assets/sfx/chime.mp3" data-start="45.7" data-duration="4.8" data-track-index="93" data-volume="0.5"></audio>
+
+      <audio id="sfx-keystrokes" src="assets/sfx/keystrokes.mp3" data-start="36.1" data-duration="2.8" data-track-index="93" data-volume="0.28"></audio>
     </div>
 
     <script>
       window.__timelines = window.__timelines || {};
       const tl = gsap.timeline({ paused: true });
 
-      /* baseline: tap/iris fx invisible until their own pulse fires */
-      tl.set(".tap-dot, .tap-ring, #iris-ring, #screen-flash, .spark", { opacity: 0 }, 0);
+      // ============ Deterministic ambient particles ============
+      const ambientBg = document.getElementById("ambient-bg");
+      const EMBER_COUNT = 14;
+      const GOLDEN_ANGLE = 2.399963;
+      for (let i = 0; i < EMBER_COUNT; i++) {
+        const el = document.createElement("div");
+        el.className = "ember";
+        const angle = i * GOLDEN_ANGLE;
+        const radiusX = 200 + (i % 5) * 150;
+        const radiusY = 300 + (i % 4) * 320;
+        const x = 540 + Math.cos(angle) * radiusX;
+        const y = 960 + Math.sin(angle) * radiusY;
+        el.style.left = x + "px";
+        el.style.top = y + "px";
+        el.id = "ember-" + i;
+        ambientBg.appendChild(el);
+      }
 
-      /* ---------------- HOOK ---------------- */
-      tl.fromTo("#hook-ghost", { xPercent: -50, yPercent: -50, opacity: 0, scale: 0.85 }, { xPercent: -50, yPercent: -50, opacity: 0.05, scale: 1, duration: 1.2, ease: "power2.out" }, 0.1);
-      tl.fromTo("#hook-logo", { xPercent: -50, opacity: 0, y: -30, scale: 0.9 }, { xPercent: -50, opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "power3.out" }, 0.3);
-      tl.fromTo("#hook-rule", { xPercent: -50, scaleX: 0 }, { xPercent: -50, scaleX: 1, duration: 0.45, ease: "power2.inOut" }, 0.95);
+      // Seed dots for the open-scene logo ignition
+      const sceneOpen = document.getElementById("scene-open");
+      const SEED_COUNT = 8;
+      for (let i = 0; i < SEED_COUNT; i++) {
+        const el = document.createElement("div");
+        el.className = "seed";
+        const angle = (i / SEED_COUNT) * Math.PI * 2;
+        const r = 260;
+        el.style.left = (540 + Math.cos(angle) * r) + "px";
+        el.style.top = (860 + Math.sin(angle) * r * 0.6) + "px";
+        el.id = "seed-" + i;
+        sceneOpen.appendChild(el);
+      }
 
-      tl.fromTo("#hh-w1", { y: 44, opacity: 0, scale: 1.12 }, { y: 0, opacity: 1, scale: 1, duration: 0.4, ease: "power4.out" }, 1.1);
-      tl.fromTo("#hh-w2", { x: -28, opacity: 0 }, { x: 0, opacity: 1, duration: 0.32, ease: "power3.out" }, 1.2);
-      tl.fromTo("#hh-w3", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.36, ease: "power3.out" }, 1.3);
-      tl.fromTo("#hh-w4", { y: 28, rotate: -5, opacity: 0 }, { y: 0, rotate: 0, opacity: 1, duration: 0.38, ease: "circ.out" }, 1.48);
-      tl.fromTo("#hh-w5", { scale: 1.35, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "expo.out" }, 1.6);
-      tl.to("#scene-hook", { opacity: 0, duration: 0.4, ease: "power1.in" }, 3.0);
-
-      /* ---------------- SETUP ---------------- */
-      tl.fromTo("#setup-ghost", { opacity: 0 }, { opacity: 0.05, duration: 1.0, ease: "power1.out" }, 3.0);
-      tl.fromTo("#setup-eyebrow", { xPercent: -50, opacity: 1, y: 24, scale: 0.9 }, { xPercent: -50, opacity: 1, y: 0, scale: 1, duration: 0.25, ease: "power2.out" }, 2.95);
-
-      tl.fromTo("#sh-w1", { y: 40, opacity: 0, scale: 1.12 }, { y: 0, opacity: 1, scale: 1, duration: 0.38, ease: "power4.out" }, 3.35);
-      tl.fromTo("#sh-w2", { x: -28, opacity: 0 }, { x: 0, opacity: 1, duration: 0.32, ease: "power3.out" }, 3.46);
-      tl.fromTo("#sh-w3", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.34, ease: "power3.out" }, 3.6);
-      tl.fromTo("#sh-w4", { y: 26, rotate: 5, opacity: 0 }, { y: 0, rotate: 0, opacity: 1, duration: 0.34, ease: "circ.out" }, 3.72);
-      tl.fromTo("#sh-w5", { scale: 1.3, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "expo.out" }, 3.84);
-
-      tl.fromTo("#setup-hint", { xPercent: -50, opacity: 0, y: -10 }, { xPercent: -50, opacity: 1, y: 0, duration: 0.4, ease: "sine.out" }, 4.3);
-      tl.to("#setup-chevron", { y: 14, duration: 0.5, ease: "sine.inOut", yoyo: true, repeat: 3 }, 4.5);
-      tl.to("#scene-setup", { opacity: 0, duration: 0.3, ease: "power1.in" }, 6.0);
-
-      /* ---------------- RIG ENTRANCE + IDLE BREATH ---------------- */
-      tl.fromTo("#phone-frame", { y: 260, opacity: 0, rotate: 2 }, { y: 0, opacity: 1, rotate: 0, duration: 0.7, ease: "power3.out" }, 6.2);
-      tl.fromTo("#ticket-panel", { x: 60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 6.45);
-      tl.fromTo("#progress-rail", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 6.6);
-      tl.to("#phone-frame", { scale: 1.008, duration: 3.1, ease: "sine.inOut", yoyo: true, repeat: 8 }, 6.9);
-
-      /* ---------------- helpers ---------------- */
-      function stepChrome(n, start) {
-        tl.fromTo(`#ghost-0${n}`, { opacity: 0 }, { opacity: 0.05, duration: 0.4, ease: "power1.out" }, start);
-        tl.fromTo(`#label-${n}`, { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.4, ease: "back.out(1.4)" }, start + 0.05);
-        tl.to(`#pn-${n}`, { scaleX: 1, duration: 0.35, ease: "power2.out" }, start + 0.1);
-        if (n > 1) {
-          tl.to(`#ghost-0${n - 1}`, { opacity: 0, duration: 0.3 }, start);
-          tl.to(`#label-${n - 1}`, { opacity: 0, y: -14, duration: 0.3 }, start);
+      // ============ Build calendar + time-slot DOM up front (needed for measurement below) ============
+      (function () {
+        const grid = document.getElementById("ph3-cal-grid");
+        const dow = ["L", "M", "X", "J", "V", "S", "D"];
+        dow.forEach(function (d) {
+          const h = document.createElement("div");
+          h.textContent = d;
+          h.style.textAlign = "center";
+          h.style.fontFamily = "'Fira Sans Condensed', sans-serif";
+          h.style.fontWeight = "700";
+          h.style.fontSize = "16px";
+          h.style.color = "rgba(247,244,236,0.4)";
+          grid.appendChild(h);
+        });
+        // July 2026: day 1 falls on Wednesday (mié) per the real widget — 2 leading blanks, 31 days
+        for (let i = 0; i < 2; i++) {
+          const blank = document.createElement("div");
+          blank.className = "cal-cell muted";
+          grid.appendChild(blank);
         }
-      }
-      function tapPulse(dotSel, ringSel, at, strong) {
-        if (dotSel) {
-          tl.fromTo(dotSel, { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1.15, duration: 0.16, ease: "power3.out" }, at);
-          tl.to(dotSel, { scale: 0.82, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1 }, at + 0.16);
-          tl.to(dotSel, { opacity: 0, duration: 0.25, ease: "power1.in" }, at + 0.85);
+        for (let d = 1; d <= 31; d++) {
+          const cell = document.createElement("div");
+          cell.className = "cal-cell";
+          cell.id = "cal-day-" + d;
+          cell.innerHTML = '<span class="num">' + d + "</span>";
+          grid.appendChild(cell);
         }
-        if (ringSel) {
-          tl.fromTo(ringSel, { opacity: 0.85, scale: 0.5 }, { opacity: 0, scale: strong ? 2.6 : 2.0, duration: strong ? 0.6 : 0.45, ease: "power2.out" }, at + 0.1);
+      })();
+      (function () {
+        const slots = document.getElementById("ph3-slots");
+        const times = [
+          ["3:30 p. m.", "4:30 p. m."], ["3:40 p. m.", "4:40 p. m."],
+          ["3:50 p. m.", "4:50 p. m."], ["4:00 p. m.", "5:00 p. m."],
+          ["4:10 p. m.", "5:10 p. m."], ["4:20 p. m.", "5:20 p. m."],
+        ];
+        times.forEach(function (t, i) {
+          const chip = document.createElement("div");
+          chip.className = "slot-chip";
+          if (i === 3) chip.id = "ph3-slot-picked";
+          chip.innerHTML = t[0].replace(/(\d+)/g, '<span class="num">$1</span>') + " – " + t[1].replace(/(\d+)/g, '<span class="num">$1</span>');
+          slots.appendChild(chip);
+        });
+      })();
+
+      // ============ Measure real cursor-tap targets (pre-calculated layout constants) ============
+      // Force the shell to its full phase-card footprint so in-card elements lay out at their
+      // real final positions, measure, then restore — per hyperframes-animation's guidance to
+      // compute coordinates once at setup rather than guessing or measuring mid-tween.
+      const TARGETS = {};
+      (function () {
+        const shellEl = document.getElementById("shell");
+        const prevW = shellEl.style.width, prevH = shellEl.style.height;
+        const prevShellTransform = shellEl.style.transform;
+        shellEl.style.width = "880px";
+        shellEl.style.height = "1220px";
+        // Neutralize the shell's own entrance scale(0.6) so descendants measure at real size.
+        shellEl.style.transform = "translate(-50%, -50%) scale(1)";
+        // ph4-modal starts at CSS scale(0.85); measure it at its settled scale(1) end-state instead.
+        const modalEl = document.getElementById("ph4-modal");
+        const prevModalTransform = modalEl.style.transform;
+        modalEl.style.transform = "translateY(-50%) scale(1)";
+        const camRect = document.getElementById("camera").getBoundingClientRect();
+        // GSAP's immediateRender applies a tween's `fromTo` start state (e.g. scale(0.6), y:10)
+        // as an inline transform the instant the tween is created — before this measurement runs
+        // and before any real seek. Neutralize each target's own transform while measuring so we
+        // get its true settled-layout position, not its pre-entrance transform state.
+        function centerOf(id) {
+          const el = document.getElementById(id);
+          const prevT = el.style.transform;
+          el.style.transform = "none";
+          const r = el.getBoundingClientRect();
+          el.style.transform = prevT;
+          return { x: r.left + r.width / 2 - camRect.left, y: r.top + r.height / 2 - camRect.top };
         }
-      }
-      function panelSwap(newSel, oldSel, t, dur) {
-        dur = dur || 0.5;
-        if (oldSel) tl.to(oldSel, { x: -614, opacity: 0, duration: dur * 0.85, ease: "power3.in" }, t);
-        tl.set(newSel, { opacity: 1 }, t);
-        tl.fromTo(newSel, { x: 614 }, { x: 0, duration: dur, ease: "power3.inOut" }, t);
-      }
-      /* iris "shader-style" peak transition — circular gold wipe + flash across the phone screen */
-      function irisTransition(newSel, oldSel, t) {
-        tl.fromTo("#screen-flash", { opacity: 0 }, { opacity: 0.5, duration: 0.1, ease: "power1.in" }, t);
-        tl.to("#screen-flash", { opacity: 0, duration: 0.3, ease: "power1.out" }, t + 0.1);
-        tl.fromTo("#iris-ring", { opacity: 1, scale: 0 }, { opacity: 0, scale: 46, duration: 0.55, ease: "power2.out" }, t);
-        tl.set(oldSel, { opacity: 0 }, t + 0.16);
-        tl.fromTo(newSel, { opacity: 0, scale: 1.06, filter: "blur(10px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.4, ease: "power2.out" }, t + 0.16);
-      }
-      function ticketStamp(sel, at) {
-        tl.fromTo(sel, { opacity: 0, y: 10, scale: 0.9, rotate: -2 }, { opacity: 1, y: 0, scale: 1, rotate: 0, duration: 0.22, ease: "back.out(2.4)" }, at);
-        tl.to(sel, { scale: 1.04, duration: 0.08, yoyo: true, repeat: 1, ease: "power1.inOut" }, at + 0.22);
-      }
+        TARGETS.ph1Service = centerOf("ph1-row-express");
+        TARGETS.ph1Artist = centerOf("ph1-row-renato");
+        TARGETS.ph2Plus = centerOf("ph2-plus");
+        TARGETS.ph3Day8 = centerOf("cal-day-8");
+        TARGETS.ph3Slot = centerOf("ph3-slot-picked");
+        TARGETS.ph4Yes = centerOf("ph4-yes");
+        TARGETS.ph6Btn = centerOf("ph6-btn");
+        shellEl.style.transform = prevShellTransform;
+        modalEl.style.transform = prevModalTransform;
+        shellEl.style.width = prevW;
+        shellEl.style.height = prevH;
+      })();
 
-      /* ---- STEP 1 · 7.4–12.4 · elige tu servicio ---- */
-      stepChrome(1, 7.4);
-      panelSwap("#panel-1", null, 7.4);
-      ["#chip-1", "#chip-2", "#chip-3", "#chip-4"].forEach((c, i) => {
-        tl.fromTo(c, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 7.75 + i * 0.06);
-      });
-      ["#srow-1", "#srow-2", "#srow-3", "#srow-4"].forEach((r, i) => {
-        tl.fromTo(r, { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out" }, 8.1 + i * 0.12);
-      });
-      tapPulse("#dot-1", "#ring-1", 10.55);
-      tl.fromTo("#scheck-3", { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2.6)" }, 10.7);
-      ticketStamp("#trow-1", 10.9);
+      // ============ Named time constants ============
+      const T_OPEN = 0;
+      const T_TC1 = 3.6, T_PH1 = 5.2;
+      const T_TC2 = 11.6, T_PH2 = 13.0;
+      const T_TC3 = 17.0, T_PH3 = 18.4;
+      const T_TC4 = 25.9, T_PH4 = 27.3;
+      const T_TC5 = 33.8, T_PH5 = 35.2;
+      const T_TC6 = 39.2, T_PH6 = 40.6;
+      const T_BADGE = 45.2, T_CTA = 46.2;
+      const T_END = 52;
+      const MORPH_DUR = 0.8;
 
-      /* ---- STEP 2 · 12.4–17.05 · elige tu barbero ---- */
-      stepChrome(2, 12.4);
-      panelSwap("#panel-2", "#panel-1", 12.4);
-      ["#bcard-1", "#bcard-2", "#bcard-3"].forEach((c, i) => {
-        tl.fromTo(c, { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 12.75 + i * 0.1);
-      });
-      tapPulse("#dot-2", "#ring-2", 15.35);
-      tl.fromTo("#ring-renato", { opacity: 0, scale: 1 }, { opacity: 1, scale: 1.12, duration: 0.3, ease: "power2.out" }, 15.45);
-      tl.to("#ring-renato", { opacity: 0.5, scale: 1, duration: 0.5, ease: "sine.inOut" }, 15.75);
-      tl.to(["#bcard-1", "#bcard-3"], { opacity: 0.38, duration: 0.3 }, 15.45);
-      ticketStamp("#trow-2", 15.7);
+      const SHAPES = {
+        title:  { width: 760, height: 220, borderRadius: 110, background: "#1a1a1a" },
+        phase:  { width: 880, height: 1220, borderRadius: 40, background: "#1a1a1a" },
+        circle: { width: 280, height: 280, borderRadius: 140, background: "#1a1a1a" },
+        cta:    { width: 620, height: 170, borderRadius: 85, background: "#ffd200" },
+      };
 
-      /* ---- STEP 3 · 17.05–22.6 · fecha y hora (PEAK, iris in) ---- */
-      stepChrome(3, 17.05);
-      irisTransition("#panel-3a", "#panel-2", 17.05);
-      const calCells = document.querySelectorAll("#cal-grid .cal-cell");
-      calCells.forEach((c, i) => {
-        tl.fromTo(c, { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.22, ease: "back.out(2.2)" }, 17.5 + i * 0.028);
-      });
-      tapPulse(null, "#ring-3a", 19.1, true);
-      tl.to("#cal-pick", { scale: 1.12, duration: 0.14, yoyo: true, repeat: 1, ease: "power1.inOut" }, 19.1);
-      tl.set("#screen-flash", { opacity: 0 }, 19.1);
-      tl.to("#sfx-chime-1", { duration: 0.01 }, 19.1);
-      panelSwap("#panel-3b", "#panel-3a", 19.55, 0.45);
-      ["#tp-1", "#tp-2", "#tp-pick", "#tp-3", "#tp-4", "#tp-5"].forEach((p, i) => {
-        tl.fromTo(p, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 20.05 + i * 0.06);
-      });
-      tl.fromTo("#tp-pick .sweep", { scaleX: 0 }, { scaleX: 1, duration: 0.35, ease: "power2.inOut" }, 20.55);
-      tl.to("#tp-pick span", { color: "#101010", duration: 0.35, ease: "power2.inOut" }, 20.55);
-      tl.to("#tp-pick", { scale: 1.03, duration: 0.12, yoyo: true, repeat: 1 }, 20.6);
-      ticketStamp("#trow-3", 21.3);
+      const shell = "#shell";
 
-      /* ---- STEP 4 · 22.6–27.05 · tus datos ---- */
-      stepChrome(4, 22.6);
-      panelSwap("#panel-4", "#panel-3b", 22.6);
-      const flds = ["#f-nombre", "#f-apellido", "#f-correo", "#f-telefono"];
-      flds.forEach((f, i) => {
-        tl.fromTo(f, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out" }, 23.0 + i * 0.55);
-      });
-      const typedFields = ["nombre", "apellido", "correo", "telefono"];
-      typedFields.forEach((id, i) => {
-        const t0 = 23.15 + i * 0.55;
-        const lenPx = [72, 92, 260, 140][i];
-        tl.set(`#caret-${id}`, { opacity: 1 }, t0);
-        tl.fromTo(`#typed-${id}`, { width: 0 }, { width: lenPx, duration: 0.42, ease: "steps(10)" }, t0);
-        tl.to(`#caret-${id}`, { opacity: 0, duration: 0.15, repeat: 3, yoyo: true }, t0 + 0.42);
-      });
-      tapPulse("#dot-4", "#ring-4", 26.7);
-      ticketStamp("#trow-4", 25.7);
-
-      /* ---- STEP 5 · 27.05–31.55 · confirma y paga ---- */
-      stepChrome(5, 27.05);
-      panelSwap("#panel-5", "#panel-4", 27.05);
-      tl.fromTo("#rrow-1", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out" }, 27.4);
-      tl.fromTo("#rrow-2", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out" }, 27.7);
-      const totalObj = { v: 0 };
-      tl.to(totalObj, {
-        v: 180, duration: 0.7, ease: "power1.out", delay: 0.1,
-        onUpdate: () => { document.getElementById("rtotal").textContent = "GTQ" + totalObj.v.toFixed(2); }
-      }, 28.0);
-      tl.fromTo("#pay-btn", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, 29.0);
-      tapPulse(null, "#ring-5", 30.35);
-      tl.fromTo("#pay-btn .ripple", { scale: 0, opacity: 0.5 }, { scale: 14, opacity: 0, duration: 0.5, ease: "power2.out" }, 30.35);
-      tl.to("#pay-btn", { scale: 0.96, duration: 0.1, yoyo: true, repeat: 1 }, 30.35);
-      ticketStamp("#trow-5", 30.55);
-
-      /* ---- STEP 6 · 31.55–37.0 · cita confirmada (PEAK, iris in) ---- */
-      stepChrome(6, 31.55);
-      irisTransition("#panel-6", "#panel-5", 31.55);
-      tl.fromTo("#success-card", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power1.out" }, 31.75);
-      tl.fromTo("#success-ring .fill", { strokeDashoffset: 410 }, { strokeDashoffset: 38, duration: 0.65, ease: "power2.out" }, 32.1);
-      tl.fromTo("#success-check", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.32, ease: "power1.out" }, 32.6);
-      tl.fromTo("#success-title", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 32.65);
-      tl.fromTo("#success-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power2.inOut" }, 32.85);
-      tl.fromTo("#success-sub", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.32, ease: "sine.out" }, 33.0);
-
-      /* particle burst — deterministic fixed angles, no Math.random */
-      for (let i = 0; i < 12; i++) {
-        const ang = (i * 30) * (Math.PI / 180);
-        const dist = i % 2 === 0 ? 130 : 95;
-        const dx = Math.cos(ang) * dist;
-        const dy = Math.sin(ang) * dist;
-        tl.fromTo(`#spark-${i}`, { opacity: 1, x: 0, y: 0, scale: 1 }, { opacity: 0, x: dx, y: dy, scale: 0.2, duration: 0.55, ease: "power2.out" }, 32.15);
+      // ============ Ambient background timeline (bounded, finite) ============
+      // Logo must never rotate (design-system.md §2) — watermark stays static, no tween.
+      // bg glow gentle breathe via sine (bounded)
+      (function () {
+        const glow = document.getElementById("bg-glow");
+        const phase = { p: 0 };
+        tl.to(phase, {
+          p: Math.PI * 2 * (T_END / 3.2),
+          duration: T_END,
+          ease: "none",
+          onUpdate: function () {
+            const s = Math.sin(phase.p);
+            glow.style.opacity = String(0.34 + s * 0.08);
+            glow.style.transform = "translate(-50%, -50%) scale(" + (1 + s * 0.02) + ")";
+          },
+        }, 0);
+      })();
+      // embers: deterministic drift + twinkle, finite (single tween per ember — no separate entrance to avoid opacity overlap)
+      for (let i = 0; i < EMBER_COUNT; i++) {
+        const el = document.getElementById("ember-" + i);
+        const delay = (i % 6) * 0.4;
+        const cycles = 3 + (i % 3);
+        const phase = { p: 0 };
+        tl.to(phase, {
+          p: Math.PI * 2 * cycles,
+          duration: T_END - delay,
+          ease: "none",
+          onUpdate: function () {
+            const s = Math.sin(phase.p);
+            el.style.transform = "translateY(" + (s * -18) + "px)";
+            el.style.opacity = String(0.4 + Math.max(0, s) * 0.4);
+          },
+        }, delay);
       }
 
-      tl.fromTo("#ticket-seal", { opacity: 0, xPercent: -50, scale: 0, rotate: -8 }, { opacity: 1, xPercent: -50, scale: 1, rotate: -8, duration: 0.3, ease: "back.out(3)" }, 32.6);
-      tl.to("#ticket-seal", { scale: 1.06, duration: 0.1, yoyo: true, repeat: 1 }, 32.9);
+      // ============ Cursor tap helper ============
+      const cursor = document.getElementById("cursor");
+      const ripple1 = document.getElementById("ripple1");
+      const ripple2 = document.getElementById("ripple2");
 
-      /* ---------------- RIG EXIT ---------------- */
-      tl.fromTo("#phone-frame", { y: 0, scale: 1 }, { y: -40, scale: 0.94, opacity: 0, duration: 0.5, ease: "power2.in" }, 36.3);
-      tl.to("#ticket-panel", { x: 40, opacity: 0, duration: 0.4, ease: "power2.in" }, 36.3);
-      tl.to("#step-label-zone", { opacity: 0, duration: 0.35 }, 36.3);
-      tl.to(".ghost-num", { opacity: 0, duration: 0.35 }, 36.3);
-      tl.to("#progress-rail", { opacity: 0, duration: 0.35 }, 36.3);
+      function addCursorTap(opts) {
+        const at = opts.at;
+        const fromX = opts.fromX, fromY = opts.fromY;
+        const toX = opts.toX, toY = opts.toY;
+        const moveDur = opts.moveDur || 0.45;
+        const holdAfter = opts.holdAfter != null ? opts.holdAfter : 0.25;
+        tl.set(cursor, { x: fromX, y: fromY, opacity: 0, scale: 1 }, at - 0.05);
+        tl.to(cursor, { opacity: 1, duration: 0.12, overwrite: "auto" }, at);
+        tl.to(cursor, { x: toX, y: toY, duration: moveDur, ease: "power2.inOut", overwrite: "auto" }, at);
+        const clickAt = at + moveDur + 0.08;
+        tl.to(cursor, { scale: 0.85, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1, overwrite: "auto" }, clickAt);
+        tl.set([ripple1, ripple2], { x: toX, y: toY, opacity: 1 }, clickAt);
+        tl.fromTo([ripple1, ripple2], { scale: 0, opacity: 1 }, {
+          scale: 3.2, opacity: 0, duration: 0.55, ease: "power2.out", stagger: 0.07, immediateRender: false,
+        }, clickAt);
+        tl.to(cursor, { opacity: 0, duration: 0.18, overwrite: "auto" }, clickAt + holdAfter);
+        return clickAt;
+      }
 
-      /* ---------------- OUTRO ---------------- */
-      tl.to("#scene-outro", { opacity: 1, duration: 0.01 }, 36.4);
-      const O = 36.55;
-      tl.fromTo("#outro-glow", { xPercent: -50, yPercent: -50, opacity: 0, scale: 0.8 }, { xPercent: -50, yPercent: -50, opacity: 1, scale: 1, duration: 1.1, ease: "sine.out" }, O);
-      tl.fromTo("#outro-glow", { xPercent: -50, yPercent: -50, scale: 1 }, { xPercent: -50, yPercent: -50, scale: 1.08, duration: 2.4, ease: "sine.inOut", yoyo: true, repeat: 1 }, O + 1.1);
-      tl.fromTo("#outro-ghost", { opacity: 0 }, { opacity: 0.05, duration: 1.2, ease: "power1.out" }, O);
-      tl.fromTo("#outro-logo", { opacity: 0, y: 24, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(1.8)" }, O + 0.15);
-      tl.fromTo(".signature-line", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: "sine.out" }, O + 0.55);
-      tl.fromTo("#outro-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "power2.inOut" }, O + 0.9);
-      tl.fromTo(".cta-pill", { opacity: 0, y: 18, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(2.2)" }, O + 1.1);
-      tl.fromTo(".url-caption", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "sine.out" }, O + 1.4);
+      // ============ Morph-shell beat driver ============
+      const BEATS = [
+        { at: T_TC1, shape: "title", content: "#c-tc1" },
+        { at: T_PH1, shape: "phase", content: "#c-ph1" },
+        { at: T_TC2, shape: "title", content: "#c-tc2" },
+        { at: T_PH2, shape: "phase", content: "#c-ph2" },
+        { at: T_TC3, shape: "title", content: "#c-tc3" },
+        { at: T_PH3, shape: "phase", content: "#c-ph3" },
+        { at: T_TC4, shape: "title", content: "#c-tc4" },
+        { at: T_PH4, shape: "phase", content: "#c-ph4" },
+        { at: T_TC5, shape: "title", content: "#c-tc5" },
+        { at: T_PH5, shape: "phase", content: "#c-ph5" },
+        { at: T_TC6, shape: "title", content: "#c-tc6" },
+        { at: T_PH6, shape: "phase", content: "#c-ph6" },
+        { at: T_BADGE, shape: "circle", content: "#c-badge" },
+        { at: T_CTA, shape: "cta", content: "#c-cta" },
+      ];
 
-      /* ---------------- FINAL FADE ---------------- */
-      tl.to("#outro-fade", { opacity: 1, duration: 0.5, ease: "power2.in" }, 41.0);
-      tl.to("#bgm", { volume: 0, duration: 0.5, ease: "power2.in" }, 41.0);
+      // Shell spring-pop entrance just before the first title card
+      tl.fromTo(shell, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.5, ease: "power3.out" }, T_TC1 - 0.35);
+
+      let prevContent = null;
+      BEATS.forEach(function (b) {
+        tl.to(shell, Object.assign({}, SHAPES[b.shape], { duration: MORPH_DUR, ease: "power2.inOut" }), b.at);
+        if (prevContent) {
+          tl.to(prevContent, { opacity: 0, duration: MORPH_DUR * 0.4, ease: "power1.in" }, b.at);
+        }
+        tl.to(b.content, { opacity: 1, duration: MORPH_DUR * 0.4, ease: "power1.out" }, b.at + MORPH_DUR * 0.6);
+        prevContent = b.content;
+      });
+
+      // ============ Camera drift (2D push/pull, viewport-change pattern) ============
+      const camera = document.getElementById("camera");
+      const cam = { scale: 1, x: 0, y: 0 };
+      function applyCamera() {
+        camera.style.transform = "translate(" + cam.x + "px, " + cam.y + "px) scale(" + cam.scale + ")";
+      }
+      applyCamera();
+      // gentle push-in across the open scene, then settle
+      tl.to(cam, { scale: 1.06, duration: 2.4, ease: "power2.out", onUpdate: applyCamera }, 0.3);
+      tl.to(cam, { scale: 1.0, duration: 1.0, ease: "power2.inOut", onUpdate: applyCamera }, 2.7);
+      // subtle push on the phase-3 peak beat
+      tl.to(cam, { scale: 1.035, duration: 1.6, ease: "power2.inOut", onUpdate: applyCamera }, T_PH3 + 0.6);
+      tl.to(cam, { scale: 1.0, duration: 1.2, ease: "power2.inOut", onUpdate: applyCamera }, T_PH3 + 5.2);
+      // push on phase-6 climax
+      tl.to(cam, { scale: 1.05, duration: 1.4, ease: "power2.inOut", onUpdate: applyCamera }, T_PH6 + 2.0);
+      tl.to(cam, { scale: 1.0, duration: 1.0, ease: "power2.inOut", onUpdate: applyCamera }, T_BADGE + 0.4);
+
+      // ============================================================
+      // SCENE: OPEN
+      // ============================================================
+      for (let i = 0; i < SEED_COUNT; i++) {
+        const el = document.getElementById("seed-" + i);
+        tl.fromTo(el, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "power3.out" }, 0.15 + i * 0.05);
+        tl.to(el, { opacity: 0, duration: 0.3, ease: "power1.in" }, 0.9 + i * 0.03);
+      }
+      tl.fromTo("#open-glow", { opacity: 0, scale: 0.7 }, { opacity: 0.55, scale: 1, duration: 0.7, ease: "power2.out" }, 0.7);
+      tl.fromTo("#open-logo", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power3.out" }, 0.9);
+      tl.fromTo("#open-headline", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 1.7);
+      tl.to("#open-glow", { opacity: 0.3, duration: 1.0, ease: "power1.inOut" }, 2.4);
+      tl.to("#scene-open", { opacity: 0, duration: 0.5, ease: "power1.in" }, 3.15);
+
+      // ============================================================
+      // PHASE 1 — Elige tu servicio
+      // ============================================================
+      tl.fromTo("#ph1-service-box", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, T_PH1 + 0.95);
+      tl.to("#ph1-dd-service", { opacity: 1, duration: 0.25 }, T_PH1 + 1.35);
+      (function () {
+        const rows = document.querySelectorAll("#ph1-dd-service .dd-row");
+        rows.forEach(function (row, i) {
+          tl.fromTo(row, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.32, ease: "power3.out" }, T_PH1 + 1.4 + i * 0.06);
+        });
+      })();
+      addCursorTap({ at: T_PH1 + 2.1, fromX: 300, fromY: 620, toX: TARGETS.ph1Service.x, toY: TARGETS.ph1Service.y, moveDur: 0.4, holdAfter: 0.15 });
+      tl.to("#ph1-row-express", { backgroundColor: "rgba(255,210,0,0.1)", duration: 0.2 }, T_PH1 + 2.55);
+      tl.to("#ph1-dd-service", { opacity: 0, duration: 0.25 }, T_PH1 + 2.8);
+      tl.to("#ph1-service-value", { duration: 0.01, onStart: function () {
+        const el = document.getElementById("ph1-service-value");
+        el.classList.remove("placeholder");
+        el.innerHTML = 'Cabello y Barba Express · Q<span class="num">130</span>.00';
+      } }, T_PH1 + 2.85);
+
+      tl.fromTo("#ph1-artist-box", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, T_PH1 + 3.15);
+      tl.to("#ph1-dd-artist", { opacity: 1, duration: 0.2 }, T_PH1 + 3.45);
+      (function () {
+        const rows = document.querySelectorAll("#ph1-dd-artist .dd-row");
+        rows.forEach(function (row, i) {
+          tl.fromTo(row, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, T_PH1 + 3.5 + i * 0.07);
+        });
+      })();
+      addCursorTap({ at: T_PH1 + 3.95, fromX: 780, fromY: 500, toX: TARGETS.ph1Artist.x, toY: TARGETS.ph1Artist.y, moveDur: 0.35, holdAfter: 0.15 });
+      tl.to("#ph1-dd-artist", { opacity: 0, duration: 0.22 }, T_PH1 + 4.35);
+      tl.to("#ph1-artist-value", { duration: 0.01, onStart: function () {
+        const el = document.getElementById("ph1-artist-value");
+        el.classList.remove("placeholder");
+        el.innerHTML = "Renato López";
+      } }, T_PH1 + 4.4);
+      tl.fromTo("#ph1-btn", { scale: 0.9 }, { scale: 1, duration: 0.25, ease: "back.out(1.5)" }, T_PH1 + 4.7);
+
+      // ============================================================
+      // PHASE 2 — Suma un extra
+      // ============================================================
+      tl.fromTo("#c-ph2 .stepper-row", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, T_PH2 + 0.9);
+      addCursorTap({ at: T_PH2 + 1.7, fromX: 620, fromY: 780, toX: TARGETS.ph2Plus.x, toY: TARGETS.ph2Plus.y, moveDur: 0.4, holdAfter: 0.1 });
+      tl.to("#ph2-plus", { scale: 0.85, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1 }, T_PH2 + 2.15);
+      (function () {
+        const el = document.getElementById("ph2-val");
+        const state = { v: 0 };
+        tl.to(state, { v: 1, duration: 0.35, ease: "power3.out", onUpdate: function () { el.textContent = String(Math.round(state.v)); } }, T_PH2 + 2.15);
+        tl.fromTo(el, { scale: 0.7 }, { scale: 1, duration: 0.3, ease: "back.out(1.6)" }, T_PH2 + 2.15);
+      })();
+      tl.fromTo("#ph2-btn", { scale: 0.9 }, { scale: 1, duration: 0.25, ease: "back.out(1.5)" }, T_PH2 + 2.8);
+
+      // ============================================================
+      // PHASE 3 — Elige fecha y hora
+      // (calendar + slot DOM already built up front, see the measurement pass above)
+      // ============================================================
+      (function () {
+        const cells = document.querySelectorAll("#ph3-cal-grid .cal-cell:not(.muted)");
+        cells.forEach(function (cell, i) {
+          if (i >= 14) { tl.set(cell, { opacity: 1, scale: 1 }, T_PH3 + 1.4); return; }
+          tl.fromTo(cell, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.28, ease: "power3.out" }, T_PH3 + 0.9 + i * 0.035);
+        });
+      })();
+      addCursorTap({ at: T_PH3 + 1.9, fromX: 300, fromY: 950, toX: TARGETS.ph3Day8.x, toY: TARGETS.ph3Day8.y, moveDur: 0.4, holdAfter: 0.15 });
+      tl.to("#cal-day-8", { backgroundColor: "#ffd200", color: "#101010", duration: 0.25 }, T_PH3 + 2.35);
+
+      // Calendar morphs into time-slot grid (card-morph-anchor, internal to phase)
+      tl.to("#ph3-cal", { opacity: 0, duration: 0.35, ease: "power1.in" }, T_PH3 + 2.9);
+      tl.to("#ph3-slots", { opacity: 1, duration: 0.2 }, T_PH3 + 3.2);
+      (function () {
+        const chips = document.querySelectorAll("#ph3-slots .slot-chip");
+        chips.forEach(function (chip, i) {
+          tl.fromTo(chip, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, T_PH3 + 3.25 + i * 0.06);
+        });
+      })();
+      addCursorTap({ at: T_PH3 + 3.85, fromX: 300, fromY: 1000, toX: TARGETS.ph3Slot.x, toY: TARGETS.ph3Slot.y, moveDur: 0.4, holdAfter: 0.2 });
+      tl.to("#ph3-slot-picked", { backgroundColor: "#ffd200", color: "#101010", borderColor: "#ffd200", duration: 0.25 }, T_PH3 + 4.3);
+      tl.fromTo("#ph3-btn", { scale: 0.9 }, { scale: 1, duration: 0.25, ease: "back.out(1.5)" }, T_PH3 + 4.75);
+
+      // ============================================================
+      // PHASE 4 — Hazla recurrente
+      // ============================================================
+      tl.to("#ph4-body", { opacity: 0 }, T_PH4); // hide settings/appts initially
+      tl.to("#ph4-scrim", { opacity: 1, duration: 0.3 }, T_PH4 + 0.6);
+      tl.fromTo("#ph4-modal", { opacity: 0, scale: 0.85, y: "-40%" }, { opacity: 1, scale: 1, y: "-50%", duration: 0.4, ease: "power3.out" }, T_PH4 + 0.75);
+      addCursorTap({ at: T_PH4 + 1.6, fromX: 500, fromY: 1100, toX: TARGETS.ph4Yes.x, toY: TARGETS.ph4Yes.y, moveDur: 0.4, holdAfter: 0.15 });
+      tl.to("#ph4-yes", { scale: 0.9, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1 }, T_PH4 + 2.05);
+      tl.to("#ph4-modal", { opacity: 0, scale: 0.9, duration: 0.3, ease: "power1.in" }, T_PH4 + 2.2);
+      tl.to("#ph4-scrim", { opacity: 0, duration: 0.3 }, T_PH4 + 2.2);
+      tl.to("#ph4-body", { opacity: 1, duration: 0.35 }, T_PH4 + 2.5);
+      tl.fromTo("#ph4-day-mie", { scale: 0.6 }, { scale: 1, duration: 0.3, ease: "back.out(1.6)" }, T_PH4 + 2.8);
+      tl.fromTo("#ph4-appt1", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, T_PH4 + 3.3);
+      tl.fromTo("#ph4-appt2", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, T_PH4 + 3.6);
+      tl.fromTo("#ph4-btn", { scale: 0.9 }, { scale: 1, duration: 0.25, ease: "back.out(1.5)" }, T_PH4 + 4.1);
+
+      // ============================================================
+      // PHASE 5 — Tus datos
+      // ============================================================
+      (function () {
+        const fields = [
+          { textId: "ph5-nombre", caretId: "ph5-caret1", nextCaretId: "ph5-caret2", value: "Erik", start: T_PH5 + 0.9 },
+          { textId: "ph5-apellido", caretId: "ph5-caret2", nextCaretId: "ph5-caret3", value: "Solórzano", start: T_PH5 + 1.5 },
+          { textId: "ph5-correo", caretId: "ph5-caret3", nextCaretId: "ph5-caret4", value: "erik@correo.com", start: T_PH5 + 2.3 },
+          { textId: "ph5-telefono", caretId: "ph5-caret4", nextCaretId: null, value: "5555 1234", start: T_PH5 + 3.2 },
+        ];
+        fields.forEach(function (f) {
+          const el = document.getElementById(f.textId);
+          const len = { v: 0 };
+          const dur = Math.max(0.35, f.value.length * 0.045);
+          tl.to(len, {
+            v: f.value.length, duration: dur, ease: "power1.inOut",
+            onUpdate: function () { el.textContent = f.value.substring(0, Math.floor(len.v)); },
+          }, f.start);
+          if (f.caretId && f.nextCaretId) {
+            tl.to("#" + f.caretId, { opacity: 0, duration: 0.15 }, f.start + dur + 0.05);
+            tl.to("#" + f.nextCaretId, { opacity: 1, duration: 0.01 }, f.start + dur + 0.05);
+          }
+        });
+        // blink the very first caret before typing starts
+        const c1 = document.getElementById("ph5-caret1");
+        const blink = { p: 0 };
+        tl.to(blink, {
+          p: Math.PI * 2 * 3, duration: 0.9, ease: "none",
+          onUpdate: function () { c1.style.opacity = Math.sin(blink.p) > 0 ? "1" : "0"; },
+        }, T_PH5);
+      })();
+      tl.fromTo("#ph5-btn", { scale: 0.9 }, { scale: 1, duration: 0.25, ease: "back.out(1.5)" }, T_PH5 + 3.85);
+
+      // ============================================================
+      // PHASE 6 — Confirma y reserva
+      // ============================================================
+      tl.fromTo("#ph6-li1", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, T_PH6 + 0.8);
+      tl.fromTo("#ph6-li2", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, T_PH6 + 1.15);
+      (function () {
+        const el = document.getElementById("ph6-total");
+        const state = { v: 0 };
+        tl.to(state, {
+          v: 360, duration: 1.3, ease: "power3.out",
+          onUpdate: function () { el.textContent = "Q" + Math.round(state.v).toLocaleString() + ".00"; },
+        }, T_PH6 + 1.6);
+      })();
+      addCursorTap({ at: T_PH6 + 3.2, fromX: 400, fromY: 1130, toX: TARGETS.ph6Btn.x, toY: TARGETS.ph6Btn.y, moveDur: 0.42, holdAfter: 0.1 });
+      tl.to("#ph6-btn", { scale: 0.88, duration: 0.1, ease: "power1.in" }, T_PH6 + 3.65);
+      tl.to("#ph6-btn", { scale: 1, backgroundColor: "#c9a400", duration: 0.35, ease: "back.out(1.8)" }, T_PH6 + 3.75);
+
+      // Checkmark draw at the badge beat
+      (function () {
+        // measured lengths are approximate but overestimated slightly (safe per svg-path-draw guidance)
+        const circle = document.getElementById("badge-circle");
+        const check = document.getElementById("badge-check");
+        const circLen = 2 * Math.PI * 58 * 1.02;
+        const checkLen = 95;
+        circle.style.strokeDasharray = String(circLen);
+        circle.style.strokeDashoffset = String(circLen);
+        check.style.strokeDasharray = String(checkLen);
+        check.style.strokeDashoffset = String(checkLen);
+        tl.to(circle, { strokeDashoffset: 0, duration: 0.55, ease: "power2.out" }, T_BADGE + 0.15);
+        tl.to(check, { strokeDashoffset: 0, duration: 0.4, ease: "power2.out" }, T_BADGE + 0.55);
+        tl.to("#badge-text", { opacity: 1, duration: 0.3, ease: "power1.out" }, T_BADGE + 0.95);
+      })();
+
+      // ============================================================
+      // CLOSE / CTA
+      // ============================================================
+      tl.fromTo("#close-logo", { opacity: 0, y: -420 }, { opacity: 1, y: -430, duration: 0.5, ease: "power3.out" }, T_CTA + 0.15);
+      tl.fromTo("#close-signature", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.out" }, T_CTA + 0.7);
+      tl.fromTo("#close-url", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, T_CTA + 1.15);
+      addCursorTap({ at: T_CTA + 1.9, fromX: 300, toX: 540, fromY: 1550, toY: 960, moveDur: 0.55, holdAfter: 0.3 });
+      tl.to("#shell", { scale: 1.03, duration: 0.1, ease: "power2.in", yoyo: true, repeat: 1 }, T_CTA + 2.55);
+      tl.to("#fade-out", { opacity: 1, duration: 0.9, ease: "power1.in" }, T_END - 1.0);
+
+      // ============================================================
+      // BGM crossfade-loop envelope — bgm_002.wav is a fixed 22s catalog
+      // track; three sequential instances of the same file overlap by 1.5s
+      // at each seam so the loop reads as continuous, ending in a fade to
+      // silence timed with the closing visual fade-out.
+      // ============================================================
+      const BGM_VOL = 0.45;
+      tl.fromTo("#bgm-1", { volume: BGM_VOL }, { volume: BGM_VOL, duration: 0.01 }, 0);
+      tl.to("#bgm-1", { volume: 0, duration: 1.5, ease: "none" }, 20.5);
+
+      tl.fromTo("#bgm-2", { volume: 0 }, { volume: BGM_VOL, duration: 1.5, ease: "none" }, 20.5);
+      tl.to("#bgm-2", { volume: 0, duration: 1.5, ease: "none" }, 41.0);
+
+      tl.fromTo("#bgm-3", { volume: 0 }, { volume: BGM_VOL, duration: 1.5, ease: "none" }, 41.0);
+      tl.to("#bgm-3", { volume: 0, duration: 1.5, ease: "power1.in" }, T_END - 1.5);
 
       window.__timelines["main"] = tl;
     </script>

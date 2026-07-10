@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>dia-partido-camiseta</title>
+<style>
+  @font-face{
+    font-family:"Lost in South";
+    src:url("assets/fonts/Lost in South.otf") format("opentype");
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    src:url("assets/fonts/FiraSansCondensed-Regular.ttf") format("truetype");
+    font-weight:400;
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    src:url("assets/fonts/FiraSansCondensed-Bold.ttf") format("truetype");
+    font-weight:700;
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    src:url("assets/fonts/FiraSansCondensed-ExtraBold.ttf") format("truetype");
+    font-weight:800;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{width:1080px;height:1350px;background:#101010;overflow:hidden;}
+  .canvas{
+    position:relative;
+    width:1080px;
+    height:1350px;
+    background:#101010;
+  }
+  .bg-wrap{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+  }
+  .bg{
+    position:absolute;
+    top:-470px;
+    left:-47px;
+    width:1443px;
+    height:auto;
+  }
+  .scrim{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    height:58%;
+    background:linear-gradient(to bottom, rgba(16,16,16,0) 0%, rgba(16,16,16,.55) 40%, rgba(16,16,16,.92) 75%, rgba(16,16,16,1) 100%);
+  }
+  .pill{
+    position:absolute;
+    top:64px; left:64px;
+    background:#FFD200;
+    color:#101010;
+    font-family:"Fira Sans Condensed";
+    font-weight:800;
+    font-size:26px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    padding:14px 32px;
+    border-radius:40px;
+  }
+  .headline{
+    position:absolute;
+    left:64px; right:64px;
+    bottom:310px;
+    font-family:"Lost in South";
+    font-size:86px;
+    letter-spacing:.06em;
+    line-height:1.0;
+    text-transform:uppercase;
+    color:#F7F4EC;
+  }
+  .headline .hl{color:#FFD200;}
+  .caption{
+    position:absolute;
+    left:64px; right:64px;
+    bottom:190px;
+    font-family:"Fira Sans Condensed";
+    font-weight:400;
+    font-size:31px;
+    line-height:1.4;
+    color:#F7F4EC;
+    opacity:.85;
+  }
+  .rules{
+    position:absolute;
+    left:64px; right:64px;
+    bottom:56px;
+    display:flex;
+    gap:40px;
+    font-family:"Fira Sans Condensed";
+    font-weight:700;
+    font-size:24px;
+    color:#F7F4EC;
+    text-transform:uppercase;
+    letter-spacing:.02em;
+  }
+  .rules .item{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+  }
+  .rules .tag{
+    color:#FFD200;
+    font-weight:800;
+  }
+  .logo{
+    position:absolute;
+    right:64px;
+    top:60px;
+    height:64px;
+  }
+</style>
+</head>
+<body>
+  <div class="canvas">
+    <div class="bg-wrap"><img class="bg" src="assets/bg.png"></div>
+    <div class="scrim"></div>
+    <div class="pill">Día de partido</div>
+    <img class="logo" src="assets/Nordic-BarberShop-logo-white.svg">
+    <div class="headline">Vestí la camiseta,<br><span class="hl">ganá</span> el premio</div>
+    <div class="caption">Llegá con la camiseta de tu equipo el día que juega. Adiviná el resultado y ganá.</div>
+    <div class="rules">
+      <div class="item"><span class="tag">Ganador</span> Facial gratis</div>
+      <div class="item"><span class="tag">Resultado exacto</span> 20% dto.</div>
+    </div>
+  </div>
+</body>
+</html>

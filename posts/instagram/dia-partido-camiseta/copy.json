@@ -1,0 +1,10 @@
+{
+  "post": "Promo dia de partido - vení con la camiseta de tu equipo, adiviná el resultado y ganá",
+  "build_method": "Opcion B (ver carousel-tile-generation.md): fondo generado sin texto via scripts/kie_image_gen.py (kie.ai gpt-image-2-text-to-image, aspect_ratio 3:4, resolution 2K) guardado en assets/bg.png, compuesto con texto/logo reales en index.html y renderizado con Chrome headless a 00-portada.png (2160x2700, 2x de 1080x1350). Excepcion de marca deliberada: la camiseta de futbol es a full color (rojo), el resto de la imagen en duotono/ink-black, mismo patron que posts/instagram/mundial-bandera-argentina/ y espana-portugal-partido/. Camiseta generica sin escudos de equipo real ni marcas (Nike/Adidas) ni logos de ligas/FIFA.",
+  "pill": "DÍA DE PARTIDO",
+  "headline": "VESTÍ LA CAMISETA, GANÁ EL PREMIO",
+  "headline_highlight": "GANÁ",
+  "caption_on_image": "Llegá con la camiseta de tu equipo el día que juega. Adiviná el resultado y ganá.",
+  "instagram_caption": "¿Hoy juega tu equipo? ⚽\n\nVení a la barbería con la camiseta puesta el día del partido y participá:\n\n🔵 Adivinás quién gana → facial gratis\n🎯 Adivinás el resultado exacto → 20% de descuento en tu próximo servicio\n\nVálido el día del partido presentando la camiseta del equipo que juega. Cuantos más aciertos, más beneficios.\n\n#NordicBarberShop #DiaDePartido #GuatemalaBarbershop",
+  "file": "00-portada.png"
+}

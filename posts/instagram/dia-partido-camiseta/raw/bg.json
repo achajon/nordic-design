@@ -1,0 +1,17 @@
+{
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "taskId": "ae00d074b63159456755dcde89515c58",
+    "model": "gpt-image-2-text-to-image",
+    "state": "success",
+    "param": "{\"input\":\"{\\\"aspect_ratio\\\":\\\"3:4\\\",\\\"prompt\\\":\\\"Dramatic, realistic editorial photograph, vertical portrait orientation, ink-black (#101010) background. Duotone grayscale grading with a warm golden-yellow rim/key light across most of the frame \u2014 EXCEPT for one deliberate brand exception described below, which stays in full, saturated color.\\\\n\\\\nScene: inside a moody, minimalist barbershop, tight-cropped composition. A young man sits confidently in a classic barber chair, seen from a three-quarter angle from behind/side so his back and shoulders fill the lower-left of the frame. He is wearing a plain generic soccer jersey (short sleeves, crew collar, no club crest, no sponsor logos, no league or federation branding, no visible number or name on the back) in a bold solid red with a single thin white trim stripe on the sleeves \u2014 rendered in full, vivid, saturated color, the ONE full-color element in the shot. A barber, out of focus at the edge of frame, leans in with a comb and scissors mid-motion, cape draped over the client's shoulders (cape and barber rendered in the same high-contrast duotone/grayscale + gold-light look as the rest of the scene \u2014 NOT color).\\\\n\\\\nLighting: single dramatic warm gold key light from the side, raking across the duotone barbershop interior and the barber's tools, catching the fabric texture of the red jersey without over-lighting it. Deep shadows falling to pure black elsewhere. Shallow depth of field, cinematic, high-end studio editorial photography.\\\\n\\\\nComposition: leave the upper half and right side of the frame as clean, softly out-of-focus dark negative space (blurred barbershop interior, ink-black tones) for later text overlay \u2014 keep the subject and jersey lower-left of frame, do not center him.\\\\n\\\\nAbsolutely no text, no letters, no numbers, no logos, no watermarks, no graphic overlays, no UI elements, no club crests, no sponsor branding, no league/federation emblems, no scoreboards \u2014 pure photography only, a clean background plate.\\\",\\\"resolution\\\":\\\"2K\\\"}\",\"model\":\"gpt-image-2-text-to-image\"}",
+    "resultJson": "{\"resultUrls\":[\"https://tempfile.aiquickdraw.com/p/ae00d074b63159456755dcde89515c58_1_1783635037_2611.png\"]}",
+    "failCode": null,
+    "failMsg": null,
+    "costTime": 47,
+    "completeTime": 1783635038045,
+    "createTime": 1783634991309,
+    "creditsConsumed": 10.0
+  }
+}
