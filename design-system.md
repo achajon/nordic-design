@@ -109,10 +109,11 @@ Default to **4:5 for feed posts** and **9:16 for Stories/Reels**. Build the layo
 
 ## 9. Voice
 
-Confident, short, a little dry. State the hours; don't apologize for them. Lead with the specific — the cut, the hour, the price — and let the yellow accent carry the emphasis instead of extra adjectives.
+Confident, short, warm — talk to people the way you'd talk to a regular who just walked in, not a customer filing a complaint. State the hours; don't apologize for them. Lead with the specific — the cut, the hour, the price — and let the yellow accent carry the emphasis instead of extra adjectives. A little friendliness is welcome (a greeting, a "listo para vos", a light touch of humor); stay short and confident, not stiff — but don't swing into slangy or overly casual either.
 
-**Do:** *Fresh fade, guaranteed.*
+**Do:** *Fresh fade, guaranteed. Te esperamos.*
 **Don't:** *The most amazing haircut experience ever!!*
+**Also don't:** cold, notice-board phrasing for things that affect people directly (e.g. announcements, reminders) — say it like you'd tell a friend, not post a memo.
 
 ---
 
