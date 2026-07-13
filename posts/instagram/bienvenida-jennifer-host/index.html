@@ -46,18 +46,25 @@
   .scrim-top{
     position:absolute;
     left:0; right:0; top:0;
-    height:38%;
-    background:linear-gradient(to bottom, rgba(16,16,16,.88) 0%, rgba(16,16,16,.5) 60%, rgba(16,16,16,0) 100%);
+    height:22%;
+    background:linear-gradient(to bottom, rgba(16,16,16,.75) 0%, rgba(16,16,16,.35) 60%, rgba(16,16,16,0) 100%);
   }
   .scrim-bottom{
     position:absolute;
     left:0; right:0; bottom:0;
-    height:32%;
-    background:linear-gradient(to top, rgba(16,16,16,.92) 0%, rgba(16,16,16,.55) 55%, rgba(16,16,16,0) 100%);
+    height:44%;
+    background:linear-gradient(to top, rgba(16,16,16,.94) 0%, rgba(16,16,16,.6) 55%, rgba(16,16,16,0) 100%);
+  }
+  .bottom-block{
+    position:absolute;
+    left:64px; right:64px;
+    bottom:64px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
   }
   .pill{
-    position:absolute;
-    top:64px; left:64px;
+    align-self:flex-start;
     background:#FFD200;
     color:#101010;
     font-family:"Fira Sans Condensed";
@@ -69,9 +76,6 @@
     border-radius:40px;
   }
   .headline{
-    position:absolute;
-    left:64px; right:64px;
-    top:150px;
     font-family:"Lost in South";
     font-size:80px;
     letter-spacing:.07em;
@@ -81,9 +85,6 @@
   }
   .headline .hl{color:#FFD200;}
   .role{
-    position:absolute;
-    left:64px; right:64px;
-    bottom:210px;
     font-family:"Fira Sans Condensed";
     font-weight:800;
     font-size:30px;
@@ -92,9 +93,6 @@
     color:#FFD200;
   }
   .caption{
-    position:absolute;
-    left:64px; right:64px;
-    bottom:150px;
     font-family:"Fira Sans Condensed";
     font-weight:400;
     font-size:31px;
@@ -104,9 +102,9 @@
   }
   .logo{
     position:absolute;
+    top:64px;
     right:64px;
-    bottom:56px;
-    height:60px;
+    height:120px;
   }
 </style>
 </head>
@@ -115,11 +113,13 @@
     <div class="bg-wrap"><img class="bg" src="assets/jennifer-retouched-v3.png"></div>
     <div class="scrim-top"></div>
     <div class="scrim-bottom"></div>
-    <div class="pill">Bienvenida</div>
-    <div class="headline">Te presentamos a <span class="hl">Jennifer</span></div>
-    <div class="role">Host</div>
-    <div class="caption">Ella te recibirá con una sonrisa apenas llegués a Nordic.</div>
     <img class="logo" src="assets/Nordic-BarberShop-logo-white.svg">
+    <div class="bottom-block">
+      <div class="pill">Bienvenida</div>
+      <div class="headline">Te presentamos a <span class="hl">Jennifer</span></div>
+      <div class="role">Host</div>
+      <div class="caption">Ella te recibirá con una sonrisa apenas llegués a Nordic.</div>
+    </div>
   </div>
 </body>
 </html>
