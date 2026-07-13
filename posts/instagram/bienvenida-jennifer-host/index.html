@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>bienvenida-jennifer-host</title>
+<style>
+  @font-face{
+    font-family:"Lost in South";
+    src:url("assets/fonts/Lost in South.otf") format("opentype");
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    src:url("assets/fonts/FiraSansCondensed-Regular.ttf") format("truetype");
+    font-weight:400;
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    src:url("assets/fonts/FiraSansCondensed-Bold.ttf") format("truetype");
+    font-weight:700;
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    src:url("assets/fonts/FiraSansCondensed-ExtraBold.ttf") format("truetype");
+    font-weight:800;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{width:1080px;height:1350px;background:#101010;overflow:hidden;}
+  .canvas{
+    position:relative;
+    width:1080px;
+    height:1350px;
+    background:#101010;
+  }
+  .bg-wrap{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+  }
+  .bg{
+    position:absolute;
+    top:-4px;
+    left:0;
+    width:1080px;
+    height:auto;
+  }
+  .scrim-top{
+    position:absolute;
+    left:0; right:0; top:0;
+    height:38%;
+    background:linear-gradient(to bottom, rgba(16,16,16,.88) 0%, rgba(16,16,16,.5) 60%, rgba(16,16,16,0) 100%);
+  }
+  .scrim-bottom{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    height:32%;
+    background:linear-gradient(to top, rgba(16,16,16,.92) 0%, rgba(16,16,16,.55) 55%, rgba(16,16,16,0) 100%);
+  }
+  .pill{
+    position:absolute;
+    top:64px; left:64px;
+    background:#FFD200;
+    color:#101010;
+    font-family:"Fira Sans Condensed";
+    font-weight:800;
+    font-size:26px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    padding:14px 32px;
+    border-radius:40px;
+  }
+  .headline{
+    position:absolute;
+    left:64px; right:64px;
+    top:150px;
+    font-family:"Lost in South";
+    font-size:80px;
+    letter-spacing:.07em;
+    line-height:1.04;
+    text-transform:uppercase;
+    color:#F7F4EC;
+  }
+  .headline .hl{color:#FFD200;}
+  .role{
+    position:absolute;
+    left:64px; right:64px;
+    bottom:210px;
+    font-family:"Fira Sans Condensed";
+    font-weight:800;
+    font-size:30px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:#FFD200;
+  }
+  .caption{
+    position:absolute;
+    left:64px; right:64px;
+    bottom:150px;
+    font-family:"Fira Sans Condensed";
+    font-weight:400;
+    font-size:31px;
+    line-height:1.4;
+    color:#F7F4EC;
+    opacity:.9;
+  }
+  .logo{
+    position:absolute;
+    right:64px;
+    bottom:56px;
+    height:60px;
+  }
+</style>
+</head>
+<body>
+  <div class="canvas">
+    <div class="bg-wrap"><img class="bg" src="assets/jennifer-retouched-v2.png"></div>
+    <div class="scrim-top"></div>
+    <div class="scrim-bottom"></div>
+    <div class="pill">Bienvenida</div>
+    <div class="headline">Te presentamos a <span class="hl">Jennifer</span></div>
+    <div class="role">Host</div>
+    <div class="caption">Ella es quien te recibe apenas llegás a Nordic — con toda la buena onda.</div>
+    <img class="logo" src="assets/Nordic-BarberShop-logo-white.svg">
+  </div>
+</body>
+</html>
