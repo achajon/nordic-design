@@ -292,6 +292,27 @@
     color:var(--bone);
     white-space:pre-wrap;
   }
+  .modal-btn-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:var(--sp-2);
+    margin-top:var(--sp-1);
+  }
+  .modal-btn{
+    background:var(--gold);
+    color:var(--ink);
+    border:none;
+    border-radius:6px;
+    font-family:inherit;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.03em;
+    text-transform:uppercase;
+    text-decoration:none;
+    padding:10px 18px;
+    cursor:pointer;
+  }
+  .modal-btn:focus-visible{outline:2px solid var(--bone);}
   .modal-loading{color:var(--bone-dim);padding:var(--sp-4) var(--sp-3);}
 
   .services-table{
@@ -1090,11 +1111,50 @@ async function renderSingleModal(post){
       igCaptionEl.textContent = igCaption;
       copyWrap.appendChild(igCaptionEl);
     }
+
+    const btnRow = document.createElement('div');
+    btnRow.className = 'modal-btn-row';
+
+    if(igCaption){
+      const copyBtn = document.createElement('button');
+      copyBtn.type = 'button';
+      copyBtn.className = 'modal-btn';
+      copyBtn.textContent = 'Copiar';
+      copyBtn.addEventListener('click', async () => {
+        try{
+          await navigator.clipboard.writeText(igCaption);
+          copyBtn.textContent = '¡Copiado!';
+          setTimeout(() => { copyBtn.textContent = 'Copiar'; }, 1500);
+        } catch(err){
+          copyBtn.textContent = 'Error al copiar';
+        }
+      });
+      btnRow.appendChild(copyBtn);
+    }
+
+    const downloadBtn = document.createElement('a');
+    downloadBtn.className = 'modal-btn';
+    downloadBtn.href = post.cover;
+    downloadBtn.download = `${post.id}.${post.cover.split('.').pop()}`;
+    downloadBtn.textContent = 'Descargar imagen';
+    btnRow.appendChild(downloadBtn);
+
+    copyWrap.appendChild(btnRow);
   } else {
     const err = document.createElement('p');
     err.className = 'modal-caption';
     err.textContent = 'No se pudo cargar el copy (¿estás sirviendo la página con un servidor local?).';
     copyWrap.appendChild(err);
+
+    const btnRow = document.createElement('div');
+    btnRow.className = 'modal-btn-row';
+    const downloadBtn = document.createElement('a');
+    downloadBtn.className = 'modal-btn';
+    downloadBtn.href = post.cover;
+    downloadBtn.download = `${post.id}.${post.cover.split('.').pop()}`;
+    downloadBtn.textContent = 'Descargar imagen';
+    btnRow.appendChild(downloadBtn);
+    copyWrap.appendChild(btnRow);
   }
 
   modalBody.appendChild(media);
