@@ -280,6 +280,18 @@
     line-height:1.6;
     color:var(--bone-dim);
   }
+  .modal-ig-label{
+    margin-top:var(--sp-1);
+    padding-top:var(--sp-2);
+    border-top:1px dashed rgba(247,244,236,.2);
+  }
+  .modal-ig-caption{
+    margin:0;
+    font-size:14px;
+    line-height:1.6;
+    color:var(--bone);
+    white-space:pre-wrap;
+  }
   .modal-loading{color:var(--bone-dim);padding:var(--sp-4) var(--sp-3);}
 
   .services-table{
@@ -1064,6 +1076,19 @@ async function renderSingleModal(post){
         table.appendChild(row);
       });
       copyWrap.appendChild(table);
+    }
+
+    const igCaption = resolveInstagramCaption(json, post.file);
+    if(igCaption){
+      const igLabel = document.createElement('p');
+      igLabel.className = 'modal-label modal-ig-label';
+      igLabel.textContent = 'Copy para publicar';
+      copyWrap.appendChild(igLabel);
+
+      const igCaptionEl = document.createElement('p');
+      igCaptionEl.className = 'modal-ig-caption';
+      igCaptionEl.textContent = igCaption;
+      copyWrap.appendChild(igCaptionEl);
     }
   } else {
     const err = document.createElement('p');
