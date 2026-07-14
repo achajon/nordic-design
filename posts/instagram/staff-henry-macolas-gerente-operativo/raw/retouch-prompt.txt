@@ -1,0 +1,19 @@
+IMPORTANT OUTPUT FORMAT: the output image MUST be VERTICAL / PORTRAIT orientation (taller than wide, approximately 4:5 aspect ratio) — do NOT output a landscape/horizontal image under any circumstance.
+
+Retouch this exact photograph of this exact man, taken inside the actual Nordic Barber Shop salon (keep him in this real location — the hexagonal LED ceiling lights, the barber chairs, the mirrors and styling stations — do NOT replace the background with a different location). Simplify/de-clutter it slightly: soften/blur out the wall-mounted TV screen so its content isn't legible (just a soft blurred rectangle of light), and blur the background stations/chairs a bit more so he reads clearly as the sharp subject in front of a softly out-of-focus real barbershop interior.
+
+Identity: absolutely preserve his real facial identity, facial structure, expression, hairstyle, beard, and tattoos on both forearms — do not change his face, do not beautify or reshape his features, do not make him look like a different person. Critically, keep his HEAD ANGLE AND GAZE DIRECTION exactly as in the reference photo — face turned straight/frontal toward the camera, looking directly at the lens, same neutral confident expression, same head tilt. Do NOT turn, rotate, or angle his head/face to a three-quarter or side view — only the body/shoulders may angle slightly, the face stays frontal like in the reference photo.
+
+Framing: keep the same half-body framing as the reference (chest/waist-up), his face occupying only a modest portion of the frame height, with the salon environment clearly visible around him.
+
+Wardrobe & props: he is already wearing the black Nordic Barber Shop zip-up smock — keep that exact garment and his watch. Give him a barber tool in his hands in a natural, confident pose — open shears and a comb — instead of arms crossed, like a master barber who also runs the shop, mid-conversation with a client just off-camera.
+
+Color treatment — this is critical, render as a TRUE black-and-white photograph, not a warm-toned duotone: absolutely ZERO color anywhere — the walls, ceiling, chairs, mirrors, and floor must all read as pure NEUTRAL GREY/black-and-white tones, with NO warm color cast. Deep true blacks, bright clean whites, high dramatic contrast — like a stark black-and-white editorial portrait. The hexagonal ceiling lights should stay bright/glowing white (they're a light source, not a color cast), not gold.
+
+Lighting — make this a real STUDIO PORTRAIT LIGHTING look, clearly visible and dramatic, not flat/even: strong, clear falloff across his face and body — one side brighter, the other side noticeably darker with real contact/core shadows (under the jaw, side of the nose, under the brow, inside the folds of the jacket, under his crossed-arm area). It should look like a deliberate editorial shoot with a light and a dark side, not soft ambient light.
+
+Gold accent: the ONLY place gold/warm tone is allowed is as a small reflective glint/highlight on the metal barber tools in his hands (the shears and/or comb catching a warm highlight, like a studio light reflecting off metal) — a subtle warm gleam on the tool surfaces only. Absolutely NO gold, warm, or amber tone anywhere on his face, skin, hair, tattoos, or the salon background — those all stay pure neutral black-and-white/grayscale.
+
+Skin: apply a subtle, natural Instagram-style beauty filter — gently smooth skin texture, even tone, but keep the real studio-light shadows/contrast described above; don't flatten them out. Keep it subtle and natural, not plastic.
+
+Output at high resolution, sharp focus on the eyes, vertical portrait orientation suitable for a 4:5 crop.

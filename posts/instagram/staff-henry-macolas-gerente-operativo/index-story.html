@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>staff-henry-macolas-gerente-operativo-story</title>
+<style>
+  @font-face{
+    font-family:"Lost in South";
+    src:url("assets/fonts/Lost in South.otf") format("opentype");
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    src:url("assets/fonts/FiraSansCondensed-Regular.ttf") format("truetype");
+    font-weight:400;
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    src:url("assets/fonts/FiraSansCondensed-Bold.ttf") format("truetype");
+    font-weight:700;
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    src:url("assets/fonts/FiraSansCondensed-ExtraBold.ttf") format("truetype");
+    font-weight:800;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{width:1080px;height:1920px;background:#101010;overflow:hidden;}
+  .canvas{
+    position:relative;
+    width:1080px;
+    height:1920px;
+    background:#101010;
+  }
+  .bg-wrap{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+  }
+  .bg{
+    position:absolute;
+    top:0;
+    left:0;
+    width:1080px;
+    height:auto;
+  }
+  /* Instagram Story safe zones: keep content clear of the top ~250px
+     (profile/close UI) and bottom ~220px (reply bar). */
+  .scrim-top{
+    position:absolute;
+    left:0; right:0; top:0;
+    height:340px;
+    background:linear-gradient(to bottom, rgba(16,16,16,.75) 0%, rgba(16,16,16,.35) 65%, rgba(16,16,16,0) 100%);
+  }
+  .scrim-bottom{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    height:1250px;
+    background:linear-gradient(to top,
+      rgba(16,16,16,1) 0%,
+      rgba(16,16,16,1) 46%,
+      rgba(16,16,16,.55) 66%,
+      rgba(16,16,16,.22) 83%,
+      rgba(16,16,16,0) 100%);
+  }
+  .logo{
+    position:absolute;
+    top:270px;
+    right:64px;
+    height:120px;
+  }
+  .bottom-block{
+    position:absolute;
+    left:64px; right:64px;
+    bottom:240px;
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+  }
+  .pill{
+    align-self:flex-start;
+    background:#FFD200;
+    color:#101010;
+    font-family:"Fira Sans Condensed";
+    font-weight:800;
+    font-size:26px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    padding:14px 32px;
+    border-radius:40px;
+  }
+  .headline{
+    font-family:"Lost in South";
+    font-size:92px;
+    letter-spacing:.07em;
+    line-height:1.04;
+    text-transform:uppercase;
+    color:#F7F4EC;
+  }
+  .headline .hl{color:#FFD200;}
+  .role{
+    font-family:"Fira Sans Condensed";
+    font-weight:800;
+    font-size:34px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:#FFD200;
+  }
+  .caption{
+    font-family:"Fira Sans Condensed";
+    font-weight:400;
+    font-size:36px;
+    line-height:1.4;
+    color:#F7F4EC;
+    opacity:.9;
+  }
+</style>
+</head>
+<body>
+  <div class="canvas">
+    <div class="bg-wrap"><img class="bg" src="assets/henry-retouched.png"></div>
+    <div class="scrim-top"></div>
+    <div class="scrim-bottom"></div>
+    <img class="logo" src="assets/Nordic-BarberShop-logo-white.svg">
+    <div class="bottom-block">
+      <div class="pill">Nuestro equipo</div>
+      <div class="headline">Te presentamos a <span class="hl">Henry</span></div>
+      <div class="role">Gerente Operativo</div>
+      <div class="caption">Visión, estructura y maestría en un solo profesional.</div>
+    </div>
+  </div>
+</body>
+</html>
