@@ -1,0 +1,107 @@
+{
+  "tts_provider": null,
+  "voice_id": null,
+  "bgm": null,
+  "bgm_pending": false,
+  "bgm_provider": null,
+  "bgm_pid": null,
+  "bgm_log": null,
+  "bgm_mode": null,
+  "bgm_target_duration_s": null,
+  "bgm_seed_duration_s": null,
+  "bgm_loop_count": null,
+  "voices": [],
+  "sfx": [
+    {
+      "id": "hit",
+      "name": "hard impact hit stinger dramatic",
+      "file": "assets/sfx/hard-impact-hit-stinger-dramatic.mp3",
+      "source": "heygen",
+      "offset_s": 0,
+      "duration_s": 5.387,
+      "volume": 0.35
+    },
+    {
+      "id": "riser",
+      "name": "dramatic riser tension sting",
+      "file": "assets/sfx/dramatic-riser-tension-sting.mp3",
+      "source": "heygen",
+      "offset_s": 0,
+      "duration_s": 4.364,
+      "volume": 0.35
+    },
+    {
+      "id": "whoosh",
+      "name": "whoosh transition swoosh",
+      "file": "assets/sfx/whoosh-transition-swoosh.mp3",
+      "source": "heygen",
+      "offset_s": 0,
+      "duration_s": 1.285,
+      "volume": 0.35
+    },
+    {
+      "id": "scissors",
+      "name": "scissors snipping barber ambient",
+      "file": "assets/sfx/scissors-snipping-barber-ambient.mp3",
+      "source": "heygen",
+      "offset_s": 0,
+      "duration_s": 9.286,
+      "volume": 0.35
+    },
+    {
+      "id": "clank",
+      "name": "metal wrench clank tool",
+      "file": "assets/sfx/metal-wrench-clank-tool.mp3",
+      "source": "heygen",
+      "offset_s": 0,
+      "duration_s": 1.176,
+      "volume": 0.35
+    },
+    {
+      "id": "bass",
+      "name": "dramatic bass hit thud",
+      "file": "assets/sfx/dramatic-bass-hit-thud.mp3",
+      "source": "heygen",
+      "offset_s": 0,
+      "duration_s": 0.864,
+      "volume": 0.35
+    },
+    {
+      "id": "ignition",
+      "name": "ignition swell magical reveal",
+      "file": "assets/sfx/ignition-swell-magical-reveal.mp3",
+      "source": "heygen",
+      "offset_s": 0,
+      "duration_s": 2.361,
+      "volume": 0.35
+    },
+    {
+      "id": "tick",
+      "name": "soft ui tap click select",
+      "file": "assets/sfx/soft-ui-tap-click-select.mp3",
+      "source": "heygen",
+      "offset_s": 0,
+      "duration_s": 0.24,
+      "volume": 0.35
+    },
+    {
+      "id": "confirm",
+      "name": "button press thud confirm",
+      "file": "assets/sfx/button-press-thud-confirm.mp3",
+      "source": "heygen",
+      "offset_s": 0,
+      "duration_s": 0.192,
+      "volume": 0.35
+    },
+    {
+      "id": "chime",
+      "name": "success chime positive confirmation bright",
+      "file": "assets/sfx/success-chime-positive-confirmation-brig.mp3",
+      "source": "heygen",
+      "offset_s": 0,
+      "duration_s": 4.755,
+      "volume": 0.35
+    }
+  ],
+  "total_duration_s": 0
+}

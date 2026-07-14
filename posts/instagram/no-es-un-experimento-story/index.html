@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080, height=1920">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #101010; }
+
+      @font-face {
+        font-family: "Lost in South";
+        src: url("assets/fonts/lost_in_south/Lost in South.otf") format("opentype");
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      :root {
+        --ink: #101010;
+        --charcoal: #1a1a1a;
+        --charcoal-2: #232323;
+        --gold: #ffd200;
+        --gold-deep: #c9a400;
+        --bone: #f7f4ec;
+        --steel: rgba(247, 244, 236, 0.62);
+        --steel-dim: rgba(247, 244, 236, 0.42);
+        --line: rgba(247, 244, 236, 0.12);
+      }
+
+      body { font-family: "Lost in South", sans-serif; background: var(--ink); color: var(--bone); }
+
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--ink); }
+
+      #stage { position: absolute; inset: 0; overflow: hidden; }
+
+      #camera-viewport { position: absolute; inset: 0; overflow: hidden; perspective: 1400px; }
+      #camera { position: absolute; inset: 0; transform-origin: 50% 50%; will-change: transform; }
+
+      /* ---------- ambient rig ---------- */
+      #ambient-bg { position: absolute; inset: 0; z-index: 5; pointer-events: none; }
+      #glow {
+        position: absolute; left: 50%; top: 46%; width: 1400px; height: 1400px;
+        transform: translate(-50%, -50%);
+        background: radial-gradient(circle, rgba(255, 210, 0, 0.55) 0%, rgba(255, 210, 0, 0.12) 38%, rgba(255, 210, 0, 0) 70%);
+        opacity: 0.15;
+      }
+      #embers { position: absolute; inset: 0; }
+      .ember {
+        position: absolute; width: 7px; height: 7px; border-radius: 50%;
+        background: var(--gold); box-shadow: 0 0 10px 2px rgba(255, 210, 0, 0.85);
+        opacity: 0; transform: scale(0);
+      }
+
+      /* ---------- full-bleed illustrated scenes ---------- */
+      .bg-scene {
+        position: absolute; top: 50%; left: 50%; width: 1400px; height: 2489px;
+        transform: translate(-50%, -50%); object-fit: cover; opacity: 0; z-index: 1;
+      }
+
+      /* ---------- kinetic text ---------- */
+      .headline {
+        position: absolute; left: 90px; right: 90px; z-index: 10;
+        font-family: "Lost in South", sans-serif; text-transform: uppercase;
+        line-height: 0.98; letter-spacing: 0.07em; color: var(--bone);
+        text-shadow: 0 6px 30px rgba(0, 0, 0, 0.55);
+      }
+      .headline .w { display: inline-block; opacity: 0; }
+      .headline .line { display: block; opacity: 0; }
+      .hl { color: var(--gold); }
+
+      .hook-text { top: 1180px; font-size: 108px; line-height: 0.94; }
+      .reframe-text { top: 1520px; font-size: 66px; font-weight: 400; letter-spacing: 0.02em; text-transform: none; }
+      .contextoA-text { top: 1560px; font-size: 66px; text-transform: none; letter-spacing: 0.02em; }
+      .contextoB-text { top: 1460px; font-size: 62px; text-transform: none; letter-spacing: 0.02em; }
+      .analogia-text { top: 1500px; font-size: 62px; text-transform: none; letter-spacing: 0.02em; }
+      .declaracion-text { top: 830px; font-size: 84px; text-align: center; left: 70px; right: 70px; }
+      .giro-text { top: 1420px; font-size: 68px; text-align: center; }
+
+      /* ---------- logo ignition + persistent watermark ---------- */
+      #logo-ignite {
+        position: absolute; left: 50%; top: 883px; width: 460px; opacity: 0; z-index: 12;
+      }
+      #logo-ignite img { display: block; width: 100%; height: auto; }
+
+      #logo-close {
+        position: absolute; left: 50%; top: 26%; width: 300px; opacity: 0; z-index: 15;
+        transform: translate(-50%, -50%);
+      }
+      #logo-close img { display: block; width: 100%; height: auto; }
+
+      /* ---------- promise cards / close badge morph shell ---------- */
+      #morph-shell {
+        position: absolute; left: 50%; top: 50%; width: 860px; height: 1120px; border-radius: 28px;
+        background: var(--charcoal); border: 1px solid var(--line); overflow: hidden;
+        transform: translate(-50%, -50%); opacity: 0; z-index: 8;
+        box-shadow: 0 40px 90px rgba(0, 0, 0, 0.5);
+      }
+      .shell-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; z-index: 0; }
+      .shell-scrim {
+        position: absolute; inset: 0; z-index: 1;
+        background: linear-gradient(180deg, rgba(16, 16, 16, 0.05) 40%, rgba(16, 16, 16, 0.92) 92%);
+      }
+      .shell-text {
+        position: absolute; left: 56px; right: 56px; bottom: 70px; opacity: 0; z-index: 2;
+        font-family: "Lost in South", sans-serif; font-size: 58px; line-height: 1.05;
+        letter-spacing: 0.02em; color: var(--bone); text-transform: none;
+      }
+      .shell-eyebrow {
+        position: absolute; left: 56px; top: 56px; opacity: 0; z-index: 2;
+        font-family: "Lost in South", sans-serif; font-size: 34px; letter-spacing: 0.1em;
+        color: var(--gold); text-transform: uppercase;
+        background: var(--ink); padding: 10px 18px; border-radius: 6px;
+      }
+      .checkmark { position: absolute; inset: 0; opacity: 0; }
+      .checkmark path { fill: none; stroke: var(--ink); stroke-width: 10; stroke-linecap: round; stroke-linejoin: round; }
+
+      /* ---------- close ---------- */
+      .cierre-text {
+        position: absolute; left: 90px; right: 90px; top: 1230px; z-index: 15;
+        font-size: 70px; text-align: center; text-transform: none; letter-spacing: 0.02em;
+      }
+      .signature-text {
+        position: absolute; left: 90px; right: 90px; top: 1560px; z-index: 15;
+        font-size: 52px; text-align: center; text-transform: none; letter-spacing: 0.02em;
+        font-style: normal; color: var(--gold); opacity: 0;
+      }
+
+      #ink-fade { position: absolute; inset: 0; background: var(--ink); opacity: 0; z-index: 30; pointer-events: none; }
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="hf-aerf" id="root" data-composition-id="main" data-start="0" data-duration="50" data-width="1080" data-height="1920">
+      <div data-hf-id="hf-16s8" id="stage" class="clip" data-start="0" data-duration="50" data-track-index="1">
+        <div data-hf-id="hf-bbr3" id="camera-viewport">
+          <div data-hf-id="hf-5ys9" id="camera" data-layout-allow-overflow="true">
+            <div data-hf-id="hf-yw4l" id="ambient-bg">
+              <div data-hf-id="hf-27c6" id="glow"></div>
+              <div data-hf-id="hf-xirl" id="embers"></div>
+            </div>
+
+            <img data-hf-id="hf-gv33" class="bg-scene" id="scene-hook" src="assets/images/hook-shock.png" alt="">
+            <img data-hf-id="hf-ifva" class="bg-scene" id="scene-reframe" src="assets/images/reframe-cold-barber.png" alt="">
+            <img data-hf-id="hf-1y11" class="bg-scene" id="scene-contexto" src="assets/images/contexto-barbershop-wide.png" alt="">
+            <img data-hf-id="hf-rric" class="bg-scene" id="scene-analogia" src="assets/images/analogia-garage.png" alt="">
+
+            <div data-hf-id="hf-cmp9" class="headline hook-text" id="text-hook" data-layout-allow-overlap="true" data-layout-allow-overflow="true">
+              <span data-hf-id="hf-ejs6" class="w">¿QUÉ</span> <span data-hf-id="hf-cxge" class="w">ME</span> <span data-hf-id="hf-wpmj" class="w">HICISTE</span> <span data-hf-id="hf-m310" class="w">AQUÍ</span> <span data-hf-id="hf-pjaj" class="w">ATRÁS,</span> <span data-hf-id="hf-22dc" class="w">VOS?!</span>
+            </div>
+
+            <div data-hf-id="hf-q839" class="headline reframe-text" id="text-reframe" data-layout-allow-overlap="true" data-layout-allow-overflow="true">
+              <span data-hf-id="hf-hnh7" class="line">Así te sentís cuando el barbero te corta... y no dice ni pío.</span>
+            </div>
+
+            <div data-hf-id="hf-xf8t" class="headline contextoA-text" id="text-contextoA" data-layout-allow-overlap="true" data-layout-allow-overflow="true">
+              <span data-hf-id="hf-lt5t" class="line">Te sentás. Decís "así nomás, parejito" — y ya, empieza a cortar.</span>
+            </div>
+
+            <div data-hf-id="hf-9xap" class="headline contextoB-text" id="text-contextoB" data-layout-allow-overlap="true" data-layout-allow-overflow="true">
+              <span data-hf-id="hf-pcl8" class="line" id="contextoB-1">Y en todo el corte no te dice nada.</span>
+              <span data-hf-id="hf-sy6w" class="line" id="contextoB-2">Ni qué te está haciendo, ni por qué.</span>
+            </div>
+
+            <div data-hf-id="hf-6kgf" class="headline analogia-text" id="text-analogia" data-layout-allow-overlap="true" data-layout-allow-overflow="true">
+              <span data-hf-id="hf-pbyk" class="line" id="analogia-1">Es como llevar el carro al taller...</span>
+              <span data-hf-id="hf-5uld" class="line" id="analogia-2">y que el mecánico lo desarme sin decirte qué le va a hacer.</span>
+            </div>
+
+            <div data-hf-id="hf-pwt9" class="headline declaracion-text" id="text-declaracion" data-layout-allow-overlap="true" data-layout-allow-overflow="true">
+              <span data-hf-id="hf-nbv8" class="line" id="declaracion-1">Tu corte no es un experimento —</span>
+              <span data-hf-id="hf-wobl" class="line" id="declaracion-2">es tu cara, <span data-hf-id="hf-haq7" class="hl">todos los días.</span></span>
+            </div>
+
+            <div data-hf-id="hf-mek4" id="logo-ignite" data-layout-allow-overflow="true"><img data-hf-id="hf-2ppq" src="assets/images/Nordic-BarberShop-logo-white.svg" alt="Nordic"></div>
+
+            <div data-hf-id="hf-hzbh" class="headline giro-text" id="text-giro" data-layout-allow-overlap="true" data-layout-allow-overflow="true">
+              <span data-hf-id="hf-40u9" class="line">Por eso en <span data-hf-id="hf-pnfc" class="hl">Nordic</span> lo hacemos distinto.</span>
+            </div>
+
+            <div data-hf-id="hf-yzp9" id="morph-shell" data-layout-allow-overlap="true" data-layout-allow-overflow="true">
+              <img data-hf-id="hf-cps0" class="shell-bg" id="shell-bg-a" src="assets/images/promesa-card-a-explica.png" alt="">
+              <img data-hf-id="hf-bkzz" class="shell-bg" id="shell-bg-b" src="assets/images/promesa-card-b-forma-cara.png" alt="">
+              <img data-hf-id="hf-zh6m" class="shell-bg" id="shell-bg-c" src="assets/images/promesa-card-c-en-casa.png" alt="">
+              <div data-hf-id="hf-as37" class="shell-scrim"></div>
+              <div data-hf-id="hf-n1u4" class="shell-eyebrow" id="shell-eyebrow">LA PROMESA</div>
+              <div data-hf-id="hf-4f0r" class="shell-text" id="shell-text-a">Te explican qué te están haciendo.</div>
+              <div data-hf-id="hf-c43u" class="shell-text" id="shell-text-b">Te sugieren según la forma de tu cara.</div>
+              <div data-hf-id="hf-1eip" class="shell-text" id="shell-text-c">Y te enseñan cómo replicarlo en casa.</div>
+              <svg data-hf-id="hf-d4no" class="checkmark" id="checkmark" viewBox="0 0 100 100">
+                <path data-hf-id="hf-unms" id="check-path" d="M20,55 L42,75 L82,25" />
+              </svg>
+            </div>
+
+            <div data-hf-id="hf-n92a" id="logo-close" data-layout-allow-overflow="true"><img data-hf-id="hf-fy8b" src="assets/images/Nordic-BarberShop-logo-white.svg?instance=close" alt="Nordic"></div>
+
+            <div data-hf-id="hf-cek3" class="headline cierre-text" id="text-cierre" data-layout-allow-overlap="true" data-layout-allow-overflow="true">
+              <span data-hf-id="hf-x0di" class="line" id="cierre-1">El que sale de Nordic, sale sabiendo</span>
+              <span data-hf-id="hf-4foj" class="line" id="cierre-2">por qué se ve bien — <span data-hf-id="hf-qi99" class="hl">no adivinando.</span></span>
+            </div>
+            <div data-hf-id="hf-n301" class="signature-text" id="text-signature">Forged for the close cut.</div>
+          </div>
+        </div>
+        <div data-hf-id="hf-i9ve" id="ink-fade"></div>
+      </div>
+
+      <audio data-hf-id="hf-qhxu" id="bgm-a" class="clip" data-start="0" data-duration="30.5" data-track-index="90" data-volume="0.5" src="assets/bgm/track-a.mp3"></audio>
+      <audio data-hf-id="hf-czkj" id="bgm-b" class="clip" data-start="27.5" data-duration="22.5" data-track-index="91" data-volume="0" src="assets/bgm/track-b.mp3"></audio>
+
+      <audio data-hf-id="hf-l561" id="sfx-hit" class="clip" data-start="0" data-duration="1.0" data-track-index="92" data-volume="0.9" src="assets/sfx/hard-impact-hit-stinger-dramatic.mp3"></audio>
+      <audio data-hf-id="hf-4ipi" id="sfx-riser" class="clip" data-start="3.3" data-duration="1.5" data-track-index="93" data-volume="0.7" src="assets/sfx/dramatic-riser-tension-sting.mp3"></audio>
+      <audio data-hf-id="hf-17hx" id="sfx-whoosh1" class="clip" data-start="4.5" data-duration="1.0" data-track-index="92" data-volume="0.5" src="assets/sfx/whoosh-transition-swoosh.mp3"></audio>
+      <audio data-hf-id="hf-6vby" id="sfx-scissors" class="clip" data-start="9.0" data-duration="8.5" data-track-index="94" data-volume="0.22" src="assets/sfx/scissors-snipping-barber-ambient.mp3"></audio>
+      <audio data-hf-id="hf-55gl" id="sfx-whoosh2" class="clip" data-start="18.0" data-duration="1.0" data-track-index="92" data-volume="0.6" src="assets/sfx/whoosh-transition-swoosh.mp3"></audio>
+      <audio data-hf-id="hf-uify" id="sfx-clank" class="clip" data-start="20.5" data-duration="1.2" data-track-index="93" data-volume="0.7" src="assets/sfx/metal-wrench-clank-tool.mp3"></audio>
+      <audio data-hf-id="hf-vifq" id="sfx-bass1" class="clip" data-start="24.0" data-duration="0.86" data-track-index="92" data-volume="0.8" src="assets/sfx/dramatic-bass-hit-thud.mp3"></audio>
+      <audio data-hf-id="hf-33q3" id="sfx-bass2" class="clip" data-start="26.5" data-duration="0.86" data-track-index="93" data-volume="0.8" src="assets/sfx/dramatic-bass-hit-thud.mp3"></audio>
+      <audio data-hf-id="hf-6mao" id="sfx-ignition" class="clip" data-start="28.0" data-duration="2.36" data-track-index="94" data-volume="0.7" src="assets/sfx/ignition-swell-magical-reveal.mp3"></audio>
+      <audio data-hf-id="hf-qavt" id="sfx-whoosh3" class="clip" data-start="29.5" data-duration="1.2" data-track-index="92" data-volume="0.6" src="assets/sfx/whoosh-transition-swoosh.mp3"></audio>
+      <audio data-hf-id="hf-pwr6" id="sfx-tick1" class="clip" data-start="33.3" data-duration="0.24" data-track-index="92" data-volume="0.5" src="assets/sfx/soft-ui-tap-click-select.mp3"></audio>
+      <audio data-hf-id="hf-q7kn" id="sfx-tick2" class="clip" data-start="37.0" data-duration="0.24" data-track-index="93" data-volume="0.5" src="assets/sfx/soft-ui-tap-click-select.mp3"></audio>
+      <audio data-hf-id="hf-5ysb" id="sfx-tick3" class="clip" data-start="40.6" data-duration="0.24" data-track-index="94" data-volume="0.5" src="assets/sfx/soft-ui-tap-click-select.mp3"></audio>
+      <audio data-hf-id="hf-tnki" id="sfx-confirm" class="clip" data-start="44.0" data-duration="0.19" data-track-index="92" data-volume="0.8" src="assets/sfx/button-press-thud-confirm.mp3"></audio>
+      <audio data-hf-id="hf-9t7t" id="sfx-chime" class="clip" data-start="44.5" data-duration="2.0" data-track-index="93" data-volume="0.7" src="assets/sfx/success-chime-positive-confirmation-brig.mp3"></audio>
+      <audio data-hf-id="hf-t6sq" id="sfx-fadeswell" class="clip" data-start="47.5" data-duration="1.29" data-track-index="94" data-volume="0.35" src="assets/sfx/whoosh-transition-swoosh.mp3"></audio>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // ---------- deterministic ember field (golden-angle placement, no Math.random) ----------
+      const emberContainer = document.getElementById("embers");
+      const EMBER_COUNT = 26;
+      const emberEls = [];
+      for (let i = 0; i < EMBER_COUNT; i++) {
+        const angle = (i * 137.508 * Math.PI) / 180;
+        const radius = 46 + i * 13;
+        const ex = Math.cos(angle) * radius;
+        const ey = Math.sin(angle) * radius * 0.72;
+        const el = document.createElement("div");
+        el.className = "ember";
+        el.style.left = "50%";
+        el.style.top = "46%";
+        el.style.marginLeft = (ex - 3.5).toFixed(1) + "px";
+        el.style.marginTop = (ey - 3.5).toFixed(1) + "px";
+        emberContainer.appendChild(el);
+        emberEls.push({ el, ex, ey });
+      }
+
+      // ---------- camera rig ----------
+      const camera = document.getElementById("camera");
+      const camState = { x: 0, y: 0, scale: 1 };
+      function applyCamera() {
+        camera.style.transform = `translate(${camState.x}px, ${camState.y}px) scale(${camState.scale})`;
+      }
+      applyCamera();
+
+      gsap.set("#logo-ignite", { xPercent: -50, yPercent: -50, scale: 0.02 });
+
+      // Hook: cold open already tight, punches closer.
+      tl.set(camState, { x: 0, y: -170, scale: 1.22 }, 0);
+      tl.to(camState, { x: 0, y: -230, scale: 1.34, duration: 4.5, ease: "power1.in", onUpdate: applyCamera }, 0);
+
+      // Reframe: hard pull-back, decelerating.
+      tl.to(camState, { x: 0, y: 0, scale: 1.0, duration: 4.5, ease: "power3.out", onUpdate: applyCamera }, 4.5);
+
+      // Contexto A: lateral drift begins.
+      tl.to(camState, { x: -70, y: 10, scale: 1.05, duration: 4.5, ease: "sine.inOut", onUpdate: applyCamera }, 9.0);
+      // Contexto B: drift decelerates to near-stop.
+      tl.to(camState, { x: -95, y: 15, scale: 1.08, duration: 4.5, ease: "power2.out", onUpdate: applyCamera }, 13.5);
+
+      // Whip-pan into Analogía (world swap), then push-in.
+      tl.to(camState, { x: 60, y: -10, scale: 1.0, duration: 0.4, ease: "power4.in", onUpdate: applyCamera }, 18.0);
+      tl.to(camState, { x: 0, y: -50, scale: 1.18, duration: 5.6, ease: "power1.inOut", onUpdate: applyCamera }, 18.4);
+
+      // Fade to ambient dark, camera settles for Declaración.
+      tl.to(camState, { x: 0, y: 0, scale: 1.0, duration: 1.0, ease: "power2.out", onUpdate: applyCamera }, 24.0);
+      tl.to(camState, { x: 0, y: -20, scale: 1.08, duration: 4.0, ease: "sine.inOut", onUpdate: applyCamera }, 25.0);
+
+      // Giro: pull back to reveal the full lockup.
+      tl.to(camState, { x: 0, y: 0, scale: 1.0, duration: 4.0, ease: "power2.out", onUpdate: applyCamera }, 29.0);
+
+      // Promesa + cierre: steady forward drift, no lingering.
+      tl.to(camState, { x: 0, y: -10, scale: 1.03, duration: 11.0, ease: "none", onUpdate: applyCamera }, 33.0);
+      tl.to(camState, { x: 0, y: 0, scale: 1.0, duration: 6.0, ease: "power2.out", onUpdate: applyCamera }, 44.0);
+
+      // ---------- full-bleed scene crossfades ----------
+      tl.set("#scene-hook", { opacity: 1 }, 0);
+      tl.to("#scene-hook", { opacity: 0, duration: 0.6, ease: "power1.in" }, 4.3);
+
+      tl.to("#scene-reframe", { opacity: 1, duration: 0.6, ease: "power1.out" }, 4.5);
+      tl.to("#scene-reframe", { opacity: 0, duration: 0.5, ease: "power1.in" }, 8.6);
+
+      tl.to("#scene-contexto", { opacity: 1, duration: 0.5, ease: "power1.out" }, 9.0);
+      tl.to("#scene-contexto", { opacity: 0, duration: 0.35, ease: "power1.in" }, 17.75);
+
+      tl.to("#scene-analogia", { opacity: 1, duration: 0.3, ease: "power1.out" }, 18.1);
+      tl.to("#scene-analogia", { opacity: 0, duration: 0.9, ease: "power1.in" }, 23.3);
+
+      // ---------- ambient glow breathing (finite deterministic loop) ----------
+      for (let i = 0; i < 24; i++) {
+        tl.to("#glow", { opacity: i % 2 ? 0.4 : 0.16, duration: 1.05, ease: "sine.inOut", overwrite: "auto" }, i * 1.05);
+      }
+
+      // ---------- hook: word-by-word shout entrance ----------
+      const hookOffsets = [
+        { x: -34, y: 22, r: -9 },
+        { x: 28, y: -16, r: 7 },
+        { x: -18, y: 26, r: -6 },
+        { x: 22, y: -22, r: 10 },
+        { x: -26, y: 16, r: -8 },
+        { x: 32, y: -12, r: 6 },
+      ];
+      document.querySelectorAll("#text-hook .w").forEach((el, i) => {
+        const o = hookOffsets[i];
+        tl.fromTo(
+          el,
+          { opacity: 0, scale: 0.4, x: o.x, y: o.y, rotate: o.r },
+          { opacity: 1, scale: 1, x: 0, y: 0, rotate: 0, duration: 0.5, ease: "back.out(2)" },
+          i * 0.12
+        );
+      });
+      tl.to("#text-hook", { opacity: 0, duration: 0.4 }, 4.2);
+
+      // ---------- single-block line reveals ----------
+      function revealLine(sel, start, opts = {}) {
+        tl.fromTo(
+          sel,
+          { opacity: 0, y: opts.y ?? 26 },
+          { opacity: 1, y: 0, duration: opts.dur ?? 0.6, ease: "power2.out" },
+          start
+        );
+      }
+      function hideLine(sel, start, dur = 0.35) {
+        tl.to(sel, { opacity: 0, duration: dur, ease: "power1.in" }, start);
+      }
+
+      revealLine("#text-reframe .line", 5.0);
+      hideLine("#text-reframe", 8.6);
+
+      revealLine("#text-contextoA .line", 9.4);
+      hideLine("#text-contextoA", 13.1);
+
+      revealLine("#contextoB-1", 13.9);
+      revealLine("#contextoB-2", 15.8);
+      hideLine("#text-contextoB", 17.6);
+
+      revealLine("#analogia-1", 18.6);
+      hideLine("#analogia-1", 20.6, 0.4);
+      revealLine("#analogia-2", 20.7);
+      hideLine("#analogia-2", 23.5);
+
+      revealLine("#declaracion-1", 24.4);
+      hideLine("#declaracion-1", 26.6, 0.4);
+      revealLine("#declaracion-2", 26.7);
+      hideLine("#declaracion-2", 28.7);
+
+      // ---------- logo ignition: embers converge and ignite ----------
+      emberEls.forEach((e, i) => {
+        tl.fromTo(e.el, { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 23.6 + i * 0.02);
+        tl.to(e.el, { x: -e.ex, y: -e.ey, scale: 0, opacity: 0, duration: 0.5, ease: "power2.in" }, 28.7 + i * 0.01);
+      });
+
+      tl.fromTo(
+        "#logo-ignite",
+        { opacity: 0, scale: 0.02 },
+        { opacity: 1, scale: 1, duration: 1.0, ease: "back.out(1.6)" },
+        29.0
+      );
+      // Shrink to persistent bottom watermark; stays static thereafter (transform-only: scale + y).
+      tl.to("#logo-ignite", { scale: 0.304, y: 922, duration: 1.5, ease: "power2.inOut" }, 30.6);
+
+      revealLine("#text-giro .line", 29.9, { dur: 0.7 });
+      hideLine("#text-giro", 32.6);
+
+      // ---------- promise cards (card-morph-anchor) ----------
+      tl.fromTo("#morph-shell", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.7, ease: "back.out(1.4)" }, 33.0);
+      revealLine("#shell-eyebrow", 33.2, { dur: 0.4 });
+
+      revealLine("#shell-bg-a", 33.15, { dur: 0.5, y: 0 });
+      revealLine("#shell-text-a", 33.5);
+      hideLine("#shell-bg-a", 36.4, 0.4);
+      hideLine("#shell-text-a", 36.4, 0.4);
+
+      revealLine("#shell-bg-b", 36.85, { dur: 0.5, y: 0 });
+      revealLine("#shell-text-b", 37.2);
+      hideLine("#shell-bg-b", 40.0, 0.4);
+      hideLine("#shell-text-b", 40.0, 0.4);
+
+      revealLine("#shell-bg-c", 40.45, { dur: 0.5, y: 0 });
+      revealLine("#shell-text-c", 40.8);
+      hideLine("#shell-bg-c", 43.6, 0.4);
+      hideLine("#shell-text-c", 43.6, 0.4);
+      hideLine("#shell-eyebrow", 43.6, 0.4);
+
+      // ---------- close: shell collapses into circular badge ----------
+      tl.to(
+        "#morph-shell",
+        { width: 340, height: 340, borderRadius: "50%", backgroundColor: "#ffd200", duration: 0.9, ease: "power3.inOut" },
+        44.0
+      );
+      tl.to(".shell-scrim", { opacity: 0, duration: 0.5 }, 44.0);
+      tl.set(".shell-scrim", { opacity: 0 }, 44.5);
+      const checkPath = document.getElementById("check-path");
+      const checkLen = checkPath.getTotalLength();
+      gsap.set(checkPath, { strokeDasharray: checkLen, strokeDashoffset: checkLen });
+      tl.to("#checkmark", { opacity: 1, duration: 0.2 }, 44.5);
+      tl.to(checkPath, { strokeDashoffset: 0, duration: 0.5, ease: "power2.out" }, 44.5);
+      // Badge breathes gently (finite loop) while the close text lands.
+      for (let i = 0; i < 4; i++) {
+        tl.to("#morph-shell", { scale: i % 2 ? 1.04 : 1.0, duration: 0.7, ease: "sine.inOut", overwrite: "auto" }, 45.0 + i * 0.7);
+      }
+
+      tl.fromTo("#logo-close", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 44.6);
+
+      revealLine("#cierre-1", 44.8, { dur: 0.6 });
+      revealLine("#cierre-2", 46.0, { dur: 0.6 });
+      revealLine("#text-signature", 47.2, { dur: 0.8 });
+
+      // ---------- fade to ink ----------
+      tl.to("#ink-fade", { opacity: 1, duration: 1.6, ease: "power2.in" }, 48.5);
+      tl.to("#bgm-a", { volume: 0, duration: 1.5, ease: "none" }, 29.0);
+      tl.to("#bgm-b", { volume: 0.55, duration: 1.5, ease: "none" }, 29.0);
+      tl.to("#bgm-b", { volume: 0, duration: 2.0, ease: "power1.in" }, 47.8);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

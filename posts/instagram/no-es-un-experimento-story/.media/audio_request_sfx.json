@@ -1,0 +1,15 @@
+{
+  "lines": [
+    { "id": "hit", "text": "", "sfx": ["hard impact hit stinger dramatic"] },
+    { "id": "riser", "text": "", "sfx": ["dramatic riser tension sting"] },
+    { "id": "whoosh", "text": "", "sfx": ["whoosh transition swoosh"] },
+    { "id": "scissors", "text": "", "sfx": ["scissors snipping barber ambient"] },
+    { "id": "clank", "text": "", "sfx": ["metal wrench clank tool"] },
+    { "id": "bass", "text": "", "sfx": ["dramatic bass hit thud"] },
+    { "id": "ignition", "text": "", "sfx": ["ignition swell magical reveal"] },
+    { "id": "tick", "text": "", "sfx": ["soft ui tap click select"] },
+    { "id": "confirm", "text": "", "sfx": ["button press thud confirm"] },
+    { "id": "chime", "text": "", "sfx": ["success chime positive confirmation bright"] }
+  ],
+  "bgm": { "mode": "none" }
+}

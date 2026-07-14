@@ -1,0 +1,122 @@
+[
+  {
+    "pool": "a",
+    "label": "tension",
+    "query": "tense cinematic minor key synth pulse dark moody atmospheric build suspenseful",
+    "rank": 1,
+    "score": 0.8848443031311035,
+    "duration": 52,
+    "name": "Astral Generated Music: 35b49fa9",
+    "description": "dark ambient, slow minor key, suspenseful thriller tone",
+    "file": ".media/candidates/bgm-a/1-astral-generated-music-35b49fa9.mp3",
+    "source": "heygen.audio.sounds"
+  },
+  {
+    "pool": "a",
+    "label": "tension",
+    "query": "tense cinematic minor key synth pulse dark moody atmospheric build suspenseful",
+    "rank": 2,
+    "score": 0.8848159313201904,
+    "duration": 48,
+    "name": "Astral Generated Music: eb34d6d4",
+    "description": "dramatic, suspenseful electronic synth underscore, slow build, high tension",
+    "file": ".media/candidates/bgm-a/2-astral-generated-music-eb34d6d4.mp3",
+    "source": "heygen.audio.sounds"
+  },
+  {
+    "pool": "a",
+    "label": "tension",
+    "query": "tense cinematic minor key synth pulse dark moody atmospheric build suspenseful",
+    "rank": 3,
+    "score": 0.883545994758606,
+    "duration": 68,
+    "name": "Astral Generated Music: 001329a8",
+    "description": "dark cinematic suspense, deep ominous drones, low frequency pulses, cold atmosphere",
+    "file": ".media/candidates/bgm-a/3-astral-generated-music-001329a8.mp3",
+    "source": "heygen.audio.sounds"
+  },
+  {
+    "pool": "a",
+    "label": "tension",
+    "query": "tense cinematic minor key synth pulse dark moody atmospheric build suspenseful",
+    "rank": 4,
+    "score": 0.8816573023796082,
+    "duration": 27,
+    "name": "Astral Generated Music: d5098f4f",
+    "description": "low cinematic synth ambient, building tension, swells at the end",
+    "file": ".media/candidates/bgm-a/4-astral-generated-music-d5098f4f.mp3",
+    "source": "heygen.audio.sounds"
+  },
+  {
+    "pool": "a",
+    "label": "tension",
+    "query": "tense cinematic minor key synth pulse dark moody atmospheric build suspenseful",
+    "rank": 5,
+    "score": 0.8774713277816772,
+    "duration": 15,
+    "name": "Astral Generated Music: 15afcc18",
+    "description": "dark minimal electronic tension build cinematic",
+    "file": ".media/candidates/bgm-a/5-astral-generated-music-15afcc18.mp3",
+    "source": "heygen.audio.sounds"
+  },
+  {
+    "pool": "b",
+    "label": "payoff",
+    "query": "confident triumphant modern beat energetic trendy premium product reveal underscore",
+    "rank": 1,
+    "score": 0.7697486877441406,
+    "duration": 40,
+    "name": "Astral Generated Music: 0f0a81bf",
+    "description": "uplifting contemporary product demo track, energetic and premium",
+    "file": ".media/candidates/bgm-b/1-astral-generated-music-0f0a81bf.mp3",
+    "source": "heygen.audio.sounds"
+  },
+  {
+    "pool": "b",
+    "label": "payoff",
+    "query": "confident triumphant modern beat energetic trendy premium product reveal underscore",
+    "rank": 2,
+    "score": 0.7602749466896057,
+    "duration": 16,
+    "name": "Astral Generated Music: 3051f13f",
+    "description": "trending upbeat rhythmic energy, premium and modern",
+    "file": ".media/candidates/bgm-b/2-astral-generated-music-3051f13f.mp3",
+    "source": "heygen.audio.sounds"
+  },
+  {
+    "pool": "b",
+    "label": "payoff",
+    "query": "confident triumphant modern beat energetic trendy premium product reveal underscore",
+    "rank": 3,
+    "score": 0.7499140501022339,
+    "duration": 8,
+    "name": "Astral Generated Music: 2089643d",
+    "description": "energetic upbeat pop, modern product showcase",
+    "file": ".media/candidates/bgm-b/3-astral-generated-music-2089643d.mp3",
+    "source": "heygen.audio.sounds"
+  },
+  {
+    "pool": "b",
+    "label": "payoff",
+    "query": "confident triumphant modern beat energetic trendy premium product reveal underscore",
+    "rank": 4,
+    "score": 0.7427482604980469,
+    "duration": 38,
+    "name": "Astral Generated Music: 9f0c4b49",
+    "description": "upbeat modern corporate tech underscore, motivating, premium",
+    "file": ".media/candidates/bgm-b/4-astral-generated-music-9f0c4b49.mp3",
+    "source": "heygen.audio.sounds"
+  },
+  {
+    "pool": "b",
+    "label": "payoff",
+    "query": "confident triumphant modern beat energetic trendy premium product reveal underscore",
+    "rank": 5,
+    "score": 0.7427204847335815,
+    "duration": 36,
+    "name": "Astral Generated Music: bf38786f",
+    "description": "modern energetic product showcase, upbeat electronic pulses",
+    "file": ".media/candidates/bgm-b/5-astral-generated-music-bf38786f.mp3",
+    "source": "heygen.audio.sounds"
+  }
+]
