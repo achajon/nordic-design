@@ -136,12 +136,29 @@
   }
   .tile .badge svg{width:12px;height:12px;fill:var(--gold);}
   .tile-caption{
-    padding:var(--sp-1) var(--sp-1) var(--sp-2);
+    padding:var(--sp-1) var(--sp-1) 2px;
     font-size:11px;
     font-weight:600;
     letter-spacing:.02em;
     color:var(--bone-dim);
     line-height:1.3;
+  }
+  .tile-date{
+    padding:0 var(--sp-1) var(--sp-2);
+    font-size:10px;
+    font-weight:600;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:var(--gold-deep);
+  }
+  .modal-date{
+    display:block;
+    margin:0;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--gold-deep);
   }
 
   .modal{
@@ -291,6 +308,53 @@
     font-size:11px;
     color:var(--bone-dim);
   }
+
+  .copy-menu{
+    display:none;
+    position:fixed;
+    z-index:200;
+    width:min(340px, 90vw);
+    max-height:60vh;
+    background:var(--charcoal);
+    border:1px solid rgba(247,244,236,.15);
+    border-radius:8px;
+    box-shadow:0 8px 24px rgba(0,0,0,.5);
+    padding:var(--sp-2);
+    flex-direction:column;
+    gap:var(--sp-1);
+  }
+  .copy-menu.open{display:flex;}
+  .copy-menu-label{
+    margin:0;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--gold);
+  }
+  .copy-menu-text{
+    margin:0;
+    font-size:13px;
+    line-height:1.5;
+    color:var(--bone);
+    white-space:pre-wrap;
+    overflow-y:auto;
+    max-height:32vh;
+  }
+  .copy-menu-btn{
+    align-self:flex-start;
+    background:var(--gold);
+    color:var(--ink);
+    border:none;
+    border-radius:6px;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.03em;
+    text-transform:uppercase;
+    padding:8px 14px;
+    cursor:pointer;
+  }
+  .copy-menu-btn:focus-visible{outline:2px solid var(--bone);}
 </style>
 </head>
 <body>
@@ -317,6 +381,12 @@
   </div>
 </div>
 
+<div class="copy-menu" id="copyMenu">
+  <p class="copy-menu-label">Copy para publicar</p>
+  <p class="copy-menu-text" id="copyMenuText">Cargando…</p>
+  <button class="copy-menu-btn" id="copyMenuBtn" type="button">Copiar</button>
+</div>
+
 <script>
 const CAROUSEL_SVG = '<svg viewBox="0 0 24 24"><rect x="3" y="7" width="14" height="14" rx="2"/><path d="M7 5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1V7a2 2 0 0 0-2-2H7z" opacity=".55"/></svg>';
 const PLAY_SVG = '<svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg>';
@@ -324,6 +394,7 @@ const PLAY_SVG = '<svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg>';
 const POSTS = [
   {
     id:'aceite-balsamo-cera',
+    date:'2026-07-06',
     type:'carousel',
     title:'Aceite, bálsamo o cera',
     cover:'posts/instagram/aceite-balsamo-cera/00-portada.png',
@@ -332,6 +403,7 @@ const POSTS = [
   },
   {
     id:'habitos-cuidado-personal',
+    date:'2026-07-05',
     type:'carousel',
     title:'5 hábitos del hombre moderno',
     cover:'posts/instagram/habitos-cuidado-personal/00-portada.png',
@@ -340,6 +412,7 @@ const POSTS = [
   },
   {
     id:'manicura-pedicura-hombres',
+    date:'2026-07-06',
     type:'carousel',
     title:'Manicura y pedicura para hombres',
     cover:'posts/instagram/manicura-pedicura-hombres/00-portada.png',
@@ -348,6 +421,7 @@ const POSTS = [
   },
   {
     id:'tipos-de-cara-barba',
+    date:'2026-07-06',
     type:'carousel',
     title:'La barba ideal según tu cara',
     cover:'posts/instagram/tipos-de-cara-barba/00-portada.png',
@@ -356,6 +430,7 @@ const POSTS = [
   },
   {
     id:'cortes-pelo-hombre-tendencias',
+    date:'2026-07-08',
     type:'carousel',
     title:'Cortes de pelo para hombre - tendencias 2026',
     cover:'posts/instagram/cortes-pelo-hombre-tendencias/00-portada.png',
@@ -364,6 +439,7 @@ const POSTS = [
   },
   {
     id:'habitos-cuidado-personal-story',
+    date:'2026-07-06',
     type:'video',
     title:'Story: hábitos de cuidado personal',
     cover:'posts/instagram/habitos-cuidado-personal-story/assets/images/00-portada.png',
@@ -372,6 +448,7 @@ const POSTS = [
   },
   {
     id:'manicura-pedicura-hombres-story',
+    date:'2026-07-06',
     type:'video',
     title:'Story: manicura y pedicura para hombres',
     cover:'posts/instagram/manicura-pedicura-hombres-story/assets/00-portada.png',
@@ -380,6 +457,7 @@ const POSTS = [
   },
   {
     id:'sistema-citas-story',
+    date:'2026-07-08',
     type:'video',
     title:'Story: sistema de citas',
     cover:'posts/instagram/sistema-citas-story/assets/00-portada.png',
@@ -388,6 +466,7 @@ const POSTS = [
   },
   {
     id:'como-agendar-citas',
+    date:'2026-07-09',
     type:'video',
     title:'Story: cómo agendar tu cita',
     cover:'posts/instagram/como-agendar-citas/assets/00-portada.png',
@@ -396,6 +475,7 @@ const POSTS = [
   },
   {
     id:'no-es-un-experimento-story',
+    date:'2026-07-14',
     type:'video',
     title:'Story: tu corte no es un experimento',
     cover:'posts/instagram/no-es-un-experimento-story/assets/00-portada.png',
@@ -404,6 +484,7 @@ const POSTS = [
   },
   {
     id:'espana-portugal-v1',
+    date:'2026-07-06',
     type:'single',
     title:'España - Portugal',
     label:'Versión: v1 · Barbería',
@@ -414,6 +495,7 @@ const POSTS = [
   },
   {
     id:'espana-portugal-v2',
+    date:'2026-07-06',
     type:'single',
     title:'España - Portugal',
     label:'Versión: v2 · Banderas',
@@ -424,6 +506,7 @@ const POSTS = [
   },
   {
     id:'espana-portugal-v2b',
+    date:'2026-07-06',
     type:'single',
     title:'España - Portugal',
     label:'Versión: v2b · Banderas (Nano Banana)',
@@ -434,6 +517,7 @@ const POSTS = [
   },
   {
     id:'espana-portugal-v3',
+    date:'2026-07-06',
     type:'single',
     title:'España - Portugal',
     label:'Versión: v3 · Poster deportivo',
@@ -444,6 +528,7 @@ const POSTS = [
   },
   {
     id:'servicios-individuales-v1',
+    date:'2026-07-06',
     type:'single',
     title:'Servicios individuales',
     label:'Versión: v1 · Fondo sólido',
@@ -454,6 +539,7 @@ const POSTS = [
   },
   {
     id:'servicios-individuales-v2',
+    date:'2026-07-06',
     type:'single',
     title:'Servicios individuales',
     label:'Versión: v2 · Fondo con textura',
@@ -464,6 +550,7 @@ const POSTS = [
   },
   {
     id:'paquete-masajes-precios',
+    date:'2026-07-06',
     type:'single',
     title:'Paquete de masajes',
     cover:'posts/instagram/paquete-masajes-precios/paquete-masajes-precios.png',
@@ -473,6 +560,7 @@ const POSTS = [
   },
   {
     id:'reclutamiento-recepcionista',
+    date:'2026-07-06',
     type:'single',
     title:'Buscamos recepcionista',
     cover:'posts/instagram/reclutamiento-recepcionista/reclutamiento-recepcionista-v1.png',
@@ -482,6 +570,7 @@ const POSTS = [
   },
   {
     id:'mundial-bandera-argentina',
+    date:'2026-07-09',
     type:'single',
     title:'Promesa mundialista: bandera de Argentina',
     cover:'posts/instagram/mundial-bandera-argentina/00-portada.png',
@@ -491,6 +580,7 @@ const POSTS = [
   },
   {
     id:'dia-partido-camiseta',
+    date:'2026-07-09',
     type:'single',
     title:'Día de partido: camiseta',
     cover:'posts/instagram/dia-partido-camiseta/00-portada.png',
@@ -500,6 +590,7 @@ const POSTS = [
   },
   {
     id:'cambio-numero-v1-feed',
+    date:'2026-07-09',
     type:'single',
     title:'Cambio de número de WhatsApp',
     label:'Versión: v1 · Bodegón (Feed)',
@@ -510,6 +601,7 @@ const POSTS = [
   },
   {
     id:'cambio-numero-v1-story',
+    date:'2026-07-09',
     type:'single',
     title:'Cambio de número de WhatsApp',
     label:'Versión: v1 · Bodegón (Story)',
@@ -520,6 +612,7 @@ const POSTS = [
   },
   {
     id:'cambio-numero-v2-feed',
+    date:'2026-07-09',
     type:'single',
     title:'Cambio de número de WhatsApp',
     label:'Versión: v2 · Barbero con celular (Feed)',
@@ -530,6 +623,7 @@ const POSTS = [
   },
   {
     id:'cambio-numero-v2-story',
+    date:'2026-07-09',
     type:'single',
     title:'Cambio de número de WhatsApp',
     label:'Versión: v2 · Barbero con celular (Story)',
@@ -540,6 +634,7 @@ const POSTS = [
   },
   {
     id:'cambio-numero-v3-feed',
+    date:'2026-07-09',
     type:'single',
     title:'Cambio de número de WhatsApp',
     label:'Versión: v3 · Hair tattoo frontal (Feed)',
@@ -550,6 +645,7 @@ const POSTS = [
   },
   {
     id:'cambio-numero-v3-story',
+    date:'2026-07-09',
     type:'single',
     title:'Cambio de número de WhatsApp',
     label:'Versión: v3 · Hair tattoo frontal (Story)',
@@ -560,6 +656,7 @@ const POSTS = [
   },
   {
     id:'cambio-numero-v4-feed',
+    date:'2026-07-09',
     type:'single',
     title:'Cambio de número de WhatsApp',
     label:'Versión: v4 · Hair tattoo trasero (Feed)',
@@ -570,6 +667,7 @@ const POSTS = [
   },
   {
     id:'recordatorio-parqueo-tec',
+    date:'2026-07-10',
     type:'single',
     title:'Recordatorio: validá tu ticket de parqueo',
     label:'Versión: Feed',
@@ -580,6 +678,7 @@ const POSTS = [
   },
   {
     id:'recordatorio-parqueo-tec-story',
+    date:'2026-07-10',
     type:'single',
     title:'Recordatorio: validá tu ticket de parqueo',
     label:'Versión: Story',
@@ -590,6 +689,7 @@ const POSTS = [
   },
   {
     id:'aviso-pagos-tarjeta',
+    date:'2026-07-10',
     type:'single',
     title:'Aviso: pagos con tarjeta no disponibles',
     label:'Versión: Feed',
@@ -600,6 +700,7 @@ const POSTS = [
   },
   {
     id:'aviso-pagos-tarjeta-story',
+    date:'2026-07-10',
     type:'single',
     title:'Aviso: pagos con tarjeta no disponibles',
     label:'Versión: Story',
@@ -610,6 +711,7 @@ const POSTS = [
   },
   {
     id:'bienvenida-jennifer-host',
+    date:'2026-07-13',
     type:'single',
     title:'Te presentamos a Jennifer',
     label:'Versión: Feed',
@@ -620,6 +722,7 @@ const POSTS = [
   },
   {
     id:'bienvenida-jennifer-host-story',
+    date:'2026-07-13',
     type:'single',
     title:'Te presentamos a Jennifer',
     label:'Versión: Story',
@@ -630,6 +733,7 @@ const POSTS = [
   },
   {
     id:'staff-junior-castillo-barbero',
+    date:'2026-07-13',
     type:'single',
     title:'Te presentamos a Junior',
     label:'Versión: Feed',
@@ -640,6 +744,7 @@ const POSTS = [
   },
   {
     id:'staff-junior-castillo-barbero-story',
+    date:'2026-07-13',
     type:'single',
     title:'Te presentamos a Junior',
     label:'Versión: Story',
@@ -650,6 +755,7 @@ const POSTS = [
   },
   {
     id:'staff-renato-barbero',
+    date:'2026-07-13',
     type:'single',
     title:'Te presentamos a Renato',
     label:'Versión: Feed',
@@ -660,6 +766,7 @@ const POSTS = [
   },
   {
     id:'staff-renato-barbero-story',
+    date:'2026-07-13',
     type:'single',
     title:'Te presentamos a Renato',
     label:'Versión: Story',
@@ -670,6 +777,7 @@ const POSTS = [
   },
   {
     id:'staff-yadira-bautista-lady-barber',
+    date:'2026-07-13',
     type:'single',
     title:'Te presentamos a Yadira',
     label:'Versión: Feed',
@@ -680,6 +788,7 @@ const POSTS = [
   },
   {
     id:'staff-yadira-bautista-lady-barber-story',
+    date:'2026-07-13',
     type:'single',
     title:'Te presentamos a Yadira',
     label:'Versión: Story',
@@ -690,6 +799,7 @@ const POSTS = [
   },
   {
     id:'staff-henry-macolas-gerente-operativo',
+    date:'2026-07-13',
     type:'single',
     title:'Te presentamos a Henry',
     label:'Versión: Feed',
@@ -700,6 +810,7 @@ const POSTS = [
   },
   {
     id:'staff-henry-macolas-gerente-operativo-story',
+    date:'2026-07-13',
     type:'single',
     title:'Te presentamos a Henry',
     label:'Versión: Story',
@@ -710,6 +821,7 @@ const POSTS = [
   },
   {
     id:'staff-henry-macolas-gerente-operativo-v2',
+    date:'2026-07-13',
     type:'single',
     title:'Te presentamos a Henry',
     label:'Versión: Feed (opción 2, fondo recepción)',
@@ -720,6 +832,7 @@ const POSTS = [
   },
   {
     id:'staff-henry-macolas-gerente-operativo-story-v2',
+    date:'2026-07-13',
     type:'single',
     title:'Te presentamos a Henry',
     label:'Versión: Story (opción 2, fondo recepción)',
@@ -730,14 +843,24 @@ const POSTS = [
   }
 ];
 
+const POSTS_SORTED = POSTS.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+
+const MONTHS_ES = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+function formatDateEs(dateStr){
+  if(!dateStr) return '';
+  const [y, m, d] = dateStr.split('-').map(Number);
+  return `${d} ${MONTHS_ES[m - 1]} ${y}`;
+}
+
 const grid = document.getElementById('grid');
 const modal = document.getElementById('modal');
 const modalBody = document.getElementById('modalBody');
 const modalClose = document.getElementById('modalClose');
+const copyMenu = document.getElementById('copyMenu');
 const copyCache = new Map();
 
 function renderGrid(){
-  POSTS.forEach((post, i) => {
+  POSTS_SORTED.forEach((post, i) => {
     const isCarousel = post.type === 'carousel';
     const tile = document.createElement(isCarousel ? 'a' : 'button');
     tile.className = 'tile';
@@ -749,6 +872,10 @@ function renderGrid(){
       tile.type = 'button';
       tile.addEventListener('click', () => openModal(i));
     }
+    tile.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      openCopyMenu(post, e.clientX, e.clientY);
+    });
 
     const img = document.createElement('img');
     img.src = post.cover;
@@ -768,12 +895,17 @@ function renderGrid(){
     caption.textContent = post.label ? `${post.title} — ${post.label.replace('Versión: ','')}` : post.title;
     tile.appendChild(caption);
 
+    const dateEl = document.createElement('span');
+    dateEl.className = 'tile-date';
+    dateEl.textContent = formatDateEs(post.date);
+    tile.appendChild(dateEl);
+
     grid.appendChild(tile);
   });
 }
 
 function openModal(index){
-  const post = POSTS[index];
+  const post = POSTS_SORTED[index];
   modalBody.innerHTML = '';
   if(post.type === 'video'){
     renderVideoModal(post);
@@ -803,6 +935,12 @@ function renderVideoModal(post){
   const title = document.createElement('p');
   title.className = 'modal-title';
   title.textContent = post.title;
+  if(post.date){
+    const dateEl = document.createElement('span');
+    dateEl.className = 'modal-date';
+    dateEl.textContent = `Generado: ${formatDateEs(post.date)}`;
+    title.appendChild(dateEl);
+  }
 
   modalBody.appendChild(media);
   modalBody.appendChild(title);
@@ -868,6 +1006,13 @@ async function renderSingleModal(post){
   const copyWrap = document.createElement('div');
   copyWrap.className = 'modal-copy';
 
+  if(post.date){
+    const dateEl = document.createElement('p');
+    dateEl.className = 'modal-date';
+    dateEl.textContent = `Generado: ${formatDateEs(post.date)}`;
+    copyWrap.appendChild(dateEl);
+  }
+
   if(post.label){
     const labelEl = document.createElement('p');
     labelEl.className = 'modal-label';
@@ -920,10 +1065,88 @@ async function renderSingleModal(post){
   modalBody.appendChild(copyWrap);
 }
 
+function resolveInstagramCaption(json, file){
+  const entry = Array.isArray(json.versions) ? json.versions.find(v => v.file === file) : null;
+  const pick = (key) => (entry && entry[key] !== undefined) ? entry[key] : json[key];
+  return pick('instagram_caption') || pick('caption_on_image') || pick('caption') || null;
+}
+
+async function getPostCopyText(post){
+  if(post.type !== 'single' || !post.copyJson){
+    return null;
+  }
+  try{
+    const json = await fetchCopy(post.copyJson);
+    return resolveInstagramCaption(json, post.file);
+  } catch(err){
+    return null;
+  }
+}
+
+const copyMenuText = document.getElementById('copyMenuText');
+const copyMenuBtn = document.getElementById('copyMenuBtn');
+let copyMenuCurrentText = '';
+
+function closeCopyMenu(){
+  copyMenu.classList.remove('open');
+  copyMenuCurrentText = '';
+}
+
+async function openCopyMenu(post, x, y){
+  copyMenuCurrentText = '';
+  copyMenuText.textContent = 'Cargando…';
+  copyMenuBtn.textContent = 'Copiar';
+  copyMenu.classList.add('open');
+  positionCopyMenu(x, y);
+
+  const text = await getPostCopyText(post);
+  if(text){
+    copyMenuCurrentText = text;
+    copyMenuText.textContent = text;
+  } else {
+    copyMenuText.textContent = 'No hay copy disponible para este post.';
+  }
+  positionCopyMenu(x, y);
+}
+
+function positionCopyMenu(x, y){
+  const menuWidth = copyMenu.offsetWidth;
+  const menuHeight = copyMenu.offsetHeight;
+  const left = Math.min(x, window.innerWidth - menuWidth - 12);
+  const top = Math.min(y, window.innerHeight - menuHeight - 12);
+  copyMenu.style.left = `${Math.max(12, left)}px`;
+  copyMenu.style.top = `${Math.max(12, top)}px`;
+}
+
+copyMenuBtn.addEventListener('click', async () => {
+  if(!copyMenuCurrentText) return;
+  try{
+    await navigator.clipboard.writeText(copyMenuCurrentText);
+    copyMenuBtn.textContent = '¡Copiado!';
+    setTimeout(() => { copyMenuBtn.textContent = 'Copiar'; }, 1500);
+  } catch(err){
+    copyMenuBtn.textContent = 'Error al copiar';
+  }
+});
+
+document.addEventListener('click', (e) => {
+  if(copyMenu.classList.contains('open') && !copyMenu.contains(e.target)){
+    closeCopyMenu();
+  }
+});
+document.addEventListener('contextmenu', (e) => {
+  if(copyMenu.classList.contains('open') && !e.target.closest('.tile')){
+    closeCopyMenu();
+  }
+});
+
 modalClose.addEventListener('click', closeModal);
 modal.querySelector('.modal-backdrop').addEventListener('click', closeModal);
 document.addEventListener('keydown', (e) => {
-  if(e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  if(e.key === 'Escape'){
+    if(modal.classList.contains('open')) closeModal();
+    if(copyMenu.classList.contains('open')) closeCopyMenu();
+  }
 });
 
 renderGrid();
