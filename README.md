@@ -10,6 +10,7 @@ This project holds the visual identity for **Nordic Barber Shop** and the design
 | `design-system.md` | The same system in reference/markdown form — hex values, type scale, spacing, voice rules. |
 | `business-info.md` | Operational reference (not design tokens) — phone, address, hours, booking link, and full service/pricing catalog. Used by the WhatsApp virtual assistant. |
 | `carousel-tile-generation.md` | Two production techniques for generating carousel/post tile PNGs — Option A: one AI call generates the finished tile (photo + text + logo); Option B: AI generates the background photo only, real HTML/CSS (brand fonts + logo file) renders the text layer via headless Chrome. Includes a decision guide for picking per-slide. |
+| `staff-presentation-post-prompt.md` | Reusable recipe for "conocé al equipo" staff-presentation posts (feed + story) from a real employee photo — Gemini retouch (role-dependent wardrobe/props), Option B hybrid-HTML layout, and the validated Story photo-to-background fade gradient. |
 | `NordicBarberShoplogoblack.png` | Primary logo, dark ink — for light backgrounds. |
 | `NordicBarberShoplogowhite.png` | Primary logo, light ink — for dark backgrounds. |
 | `NordicNuevoLogoVersiones.pdf` | All approved logo lockups and color variants (light/dark, icon-only). |
