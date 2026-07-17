@@ -1,0 +1,16 @@
+{
+  "post": "Política de puntualidad y reservas — 5 variantes de fondo para elegir una sola imagen final",
+  "build_method": "Opcion B (ver carousel-tile-generation.md): un solo index.html parametrizado (?bg=01..05) con el mismo overlay (pill, headline, caption, logo) sobre 5 fondos distintos generados via scripts/kie_image_gen.py (kie.ai gpt-image-2-text-to-image, aspect_ratio 3:4, resolution 2K), renderizados con Chrome headless a 01-reloj-pulsera.png .. 05-cliente-entrando.png (2160x2700, 2x de 1080x1350). Todavia no se eligio una variante final, por lo que este post no esta wireado en index.html todavia -- pendiente de que el usuario elija una imagen antes de finalizar.",
+  "pill": "PUNTUALIDAD",
+  "headline": "EL TIEMPO ES ORO",
+  "headline_highlight": "ORO",
+  "caption_on_image": "Tu cita tiene los minutos exactos. Sé puntual y viví la experiencia completa.",
+  "variants": [
+    { "file": "01-reloj-pulsera.png", "desc": "Close-up de muñeca ajustando un reloj de pulsera moderno" },
+    { "file": "02-silla-vacia.png", "desc": "Silla de barbero vacía, reservada, bajo un spot dorado" },
+    { "file": "03-revisando-celular.png", "desc": "Barbero revisando la hora en su celular junto a sus herramientas" },
+    { "file": "04-tijeras-reloj.png", "desc": "Detalle top-down de tijeras + smartwatch sobre el mostrador" },
+    { "file": "05-cliente-entrando.png", "desc": "Cliente entrando por la puerta de vidrio, con motion blur" }
+  ],
+  "instagram_caption": "El tiempo es el recurso más valioso. ⚡️\n\nCada cita en Nordic está diseñada con los minutos exactos para brindarte un servicio de grooming impecable, sin prisas y con la máxima atención al detalle.\n\nPara mantener este estándar de excelencia y respetar el tiempo de todos, la puntualidad es fundamental. Por ello, te recordamos nuestras políticas de reserva:\n\n🔹 Puntualidad: Tu espacio está reservado exclusivamente para ti. Llegar a tu hora nos permite ofrecerte la experiencia completa que mereces.\n🔹 Gestión del sistema: Si surge un imprevisto y llegas tarde, nuestro sistema automático bloquea los cambios de última hora y no te permitirá reagendar por tu cuenta.\n🔹 Asistencia directa: ¿Tuviste un contratiempo? Escríbenos inmediatamente a nuestro WhatsApp. Es el único canal habilitado para que nuestro equipo te asista personalmente y busquemos la mejor solución.\n\nAgradecemos tu comprensión y compromiso con la calidad. Respetar el tiempo de tu cita es asegurar la excelencia de tu corte. 🥃\n\n📲 WhatsApp: [Tu número / Enlace directo]\n\n#NordicBarbershop #GroomingMasculino #EstiloNordic #BarberiaGuatemala #MenStyle"
+}

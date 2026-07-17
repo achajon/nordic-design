@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>politica-puntualidad</title>
+<style>
+  @font-face{
+    font-family:"Lost in South";
+    src:url("assets/fonts/Lost in South.otf") format("opentype");
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    src:url("assets/fonts/FiraSansCondensed-Regular.ttf") format("truetype");
+    font-weight:400;
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    src:url("assets/fonts/FiraSansCondensed-Bold.ttf") format("truetype");
+    font-weight:700;
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    src:url("assets/fonts/FiraSansCondensed-ExtraBold.ttf") format("truetype");
+    font-weight:800;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{width:1080px;height:1350px;background:#101010;overflow:hidden;}
+  .canvas{
+    position:relative;
+    width:1080px;
+    height:1350px;
+    background:#101010;
+  }
+  .bg-wrap{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+  }
+  .bg{
+    position:absolute;
+    top:-60px;
+    left:0;
+    width:1080px;
+    height:auto;
+  }
+  .scrim-top{
+    position:absolute;
+    left:0; right:0; top:0;
+    height:42%;
+    background:linear-gradient(to bottom, rgba(16,16,16,.85) 0%, rgba(16,16,16,.55) 55%, rgba(16,16,16,0) 100%);
+  }
+  .scrim-bottom{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    height:34%;
+    background:linear-gradient(to top, rgba(16,16,16,.92) 0%, rgba(16,16,16,.6) 60%, rgba(16,16,16,0) 100%);
+  }
+  .pill{
+    position:absolute;
+    top:64px; left:64px;
+    background:#FFD200;
+    color:#101010;
+    font-family:"Fira Sans Condensed";
+    font-weight:800;
+    font-size:26px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    padding:14px 32px;
+    border-radius:40px;
+  }
+  .headline{
+    position:absolute;
+    left:64px; right:64px;
+    top:150px;
+    font-family:"Lost in South";
+    font-size:88px;
+    letter-spacing:.07em;
+    line-height:1.0;
+    text-transform:uppercase;
+    color:#F7F4EC;
+  }
+  .headline .hl{color:#FFD200;}
+  .caption{
+    position:absolute;
+    left:64px; right:64px;
+    bottom:150px;
+    font-family:"Fira Sans Condensed";
+    font-weight:400;
+    font-size:32px;
+    line-height:1.4;
+    color:#F7F4EC;
+    opacity:.9;
+  }
+  .idea-tag{
+    position:absolute;
+    left:64px;
+    bottom:112px;
+    font-family:"Fira Sans Condensed";
+    font-weight:700;
+    font-size:20px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:#FFD200;
+    opacity:0;
+  }
+  .logo{
+    position:absolute;
+    right:64px;
+    bottom:56px;
+    height:60px;
+  }
+</style>
+</head>
+<body>
+  <div class="canvas">
+    <div class="bg-wrap"><img class="bg" id="bgImg" src=""></div>
+    <div class="scrim-top"></div>
+    <div class="scrim-bottom"></div>
+    <div class="pill" id="pillEl">Puntualidad</div>
+    <div class="headline" id="headlineEl">El tiempo es <span class="hl">oro</span></div>
+    <div class="caption" id="captionEl">Tu cita tiene los minutos exactos. Sé puntual y viví la experiencia completa.</div>
+    <img class="logo" src="assets/Nordic-BarberShop-logo-white.svg">
+  </div>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const n = params.get('bg') || '01';
+    document.getElementById('bgImg').src = 'assets/bg-' + n + '.png';
+
+    const pill = params.get('pill');
+    if (pill) document.getElementById('pillEl').textContent = pill;
+
+    const pre = params.get('pre');
+    const hl = params.get('hl');
+    if (pre && hl) {
+      document.getElementById('headlineEl').innerHTML = pre + ' <span class="hl">' + hl + '</span>';
+    }
+
+    const cap = params.get('cap');
+    if (cap) document.getElementById('captionEl').textContent = cap;
+  </script>
+</body>
+</html>

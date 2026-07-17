@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nordic Barber Shop — Preview Instagram: Política de puntualidad (opciones)</title>
+<style>
+  :root{
+    --ig-bg:#000000;
+    --ig-card:#000000;
+    --ig-border:#262626;
+    --ig-text:#f5f5f5;
+    --ig-text-dim:#a8a8a8;
+    --ig-text-faint:#737373;
+    --gold:#FFD200;
+  }
+  *{box-sizing:border-box;}
+  html,body{
+    margin:0;
+    padding:0;
+    background:#000;
+    color:var(--ig-text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    min-height:100%;
+  }
+  body{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:24px 12px 60px;
+  }
+  .page-title{
+    color:var(--ig-text-dim);
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    margin-bottom:14px;
+    text-align:center;
+  }
+  .phone{
+    width:100%;
+    max-width:390px;
+    background:var(--ig-card);
+    border:1px solid var(--ig-border);
+    border-radius:18px;
+    overflow:hidden;
+  }
+  .ig-header{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:11px 12px;
+  }
+  .avatar{
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    background:#101010;
+    border:1px solid #3a3a3a;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+    overflow:hidden;
+  }
+  .avatar img{
+    width:70%;
+    height:70%;
+    object-fit:contain;
+  }
+  .ig-user{
+    display:flex;
+    flex-direction:column;
+    line-height:1.15;
+  }
+  .ig-user .name{
+    font-size:13px;
+    font-weight:600;
+    color:var(--ig-text);
+  }
+  .ig-user .loc{
+    font-size:11px;
+    color:var(--ig-text-dim);
+  }
+  .ig-more{
+    margin-left:auto;
+    color:var(--ig-text);
+    font-size:18px;
+    line-height:1;
+    padding:4px;
+  }
+  .carousel-wrap{
+    position:relative;
+    width:100%;
+    background:#000;
+  }
+  .carousel{
+    display:flex;
+    width:100%;
+    aspect-ratio:4/5;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .carousel::-webkit-scrollbar{display:none;}
+  .slide{
+    flex:0 0 100%;
+    scroll-snap-align:center;
+    height:100%;
+  }
+  .slide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    -webkit-user-drag:none;
+  }
+  .counter{
+    position:absolute;
+    top:10px;
+    right:10px;
+    background:rgba(0,0,0,0.55);
+    color:#fff;
+    font-size:11px;
+    font-weight:600;
+    padding:3px 9px;
+    border-radius:10px;
+    backdrop-filter:blur(2px);
+  }
+  .nav-btn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.85);
+    color:#000;
+    border:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    font-size:14px;
+    padding:0;
+  }
+  .nav-btn.prev{left:8px;}
+  .nav-btn.next{right:8px;}
+  .dots{
+    display:flex;
+    justify-content:center;
+    gap:5px;
+    padding:9px 0 3px;
+  }
+  .dot{
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:#3a3a3a;
+    transition:background .15s;
+  }
+  .dot.active{
+    background:#0095f6;
+  }
+  .actions{
+    display:flex;
+    align-items:center;
+    padding:8px 12px 0;
+    gap:14px;
+  }
+  .actions svg{
+    width:23px;
+    height:23px;
+    stroke:var(--ig-text);
+    fill:none;
+    stroke-width:1.8;
+  }
+  .actions .spacer{margin-left:auto;}
+  .likes{
+    padding:8px 12px 0;
+    font-size:13px;
+    font-weight:600;
+  }
+  .caption{
+    padding:6px 12px 0;
+    font-size:13px;
+    line-height:1.4;
+  }
+  .caption .cap-user{
+    font-weight:600;
+    margin-right:5px;
+  }
+  .caption .cap-headline{
+    color:var(--gold);
+    font-weight:700;
+  }
+  .comments-link{
+    padding:6px 12px 0;
+    font-size:12.5px;
+    color:var(--ig-text-faint);
+  }
+  .timestamp{
+    padding:5px 12px 14px;
+    font-size:10.5px;
+    color:var(--ig-text-faint);
+    text-transform:uppercase;
+    letter-spacing:.03em;
+  }
+
+  /* QA reference panel */
+  .qa-panel{
+    width:100%;
+    max-width:390px;
+    margin-top:34px;
+  }
+  .qa-title{
+    color:var(--ig-text-dim);
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    margin-bottom:10px;
+    padding-left:2px;
+  }
+  .qa-item{
+    display:flex;
+    gap:10px;
+    padding:10px 0;
+    border-top:1px solid var(--ig-border);
+  }
+  .qa-item:first-child{border-top:none;}
+  .qa-thumb{
+    width:44px;
+    height:55px;
+    object-fit:cover;
+    border-radius:5px;
+    flex-shrink:0;
+    border:1px solid var(--ig-border);
+  }
+  .qa-text{font-size:12.5px;line-height:1.4;}
+  .qa-pill{
+    display:inline-block;
+    background:var(--gold);
+    color:#101010;
+    font-size:9.5px;
+    font-weight:700;
+    letter-spacing:.04em;
+    padding:2px 7px;
+    border-radius:8px;
+    margin-bottom:4px;
+  }
+  .qa-headline{
+    font-weight:700;
+    color:var(--ig-text);
+    margin-bottom:2px;
+  }
+  .qa-headline .hl{color:var(--gold);}
+  .qa-caption{color:var(--ig-text-dim);}
+</style>
+</head>
+<body>
+
+<div class="page-title">Preview — comparación de opciones (no es un carrusel narrativo, cada slide es una idea distinta para el mismo post)</div>
+
+<div class="phone">
+  <div class="ig-header">
+    <div class="avatar"><img src="assets/Nordic-BarberShop-logo-white.svg" alt="Nordic Barber Shop"></div>
+    <div class="ig-user">
+      <span class="name">nordicbarbershopgt</span>
+      <span class="loc">Ciudad de Guatemala</span>
+    </div>
+    <div class="ig-more">&#8942;</div>
+  </div>
+
+  <div class="carousel-wrap">
+    <div class="carousel" id="carousel">
+      <div class="slide"><img src="01-reloj-pulsera.png" alt="Idea 1: reloj de pulsera"></div>
+      <div class="slide"><img src="02-silla-vacia.png" alt="Idea 2: silla vacia"></div>
+      <div class="slide"><img src="02-silla-vacia-opcion1.png" alt="Idea 2B: silla vacia, copy alternativo"></div>
+      <div class="slide"><img src="03-revisando-celular.png" alt="Idea 3: barbero revisando el celular"></div>
+      <div class="slide"><img src="04-tijeras-reloj.png" alt="Idea 4: tijeras y reloj"></div>
+      <div class="slide"><img src="05-cliente-entrando.png" alt="Idea 5: cliente entrando"></div>
+    </div>
+    <div class="counter" id="counter">1/6</div>
+    <button class="nav-btn prev" id="prevBtn" aria-label="Anterior">&#8249;</button>
+    <button class="nav-btn next" id="nextBtn" aria-label="Siguiente">&#8250;</button>
+  </div>
+
+  <div class="dots" id="dots"></div>
+
+  <div class="actions">
+    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    <span class="spacer"></span>
+    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+  </div>
+
+  <div class="likes" id="likes">Le gusta a nordic_client y 156 personas más</div>
+
+  <div class="caption" id="caption"></div>
+  <div class="comments-link">Ver los 9 comentarios</div>
+  <div class="timestamp">Hace 3 h</div>
+</div>
+
+<div class="qa-panel">
+  <div class="qa-title">Copy interno (referencia rápida) — 6 opciones, elegir una sola para publicar</div>
+  <div id="qaList"></div>
+</div>
+
+<script>
+const slides = [
+  {file:"01-reloj-pulsera.png", pill:"IDEA 1 · RELOJ", headline:"EL TIEMPO ES ORO", highlight:"ORO", caption:"Close-up de muñeca ajustando un reloj de pulsera moderno."},
+  {file:"02-silla-vacia.png", pill:"IDEA 2 · SILLA VACÍA", headline:"EL TIEMPO ES ORO", highlight:"ORO", caption:"Silla de barbero vacía y reservada, bajo un spot dorado."},
+  {file:"02-silla-vacia-opcion1.png", pill:"IDEA 2B · SILLA (COPY ALT.)", headline:"TU SILLA TE ESPERA", highlight:"ESPERA", caption:"Misma silla vacía, headline y caption alternativos."},
+  {file:"03-revisando-celular.png", pill:"IDEA 3 · CELULAR", headline:"EL TIEMPO ES ORO", highlight:"ORO", caption:"Barbero revisando la hora en su celular junto a sus herramientas."},
+  {file:"04-tijeras-reloj.png", pill:"IDEA 4 · TIJERAS + RELOJ", headline:"EL TIEMPO ES ORO", highlight:"ORO", caption:"Detalle top-down de tijeras y smartwatch sobre el mostrador."},
+  {file:"05-cliente-entrando.png", pill:"IDEA 5 · CLIENTE ENTRANDO", headline:"EL TIEMPO ES ORO", highlight:"ORO", caption:"Cliente entrando por la puerta de vidrio, con motion blur."}
+];
+
+const carousel = document.getElementById('carousel');
+const counter = document.getElementById('counter');
+const dotsEl = document.getElementById('dots');
+const captionEl = document.getElementById('caption');
+const qaList = document.getElementById('qaList');
+
+slides.forEach((s, i) => {
+  const dot = document.createElement('div');
+  dot.className = 'dot' + (i === 0 ? ' active' : '');
+  dotsEl.appendChild(dot);
+
+  const item = document.createElement('div');
+  item.className = 'qa-item';
+  item.innerHTML = `
+    <img class="qa-thumb" src="${s.file}" alt="">
+    <div class="qa-text">
+      <span class="qa-pill">${s.pill}</span>
+      <div class="qa-headline">${highlightHeadline(s.headline, s.highlight)}</div>
+      <div class="qa-caption">${s.caption}</div>
+    </div>`;
+  qaList.appendChild(item);
+});
+
+function highlightHeadline(headline, highlight){
+  if(!highlight) return headline;
+  return headline.replace(highlight, `<span class="hl">${highlight}</span>`);
+}
+
+function renderCaption(i){
+  const s = slides[i];
+  captionEl.innerHTML = `<span class="cap-user">nordicbarbershopgt</span><span class="cap-headline">${s.headline}</span> — ${s.caption}`;
+}
+renderCaption(0);
+
+function setActive(i){
+  [...dotsEl.children].forEach((d, idx) => d.classList.toggle('active', idx === i));
+  counter.textContent = `${i+1}/${slides.length}`;
+  renderCaption(i);
+}
+
+let current = 0;
+carousel.addEventListener('scroll', () => {
+  const idx = Math.round(carousel.scrollLeft / carousel.clientWidth);
+  if(idx !== current && idx >= 0 && idx < slides.length){
+    current = idx;
+    setActive(current);
+  }
+});
+
+document.getElementById('prevBtn').addEventListener('click', () => {
+  current = Math.max(0, current - 1);
+  carousel.scrollTo({left: current * carousel.clientWidth, behavior:'smooth'});
+  setActive(current);
+});
+document.getElementById('nextBtn').addEventListener('click', () => {
+  current = Math.min(slides.length - 1, current + 1);
+  carousel.scrollTo({left: current * carousel.clientWidth, behavior:'smooth'});
+  setActive(current);
+});
+</script>
+
+</body>
+</html>
