@@ -1,0 +1,68 @@
+{
+  "carousel": "Cortes que evitar si tenes entradas o el pelo fino",
+  "source_reference": "Estructura narrativa (gancho / refuerzo / valor / llamada a la accion) adaptada de un guion de video viral que el usuario transcribio, reorientando el contenido de 'como hacerte viral' hacia el consejo real de barberia que contenia el guion (cortes y producto a evitar con entradas o pelo fino). Copy propio de Nordic Barber Shop.",
+  "build_method": "Hibrido HTML overlay (Opcion B de carousel-tile-generation.md): 6 fondos generados con scripts/kie_image_gen.py (kie.ai gpt-image-2-text-to-image, aspect_ratio 3:4, resolution 2K) sin texto/logo, compuestos con texto y logo reales en un index.html parametrizado por ?slide=N, renderizado a PNG con Chrome headless. Alterna deliberadamente entre dos plantillas visuales en cada slide: la plantilla 'amarilla' (panel Nordic Yellow dominante ~55% + cortes angulares tipo cuchilla, ver posts/instagram/cuidado-de-barba/) en las slides 00/02/04, y la plantilla 'clasica' (foto full-bleed + scrim inferior + pill dorado, ver posts/instagram/aceite-balsamo-cera/) en las slides 01/03/05 -- decision del usuario para que el carrusel respire entre los dos estilos de marca en vez de repetir uno solo.",
+  "slides": [
+    {
+      "id": "00-portada",
+      "type": "cover",
+      "style": "yellow",
+      "file": "00-portada.png",
+      "pill": "GUIA DE CORTE",
+      "headline": "CORTES QUE DEBES EVITAR",
+      "headline_highlight": "EVITAR",
+      "caption": "SI TENES ENTRADAS O EL PELO FINO"
+    },
+    {
+      "id": "01-antes-de-cortarte",
+      "type": "refuerzo",
+      "style": "classic",
+      "file": "01-antes-de-cortarte.png",
+      "pill": "ANTES DE CORTARTE",
+      "headline": "NO TODOS LOS CORTES TE CONVIENEN",
+      "headline_highlight": "CONVIENEN",
+      "caption": "Si tenes entradas o el pelo fino, ciertos cortes resaltan justo lo que menos queres mostrar. Te contamos cuales evitar -- quedate hasta el final."
+    },
+    {
+      "id": "02-degradado",
+      "type": "evitar",
+      "style": "yellow",
+      "file": "02-degradado.png",
+      "pill": "EVITA ESTO · 01/03",
+      "headline": "DEGRADADO MUY MARCADO",
+      "headline_highlight": "MARCADO",
+      "caption": "RESALTA JUSTO DONDE TENES MENOS PELO"
+    },
+    {
+      "id": "03-volumen-flequillo",
+      "type": "evitar",
+      "style": "classic",
+      "file": "03-volumen-flequillo.png",
+      "pill": "EVITA ESTO · 02/03",
+      "headline": "MUCHO VOLUMEN, FLEQUILLO LARGO",
+      "headline_highlight": "VOLUMEN",
+      "caption": "Ambos concentran la mirada arriba y adelante, justo donde las entradas se notan mas. Mejor textura pareja y menos altura."
+    },
+    {
+      "id": "04-cera",
+      "type": "evitar",
+      "style": "yellow",
+      "file": "04-cera.png",
+      "pill": "EVITA ESTO · 03/03",
+      "headline": "PRODUCTO MUY PESADO",
+      "headline_highlight": "PESADO",
+      "caption": "APELMAZAN EL PELO Y LO AFINAN MAS"
+    },
+    {
+      "id": "05-cita",
+      "type": "cta",
+      "style": "classic",
+      "file": "05-cita.png",
+      "pill": "AGENDA TU CITA",
+      "headline": "EL CORTE CORRECTO PARA TU PELO",
+      "headline_highlight": "CORRECTO",
+      "caption": "En Nordic te asesoramos el corte y el producto ideal para tu tipo de pelo. Reserva tu cita y sali con un look que si te favorece."
+    }
+  ],
+  "instagram_caption": "🚨 ¿Entradas o pelo fino? Hay cortes que no te convienen.\n\nAntes de sentarte en la silla, tomá nota:\n\n1️⃣ Evitá el degradado muy marcado — resalta justo donde tenés menos pelo.\n2️⃣ Evitá mucho volumen arriba y flequillos largos — concentran la mirada arriba y adelante, justo donde se nota más.\n3️⃣ Evitá ceras y geles pesados — apelmazan el pelo y lo hacen ver aún más fino.\n\nEn Nordic te asesoramos el corte y el producto ideal para tu tipo de pelo. Agendá tu cita y salí con un look que sí te favorece.\n\n#NordicBarberShop #GuatemalaBarbershop #PeloFino #Entradas"
+}
