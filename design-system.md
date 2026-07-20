@@ -8,7 +8,7 @@ A reference for anyone building for Nordic Barber Shop — web, social, signage,
 
 Nordic Barber Shop is built on the discipline of a Viking edge: precise, angular, unhurried. The identity is deliberately restrained — one accent color, one bold display face, one hand-cut signature detail — so that everything feels sharpened rather than decorated.
 
-**Positioning line:** *Forged for the close cut.*
+**Positioning line:** *Cada corte, forjado con precisión.*
 
 ---
 
