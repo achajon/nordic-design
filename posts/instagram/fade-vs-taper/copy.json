@@ -1,0 +1,57 @@
+{
+  "carousel": "Fade o taper: ¿cual elegis?",
+  "build_method": "Hibrido HTML overlay (Opcion B de carousel-tile-generation.md): 5 fondos generados con scripts/kie_image_gen.py (kie.ai gpt-image-2-text-to-image, aspect_ratio 3:4, resolution 2K) sin texto/logo, compuestos con texto y logo reales en un index.html parametrizado por ?slide=N, renderizado a PNG con Chrome headless. Alterna la plantilla 'amarilla' (panel Nordic Yellow dominante ~55% + cortes angulares tipo cuchilla) en las slides 00/02/04 y la plantilla 'clasica' (foto full-bleed + scrim inferior + pill dorado) en las slides 01/03 -- misma tecnica de alternancia documentada en carousel-tile-generation.md, usada primero en posts/instagram/cortes-a-evitar-pelo-fino/.",
+  "slides": [
+    {
+      "id": "00-portada",
+      "type": "cover",
+      "style": "yellow",
+      "file": "00-portada.png",
+      "pill": "GUIA DE CORTE",
+      "headline": "FADE O TAPER: VOS ELEGIS",
+      "headline_highlight": "ELEGIS",
+      "caption": "Dos cortes, un mismo objetivo: verte impecable. Te contamos la diferencia."
+    },
+    {
+      "id": "01-fade",
+      "type": "opcion",
+      "style": "classic",
+      "file": "01-fade.png",
+      "pill": "OPCION 01/02",
+      "headline": "FADE: TRANSICION LIMPIA",
+      "headline_highlight": "LIMPIA",
+      "caption": "Corte casi a piel en los lados que sube en degradado marcado. Ideal si buscas un look definido y de bajo mantenimiento."
+    },
+    {
+      "id": "02-taper",
+      "type": "opcion",
+      "style": "yellow",
+      "file": "02-taper.png",
+      "pill": "OPCION 02/02",
+      "headline": "TAPER: CAMBIO SUAVE",
+      "headline_highlight": "SUAVE",
+      "caption": "Transicion gradual sin llegar a piel. Perfecto para un look mas natural y versatil, bueno hasta para la oficina."
+    },
+    {
+      "id": "03-como-elegir",
+      "type": "comparacion",
+      "style": "classic",
+      "file": "03-como-elegir.png",
+      "pill": "COMO ELEGIR",
+      "headline": "DEPENDE DE TU ESTILO",
+      "headline_highlight": "ESTILO",
+      "caption": "Fade para contraste marcado y actitud. Taper para versatilidad y transicion suave. Tu barbero te ayuda a decidir."
+    },
+    {
+      "id": "04-cita",
+      "type": "cta",
+      "style": "yellow",
+      "file": "04-cita.png",
+      "pill": "AGENDA TU CITA",
+      "headline": "TU CORTE, TU DECISION",
+      "headline_highlight": "DECISION",
+      "caption": "En Nordic te asesoramos para elegir el corte que va con vos. Reserva tu cita."
+    }
+  ],
+  "instagram_caption": "✂️ ¿Fade o taper? Te ayudamos a elegir.\n\nDos cortes que dominan 2026, pero no son lo mismo:\n\n1️⃣ Fade — degradado marcado, casi a piel en los lados. Contraste fuerte y bajo mantenimiento.\n2️⃣ Taper — transición suave, sin llegar a piel. Más natural y versátil, hasta para la oficina.\n\nEn Nordic te asesoramos para elegir el corte que va con vos. Agendá tu cita y salí con el look que te queda.\n\n#NordicBarberShop #GuatemalaBarbershop #Fade #Taper"
+}
