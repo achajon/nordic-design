@@ -1,0 +1,57 @@
+{
+  "carousel": "Clasicos que vuelven: side part, slick back y crew cut",
+  "build_method": "Hibrido HTML overlay (Opcion B de carousel-tile-generation.md): 5 fondos generados con scripts/kie_image_gen.py (kie.ai gpt-image-2-text-to-image, aspect_ratio 3:4, resolution 2K) sin texto/logo, compuestos con texto y logo reales en un index.html parametrizado por ?slide=N, renderizado a PNG con Chrome headless. Alterna la plantilla 'amarilla' (panel Nordic Yellow dominante ~55% + cortes angulares tipo cuchilla) en las slides 00/02/04 y la plantilla 'clasica' (foto full-bleed + scrim inferior + pill dorado) en las slides 01/03 -- misma tecnica de alternancia documentada en carousel-tile-generation.md, usada primero en posts/instagram/cortes-a-evitar-pelo-fino/.",
+  "slides": [
+    {
+      "id": "00-portada",
+      "type": "cover",
+      "style": "yellow",
+      "file": "00-portada.png",
+      "pill": "TENDENCIA 2026",
+      "headline": "CLASICOS QUE VUELVEN",
+      "headline_highlight": "VUELVEN",
+      "caption": "Tres cortes de siempre, con un giro moderno. Elegi el tuyo."
+    },
+    {
+      "id": "01-side-part",
+      "type": "look",
+      "style": "classic",
+      "file": "01-side-part.png",
+      "pill": "LOOK 01/03",
+      "headline": "SIDE PART: ORDEN Y ACTITUD",
+      "headline_highlight": "ORDEN",
+      "caption": "Raya marcada, lados cortos, volumen controlado arriba. El clasico que nunca falla en una reunion importante."
+    },
+    {
+      "id": "02-slick-back",
+      "type": "look",
+      "style": "yellow",
+      "file": "02-slick-back.png",
+      "pill": "LOOK 02/03",
+      "headline": "SLICK BACK: TODO ATRAS",
+      "headline_highlight": "ATRAS",
+      "caption": "Peinado hacia atras con producto de buen brillo. Elegancia directa, para cualquier ocasion."
+    },
+    {
+      "id": "03-crew-cut",
+      "type": "look",
+      "style": "classic",
+      "file": "03-crew-cut.png",
+      "pill": "LOOK 03/03",
+      "headline": "CREW CUT: CORTO Y PRACTICO",
+      "headline_highlight": "PRACTICO",
+      "caption": "Corto parejo arriba, lados en fade. El corte de bajo mantenimiento que se ve bien todos los dias."
+    },
+    {
+      "id": "04-cita",
+      "type": "cta",
+      "style": "yellow",
+      "file": "04-cita.png",
+      "pill": "AGENDA TU CITA",
+      "headline": "LO CLASICO, A TU MEDIDA",
+      "headline_highlight": "MEDIDA",
+      "caption": "En Nordic actualizamos los cortes de siempre con precision moderna. Reserva tu cita."
+    }
+  ],
+  "instagram_caption": "🪒 Lo clásico siempre vuelve.\n\n2026 trae de regreso tres cortes de toda la vida, con precisión moderna:\n\n1️⃣ Side part — raya marcada, orden y actitud. Perfecto para reuniones importantes.\n2️⃣ Slick back — todo hacia atrás, elegancia directa para cualquier ocasión.\n3️⃣ Crew cut — corto y práctico, bajo mantenimiento y siempre impecable.\n\nEn Nordic actualizamos los cortes de siempre con precisión moderna. Agendá tu cita.\n\n#NordicBarberShop #GuatemalaBarbershop #SidePart #SlickBack #CrewCut"
+}
