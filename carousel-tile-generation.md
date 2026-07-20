@@ -174,6 +174,19 @@ For a 6-slide carousel on a new topic:
 
 **Shell gotcha when batch-downloading generated images:** this machine's shell is zsh, where arrays are 1-indexed (not 0-indexed like bash) — a bash-style `for i in 0..N; do n=${names[$i]}; done` loop silently shifts every filename by one. Don't index arrays with a 0-based loop variable; download each generated image with an explicit, hardcoded filename per command instead, and visually spot-check at least one downloaded image against its expected scene before building overlays on top of it.
 
+## Alternating two visual templates within one carousel
+
+For a carousel where every slide would otherwise share the exact same layout (a list of parallel items — cuts to avoid, comparison sides, tips), consider alternating between the two Option-B templates already established in this repo instead of repeating one look across all N slides. This is a stylistic option to reach for on longer/list-style carousels, not a mandatory step.
+
+- **"classic" template** — full-bleed duotone photo + dark gradient scrim across the lower portion + gold pill top-left (the layout documented in Option B step 2 above). Reference: `posts/instagram/aceite-balsamo-cera/`.
+- **"yellow" template** — Nordic Yellow solid panel dominant (~55% of the frame) + angular blade-style cuts/photography. First used in `posts/instagram/cuidado-de-barba/`.
+
+Assign each slide a `style: "yellow" | "classic"` field in its `copy.json`/data-array entry and alternate them by index (e.g. yellow/classic/yellow/classic…) so the carousel visually breathes between the two brand looks instead of feeling monotonous over 5-6 slides. Branch the CSS/layout inside the single parameterized `index.html` (the `?slide=N` pattern from the Scaling section above) on that `style` field — don't build two separate HTML files.
+
+**Worked example:** `posts/instagram/cortes-a-evitar-pelo-fino/` alternates "yellow" on slides 00/02/04 and "classic" on slides 01/03/05 — a deliberate choice so the carousel doesn't repeat the same template six times in a row.
+
+---
+
 ## Known-good outputs
 
 - `posts/instagram/manicura-pedicura-hombres/00-portada.png` through `04-pies-sin-callos.png` — Option A (pure `nano_banana_flash` generation).
