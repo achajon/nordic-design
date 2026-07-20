@@ -1,0 +1,67 @@
+{
+  "carousel": "Glosario del barbero: habla como un barbero",
+  "build_method": "Hibrido HTML overlay (Opcion B de carousel-tile-generation.md): 6 fondos generados con scripts/kie_image_gen.py (kie.ai gpt-image-2-text-to-image, aspect_ratio 3:4, resolution 2K) sin texto/logo, compuestos con texto y logo reales en un index.html parametrizado por ?slide=N, renderizado a PNG con Chrome headless. Alterna la plantilla 'amarilla' (panel Nordic Yellow dominante ~55% + cortes angulares tipo cuchilla) en las slides 00/02/04 y la plantilla 'clasica' (foto full-bleed + scrim inferior + pill dorado) en las slides 01/03/05 -- misma tecnica de alternancia documentada en carousel-tile-generation.md, usada primero en posts/instagram/cortes-a-evitar-pelo-fino/.",
+  "slides": [
+    {
+      "id": "00-portada",
+      "type": "cover",
+      "style": "yellow",
+      "file": "00-portada.png",
+      "pill": "GLOSARIO NORDIC",
+      "headline": "HABLA COMO UN BARBERO",
+      "headline_highlight": "BARBERO",
+      "caption": "4 terminos que debes saber antes de sentarte en la silla."
+    },
+    {
+      "id": "01-fade",
+      "type": "termino",
+      "style": "classic",
+      "file": "01-fade.png",
+      "pill": "TERMINO 01/04",
+      "headline": "FADE: A PIEL Y DEGRADADO",
+      "headline_highlight": "DEGRADADO",
+      "caption": "Los lados bajan casi a piel y suben en transicion progresiva hacia arriba."
+    },
+    {
+      "id": "02-undercut",
+      "type": "termino",
+      "style": "yellow",
+      "file": "02-undercut.png",
+      "pill": "TERMINO 02/04",
+      "headline": "UNDERCUT: CONTRASTE FUERTE",
+      "headline_highlight": "CONTRASTE",
+      "caption": "Lados y nuca muy cortos, arriba se deja largo. Contraste marcado entre las dos zonas."
+    },
+    {
+      "id": "03-taper",
+      "type": "termino",
+      "style": "classic",
+      "file": "03-taper.png",
+      "pill": "TERMINO 03/04",
+      "headline": "TAPER: TRANSICION SUAVE",
+      "headline_highlight": "SUAVE",
+      "caption": "Reduccion gradual de largo hacia la nuca, sin llegar a piel."
+    },
+    {
+      "id": "04-skin-fade",
+      "type": "termino",
+      "style": "yellow",
+      "file": "04-skin-fade.png",
+      "pill": "TERMINO 04/04",
+      "headline": "SKIN FADE: LA PIEL A LA VISTA",
+      "headline_highlight": "PIEL",
+      "caption": "La version mas marcada del fade: el degradado termina directo sobre la piel."
+    },
+    {
+      "id": "05-cita",
+      "type": "cta",
+      "style": "classic",
+      "file": "05-cita.png",
+      "pill": "AGENDA TU CITA",
+      "headline": "PEDILO CON LAS PALABRAS CORRECTAS",
+      "headline_highlight": "CORRECTAS",
+      "caption": "Ya sabes que pedir. En Nordic lo hacemos realidad. Reserva tu cita."
+    }
+  ],
+  "instagram_caption": "📖 Glosario del barbero: hablá con confianza en la silla.\n\n4 términos que tenés que conocer:\n\n1️⃣ Fade — los lados bajan casi a piel y suben en degradado progresivo.\n2️⃣ Undercut — lados y nuca muy cortos, arriba largo. Contraste marcado.\n3️⃣ Taper — reducción gradual hacia la nuca, sin llegar a piel.\n4️⃣ Skin fade — la versión más marcada: el degradado termina directo sobre la piel.\n\nYa sabés qué pedir. En Nordic lo hacemos realidad. Agendá tu cita.\n\n#NordicBarberShop #GuatemalaBarbershop #Fade #Undercut #Taper #SkinFade"
+}

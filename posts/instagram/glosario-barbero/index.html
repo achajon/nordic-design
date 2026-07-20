@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Glosario del barbero: habla como un barbero — tile render</title>
+<style>
+  @font-face{
+    font-family:"Lost in South";
+    src:url("assets/fonts/Lost in South.otf") format("opentype");
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    src:url("assets/fonts/FiraSansCondensed-Regular.ttf") format("truetype");
+    font-weight:400;
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    src:url("assets/fonts/FiraSansCondensed-Bold.ttf") format("truetype");
+    font-weight:700;
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    src:url("assets/fonts/FiraSansCondensed-BoldItalic.ttf") format("truetype");
+    font-weight:700;
+    font-style:italic;
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    src:url("assets/fonts/FiraSansCondensed-ExtraBold.ttf") format("truetype");
+    font-weight:800;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{width:1080px;height:1350px;background:#101010;overflow:hidden;}
+  .canvas{
+    position:relative;
+    width:1080px;
+    height:1350px;
+    background:#101010;
+    overflow:hidden;
+  }
+
+  /* =========================================================
+     CLASSIC template (full-bleed photo, bottom scrim + copy)
+     ========================================================= */
+  .classic .bg{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+  .classic .scrim{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    height:62%;
+    background:linear-gradient(to bottom, rgba(16,16,16,0) 0%, rgba(16,16,16,.5) 32%, rgba(16,16,16,.9) 70%, rgba(16,16,16,1) 100%);
+  }
+  .classic .pill{
+    position:absolute;
+    top:64px; left:64px;
+    background:#FFD200;
+    color:#101010;
+    font-family:"Fira Sans Condensed";
+    font-weight:800;
+    font-size:26px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    padding:14px 32px;
+    border-radius:40px;
+    white-space:nowrap;
+  }
+  .classic .headline{
+    position:absolute;
+    left:64px; right:64px;
+    bottom:230px;
+    font-family:"Lost in South";
+    font-size:88px;
+    letter-spacing:.07em;
+    line-height:0.98;
+    text-transform:uppercase;
+    color:#F7F4EC;
+  }
+  .classic .headline .hl{color:#FFD200;}
+  .classic .caption{
+    position:absolute;
+    left:64px; right:64px;
+    bottom:110px;
+    font-family:"Fira Sans Condensed";
+    font-weight:400;
+    font-size:31px;
+    line-height:1.4;
+    color:#F7F4EC;
+    opacity:.85;
+  }
+  .classic .logo{
+    position:absolute;
+    right:64px;
+    bottom:56px;
+    height:83px;
+  }
+
+  /* =========================================================
+     YELLOW template (split layout, Nordic Yellow dominant panel)
+     ========================================================= */
+  .yellow .photo-wrap{
+    position:absolute;
+    top:0; right:0;
+    width:620px;
+    height:1350px;
+    overflow:hidden;
+    background:#0a0a0a;
+  }
+  .yellow .photo-wrap img{
+    position:absolute;
+    top:50%; left:50%;
+    height:1350px;
+    width:auto;
+    transform:translate(-50%,-50%);
+  }
+  .yellow .photo-scrim{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to right, rgba(16,16,16,1) 0%, rgba(16,16,16,0) 22%);
+  }
+  .yellow .yellow-panel{
+    position:absolute;
+    top:0; left:0;
+    width:640px;
+    height:1350px;
+    background:#FFD200;
+  }
+  .yellow .blade{
+    position:absolute;
+    background:#101010;
+  }
+  .yellow .blade-1{
+    top:0; left:560px;
+    width:180px; height:1350px;
+    clip-path:polygon(100% 0, 100% 100%, 0 100%, 60% 0);
+  }
+  .yellow .blade-2{
+    top:0; left:0;
+    width:130px; height:70px;
+    clip-path:polygon(0 0, 100% 0, 0 100%);
+  }
+  .yellow .blade-3{
+    bottom:0; left:0;
+    width:230px; height:46px;
+    clip-path:polygon(0 100%, 0 0, 100% 100%);
+    background:#FFD200;
+  }
+  .yellow .blade-4{
+    bottom:0; left:0;
+    width:340px; height:120px;
+    clip-path:polygon(0 100%, 0 40%, 100% 100%);
+  }
+  .yellow .pill{
+    position:absolute;
+    top:70px; left:64px;
+    background:#101010;
+    color:#F7F4EC;
+    font-family:"Fira Sans Condensed";
+    font-weight:800;
+    font-size:24px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    padding:13px 28px;
+    clip-path:polygon(0 0, 100% 0, 96% 100%, 0% 100%);
+  }
+  .yellow .headline-wrap{
+    position:absolute;
+    left:64px; right:120px;
+    top:230px;
+  }
+  .yellow .headline{
+    font-family:"Lost in South";
+    font-size:96px;
+    letter-spacing:.07em;
+    line-height:0.94;
+    text-transform:uppercase;
+    color:#101010;
+  }
+  .yellow .ghost{
+    position:relative;
+    margin-top:-6px;
+    font-family:"Lost in South";
+    font-size:132px;
+    letter-spacing:.07em;
+    line-height:0.9;
+    text-transform:uppercase;
+    color:#101010;
+    opacity:.14;
+    white-space:nowrap;
+  }
+  .yellow .ribbon{
+    position:absolute;
+    left:0; top:900px;
+    width:600px;
+    background:#101010;
+    clip-path:polygon(0 0, 100% 12%, 96% 100%, 0% 88%);
+    padding:30px 60px 30px 64px;
+  }
+  .yellow .ribbon span{
+    display:block;
+    font-family:"Fira Sans Condensed";
+    font-weight:700;
+    font-style:italic;
+    font-size:32px;
+    letter-spacing:.03em;
+    text-transform:uppercase;
+    color:#F7F4EC;
+    line-height:1.25;
+  }
+  .yellow .logo{
+    position:absolute;
+    right:56px;
+    bottom:56px;
+    height:64px;
+  }
+</style>
+</head>
+<body>
+  <div class="canvas classic" id="classic-canvas" style="display:none;">
+    <img class="bg" id="c-bg">
+    <div class="scrim"></div>
+    <div class="pill" id="c-pill"></div>
+    <div class="headline" id="c-headline"></div>
+    <div class="caption" id="c-caption"></div>
+    <img class="logo" src="assets/Nordic-BarberShop-logo-white.svg">
+  </div>
+
+  <div class="canvas yellow" id="yellow-canvas" style="display:none;">
+    <div class="photo-wrap">
+      <img id="y-bg">
+      <div class="photo-scrim"></div>
+    </div>
+
+    <div class="yellow-panel"></div>
+    <div class="blade blade-1"></div>
+    <div class="blade blade-2"></div>
+    <div class="blade blade-3"></div>
+    <div class="blade blade-4"></div>
+
+    <div class="pill" id="y-pill"></div>
+
+    <div class="headline-wrap">
+      <div class="headline" id="y-headline-1"></div>
+      <div class="headline" id="y-headline-2"></div>
+      <div class="ghost" id="y-ghost"></div>
+    </div>
+
+    <div class="ribbon"><span id="y-ribbon"></span></div>
+
+    <img class="logo" src="assets/Nordic-BarberShop-logo-white.svg">
+  </div>
+
+<script>
+  const slides = [
+    { id:"00-portada", style:"yellow",
+      bg:"assets/bg-00-portada.png",
+      pill:"GLOSARIO NORDIC",
+      headline:["HABLA COMO","UN BARBERO"],
+      ghost:"BARBERO",
+      ribbon:"4 TÉRMINOS ANTES DE SENTARTE EN LA SILLA" },
+
+    { id:"01-fade", style:"classic",
+      bg:"assets/bg-01-fade.png",
+      pill:"TÉRMINO 01/04",
+      headline:"FADE: A PIEL Y DEGRADADO",
+      highlight:"DEGRADADO",
+      caption:"Los lados bajan casi a piel y suben en transición progresiva hacia arriba." },
+
+    { id:"02-undercut", style:"yellow",
+      bg:"assets/bg-02-undercut.png",
+      pill:"TÉRMINO 02/04",
+      headline:["UNDERCUT:","CONTRASTE"],
+      ghost:"CONTRASTE",
+      ribbon:"CONTRASTE MARCADO ENTRE LADOS Y ARRIBA" },
+
+    { id:"03-taper", style:"classic",
+      bg:"assets/bg-03-taper.png",
+      pill:"TÉRMINO 03/04",
+      headline:"TAPER: TRANSICIÓN SUAVE",
+      highlight:"SUAVE",
+      caption:"Reducción gradual de largo hacia la nuca, sin llegar a piel." },
+
+    { id:"04-skin-fade", style:"yellow",
+      bg:"assets/bg-04-skin-fade.png",
+      pill:"TÉRMINO 04/04",
+      headline:["SKIN FADE:","TODA PIEL"],
+      ghost:"PIEL",
+      ribbon:"EL DEGRADADO TERMINA SOBRE LA PIEL" },
+
+    { id:"05-cita", style:"classic",
+      bg:"assets/bg-05-cita.png",
+      pill:"AGENDA TU CITA",
+      headline:"PEDILO CON LAS PALABRAS CORRECTAS",
+      highlight:"CORRECTAS",
+      caption:"Ya sabés qué pedir. En Nordic lo hacemos realidad. Reservá tu cita." }
+  ];
+
+  function highlightHeadline(headline, highlight){
+    if(!highlight) return headline;
+    const re = new RegExp(`(${highlight})`, "i");
+    return headline.replace(re, `<span class="hl">$1</span>`);
+  }
+
+  const params = new URLSearchParams(location.search);
+  const i = parseInt(params.get("slide") || "0", 10);
+  const s = slides[i];
+
+  if(s.style === "classic"){
+    document.getElementById("classic-canvas").style.display = "block";
+    document.getElementById("c-bg").src = s.bg;
+    document.getElementById("c-pill").textContent = s.pill;
+    document.getElementById("c-headline").innerHTML = highlightHeadline(s.headline, s.highlight);
+    document.getElementById("c-caption").textContent = s.caption;
+  } else {
+    document.getElementById("yellow-canvas").style.display = "block";
+    document.getElementById("y-bg").src = s.bg;
+    document.getElementById("y-pill").textContent = s.pill;
+    document.getElementById("y-headline-1").textContent = s.headline[0];
+    document.getElementById("y-headline-2").textContent = s.headline[1];
+    document.getElementById("y-ghost").textContent = s.ghost;
+    document.getElementById("y-ribbon").textContent = s.ribbon;
+  }
+</script>
+</body>
+</html>
