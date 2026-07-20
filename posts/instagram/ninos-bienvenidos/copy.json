@@ -1,0 +1,10 @@
+{
+  "post": "Los niños también son bienvenidos en Nordic",
+  "build_method": "Opcion B (ver carousel-tile-generation.md): fondo generado sin texto via scripts/kie_image_gen.py (kie.ai gpt-image-2-text-to-image, aspect_ratio 3:4, resolution 2K) guardado en assets/bg.png, compuesto con texto/logo reales en index.html y renderizado con Chrome headless a 00-portada.png (2160x2700, 2x de 1080x1350). Escena: niño pequeño de espaldas (rostro no visible) sentado sobre un cojin elevador en la silla de barbero, envuelto en la capa, con un barbero adulto detras cortandole el cabello con maquina -- primera generacion del fondo mostraba a alguien de proporciones adultas/adolescentes, se regenero enfatizando cabeza y hombros pequeños, piernas que no alcanzan el reposapies y el cojin elevador para que se lea claramente como niño.",
+  "pill": "PARA TODA LA FAMILIA",
+  "headline": "LOS PEQUES TAMBIÉN SON BIENVENIDOS",
+  "headline_highlight": "BIENVENIDOS",
+  "caption_on_image": "Cortes con paciencia, desde el primer corte.",
+  "instagram_caption": "Los peques también son parte de la familia Nordic. 💈\n\nDesde el primer corte hasta el más pro, los atendemos con la misma dedicación de siempre. Traé a los peques — nosotros nos encargamos del resto.\n\n#NordicBarberShop #GuatemalaBarbershop #ZonaCuatro",
+  "file": "00-portada.png"
+}
