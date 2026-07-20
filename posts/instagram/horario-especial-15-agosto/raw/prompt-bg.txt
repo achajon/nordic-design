@@ -1,0 +1,7 @@
+Reimagine this real barbershop reception photo as a polished, professional on-brand photograph. Keep the exact same composition, camera angle, architecture, wood-slat wall, the 'NORDIC Barber Shop' logo sign, the dark reception counter, and the black tufted leather bench completely unchanged in position and shape. Clean up and tidy the scene: remove the backpack/jacket sitting on the bench, remove the loose stickers and papers on the front of the counter, remove the small retail display clutter on top of the counter so the counter top is clean and minimal. Relight the whole image as high-contrast grayscale photography with a warm golden-yellow key light (the yellow shows only as implied rim light / glow, especially catching the wood slats and the edge of the logo lettering) -- no other color anywhere in the frame, pure grayscale plus that gold light. Modern, premium, magazine-quality interior photography, confident and inviting mood. No text overlays, no watermark, no added graphic elements -- pure photography only.
+
+Command:
+python3 scripts/gemini_image_gen.py \
+  --prompt "$(cat raw/prompt-bg.txt)" \
+  --image "refs/reception-logo-wall-counter-01.jpeg" \
+  --out "assets/bg.png"
