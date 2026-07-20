@@ -87,23 +87,23 @@
     white-space:nowrap;
   }
 
-  /* ---- product image ---- */
+  /* ---- product image: studio shot, edges feathered to blend into canvas ---- */
   .product{
     position:absolute;
-    top:312px;
-    left:158px;
-    width:770px;
+    top:300px;
+    left:130px;
+    width:820px;
     z-index:5;
-    transform: rotate(-7deg);
-    filter: drop-shadow(0 40px 60px rgba(0,0,0,.55));
+    -webkit-mask-image: radial-gradient(ellipse 58% 56% at 50% 54%, #000 55%, transparent 88%);
+            mask-image: radial-gradient(ellipse 58% 56% at 50% 54%, #000 55%, transparent 88%);
   }
 
   /* ---- top-right logo, sits on the yellow tear ---- */
   .brand-logo{
     position:absolute;
-    top:60px;
+    top:44px;
     right:64px;
-    height:44px;
+    height:84px;
     z-index:6;
   }
 
@@ -164,7 +164,7 @@
       <div class="white-line">CABELLO</div>
     </div>
 
-    <div class="caption">ReDone Creative Fiber Wax &mdash; disponible en tienda</div>
+    <div class="caption">Red-One Aqua Hair Wax &mdash; disponible en tienda</div>
 
   </div>
 </body>

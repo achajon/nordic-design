@@ -1,0 +1,7 @@
+Reimagine the product jar shown in the reference image as a professional, high-end product photography shot with dramatic studio lighting. Keep the product itself -- its shape, its red color, its label design, its logo, and every word of its printed text (P&B PLATINUM BLACK SERIES, RedOne, REDONE RED, AQUA HAIR WAX, FULL FORCE, MAXIMUM CONTROL) -- exactly as shown, perfectly legible and unaltered. Change only the photography: place the jar tilted at a dynamic three-quarter angle on a dark charcoal-to-black studio background with a soft gradient, lit with a strong warm golden-yellow rim/key light grazing one edge of the jar and a soft cool fill light on the other side, subtle reflective surface below the product with a soft contact shadow, shallow depth of field, cinematic and premium look, high production value advertising photography. No text overlays, no logos other than the ones already printed on the product, no watermark, no additional graphic elements -- pure photography of the product only.
+
+Command:
+python3 scripts/gemini_image_gen.py \
+  --prompt "$(cat raw/prompt-producto.txt)" \
+  --image "nordic-images/redone/redone-hair-wax-150-ml-red_1_91b019be-095d-47d5-9fe5-3a383c4ef16a.webp" \
+  --out "posts/instagram/productos-cabello-redone/assets/producto.png"
