@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>productos-cabello-redone</title>
+<style>
+  @font-face{
+    font-family:"Lost in South";
+    src:url("assets/fonts/Lost in South.otf") format("opentype");
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    src:url("assets/fonts/FiraSansCondensed-Regular.ttf") format("truetype");
+    font-weight:400;
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    src:url("assets/fonts/FiraSansCondensed-Bold.ttf") format("truetype");
+    font-weight:700;
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    src:url("assets/fonts/FiraSansCondensed-ExtraBold.ttf") format("truetype");
+    font-weight:800;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{width:1080px;height:1350px;background:#101010;overflow:hidden;}
+
+  .canvas{
+    position:relative;
+    width:1080px;
+    height:1350px;
+    background:#101010;
+    overflow:hidden;
+  }
+
+  /* ---- dot pattern, upper-left, on black ---- */
+  .dots{
+    position:absolute;
+    top:0; left:0;
+    width:620px; height:460px;
+    z-index:1;
+    background-image: radial-gradient(circle, rgba(255,210,0,.6) 3.5px, transparent 4px);
+    background-size: 28px 28px;
+    -webkit-mask-image: linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 78%);
+            mask-image: linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 78%);
+  }
+
+  /* ---- torn yellow panel, upper-right ---- */
+  .torn-yellow{
+    position:absolute;
+    top:-40px; left:0;
+    width:1080px; height:900px;
+    background:#FFD200;
+    z-index:2;
+    clip-path: polygon(0.0% -2.0%, 100.0% -2.0%, 100.0% 46.0%, 100.0% 44.9%, 92.9% 41.1%, 85.7% 41.5%, 78.6% 35.1%, 71.4% 35.4%, 64.3% 31.6%, 57.1% 26.9%, 50.0% 27.0%, 42.9% 21.3%, 35.7% 21.1%, 28.6% 16.1%, 21.4% 13.5%, 14.3% 12.9%, 7.1% 12.8%, 0.0% 5.6%, 0.0% -2.0%);
+  }
+
+  /* ---- brand pill ---- */
+  .pill{
+    position:absolute;
+    top:64px; left:64px;
+    z-index:6;
+    background:#FFD200;
+    color:#101010;
+    font-family:"Fira Sans Condensed";
+    font-weight:800;
+    font-size:22px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    padding:12px 26px;
+    border-radius:999px;
+  }
+
+  /* ---- ghost outline word, bleeding off bottom ---- */
+  .ghost{
+    position:absolute;
+    left:-10px;
+    bottom:-58px;
+    z-index:3;
+    font-family:"Lost in South";
+    font-size:190px;
+    letter-spacing:.02em;
+    text-transform:uppercase;
+    color:transparent;
+    -webkit-text-stroke: 2px rgba(255,210,0,.32);
+    white-space:nowrap;
+  }
+
+  /* ---- product image ---- */
+  .product{
+    position:absolute;
+    top:312px;
+    left:158px;
+    width:770px;
+    z-index:5;
+    transform: rotate(-7deg);
+    filter: drop-shadow(0 40px 60px rgba(0,0,0,.55));
+  }
+
+  /* ---- top-right logo, sits on the yellow tear ---- */
+  .brand-logo{
+    position:absolute;
+    top:60px;
+    right:64px;
+    height:44px;
+    z-index:6;
+  }
+
+  /* ---- headline block ---- */
+  .headline{
+    position:absolute;
+    left:80px;
+    top:975px;
+    z-index:6;
+    text-transform:uppercase;
+  }
+  .headline .gold-line{
+    font-family:"Lost in South";
+    font-size:44px;
+    line-height:1.05;
+    letter-spacing:.06em;
+    color:#FFD200;
+  }
+  .headline .white-line{
+    font-family:"Lost in South";
+    font-size:92px;
+    line-height:.95;
+    letter-spacing:.05em;
+    color:#F7F4EC;
+    margin-top:14px;
+  }
+
+  /* ---- footer caption ---- */
+  .caption{
+    position:absolute;
+    left:80px;
+    bottom:52px;
+    z-index:6;
+    font-family:"Fira Sans Condensed";
+    font-weight:600;
+    font-size:22px;
+    letter-spacing:.02em;
+    color:rgba(247,244,236,.72);
+  }
+</style>
+</head>
+<body>
+  <div class="canvas">
+
+    <div class="dots"></div>
+    <div class="torn-yellow"></div>
+    <div class="pill">Nordic Barber Shop</div>
+    <img class="brand-logo" src="assets/Nordic-BarberShop-logo-black.png">
+
+    <div class="ghost">CABELLO</div>
+
+    <img class="product" src="assets/producto.png">
+
+    <div class="headline">
+      <div class="gold-line">TENEMOS LOS</div>
+      <div class="gold-line">MEJORES PRODUCTOS</div>
+      <div class="white-line">PARA TU</div>
+      <div class="white-line">CABELLO</div>
+    </div>
+
+    <div class="caption">ReDone Creative Fiber Wax &mdash; disponible en tienda</div>
+
+  </div>
+</body>
+</html>
