@@ -1,0 +1,10 @@
+{
+  "post": "Manicure y pedicure disponibles todos los días",
+  "build_method": "Opcion B (ver carousel-tile-generation.md): fondo generado sin texto via scripts/kie_image_gen.py (kie.ai gpt-image-2-text-to-image, aspect_ratio 3:4, resolution 2K) guardado en assets/bg.png, compuesto con texto/logo reales en index.html y renderizado con Chrome headless a 00-portada.png (2160x2700, 2x de 1080x1350). Escena: manos de un barbero dando manicure a la mano de un cliente adulto, apoyada en una toalla negra sobre el mostrador, con bandeja de acero con herramientas de manicure al fondo, duotono con luz dorada calida.",
+  "pill": "NUEVO HORARIO",
+  "headline": "MANICURE Y PEDICURE, TODOS LOS DÍAS",
+  "headline_highlight": "TODOS",
+  "caption_on_image": "Lunes a sábado, en el mismo horario en que abrimos.",
+  "instagram_caption": "Ya puedes agendar manicure y pedicure cualquier día que estemos abiertos — de lunes a sábado, mismo horario de siempre.\n\nCuidar tus manos y pies es parte del corte, no un aparte. Sin pena, sin tabú.\n\nReserva tu cita.\n\n#NordicBarberShop #GuatemalaBarbershop #ZonaCuatro",
+  "file": "00-portada.png"
+}
