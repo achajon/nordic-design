@@ -1,0 +1,11 @@
+{
+  "post": "[PENDIENTE PERMISO DE MARCA — NO PUBLICAR] Cada corte va con tu bebida, con Gallo y Coca-Cola reales",
+  "status": "PENDIENTE — requiere autorización explícita de Cervecería Centroamericana (Gallo) y del embotellador de Coca-Cola antes de publicar en cualquier red social.",
+  "build_method": "Misma composición que la opción por defecto (posts/instagram/bebida-cortesia/), pero el fondo (assets/bg.png) fue generado pidiéndole explícitamente al modelo que reproduzca las etiquetas/logos reales de Gallo y Coca-Cola. La IA los recreó de forma bastante reconocible pero NO exacta (hay texto secundario alucinado/ilegible en la etiqueta de Gallo). Esta es una reproducción no autorizada de dos marcas registradas de terceros -- el usuario pidió guardarla como opción para pedir permiso a las marcas antes de decidir publicarla. No usar como imagen final sin ese permiso.",
+  "pill": "CORTESÍA DE LA CASA",
+  "headline": "CADA CORTE VA CON TU BEBIDA",
+  "headline_highlight": "BEBIDA",
+  "caption_on_image": "Gaseosa o cerveza Gallo — vos elegís, nosotros invitamos.",
+  "instagram_caption": "NO USAR SIN PERMISO DE MARCA. Ver posts/instagram/bebida-cortesia/copy.json para la version aprobada (sin marcas) que si esta lista para publicar.",
+  "file": "00-portada.png"
+}
