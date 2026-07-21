@@ -1,0 +1,10 @@
+{
+  "post": "Recordatorio: cada servicio incluye una bebida de cortesía",
+  "build_method": "Opcion B (ver carousel-tile-generation.md): fondo generado sin texto via scripts/kie_image_gen.py (kie.ai gpt-image-2-text-to-image, aspect_ratio 3:4, resolution 2K) guardado en assets/bg.png, compuesto con texto/logo reales en index.html y renderizado con Chrome headless a 00-portada.png (2160x2700, 2x de 1080x1350). Escena: botella de cerveza generica ambar sin etiqueta ni marca junto a un vaso de gaseosa con hielo y limon, sobre una charola negra en el mostrador de la barberia -- deliberadamente sin logo/marca de Gallo en la botella (evitar recrear una marca registrada en la imagen generada); la mencion a 'cerveza Gallo' va solo en el copy de texto, no en la foto.",
+  "pill": "CORTESÍA DE LA CASA",
+  "headline": "CADA CORTE VA CON TU BEBIDA",
+  "headline_highlight": "BEBIDA",
+  "caption_on_image": "Gaseosa o cerveza Gallo — vos elegís, nosotros invitamos.",
+  "instagram_caption": "¿Sabías que cada servicio en Nordic incluye una bebida de cortesía? 🍺🥤\n\nGaseosa o cerveza Gallo, vos decidís. Así se disfruta un buen corte.\n\nTe esperamos.\n\n#NordicBarberShop #GuatemalaBarbershop #ZonaCuatro",
+  "file": "00-portada.png"
+}
