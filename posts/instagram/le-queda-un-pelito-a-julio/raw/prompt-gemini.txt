@@ -1,0 +1,7 @@
+Using the attached reference photo of the man's face as the exact likeness to preserve (same facial structure, eyes, nose, smile, chin, tan skin tone), generate a new close-up studio portrait photograph of this same man, but completely bald with smooth shiny skin on top of his head -- remove all his hair except for one single thin curly strand of hair sticking straight up from the crown of his head. Keep his face, smile, eyes, and identity clearly recognizable and unchanged.
+
+Style: duotone black-and-white photography with a warm golden-yellow rim/key light on one side of his face and head, dark charcoal background, dramatic barbershop editorial lighting. He is wearing an elegant dark tailored suit or tuxedo. A barber's gloved hand enters the frame from the left holding a black comb, poised near the single curl of hair on his head as if about to comb it. Head-and-shoulders framing, centered slightly right, shot from a slight low angle.
+
+Output a TALL VERTICAL PORTRAIT image, 3:4 aspect ratio (taller than it is wide) -- leave generous dark background space above the curl of hair and below his shoulders so the composition works as a vertical portrait, not a wide landscape crop.
+
+Absolutely no text, no letters, no numbers, no logo, no watermark, no graphic overlays, no UI elements anywhere in the image -- pure photography only, a clean background plate.

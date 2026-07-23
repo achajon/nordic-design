@@ -1,0 +1,10 @@
+{
+  "post": "Meme de humor: chiste de calvicie con juego de palabras entre 'Julio' (mes/nombre) y el look de un cantante clasico",
+  "build_method": "Opcion B variante (ver carousel-tile-generation.md): fondo generado con scripts/gemini_image_gen.py (Gemini 3 Pro Image Preview / Nano Banana Pro, image-to-image) usando refs/ref-julio-iglesias.png (foto real provista por el usuario) como referencia de rostro para preservar el parecido, con prompt pidiendo dejarlo calvo salvo un pelito rizado en la coronilla, duotono dorado, mano con guante sosteniendo un peine -- dos intentos previos con kie.ai text-to-image (sin foto de referencia) no lograban parecido reconocible, de ahi el cambio a image-to-image con referencia real. Guardado en assets/bg.png (896x1200, 3:4). Compuesto con texto/logo reales en index.html (scrim inferior en vez de superior para no tapar el chiste visual del peine/pelito) y renderizado con Chrome headless a 00-portada.png (2160x2700, 2x de 1080x1350). Nota: usuario decidio conscientemente recrear el parecido al cantante real (y proveer su propia foto de referencia) tras flagear el tema de derechos de imagen/publicidad de usar la semejanza de una persona real en contenido promocional de un negocio.",
+  "pill": "HUMOR DE BARBERÍA",
+  "headline": "LE QUEDA UN PELITO A JULIO",
+  "headline_highlight": "PELITO",
+  "caption_on_image": "Agenda tu cita.",
+  "instagram_caption": "Le queda un pelito a Julio... 😄💇\n\nPero a vos todavía te queda mucho por arreglar. Agenda tu cita antes de julio.\n\n#NordicBarberShop #GuatemalaBarbershop #ZonaCuatro #HumorDeBarbería",
+  "file": "00-portada.png"
+}
