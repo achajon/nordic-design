@@ -20,16 +20,20 @@
   "headline_highlight": "INDIVIDUALES",
   "caption": "Servicios individuales, precios claros. Agenda tu cita.",
   "services": [
+    ["Rasurado de cabeza", "Q100"],
     ["Corte de cabello", "Q90"],
     ["Corte de barba", "Q90"],
     ["Tallado de barba express", "Q50"],
-    ["Tallado de barba simple", "Q30"],
     ["Mascarilla de carbón activado", "Q75"],
-    ["Tinte de barba", "Q65"],
-    ["Depilación de nariz u orejas con cera", "Q35"],
+    ["Mascarilla hidratante", "Q75"],
+    ["Depilación de nariz u orejas", "Q35"],
+    ["Facial de limpieza profunda", "Q115"],
+    ["Facial extracción de puntos negros", "Q175"],
+    ["Exfoliación capilar", "Q125"],
+    ["Tinte de barba", "Q75"],
     ["Tinte de cabello", "Q120"],
-    ["Facial completo", "Q115"],
-    ["Exfoliación capilar", "Q125"]
+    ["Manicure spa", "Q125"],
+    ["Pedicure spa", "Q175"]
   ],
   "notes": "Generado como HTML/CSS renderizado con Chrome headless (no imagen generada por IA para el layout), siguiendo el componente 'Service list' y el 'Social post frame' de design-system.md. Precios en Fira Sans Condensed ExtraBold dorado (Lost in South no tiene los digitos 0/2/8). logo-variations/Nordic-BarberShop-logo-white.svg ya corregido (viewBox fix 2026-07-06)."
 }
