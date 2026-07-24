@@ -9,8 +9,9 @@
   "services": [
     ["15 minutos", "Q30"],
     ["20 minutos", "Q40"],
+    ["25 minutos", "Q50"],
     ["30 minutos", "Q60"],
-    ["1 hora", "Q100"],
+    ["60 minutos", "Q100"],
     ["5 masajes de 30 minutos", "Q275"],
     ["10 masajes de 30 minutos", "Q500"]
   ],

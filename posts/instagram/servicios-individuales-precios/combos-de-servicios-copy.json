@@ -1,0 +1,34 @@
+{
+  "post": "Lista de precios - Combos de servicios",
+  "versions": [
+    {
+      "id": "feed",
+      "file": "combos-de-servicios-precios.png",
+      "source_html": "combos-de-servicios.html",
+      "background": "solido ink #101010"
+    },
+    {
+      "id": "story",
+      "file": "combos-de-servicios-precios-story.png",
+      "source_html": "combos-de-servicios-story.html",
+      "background": "solido ink #101010, formato 1080x1920 con zonas seguras de Story"
+    }
+  ],
+  "pill": "Lista de precios",
+  "headline": "COMBOS DE SERVICIOS",
+  "headline_highlight": "SERVICIOS",
+  "instagram_caption": "Combina servicios y ahorra. Elige tu combo ideal. Agenda tu cita.",
+  "services": [
+    ["Rasurado de cabeza y barba", "Q160"],
+    ["Corte y barba", "Q150"],
+    ["Corte y barba express", "Q130"],
+    ["Cabello, barba + mask black", "Q140"],
+    ["Corte o barba + facial limpieza profunda", "Q185"],
+    ["Corte o barba + facial extracción puntos negros", "Q220"],
+    ["Corte de cabello + barba + facial limpieza profunda", "Q240"],
+    ["Corte de cabello + barba + facial extracción puntos negros", "Q280"],
+    ["Manicura spa y pedicura spa", "Q275"],
+    ["Depilación de nariz y orejas con cera", "Q60"]
+  ],
+  "notes": "Companero de posts/instagram/servicios-individuales-precios/servicios-individuales.html: mismo template de lista a dos columnas via CSS grid (grid-auto-flow:column, grid-template-rows para alinear filas entre columnas), pero con fuente mas pequena (26px/30px) porque los nombres de combo son mucho mas largos. Generado con HTML/CSS renderizado con Chrome headless, logo-variations/Nordic-BarberShop-logo-white.svg."
+}

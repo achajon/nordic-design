@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Nordic Barber Shop — Paquete de Masajes</title>
+<title>Nordic Barber Shop — Paquete de Masajes (Story)</title>
 <style>
   @font-face{
     font-family:"Lost in South";
@@ -39,13 +39,14 @@
     --steel-dim:rgba(247,244,236,0.28);
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  html,body{width:1080px;height:1350px;background:var(--ink);overflow:hidden;}
+  html,body{width:1080px;height:1920px;background:var(--ink);overflow:hidden;}
   body{
     font-family:"Fira Sans Condensed";
     color:var(--bone);
     display:flex;
     flex-direction:column;
-    padding:64px 80px 56px;
+    /* Story safe zones: clear of top profile/close UI (~250px) and bottom reply bar (~220px) */
+    padding:260px 80px 220px;
   }
 
   .header{

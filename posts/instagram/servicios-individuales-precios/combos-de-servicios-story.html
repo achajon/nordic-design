@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Nordic Barber Shop — Paquete de Masajes</title>
+<title>Nordic Barber Shop — Combos de Servicios (Story)</title>
 <style>
   @font-face{
     font-family:"Lost in South";
@@ -39,13 +39,14 @@
     --steel-dim:rgba(247,244,236,0.28);
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  html,body{width:1080px;height:1350px;background:var(--ink);overflow:hidden;}
+  html,body{width:1080px;height:1920px;background:var(--ink);overflow:hidden;}
   body{
     font-family:"Fira Sans Condensed";
     color:var(--bone);
     display:flex;
     flex-direction:column;
-    padding:64px 80px 56px;
+    /* Story safe zones: clear of top profile/close UI (~250px) and bottom reply bar (~220px) */
+    padding:260px 80px 220px;
   }
 
   .header{
@@ -85,32 +86,36 @@
 
   .list{
     flex:1;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:repeat(5, auto);
+    grid-auto-flow:column;
+    column-gap:48px;
+    align-content:center;
     margin-top:8px;
   }
   .row{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:24px;
+    gap:14px;
     padding:34px 0;
     border-bottom:1px dashed var(--steel-dim);
+    min-width:0;
   }
-  .row:last-child{border-bottom:none;}
+  .row.no-border{border-bottom:none;}
   .row .name{
     font-family:"Fira Sans Condensed";
     font-weight:600;
-    font-size:36px;
-    line-height:1.15;
-    max-width:700px;
+    font-size:26px;
+    line-height:1.2;
+    min-width:0;
   }
   .row .price{
     font-family:"Fira Sans Condensed";
     font-weight:800;
     color:var(--gold);
-    font-size:38px;
+    font-size:30px;
     white-space:nowrap;
     flex-shrink:0;
     font-feature-settings:"tnum" 1;
@@ -136,7 +141,7 @@
   <div class="header">
     <img class="logo" src="../../../logo-variations/Nordic-BarberShop-logo-white.svg" alt="Nordic Barber Shop">
     <div class="pill">Lista de precios</div>
-    <div class="headline">PAQUETE DE <span class="hl">MASAJES</span></div>
+    <div class="headline">COMBOS DE <span class="hl">SERVICIOS</span></div>
     <div class="rule"></div>
   </div>
 
@@ -147,21 +152,30 @@
   </div>
 
 <script>
-const services = [
-  ["15 minutos", "Q30"],
-  ["20 minutos", "Q40"],
-  ["25 minutos", "Q50"],
-  ["30 minutos", "Q60"],
-  ["60 minutos", "Q100"],
-  ["5 masajes de 30 minutos", "Q275"],
-  ["10 masajes de 30 minutos", "Q500"]
+const columns = [
+  [
+    ["Rasurado de cabeza y barba", "Q160"],
+    ["Corte y barba", "Q150"],
+    ["Corte y barba express", "Q130"],
+    ["Cabello, barba + mask black", "Q140"],
+    ["Corte o barba + facial limpieza profunda", "Q185"]
+  ],
+  [
+    ["Corte o barba + facial extracción puntos negros", "Q220"],
+    ["Corte de cabello + barba + facial limpieza profunda", "Q240"],
+    ["Corte de cabello + barba + facial extracción puntos negros", "Q280"],
+    ["Manicura spa y pedicura spa", "Q275"],
+    ["Depilación de nariz y orejas con cera", "Q60"]
+  ]
 ];
 const list = document.getElementById('list');
-services.forEach(([name, price]) => {
-  const row = document.createElement('div');
-  row.className = 'row';
-  row.innerHTML = `<div class="name">${name}</div><div class="price">${price}</div>`;
-  list.appendChild(row);
+columns.forEach(services => {
+  services.forEach(([name, price], i) => {
+    const row = document.createElement('div');
+    row.className = 'row' + (i === services.length - 1 ? ' no-border' : '');
+    row.innerHTML = `<div class="name">${name}</div><div class="price">${price}</div>`;
+    list.appendChild(row);
+  });
 });
 </script>
 
