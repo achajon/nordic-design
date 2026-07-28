@@ -1,0 +1,68 @@
+{
+  "carousel": "La historia del corte de pelo y la rasurada",
+  "source_reference": "Hitos historicos de divulgacion general (uso de herramientas de piedra en la prehistoria, rasurado ritual en el Antiguo Egipto, la orden de Alejandro Magno a su ejercito, los tonsores romanos, los barberos-cirujanos medievales y el origen del poste de barberia) resumidos y adaptados en copy propio de Nordic Barber Shop.",
+  "build_method": "Hibrido HTML overlay (Opcion B de carousel-tile-generation.md): 6 fondos generados con scripts/kie_image_gen.py (kie.ai gpt-image-2-text-to-image, aspect_ratio 3:4, resolution 2K) sin texto/logo, compuestos con texto y logo reales en un index.html parametrizado por ?slide=N, renderizado a PNG con Chrome headless. Alterna entre la plantilla 'clasica' (foto full-bleed + scrim inferior + pill dorado) en las slides 00/02/04 y la plantilla 'amarilla' (panel Nordic Yellow dominante + cortes angulares) en las slides 01/03/05, para que el carrusel respire entre los dos estilos de marca a lo largo del recorrido historico.",
+  "slides": [
+    {
+      "id": "00-portada",
+      "type": "cover",
+      "style": "classic",
+      "file": "00-portada.png",
+      "pill": "HISTORIA BARBERA",
+      "headline": "EL CORTE DE PELO TIENE MILES DE AÑOS",
+      "headline_highlight": "MILES",
+      "caption": "De navajas de piedra a la barbería moderna. Deslizá y conocé la historia."
+    },
+    {
+      "id": "01-piedra",
+      "type": "hito",
+      "style": "yellow",
+      "file": "01-piedra.png",
+      "pill": "01/04 · PREHISTORIA",
+      "headline": "TODO EMPEZÓ CON PIEDRA",
+      "headline_highlight": "PIEDRA",
+      "caption": "HACE MAS DE 100 MIL AÑOS YA SE CORTABAN EL PELO"
+    },
+    {
+      "id": "02-egipto",
+      "type": "hito",
+      "style": "classic",
+      "file": "02-egipto.png",
+      "pill": "02/04 · EGIPTO, 3000 A.C.",
+      "headline": "EN EGIPTO LA BARBA ERA UN LUJO",
+      "headline_highlight": "LUJO",
+      "caption": "Se rasuraban por higiene, con navajas de cobre. Solo el faraón usaba una barba postiza como símbolo de poder."
+    },
+    {
+      "id": "03-roma",
+      "type": "hito",
+      "style": "yellow",
+      "file": "03-roma.png",
+      "pill": "03/04 · GRECIA Y ROMA",
+      "headline": "SIN BARBA A LA BATALLA",
+      "headline_highlight": "BATALLA",
+      "caption": "ALEJANDRO MAGNO MANDÓ A RASURAR A SU EJÉRCITO"
+    },
+    {
+      "id": "04-cirujano",
+      "type": "hito",
+      "style": "classic",
+      "file": "04-cirujano.png",
+      "pill": "04/04 · EDAD MEDIA",
+      "headline": "EL BARBERO TAMBIÉN ERA CIRUJANO",
+      "headline_highlight": "CIRUJANO",
+      "caption": "Por siglos cortaban el pelo, hacían sangrías y hasta extracciones. El poste rojo y blanco de hoy viene de esa época."
+    },
+    {
+      "id": "05-cita",
+      "type": "cta",
+      "style": "yellow",
+      "file": "05-cita.png",
+      "pill": "AGENDA TU CITA",
+      "headline": "UN OFICIO TALLADO CON PRECISIÓN",
+      "headline_highlight": "PRECISIÓN",
+      "caption": "MILES DE AÑOS DE HISTORIA, HOY EN NORDIC BARBER SHOP"
+    }
+  ],
+  "instagram_caption": "✂️ Cortarse el pelo no es cosa de ahora — es casi tan viejo como la humanidad.\n\nUn repaso rápido por la historia:\n\n🪨 Prehistoria: hace más de 100 mil años ya se usaban piedras afiladas (obsidiana, sílex) para cortar el pelo y la barba.\n\n𓂀 Egipto, 3000 a.C.: rasurarse era higiene y estatus. Solo el faraón usaba barba postiza como símbolo de poder.\n\n⚔️ Grecia y Roma: Alejandro Magno mandó rasurar a su ejército para que el enemigo no los tomara de la barba en combate. Ahí nacieron los primeros barberos profesionales, los tonsores.\n\n🩺 Edad Media: el barbero también era cirujano — cortaba el pelo, hacía sangrías y extracciones. El poste rojo y blanco de hoy viene de esa época.\n\nMiles de años después, el oficio sigue siendo el mismo: precisión, cuidado y un buen corte. Agendá tu cita en Nordic Barber Shop.\n\n#NordicBarberShop #GuatemalaBarbershop #HistoriaBarbera #Barbería"
+}
