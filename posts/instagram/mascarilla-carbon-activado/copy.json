@@ -1,0 +1,10 @@
+{
+  "post": "Mascarilla de carbón activado: controla la grasa y los puntos negros",
+  "build_method": "Opcion B (ver carousel-tile-generation.md): fondo generado sin texto via scripts/kie_image_gen.py (kie.ai gpt-image-2-text-to-image, aspect_ratio 3:4, resolution 2K) guardado en assets/bg.png, compuesto con texto/logo reales en index.html y renderizado con Chrome headless a 00-portada.png (2160x2700, 2x de 1080x1350). Escena: retrato de rostro con mascarilla negra de carbon activado aplicada por completo, alto contraste entre el negro mate de la mascarilla y la luz dorada lateral. Uno de 4 posts individuales de cuidado facial (exfoliacion, mascarilla hidratante, mascarilla de carbon, sacacomedones), mismo template 'classic' (scrim inferior) para los 4.",
+  "pill": "LIMPIEZA PROFUNDA",
+  "headline": "PIEL PURIFICADA, CERO EXCESO",
+  "headline_highlight": "PURIFICADA",
+  "caption_on_image": "Carbón activado: controla la grasa y ataca los puntos negros a fondo.",
+  "instagram_caption": "⚫ Limpieza que se siente.\n\nLa mascarilla de carbón activado ataca el exceso de grasa y los puntos negros, dejando la piel purificada de verdad.\n\nAgendá tu tratamiento facial en Nordic.\n\n#NordicBarberShop #GuatemalaBarbershop #CuidadoFacial",
+  "file": "00-portada.png"
+}

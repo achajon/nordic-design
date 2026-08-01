@@ -1,0 +1,10 @@
+{
+  "post": "Exfoliación facial: elimina células muertas y renueva la piel",
+  "build_method": "Opcion B (ver carousel-tile-generation.md): fondo generado sin texto via scripts/kie_image_gen.py (kie.ai gpt-image-2-text-to-image, aspect_ratio 3:4, resolution 2K) guardado en assets/bg.png, compuesto con texto/logo reales en index.html y renderizado con Chrome headless a 00-portada.png (2160x2700, 2x de 1080x1350). Escena: primer plano de mano con guante negro aplicando exfoliante en movimiento circular sobre mandibula/mejilla de un cliente, gotas de agua con luz dorada. Uno de 4 posts individuales de cuidado facial (exfoliacion, mascarilla hidratante, mascarilla de carbon, sacacomedones), mismo template 'classic' (scrim inferior) para los 4.",
+  "pill": "RITUAL DE ROSTRO",
+  "headline": "PIEL RENOVADA, EMPIEZA AQUÍ",
+  "headline_highlight": "RENOVADA",
+  "caption_on_image": "Exfoliación profesional: adiós células muertas, piel lista para lo que sigue.",
+  "instagram_caption": "✨ Piel que se siente nueva.\n\nLa exfoliación facial elimina las células muertas y prepara tu piel para absorber mejor cualquier tratamiento que sigue.\n\nSumalo a tu próxima cita en Nordic.\n\n#NordicBarberShop #GuatemalaBarbershop #CuidadoFacial",
+  "file": "00-portada.png"
+}

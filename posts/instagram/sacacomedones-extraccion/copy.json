@@ -1,0 +1,10 @@
+{
+  "post": "Sacacomedones: extracción profunda y segura",
+  "build_method": "Opcion B (ver carousel-tile-generation.md): fondo generado sin texto via scripts/kie_image_gen.py (kie.ai gpt-image-2-text-to-image, aspect_ratio 3:4, resolution 2K) guardado en assets/bg.png, compuesto con texto/logo reales en index.html y renderizado con Chrome headless a 00-portada.png (2160x2700, 2x de 1080x1350). Escena: macro de mano de barbero sosteniendo un sacacomedones de acero inoxidable justo sobre la piel de un cliente, foco nitido en el metal con brillo dorado. Uno de 4 posts individuales de cuidado facial (exfoliacion, mascarilla hidratante, mascarilla de carbon, sacacomedones), mismo template 'classic' (scrim inferior) para los 4.",
+  "pill": "TÉCNICA PROFESIONAL",
+  "headline": "EXTRACCIÓN SEGURA, RESULTADO LIMPIO",
+  "headline_highlight": "SEGURA",
+  "caption_on_image": "Sacacomedones en manos expertas: extracción profunda, sin dañar la piel.",
+  "instagram_caption": "🔍 Extracción profesional, hecha bien.\n\nEl sacacomedones en manos expertas logra una limpieza profunda sin dañar la piel — nada de apretar a lo bruto.\n\nAgendá tu facial en Nordic.\n\n#NordicBarberShop #GuatemalaBarbershop #CuidadoFacial",
+  "file": "00-portada.png"
+}

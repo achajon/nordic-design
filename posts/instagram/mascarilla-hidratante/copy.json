@@ -1,0 +1,10 @@
+{
+  "post": "Mascarilla hidratante: luminosidad y suavidad para el rostro",
+  "build_method": "Opcion B (ver carousel-tile-generation.md): fondo generado sin texto via scripts/kie_image_gen.py (kie.ai gpt-image-2-text-to-image, aspect_ratio 3:4, resolution 2K) guardado en assets/bg.png, compuesto con texto/logo reales en index.html y renderizado con Chrome headless a 00-portada.png (2160x2700, 2x de 1080x1350). Escena: primer plano de rostro con mascarilla hidratante cremosa recien aplicada, brillo humedo en la piel con luz dorada. Uno de 4 posts individuales de cuidado facial (exfoliacion, mascarilla hidratante, mascarilla de carbon, sacacomedones), mismo template 'classic' (scrim inferior) para los 4.",
+  "pill": "HIDRATACIÓN PROFUNDA",
+  "headline": "LUMINOSIDAD QUE SE NOTA",
+  "headline_highlight": "LUMINOSIDAD",
+  "caption_on_image": "Mascarilla hidratante: suavidad y brillo que se nota al tacto.",
+  "instagram_caption": "💧 Suavidad que se nota.\n\nNuestra mascarilla hidratante devuelve luminosidad y suavidad al rostro después de un día largo.\n\nPreguntá por ella en tu próxima visita.\n\n#NordicBarberShop #GuatemalaBarbershop #CuidadoFacial",
+  "file": "00-portada.png"
+}
