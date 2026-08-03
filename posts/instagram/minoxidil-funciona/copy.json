@@ -1,0 +1,62 @@
+{
+  "carousel": "¿El minoxidil realmente funciona?",
+  "source_reference": "Datos de efectividad tomados de investigacion 2026 (busqueda web): evidencia clinica acumulada de 30+ anos de uso, estudios de formulaciones extended-release (~79-90% mejora reportada a 6 meses en distintos estudios), timeline de resultados (3-6 meses), reversion de efecto al suspender (3-6 meses), y mejor respuesta en etapas tempranas de caida. Producto generico (sin marca especifica) por pedido explicito del usuario -- puede cambiarse a un producto real mas adelante.",
+  "build_method": "Hibrido HTML overlay (Opcion B de carousel-tile-generation.md): fondos generados con scripts/kie_image_gen.py (kie.ai gpt-image-2-text-to-image, aspect_ratio 3:4, resolution 2K) sin texto/logo, con instruccion explicita de NO incluir marca/etiqueta visible en el frasco (generico). Texto y logo compuestos en HTML/CSS con fuentes reales (index.html, template unico con ?slide=N, alternando estilos 'classic' y 'yellow'), renderizado a PNG con Chrome headless.",
+  "slides": [
+    {
+      "id": "00-portada",
+      "type": "cover",
+      "file": "00-portada.png",
+      "pill": "TRATAMIENTO CAPILAR",
+      "headline": "¿EL MINOXIDIL REALMENTE FUNCIONA?",
+      "headline_highlight": "FUNCIONA",
+      "caption": "Te contamos qué dice la evidencia y qué esperar si lo empezás a usar. Deslizá."
+    },
+    {
+      "id": "01-quees",
+      "type": "info",
+      "file": "01-quees.png",
+      "pill": "01/05 · QUÉ ES",
+      "headline": "EL TRATAMIENTO MÁS ESTUDIADO",
+      "headline_highlight": "ESTUDIADO",
+      "caption": "Más de 30 años de uso y cientos de estudios clínicos respaldan al minoxidil tópico."
+    },
+    {
+      "id": "02-comoactua",
+      "type": "info",
+      "file": "02-comoactua.png",
+      "pill": "02/05 · CÓMO ACTÚA",
+      "headline": "PROLONGA LA FASE DE CRECIMIENTO",
+      "headline_highlight": "CRECIMIENTO",
+      "caption": "Estimula el folículo y alarga la etapa de crecimiento del cabello, ayudando a frenar el adelgazamiento."
+    },
+    {
+      "id": "03-tiempos",
+      "type": "info",
+      "file": "03-tiempos.png",
+      "pill": "03/05 · TIEMPOS REALES",
+      "headline": "NO HAY ATAJOS",
+      "headline_highlight": "ATAJOS",
+      "caption": "La mayoría ve cambios entre el mes 3 y el mes 6, sin saltarse días."
+    },
+    {
+      "id": "04-hayquesaber",
+      "type": "info",
+      "file": "04-hayquesaber.png",
+      "pill": "04/05 · HAY QUE SABER",
+      "headline": "FUNCIONA MEJOR A TIEMPO",
+      "headline_highlight": "TIEMPO",
+      "caption": "Es más efectivo en etapas tempranas de la caída. Si se suspende el tratamiento, el efecto se revierte en 3 a 6 meses."
+    },
+    {
+      "id": "05-cita",
+      "type": "cta",
+      "file": "05-cita.png",
+      "pill": "YA LO TENEMOS",
+      "headline": "DISPONIBLE EN NORDIC",
+      "headline_highlight": "NORDIC",
+      "caption": "Preguntá por minoxidil en tu próxima cita."
+    }
+  ],
+  "instagram_caption": "🧪 ¿El minoxidil realmente funciona?\n\nEs el tratamiento tópico contra la caída de cabello con más evidencia científica acumulada: más de 30 años de uso y cientos de estudios clínicos lo respaldan.\n\n¿Cómo actúa? Estimula el folículo y prolonga la fase de crecimiento del cabello, ayudando a frenar el adelgazamiento.\n\n⏳ Pero hay algo clave: no es magia. La mayoría empieza a notar cambios entre el mes 3 y el mes 6 — y solo si se usa todos los días, sin excepción.\n\n📌 Funciona mejor en etapas tempranas de la caída. Si se suspende el tratamiento, el efecto se revierte en 3 a 6 meses — es un compromiso constante, no una cura puntual.\n\n✅ Buenas noticias: ya tenemos minoxidil disponible en Nordic. Preguntá por él en tu próxima cita y te explicamos cómo incorporarlo a tu rutina.\n\n#NordicBarberShop #GuatemalaBarbershop #Minoxidil #CuidadoCapilar"
+}
