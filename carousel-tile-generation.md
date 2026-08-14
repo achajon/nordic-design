@@ -185,6 +185,12 @@ Assign each slide a `style: "yellow" | "classic"` field in its `copy.json`/data-
 
 **Worked example:** `posts/instagram/cortes-a-evitar-pelo-fino/` alternates "yellow" on slides 00/02/04 and "classic" on slides 01/03/05 — a deliberate choice so the carousel doesn't repeat the same template six times in a row.
 
+## Grid template — grouping several short items per slide
+
+For a carousel whose content is a flat list of many short-labeled items (e.g. 12 named styles) rather than one topic per slide, group N items per slide in a 2x2 photo grid instead of burning one full slide per item. Each grid cell is its own square (1:1) background photo + a small number/name label underneath (Fira Sans, never Lost in South, so digits never hit the font's missing-glyph bug); the slide keeps the usual pill + Lost-in-South headline above the grid. Branch this as a third `template` value ("grid", alongside "classic" and "yellow") in the same parameterized `index.html`, keyed off each slide's data.
+
+**Worked example:** `posts/instagram/cortes-ninos-12-estilos/` — 12 kids' haircut styles grouped 4-per-slide across 3 grid slides, bookended by a "classic"-template cover and CTA slide. Each grid item's background photo is generated individually (aspect-ratio 1:1) rather than one combined collage image, so lighting/scale stay consistent across cells.
+
 ---
 
 ## Known-good outputs
