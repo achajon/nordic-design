@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>12 cortes para niños — tile render</title>
+<style>
+  @font-face{
+    font-family:"Lost in South";
+    src:url("assets/fonts/Lost in South.otf") format("opentype");
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    src:url("assets/fonts/FiraSansCondensed-Regular.ttf") format("truetype");
+    font-weight:400;
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    src:url("assets/fonts/FiraSansCondensed-Bold.ttf") format("truetype");
+    font-weight:700;
+  }
+  @font-face{
+    font-family:"Fira Sans Condensed";
+    src:url("assets/fonts/FiraSansCondensed-ExtraBold.ttf") format("truetype");
+    font-weight:800;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{width:1080px;height:1350px;background:#101010;overflow:hidden;}
+  .canvas{position:relative;width:1080px;height:1350px;background:#101010;display:none;}
+  .canvas.active{display:block;}
+
+  /* ---- shared pill/logo ---- */
+  .pill{
+    position:absolute; top:64px; left:64px;
+    background:#FFD200; color:#101010;
+    font-family:"Fira Sans Condensed"; font-weight:800;
+    font-size:26px; letter-spacing:.06em; text-transform:uppercase;
+    padding:14px 32px; border-radius:40px; white-space:nowrap;
+  }
+  .logo{position:absolute; right:64px; bottom:56px; height:83px;}
+
+  /* ---- classic template (cover / cta) ---- */
+  .bg{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .scrim{
+    position:absolute; left:0; right:0; bottom:0; height:62%;
+    background:linear-gradient(to bottom, rgba(16,16,16,0) 0%, rgba(16,16,16,.5) 32%, rgba(16,16,16,.9) 70%, rgba(16,16,16,1) 100%);
+  }
+  .headline{
+    position:absolute; left:64px; right:64px; bottom:230px;
+    font-family:"Lost in South"; font-size:88px; line-height:0.98;
+    text-transform:uppercase; color:#F7F4EC;
+  }
+  .headline .hl{color:#FFD200;}
+  .caption{
+    position:absolute; left:64px; right:64px; bottom:110px;
+    font-family:"Fira Sans Condensed"; font-weight:400; font-size:31px; line-height:1.4;
+    color:#F7F4EC; opacity:.85;
+  }
+
+  /* ---- grid template ---- */
+  .grid-headline{
+    position:absolute; left:64px; right:64px; top:142px;
+    font-family:"Lost in South"; font-size:64px; line-height:0.98;
+    text-transform:uppercase; color:#F7F4EC;
+  }
+  .grid-headline .hl{color:#FFD200;}
+  .grid-wrap{
+    position:absolute; left:64px; top:298px;
+    display:grid; grid-template-columns:repeat(2,464px); grid-template-rows:repeat(2,408px);
+    gap:24px;
+  }
+  .cell{width:464px;height:408px;}
+  .cell img{
+    width:464px; height:308px; object-fit:cover; display:block;
+    border-bottom:3px solid #FFD200;
+  }
+  .cell .label{margin-top:12px; display:flex; align-items:baseline; gap:10px;}
+  .cell .num{
+    font-family:"Fira Sans Condensed"; font-weight:800; font-size:24px;
+    color:#FFD200; letter-spacing:.03em; flex-shrink:0;
+  }
+  .cell .name{
+    font-family:"Fira Sans Condensed"; font-weight:700; font-size:21px; line-height:1.18;
+    color:#F7F4EC; letter-spacing:.01em; text-transform:uppercase;
+  }
+</style>
+</head>
+<body>
+
+  <div class="canvas classic" id="canvas-classic">
+    <img class="bg" id="c-bg">
+    <div class="scrim"></div>
+    <div class="pill" id="c-pill"></div>
+    <div class="headline" id="c-headline"></div>
+    <div class="caption" id="c-caption"></div>
+    <img class="logo" src="assets/Nordic-BarberShop-logo-white.svg">
+  </div>
+
+  <div class="canvas grid" id="canvas-grid">
+    <div class="pill" id="g-pill"></div>
+    <div class="grid-headline" id="g-headline"></div>
+    <div class="grid-wrap" id="g-wrap"></div>
+    <img class="logo" src="assets/Nordic-BarberShop-logo-white.svg">
+  </div>
+
+<script>
+  const slides = [
+    { template:"classic", bg:"assets/bg-00-portada.png", pill:"Cortes para niños", headline:"Cortes para los mas pequeños", highlight:"pequeños", caption:"Del taper bajo al surfer flow: 12 estilos para elegir en su proxima visita. ¿Cual le va a tu peque?" },
+    { template:"grid", pill:"Parte 1 de 3", headline:"Para los mas activos", highlight:"activos", items:[
+      { num:"01", name:"Taper bajo con flequillo", bg:"assets/bg-01-taper-flequillo.png" },
+      { num:"02", name:"Mohawk burst fade", bg:"assets/bg-02-mohawk-burst.png" },
+      { num:"03", name:"Bro flow", bg:"assets/bg-03-bro-flow.png" },
+      { num:"04", name:"Ivy league", bg:"assets/bg-04-ivy-league.png" }
+    ]},
+    { template:"grid", pill:"Parte 2 de 3", headline:"Prolijos y clasicos", highlight:"clasicos", items:[
+      { num:"05", name:"Corte Edgar", bg:"assets/bg-05-edgar.png" },
+      { num:"06", name:"Corte Cesar", bg:"assets/bg-06-cesar.png" },
+      { num:"07", name:"Comb over con fade", bg:"assets/bg-07-combover.png" },
+      { num:"08", name:"Brush up con fade", bg:"assets/bg-08-brushup.png" }
+    ]},
+    { template:"grid", pill:"Parte 3 de 3", headline:"Con actitud y estilo", highlight:"estilo", items:[
+      { num:"09", name:"Mini wolf cut", bg:"assets/bg-09-miniwolf.png" },
+      { num:"10", name:"Cortina larga", bg:"assets/bg-10-curtains.png" },
+      { num:"11", name:"Quiff texturizado", bg:"assets/bg-11-quiff.png" },
+      { num:"12", name:"Surfer flow", bg:"assets/bg-12-surferflow.png" }
+    ]},
+    { template:"classic", bg:"assets/bg-04-cita.png", pill:"Agenda su cita", headline:"Su primer gran corte", highlight:"primer", caption:"Barberos con paciencia, para peques con estilo. Agenda su cita en Nordic Barber Shop." }
+  ];
+
+  function highlightHeadline(headline, highlight){
+    if(!highlight) return headline;
+    const re = new RegExp(`(${highlight})`, "i");
+    return headline.replace(re, `<span class="hl">$1</span>`);
+  }
+
+  const params = new URLSearchParams(location.search);
+  const i = parseInt(params.get("slide") || "0", 10);
+  const s = slides[i];
+
+  if(s.template === "classic"){
+    document.getElementById("canvas-classic").classList.add("active");
+    document.getElementById("c-bg").src = s.bg;
+    document.getElementById("c-pill").textContent = s.pill;
+    document.getElementById("c-headline").innerHTML = highlightHeadline(s.headline, s.highlight);
+    document.getElementById("c-caption").textContent = s.caption;
+  } else {
+    document.getElementById("canvas-grid").classList.add("active");
+    document.getElementById("g-pill").textContent = s.pill;
+    document.getElementById("g-headline").innerHTML = highlightHeadline(s.headline, s.highlight);
+    const wrap = document.getElementById("g-wrap");
+    s.items.forEach(it => {
+      const cell = document.createElement("div");
+      cell.className = "cell";
+      cell.innerHTML = `<img src="${it.bg}"><div class="label"><span class="num">${it.num}</span><span class="name">${it.name}</span></div>`;
+      wrap.appendChild(cell);
+    });
+  }
+</script>
+</body>
+</html>

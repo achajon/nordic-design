@@ -1,0 +1,72 @@
+{
+  "carousel": "12 cortes para niños",
+  "build_method": "Opcion B (ver carousel-tile-generation.md): 14 fondos generados sin texto via scripts/kie_image_gen.py (kie.ai gpt-image-2-text-to-image) -- portada y CTA en aspect_ratio 3:4/2K (escena completa), los 12 retratos individuales de estilo en aspect_ratio 1:1/2K (para el grid) -- compuestos con texto/logo reales en un index.html parametrizado por ?slide=N y renderizado a PNG con Chrome headless. Nueva plantilla 'grid' (2x2 fotos por slide) creada para este carousel, ademas de la plantilla 'classic' de siempre para portada/CTA. Inspirado en formato de post viral de @haircutsboys (grid de 12 cortes), adaptado a la identidad Nordic (duotono + acento dorado) y a corte de niño en vez de estilos genericos IA a color. Curado para no repetir los cortes ya cubiertos en posts/instagram/cortes-pelo-hombre-tendencias/ (skin fade, taper fade, drop fade, burst fade, french crop, buzz cut, mullet).",
+  "slides": [
+    {
+      "id": "00-portada",
+      "type": "cover",
+      "template": "classic",
+      "file": "00-portada.png",
+      "pill": "CORTES PARA NIÑOS",
+      "headline": "CORTES PARA LOS MAS PEQUEÑOS",
+      "headline_highlight": "PEQUEÑOS",
+      "caption": "Del taper bajo al surfer flow: 12 estilos para elegir en su proxima visita. ¿Cual le va a tu peque?"
+    },
+    {
+      "id": "01-estilos-1-4",
+      "type": "grid",
+      "template": "grid",
+      "file": "01-estilos-1-4.png",
+      "pill": "PARTE 1 DE 3",
+      "headline": "PARA LOS MAS ACTIVOS",
+      "headline_highlight": "ACTIVOS",
+      "items": [
+        { "num": "01", "name": "TAPER BAJO CON FLEQUILLO", "bg": "assets/bg-01-taper-flequillo.png" },
+        { "num": "02", "name": "MOHAWK BURST FADE", "bg": "assets/bg-02-mohawk-burst.png" },
+        { "num": "03", "name": "BRO FLOW", "bg": "assets/bg-03-bro-flow.png" },
+        { "num": "04", "name": "IVY LEAGUE", "bg": "assets/bg-04-ivy-league.png" }
+      ]
+    },
+    {
+      "id": "02-estilos-5-8",
+      "type": "grid",
+      "template": "grid",
+      "file": "02-estilos-5-8.png",
+      "pill": "PARTE 2 DE 3",
+      "headline": "PROLIJOS Y CLASICOS",
+      "headline_highlight": "CLASICOS",
+      "items": [
+        { "num": "05", "name": "CORTE EDGAR", "bg": "assets/bg-05-edgar.png" },
+        { "num": "06", "name": "CORTE CESAR", "bg": "assets/bg-06-cesar.png" },
+        { "num": "07", "name": "COMB OVER CON FADE", "bg": "assets/bg-07-combover.png" },
+        { "num": "08", "name": "BRUSH UP CON FADE", "bg": "assets/bg-08-brushup.png" }
+      ]
+    },
+    {
+      "id": "03-estilos-9-12",
+      "type": "grid",
+      "template": "grid",
+      "file": "03-estilos-9-12.png",
+      "pill": "PARTE 3 DE 3",
+      "headline": "CON ACTITUD Y ESTILO",
+      "headline_highlight": "ESTILO",
+      "items": [
+        { "num": "09", "name": "MINI WOLF CUT", "bg": "assets/bg-09-miniwolf.png" },
+        { "num": "10", "name": "CORTINA LARGA", "bg": "assets/bg-10-curtains.png" },
+        { "num": "11", "name": "QUIFF TEXTURIZADO", "bg": "assets/bg-11-quiff.png" },
+        { "num": "12", "name": "SURFER FLOW", "bg": "assets/bg-12-surferflow.png" }
+      ]
+    },
+    {
+      "id": "04-cita",
+      "type": "cta",
+      "template": "classic",
+      "file": "04-cita.png",
+      "pill": "AGENDA SU CITA",
+      "headline": "SU PRIMER GRAN CORTE",
+      "headline_highlight": "PRIMER",
+      "caption": "Barberos con paciencia, para peques con estilo. Agenda su cita en Nordic Barber Shop."
+    }
+  ],
+  "instagram_caption": "12 cortes. Un solo barbershop. ✂️\n\nDel taper bajo con flequillo al surfer flow, armamos la guia definitiva de cortes para los mas pequeños de la casa.\n\nGuarda este post y llevalo a tu proxima cita — nosotros nos encargamos del resto, con toda la paciencia del mundo.\n\n#NordicBarberShop #GuatemalaBarbershop #CortesParaNiños #KidsHaircuts #BarberShop"
+}
