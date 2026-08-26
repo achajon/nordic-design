@@ -1,0 +1,10 @@
+{
+  "post": "Promo mes de la independencia - corte de cabello + 15 minutos de masaje por Q100, del 1 al 30 de septiembre",
+  "build_method": "Opcion B (ver carousel-tile-generation.md): fondo generado sin texto via scripts/kie_image_gen.py (kie.ai gpt-image-2-text-to-image, aspect_ratio 3:4, resolution 2K) guardado en assets/bg.png, compuesto con texto/logo reales en index.html y renderizado con Chrome headless a 00-portada.png (2160x2700, 2x de 1080x1350). Excepcion de marca deliberada: la bandera de Guatemala (capa sobre el cliente) a full color azul/blanco, mismo patron que posts/instagram/dia-partido-camiseta/ y mundial-bandera-argentina/. La luz calida dorada es literalmente la llama de una antorcha ceremonial (antorcha de la independencia), no un flash generico. Segunda iteracion del fondo (2026-08-25): se re-generó para que la escena de la barbería llene todo el encuadre (repisas con productos, espejo, segunda silla, focos colgantes) y evitar el espacio negro vacío del lado derecho de la v1.",
+  "pill": "MES DE LA PATRIA",
+  "headline": "CORTE + MASAJE POR Q100",
+  "headline_highlight": "Q100",
+  "caption_on_image": "Tu corte de cabello más 15 minutos de masaje en nuestra área de masajes.",
+  "instagram_caption": "🇬🇹 Septiembre se celebra con estilo.\n\nDel 1 al 30 de septiembre: tu corte de cabello + 15 minutos de masaje en nuestra área de masajes, todo por Q100.\n\nAgenda tu cita y celebrá el mes de la patria como se debe: bien peinado y bien relajado.\n\n#NordicBarberShop #MesDeLaPatria #GuatemalaBarbershop #15DeSeptiembre",
+  "file": "00-portada.png"
+}
